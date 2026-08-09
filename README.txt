@@ -27,30 +27,33 @@ WHAT'S BUILT
    search/sector/min-fit filters, sort by fit/deadline/budget, and a
    working pipeline board (Identified → In Progress → Submitted →
    Won) you can actually advance opportunities through
-7. Survey Intelligence — FULL MODULE: 6 tracked surveys (GFD baseline,
-   GTVP tracer study, Jaman North feasibility survey, ESSA teacher
-   workforce, KOFIH pretest, cocoa farmer registry) with live
+7. Survey Intelligence — FULL MODULE: 6 tracked surveys, live
    progress bars, an enumerator leaderboard, AI data-quality checks,
    and a per-survey detail modal with a submissions trend chart
-8. Roadmap · Domain OS — GovOS, HealthOS, AgroOS, EduOS, ClimateOS
-   are no longer dead sidebar links. Each is now a real page: hero,
-   6-feature grid, a blurred "coming soon" dashboard preview, and a
-   working email waitlist form with validation
-9. Full dark/light mode, responsive to mobile, ⌘K search shortcut
+8. GovOS — FULL MODULE: budget allocation simulator with live sliders
+   (drag to reallocate a mock FY26 budget across 5 sectors, watch the
+   donut chart and projected-impact text update in real time),
+   ministry dashboard list with performance scores, citizen service
+   response-time tracker
+9. HealthOS — FULL MODULE: disease surveillance feed, ranked facility
+   performance list, medicine inventory stock-level alerts
+10. AgroOS — FULL MODULE: regional yield chart, live market price
+    ticker, pest & disease alert feed
+11. EduOS — FULL MODULE: school performance list ranked by pass rate
+    with dropout-risk badges, teacher distribution chart
+12. ClimateOS — FULL MODULE: regional climate resilience ranking,
+    live climate alert feed
+13. Full dark/light mode, responsive to mobile, ⌘K search shortcut
 
-EVERY SIDEBAR ITEM NOW LEADS SOMEWHERE REAL
-------------------------------------------------
-As of this update, there are no more dead links or bare modals
-anywhere in the sidebar. Every single nav item — from Command Centre
-down to ClimateOS — routes to an actual page with real content.
-Two tiers are honestly distinguished:
-- FULL MODULES (Command Centre, Data Cloud, AI Explorer, GIS,
-  Dashboard Studio, Tender Intelligence, Survey Intelligence): fully
-  interactive, backed by structured demo data, everything clickable
-- ROADMAP PREVIEWS (GovOS, HealthOS, AgroOS, EduOS, ClimateOS):
-  honestly labeled "Coming Soon," with a real feature description,
-  a locked dashboard preview, and a working waitlist signup — not
-  pretending to be functional, but not a dead end either
+EVERY MODULE IN THE SIDEBAR IS NOW FULLY FUNCTIONAL
+---------------------------------------------------------
+As of this update, all 12 modules — not just the original 5, not
+just Tender and Survey Intelligence, but all five Domain OS modules
+too — are real, interactive, data-driven pages. Nothing in the
+sidebar is a "coming soon" placeholder anymore. Every KPI is computed
+from underlying data, every list is real and sorted/filterable where
+it makes sense, and the GovOS budget simulator is a genuinely live
+interactive tool, not just a static mockup.
 
 TENDER INTELLIGENCE — WHY THIS MODULE FIRST
 ------------------------------------------------
@@ -143,6 +146,19 @@ BUGFIXES (this update)
    light-background and dark-background version that swap
    automatically with the theme toggle. Verified pixel-by-pixel that
    the dark-mode swap actually fires and the correct variant renders.
+
+3. NAVY-COLORED ICONS INVISIBLE IN DARK MODE — FIXED
+   While building the new Domain OS modules, the same "navy-on-navy"
+   contrast bug from an earlier round turned up again in more places
+   than previously caught — including the ORIGINAL Command Centre KPI
+   icons, which had been invisible in dark mode this whole time. Any
+   icon styled with navy on a navy-tinted background is unreadable
+   once the background itself goes dark. Fixed by switching every
+   instance to the theme-aware --navy-ink variable (dark navy in
+   light mode, light blue in dark mode) — 11 occurrences across the
+   Command Centre, Survey Intelligence, Tender Intelligence, all 5
+   Domain OS pages, and the AI Explorer's decorative icon. Confirmed
+   visually across every affected page in dark mode.
 
 TECHNICAL NOTES
 ----------------
