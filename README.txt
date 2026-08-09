@@ -440,6 +440,66 @@ a mobile-specific breakpoint that caps the logo and button sizing
 tighter on narrow screens; reverified scrollWidth reads exactly 390
 in both the top and scrolled states afterward.
 
+UPDATE: THE "ENGINE" IS NOW VISIBLE (homepage review implemented)
+------------------------------------------------------------------
+Per detailed review feedback, this was explicitly an ADDITIVE update,
+not a redesign — the reviewer was clear the existing structure was
+strong and should be kept. Five additions make the underlying
+IntelligenceOS engine visible rather than implied:
+
+1. OS STATUS BAR — a thin telemetry strip beneath the nav on every
+   page load: "● INTELLIGENCEOS ENGINE ONLINE · 12 MODULES ACTIVE ·
+   16 REGIONS · 1.2M FARMERS · 3,847 HEALTH FACILITIES · LIVE DATA".
+   Same numbers as before, reframed as system telemetry instead of
+   marketing stats — exactly the reviewer's suggested reframe.
+
+2. THE INTELLIGENCEOS ENGINE DIAGRAM — new section right after the
+   hero: Data Sources (WHO/FAO/GSS/GIS/Survey) flowing into an
+   Intelligence Core (AI Engine/Knowledge Graph/Prediction) flowing
+   into a Decision Layer (Insights/Forecast/Actions), with small
+   animated dots flowing along the connectors and a live telemetry
+   line underneath. Built to match the reviewer's ASCII mockup
+   closely while staying "premium + executive," not gimmicky.
+
+3. OS KERNEL DIAGRAM — inserted at the top of the Ecosystem section,
+   above the existing 8 module cards (which stay exactly as they
+   were): IntelligenceOS → OS Kernel (AI Engine, Knowledge Graph,
+   Data Engine, GIS Engine, Search Engine, Workflow Engine, Agent
+   Engine) branching down via clean tree-style connector lines into
+   GovOS / HealthOS / SurveyOS / AgroOS / BusinessOS. Section heading
+   changed from "Intelligence for every sector" to "One intelligence
+   engine. Twelve applications." per the review.
+
+4. BUTTON RENAME — every primary entry CTA (nav, hero, final CTA)
+   changed from "Get Started"/"Explore IntelligenceOS" to "Launch
+   IntelligenceOS," reinforcing that visitors are launching an
+   operating system, not just entering a website.
+
+5. SECONDARY TAGLINE — "One Intelligence Engine. Every Decision."
+   added under the main headline in monospace/system styling,
+   giving the two-layer brand message the review recommended.
+
+Explicitly NOT done, per the review's own caution: no fake desktop
+UI, no windows/folders/icons gimmick on the landing page. Everything
+added is a clean architecture diagram, not a literal "computer
+desktop."
+
+BUGS CAUGHT DURING TESTING (both real, both fixed):
+- The longer "Launch IntelligenceOS" button text combined with the
+  larger logo from the previous round broke the nav layout across a
+  wide and very common range of laptop screens — confirmed via
+  document.body.scrollWidth exceeding the viewport by up to 218px at
+  1024px width, with real overflow present from roughly 980px all
+  the way to 1300px. This wasn't visible at the 1440px width used in
+  earlier testing, which is exactly why it was missed before. Fixed
+  by raising the breakpoint at which the nav simplifies (hiding the
+  secondary nav links, keeping logo + theme toggle + primary CTA)
+  from 980px to 1320px, closing the gap entirely.
+- Reverified with a full sweep across 11 viewport widths from 390px
+  to 1440px after the fix: zero overflow at every single width,
+  zero console errors throughout, including a full scroll-through of
+  the entire page and dark mode toggle.
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file
