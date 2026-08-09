@@ -347,6 +347,77 @@ hold up, the heatmap gracefully falls back to a friendly empty state
 if the plugin can't load, and a full 12-view regression sweep came
 back with zero console errors.
 
+NEW: homepage.html — A COMPLETE HOMEPAGE REBUILD (16 sections)
+--------------------------------------------------------------------
+Built from a detailed, section-by-section brief calling for something
+"radically different from a conventional SaaS landing page" — one
+that sells the vision and intelligence engine rather than a wall of
+modules. This supersedes the earlier landing.html with a much richer
+build:
+
+1.  Nav — Platform/Solutions/Intelligence/Data/Resources/Pricing,
+    region selector, Sign In / Request Demo / Get Started
+2.  Hero — animated "live intelligence" panel: real-time clock,
+    pulsing map points, live stat cards, an AI insight with a
+    blinking typing cursor. This is the signature visual the brief
+    called "the most important section."
+3.  The IntelligenceOS Promise — Collect → Understand → Predict →
+    Recommend → Act, five icon stages with connecting arrows
+4.  Ask IntelligenceOS — a full worked example: a real question, an
+    AI analysis paragraph, a mini map, a ranked bar chart, confidence
+    level, sources and a recommended action. Built to be "the
+    signature experience of the entire website," per the brief.
+5.  The Ecosystem — 8 sector-grouped module cards (GovOS, BusinessOS,
+    NGO Intelligence, HealthOS, AgroOS, EduOS, ClimateOS, ResearchOS)
+    instead of a flat wall of 20 modules
+6.  Africa Data Cloud — 14 data-source chips (World Bank, WHO,
+    UNICEF, FAO, AfDB, OpenStreetMap, satellite data, etc.)
+7.  GIS + Intelligence — layer-chip selector + map visual
+8.  AI Command Centre — dark section, terminal-style query demo with
+    dataset/district/record counters and an analysis-complete state
+9.  From Data to Decision — the Power BI vs. IntelligenceOS contrast
+    card, plus the DATA→AI ANALYSIS→INSIGHT→PREDICTION→
+    RECOMMENDATION→ACTION→IMPACT flow. The brief calls this "the
+    philosophical backbone of the company."
+10. Real-World Use Cases — 7 clickable question cards
+11. Built for Serious Organizations — 6 trust pillars (Secure,
+    Explainable, Scalable, Interoperable, Multilingual, AI-Native)
+12. Who Uses IntelligenceOS — 6 audience cards + 4 "coming soon" tags
+13. Built in Africa — dark, emotional section with the Ghana → West
+    Africa → Africa → The World journey
+14. Security & Trust — 10-item security grid, given its own section
+    rather than buried in the footer
+15. Final CTA
+16. Footer — full Platform/Solutions/Company/Social link columns
+
+Color discipline followed per the brief: ~70% white/light, ~20% navy
+for authority sections, ~10% teal for actions and highlights — not
+"green everywhere just because the logo uses green."
+
+BUGFIX CAUGHT DURING TESTING: the nav's "Sign In" / "Request a Demo"
+text links didn't collapse on mobile, causing horizontal page
+overflow (confirmed via body.scrollWidth = 618px on a 390px viewport
+— the page was actually wider than the screen). Fixed by hiding them
+at the same breakpoint as the main nav links; verified scrollWidth
+drops to exactly 390px after the fix.
+
+RELATIONSHIP BETWEEN THE THREE HTML FILES
+------------------------------------------------
+- index.html — the actual product/app (Command Centre and all 12
+  modules). This is what a logged-in user works in.
+- homepage.html — the NEW, full public marketing homepage described
+  above. Recommended as the real public entry point going forward.
+- landing.html — the EARLIER, simpler marketing page from a previous
+  round. Kept for reference but superseded by homepage.html; you
+  likely don't need to keep pushing this one.
+
+If you want homepage.html to be what loads at your root domain,
+follow the same rename pattern as before: rename index.html to
+app.html, then rename homepage.html to index.html — and update the
+"Get Started"/"Explore IntelligenceOS" links inside homepage.html
+from href="index.html" to href="app.html" first, or those buttons
+will 404.
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file
