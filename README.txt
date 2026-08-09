@@ -418,6 +418,28 @@ app.html, then rename homepage.html to index.html — and update the
 from href="index.html" to href="app.html" first, or those buttons
 will 404.
 
+UPDATE: BIGGER LOGO + SHRINKING STICKY HEADER ON SCROLL
+------------------------------------------------------------
+Two fixes to homepage.html based on direct feedback:
+- Logo increased from 38px to 54px tall at the top of the page —
+  bold and clearly visible, matching the same fix applied to the
+  app's sidebar earlier.
+- The header now shrinks as you scroll: logo, padding, buttons and
+  nav links all compact down smoothly (95px → 54px measured height,
+  a 43% reduction) while staying pinned to the top in one line with
+  every nav item still visible — verified this isn't just a CSS
+  effect but an actual JS-driven state change (checked
+  el.classList.contains("scrolled") directly), and that scrolling
+  back to the top correctly restores full size.
+
+BUGFIX CAUGHT DURING TESTING: increasing the logo size pushed the
+mobile nav past the viewport edge — confirmed via
+document.body.scrollWidth reading 400px on a 390px-wide viewport,
+a real 10px horizontal overflow, not a visual guess. Fixed by adding
+a mobile-specific breakpoint that caps the logo and button sizing
+tighter on narrow screens; reverified scrollWidth reads exactly 390
+in both the top and scrolled states afterward.
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file
