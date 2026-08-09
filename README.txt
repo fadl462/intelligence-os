@@ -243,6 +243,20 @@ already know to expect the app.
    "pointer". landing.html was also audited the same way and had no
    issues, since every link there uses a real href.
 
+6. NO WAY TO GET HOME + LOGO TOO SMALL — FIXED
+   Two related issues from your feedback:
+   - There was no way to navigate from the app back to the marketing
+     landing page — clicking the logo did nothing. Fixed by wrapping
+     the sidebar logo in a link to landing.html, following the
+     standard "click the logo to go home" convention. Verified the
+     full loop works both directions: logo click in the app lands on
+     landing.html, and "Enter the Platform" from there opens the app.
+   - The sidebar logo was rendered quite small (30px tall). Increased
+     to 46px — bold and clearly legible at a glance — verified this
+     doesn't crowd or overflow the sidebar in either light or dark
+     mode, and doesn't blur since the source asset has more native
+     resolution than the new display size needs.
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file
