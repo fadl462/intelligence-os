@@ -304,6 +304,49 @@ was reusing the ".modal-body" class name, which could have caused
 future bugs if any code ever queried that class expecting the actual
 modal; renamed it to ".info-card-body".
 
+NEW: GIS INTELLIGENCE — 3 MAP STYLES WITH REAL GHANA BOUNDARIES
+------------------------------------------------------------------
+Reviewed 6 references on map/geo-visualization types (ArcGIS Living
+Atlas, GeeksforGeeks, ThoughtSpot, a Medium "top 10 map types"
+piece, Flourish, and AnyChart's geovisualization chart guide). They
+converge on the same three core map styles for this kind of regional
+data — proportional symbol, choropleth, and heatmap — so that's what
+got built. GIS Intelligence previously only had one (proportional
+symbol / bubble markers).
+
+WHAT'S NEW:
+- Proportional symbol (existing) — circle markers sized/colored by value
+- Choropleth (NEW) — Ghana's actual 16 region boundaries, shaded by
+  whichever layer (health/agriculture/education) is active
+- Heatmap (NEW) — density-blended surface via the Leaflet.heat plugin
+
+THE REAL WORK: GHANA REGION BOUNDARIES
+-------------------------------------------
+The choropleth needed actual geographic polygon data, not just the
+16 centroid points already in the app. Sourced a genuine open GeoJSON
+of Ghana's 16 regions (traced through geoBoundaries/HDX and a public
+GitHub repo — virgoaugustine/Ghana-GeoJSON-data — via the GitHub API,
+since the geoBoundaries file itself turned out to be a Git-LFS
+pointer rather than real data). Verified all 16 region names matched
+the app's existing data exactly before using it. The raw file was
+242KB across 10,044 coordinate points — too heavy to embed inline —
+so it was simplified with a proper Douglas-Peucker algorithm (not
+just crude decimation) down to 36KB / 2,100 points, then visually
+verified with a matplotlib render showing all 16 regions still
+correctly shaped and labeled before it ever touched the app.
+
+TESTED PROPERLY THIS TIME: Chart.js, Leaflet core, and Leaflet.heat
+were all downloaded via npm and loaded fully locally for testing —
+previously only Chart.js got this treatment while Leaflet itself
+remained CDN-blocked and untested in earlier rounds. With everything
+loading, confirmed: all three map styles render correctly, switching
+between health/agriculture/education layers correctly re-colors the
+choropleth, clicking a choropleth polygon opens the same region
+detail modal as the existing list, dark mode and mobile layouts both
+hold up, the heatmap gracefully falls back to a friendly empty state
+if the plugin can't load, and a full 12-view regression sweep came
+back with zero console errors.
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file
