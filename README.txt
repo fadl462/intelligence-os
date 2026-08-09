@@ -44,6 +44,32 @@ This pass turned every static element into something clickable:
 - Global toast notification system backs every action
 - Global modal system with keyboard (Esc) and click-outside dismiss
 
+BRAND / LOGO AUDIT (this update)
+-------------------------------------
+Every logo instance in the file now uses the OFFICIAL brand hex
+values from IntelligenceOS_Brand_Font_and_Color_Standards.pdf —
+Navy #082B5A, Teal #00BFA6, Grey #6B7280 — not the slightly-off
+values sampled from the original PNG exports. Specifically:
+- Sidebar logo, favicon, and apple-touch-icon all use the SAME
+  official-hex compass icon (embedded as base64 — no external file
+  dependency, no risk of a broken image link)
+- Browser tab now shows the real IntelligenceOS mark instead of a
+  generic blank icon, with theme-color set to brand navy
+- Added a proper social-share image (og-image.png, 1200x630) built
+  from the official-hex horizontal logo — this is what shows up
+  when the link is shared on LinkedIn, X, WhatsApp, Slack, etc.
+- All in-app CSS color variables (--navy, --teal, --grey) were
+  already at the exact official hex values, confirmed unchanged.
+
+IMPORTANT — DEPLOYMENT STEP FOR THE SOCIAL IMAGE
+-------------------------------------------------------
+og-image.png must be uploaded to the SAME folder as index.html in
+your repo (i.e. sit alongside it at the repo root) for the social
+share preview to work — the HTML references it as a relative path
+("og-image.png") so platforms can fetch it once the page is live at
+https://fadl462.github.io/intelligence-os/. The favicon does NOT
+need this step — it's embedded directly in the HTML.
+
 All data shown (KPIs, alerts, regions, tenders, datasets) is
 illustrative — written to feel real, not yet live. Wiring it to real
 sources is the next phase (see below). Every mocked action (waitlist
