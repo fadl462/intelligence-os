@@ -23,16 +23,34 @@ WHAT'S BUILT
    togglable data layers, clickable region detail panel
 5. Dashboard Studio — widget canvas; toolbar buttons add real
    Chart.js widgets to the canvas; publish flow with confirmation
-6. Tender Intelligence — FULL MODULE (not a teaser): 14 tracked
-   opportunities, live search/sector/min-fit filters, sort by fit
-   score/deadline/budget, a fit-scoring breakdown, and a working
-   pipeline board (Identified → In Progress → Submitted → Won) that
-   you can actually advance opportunities through — the list, KPIs,
-   and pipeline board all stay in sync in real time
-7. Survey Intelligence — still a Phase 2 preview panel
-8. Sidebar roadmap — GovOS / HealthOS / AgroOS / EduOS / ClimateOS,
-   each opens a waitlist modal
+6. Tender Intelligence — FULL MODULE: 14 tracked opportunities, live
+   search/sector/min-fit filters, sort by fit/deadline/budget, and a
+   working pipeline board (Identified → In Progress → Submitted →
+   Won) you can actually advance opportunities through
+7. Survey Intelligence — FULL MODULE: 6 tracked surveys (GFD baseline,
+   GTVP tracer study, Jaman North feasibility survey, ESSA teacher
+   workforce, KOFIH pretest, cocoa farmer registry) with live
+   progress bars, an enumerator leaderboard, AI data-quality checks,
+   and a per-survey detail modal with a submissions trend chart
+8. Roadmap · Domain OS — GovOS, HealthOS, AgroOS, EduOS, ClimateOS
+   are no longer dead sidebar links. Each is now a real page: hero,
+   6-feature grid, a blurred "coming soon" dashboard preview, and a
+   working email waitlist form with validation
 9. Full dark/light mode, responsive to mobile, ⌘K search shortcut
+
+EVERY SIDEBAR ITEM NOW LEADS SOMEWHERE REAL
+------------------------------------------------
+As of this update, there are no more dead links or bare modals
+anywhere in the sidebar. Every single nav item — from Command Centre
+down to ClimateOS — routes to an actual page with real content.
+Two tiers are honestly distinguished:
+- FULL MODULES (Command Centre, Data Cloud, AI Explorer, GIS,
+  Dashboard Studio, Tender Intelligence, Survey Intelligence): fully
+  interactive, backed by structured demo data, everything clickable
+- ROADMAP PREVIEWS (GovOS, HealthOS, AgroOS, EduOS, ClimateOS):
+  honestly labeled "Coming Soon," with a real feature description,
+  a locked dashboard preview, and a working waitlist signup — not
+  pretending to be functional, but not a dead end either
 
 TENDER INTELLIGENCE — WHY THIS MODULE FIRST
 ------------------------------------------------
@@ -128,23 +146,26 @@ of the build.
 
 SUGGESTED NEXT PHASES
 -----------------------
-Phase 1 (done):    Interactive frontend, all core screens clickable,
-                    Tender Intelligence built out as the flagship
-                    end-to-end module
+Phase 1 (done):    Interactive frontend, every sidebar item routes
+                    to real content. Tender Intelligence and Survey
+                    Intelligence built out as full end-to-end modules
 Phase 2:           Real backend (FastAPI/Node + Postgres), auth, and
                     2-3 real data connectors (start with GSS + World
-                    Bank APIs) — Tender Intelligence is the natural
-                    first module to connect to a real data source,
-                    since the UI and interaction pattern already work
+                    Bank APIs) — Tender Intelligence and Survey
+                    Intelligence are both ready to connect first,
+                    since their interaction models are already built
+                    and tested
 Phase 3:           Replace canned AI Explorer responses with a real
                     LLM-backed query engine (RAG over connected data)
 Phase 4:           GIS layer backed by real district-level data
-Phase 5:           Survey Intelligence built out the same way Tender
-                    Intelligence was — full module, not a teaser
+Phase 5:           Pick ONE Domain OS (GovOS/HealthOS/AgroOS/EduOS/
+                    ClimateOS) and build it out the same way Tender
+                    and Survey Intelligence were — full module, not
+                    a preview page
 Phase 6:           Mobile app, multi-tenancy, deployment infra
 
-Recommended: Tender Intelligence is now the strongest candidate to
-connect to a real data source first, since the entire interaction
-model (filtering, scoring, pipeline tracking) is already built and
-tested — it just needs real tenders flowing in instead of the 14
-demo entries.
+Recommended: Tender Intelligence and Survey Intelligence are now the
+strongest candidates to connect to real data first — both have their
+full interaction model (filtering, scoring, progress tracking, detail
+views) already built and tested. They just need real records flowing
+in instead of demo data.
