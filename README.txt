@@ -1,87 +1,99 @@
-INTELLIGENCEOS AFRICA — INTERACTIVE PROTOTYPE
-================================================
-v1.0 · Ghana Edition · Prototype for developer handoff
+INTELLIGENCEOS AFRICA — LIVE PRODUCT
+========================================
+v1.0 · Ghana Edition
+Live at: https://fadl462.github.io/intelligence-os/
 
 WHAT THIS IS
 ------------
-A single self-contained HTML file (IntelligenceOS_Africa_Prototype.html)
-implementing the flagship experience described in the Master Prompt:
-the AI Command Centre and four core modules, fully wired to the locked
-brand system (Navy #082B5A / Teal #00BFA6 / Plus Jakarta Sans / compass
-motif). Open it directly in any browser — no install, no server needed.
+A single self-contained HTML file (index.html) implementing the
+IntelligenceOS Africa frontend: the AI Command Centre and four core
+modules, on the locked brand system (Navy #082B5A / Teal #00BFA6 /
+Plus Jakarta Sans / compass motif). Open it directly in any browser
+or push it to GitHub Pages — no install, no build step, no server.
 
 WHAT'S BUILT
 ------------
-1. AI Command Centre — KPI cards with sparklines, live AI insight feed,
-   alerts panel, quick actions, pinned dashboard previews
+1. AI Command Centre — KPI cards, live AI insight feed, alerts panel,
+   quick actions, pinned dashboard previews
 2. Africa Data Cloud — dataset source browser (GSS, GHS, World Bank,
-   WHO, EPA, OSM, FAO, GMet) with sync status
-3. AI Data Explorer — natural-language query box; 4 example prompts
-   return working canned AI responses (narrative + chart + table)
+   WHO, EPA, OSM, FAO, GMet) with live search filtering
+3. AI Data Explorer — natural-language query box with working canned
+   AI responses (narrative + chart + table)
 4. GIS Intelligence — live Leaflet map of Ghana's 16 regions, 3
-   togglable data layers (health / agriculture / education), ranked
-   region panel, legend
-5. Dashboard Studio — widget canvas with live Chart.js charts (line,
-   bar, donut, KPI card), toolbar, "add widget" placeholder
-6. Survey Intelligence & Tender Intelligence — Phase 2 teaser panels
-7. Sidebar roadmap — GovOS / HealthOS / AgroOS / EduOS / ClimateOS
-   listed as upcoming domain modules
-8. Full dark/light mode toggle (persisted), responsive down to mobile,
-   compass-motif branding throughout
+   togglable data layers, clickable region detail panel
+5. Dashboard Studio — widget canvas; toolbar buttons add real
+   Chart.js widgets to the canvas; publish flow with confirmation
+6. Survey Intelligence & Tender Intelligence — Phase 2 module previews
+7. Sidebar roadmap — GovOS / HealthOS / AgroOS / EduOS / ClimateOS,
+   each opens a waitlist modal
+8. Full dark/light mode, responsive to mobile, ⌘K search shortcut
 
-All data shown (KPIs, alerts, regions, tenders) is illustrative demo
-data written to feel real — it is NOT live. Wiring it to real sources
-is the next engineering phase (see below).
+INTERACTIVE SYSTEMS (v1.0 update)
+-------------------------------------
+This pass turned every static element into something clickable:
+- Workspace switcher (dropdown, Ghana active + 3 upcoming countries)
+- Notification bell dropdown with mark-all-read
+- User menu dropdown (profile / preferences / docs / sign out)
+- KPI cards deep-link into the relevant module
+- AI insight cards and alerts open detail modals with contextual CTAs
+- "View all" opens a full intelligence feed modal
+- Data Cloud cards open dataset preview modals; search filters live
+- GIS region rows fly the map to that region + open a metrics modal
+- Dashboard Studio toolbar actually adds live-charted widgets;
+  Publish gives real confirmation
+- Global toast notification system backs every action
+- Global modal system with keyboard (Esc) and click-outside dismiss
+
+All data shown (KPIs, alerts, regions, tenders, datasets) is
+illustrative — written to feel real, not yet live. Wiring it to real
+sources is the next phase (see below). Every mocked action (waitlist
+signup, report generation, sign out, etc.) gives honest, clearly-demo
+feedback via toast rather than pretending to be a real backend call.
 
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file
 - Chart.js and Leaflet load from cdnjs.cloudflare.com; Google Fonts
   loads Plus Jakarta Sans — all three need an internet connection.
-  If they're blocked, the page degrades gracefully (system font
-  fallback, map shows a friendly empty state, tables still render).
-- Theme preference is saved in localStorage.
-- Icon is embedded as base64 (official brand hex values) — no
-  external image dependency.
+  Degrades gracefully if blocked (system font fallback, map shows a
+  friendly empty state, tables/lists still render).
+- Theme preference persists via localStorage.
+- Icon embedded as base64 (official brand hex values) — no external
+  image dependency.
+- Tested across desktop (1440px), mobile (390px), light and dark
+  mode, with zero console errors.
 
 HOW TO USE IT
 -------------
-- Open the file in a browser to click through the prototype yourself.
-- Hand it to a developer as a visual/interaction reference for
-  building the real frontend (Next.js/React per the original stack).
-- Use it in an investor or stakeholder walkthrough — every screen is
-  live and clickable, not static mockups.
+- Click through it yourself at the live URL above.
+- Hand it to a developer as the interaction/visual reference for the
+  real frontend build (Next.js/React per the original stack).
+- Use it in a stakeholder or investor walkthrough — every screen is
+  live and clickable, not a static mockup.
 
-REALISTIC SCOPE — WHAT THIS IS NOT
-------------------------------------
-The Master Prompt describes a 35-deliverable, Palantir/Bloomberg-scale
-platform: production backend, mobile/tablet/desktop native apps,
-multi-tenant database architecture, Kubernetes deployment, a live AI
-copilot, real data pipelines from World Bank/WHO/GSS/etc., security
-and accessibility audits, and a full design-system/Figma handoff.
-None of that exists yet. This file is the front-of-house prototype —
-deliverable #35 on that list ("interactive prototype ready for
-developer handoff") — not the finished product.
+REALISTIC SCOPE — WHAT'S STILL AHEAD
+----------------------------------------
+This file is the frontend/interaction layer, built to production
+polish. It is NOT yet backed by a real database, real datasets, a
+real AI model, real auth, or real user accounts — everything you see
+is convincing demo data and mocked actions. That's the honest state
+of the build.
 
 SUGGESTED NEXT PHASES
 -----------------------
-Phase 1 (this file):        Interactive frontend prototype ✓
-Phase 2:                    Real backend (FastAPI/Node + Postgres),
-                             auth, and 2-3 real data connectors
-                             (start with GSS + World Bank APIs)
-Phase 3:                    Replace canned AI Explorer responses with
-                             a real LLM-backed query engine (RAG over
-                             the connected datasets)
-Phase 4:                    GIS layer backed by real district-level
-                             data instead of the current demo values
-Phase 5:                    Survey Intelligence & Tender Intelligence
-                             modules built out from teaser to full
-Phase 6:                    Mobile app, multi-tenancy, deployment
-                             infrastructure
+Phase 1 (done):    Interactive frontend, all core screens clickable
+Phase 2:           Real backend (FastAPI/Node + Postgres), auth, and
+                    2-3 real data connectors (start with GSS + World
+                    Bank APIs)
+Phase 3:           Replace canned AI Explorer responses with a real
+                    LLM-backed query engine (RAG over connected data)
+Phase 4:           GIS layer backed by real district-level data
+Phase 5:           Survey Intelligence & Tender Intelligence built
+                    out from preview to full module
+Phase 6:           Mobile app, multi-tenancy, deployment infra
 
-Recommended: pick ONE flagship use case (e.g. maternal health
-monitoring for Ghana Health Service, or tender matching for your own
-consultancy pipeline) and take it end-to-end with real data before
-building out the other 17 modules. A platform that does one thing
-brilliantly with real data is worth more than eighteen modules that
-are all still demos.
+Recommended: pick ONE flagship use case — maternal health monitoring
+for Ghana Health Service, or tender matching for your own consultancy
+pipeline — and take it end-to-end with real data before building out
+the other 17 modules. A platform that does one thing brilliantly with
+real data is worth more than eighteen modules that are all still demos.

@@ -182,8 +182,76 @@ button{font-family:inherit; cursor:pointer;}
 .avatar{
   width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg,var(--navy),var(--teal));
   display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:13px;
-  flex-shrink:0;
+  flex-shrink:0; cursor:pointer;
 }
+.workspace-pill{cursor:pointer; user-select:none;}
+
+/* ---------- DROPDOWNS ---------- */
+.dd-wrap{position:relative;}
+.dropdown{
+  position:absolute; top:calc(100% + 10px); left:0; min-width:230px;
+  background:var(--surface); border:1px solid var(--border); border-radius:13px; box-shadow:var(--shadow-lg);
+  padding:8px; z-index:100; display:none; flex-direction:column;
+  animation:ddshow .16s ease both;
+}
+.dropdown.open{display:flex;}
+@keyframes ddshow{from{opacity:0; transform:translateY(-4px);} to{opacity:1; transform:translateY(0);}}
+.dropdown-wide{min-width:320px; right:0; left:auto;}
+#ddUser{right:0; left:auto;}
+.dd-label{display:flex; align-items:center; font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text-dim); padding:8px 10px 6px;}
+.dd-item{
+  display:flex; align-items:center; gap:9px; padding:9px 10px; border-radius:9px; font-size:13px; font-weight:600;
+  color:var(--text); position:relative;
+}
+.dd-item svg{width:15px; height:15px; color:var(--text-dim); flex-shrink:0;}
+.dd-item:hover{background:var(--bg);}
+.dd-item.locked{color:var(--text-dim); cursor:pointer;}
+.dd-item .badge{margin-left:auto; font-size:9px; font-weight:700; background:var(--border); color:var(--text-dim); padding:2px 6px; border-radius:20px;}
+.dd-item.active .dd-check{margin-left:auto; width:14px; height:14px; color:var(--teal-600);}
+.dd-flag{font-size:15px;}
+.dd-divider{height:1px; background:var(--border); margin:6px 2px;}
+.dd-user{display:flex; align-items:center; gap:10px; padding:8px 8px 10px;}
+.dd-user b{display:block; font-size:12.8px;}
+.dd-user small{font-size:11px; color:var(--text-dim);}
+.dd-notif{display:flex; gap:10px; padding:10px; border-radius:9px; align-items:flex-start;}
+.dd-notif:hover{background:var(--bg);}
+.dd-notif b{display:block; font-size:12.3px; font-weight:700; line-height:1.4;}
+.dd-notif small{font-size:11px; color:var(--text-dim);}
+.dd-notif .sev-dot{margin-top:5px;}
+
+/* ---------- MODAL ---------- */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(5,18,43,.55); backdrop-filter:blur(3px);
+  display:none; align-items:center; justify-content:center; z-index:200; padding:20px;
+}
+.modal-overlay.open{display:flex; animation:fadein .18s ease both;}
+@keyframes fadein{from{opacity:0;} to{opacity:1;}}
+.modal{
+  background:var(--surface); border-radius:var(--radius-lg); max-width:480px; width:100%;
+  box-shadow:var(--shadow-lg); border:1px solid var(--border); animation:modalrise .22s cubic-bezier(.2,.8,.2,1) both;
+  max-height:85vh; overflow-y:auto;
+}
+@keyframes modalrise{from{opacity:0; transform:translateY(14px) scale(.98);} to{opacity:1; transform:translateY(0) scale(1);}}
+.modal-head{display:flex; align-items:flex-start; justify-content:space-between; gap:14px; padding:22px 24px 16px;}
+.modal-head h3{font-size:16.5px; font-weight:800;}
+.modal-head .modal-close{width:30px; height:30px; border-radius:9px; border:1px solid var(--border); background:var(--bg); display:flex; align-items:center; justify-content:center; color:var(--text-dim); flex-shrink:0;}
+.modal-body{padding:0 24px 24px; font-size:13.3px; color:var(--text-dim); line-height:1.65;}
+.modal-body b{color:var(--text);}
+.modal-foot{display:flex; gap:10px; padding:16px 24px 22px; border-top:1px solid var(--border);}
+.modal-input{width:100%; padding:11px 14px; border-radius:10px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-family:inherit; font-size:13.5px; outline:none; margin-top:10px;}
+.modal-input:focus{border-color:var(--teal);}
+
+/* ---------- TOAST ---------- */
+.toast-stack{position:fixed; bottom:22px; right:22px; z-index:300; display:flex; flex-direction:column; gap:10px; align-items:flex-end;}
+.toast{
+  background:var(--navy); color:#fff; font-size:13px; font-weight:600; padding:13px 18px; border-radius:11px;
+  box-shadow:var(--shadow-lg); display:flex; align-items:center; gap:10px; max-width:340px;
+  animation:toastin .25s cubic-bezier(.2,.8,.2,1) both;
+}
+.toast svg{width:16px; height:16px; color:var(--teal); flex-shrink:0;}
+@keyframes toastin{from{opacity:0; transform:translateY(10px) scale(.95);} to{opacity:1; transform:translateY(0) scale(1);}}
+.toast.leaving{animation:toastout .2s ease both;}
+@keyframes toastout{to{opacity:0; transform:translateX(20px);}}
 
 .view{padding:28px 32px 56px; max-width:1440px; width:100%; margin:0 auto; display:none;}
 .view.active{display:block; animation:rise .35s ease both;}
@@ -220,6 +288,8 @@ button{font-family:inherit; cursor:pointer;}
 /* ---------- KPI GRID ---------- */
 .kpi-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:22px;}
 .kpi{padding:19px 20px; display:flex; flex-direction:column; gap:10px;}
+.kpi-clickable{cursor:pointer; transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;}
+.kpi-clickable:hover{transform:translateY(-2px); box-shadow:var(--shadow); border-color:var(--teal);}
 .kpi-top{display:flex; align-items:center; justify-content:space-between;}
 .kpi-label{font-size:12px; font-weight:600; color:var(--text-dim);}
 .kpi-icon{width:32px; height:32px; border-radius:9px; display:flex; align-items:center; justify-content:center;}
@@ -242,6 +312,8 @@ button{font-family:inherit; cursor:pointer;}
 /* Insight feed */
 .insight{display:flex; gap:13px; padding:16px 20px; border-bottom:1px solid var(--border);}
 .insight:last-child{border-bottom:none;}
+.insight-clickable{cursor:pointer; transition:background .15s;}
+.insight-clickable:hover{background:var(--bg);}
 .insight-icon{
   width:34px; height:34px; border-radius:9px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
 }
@@ -255,6 +327,8 @@ button{font-family:inherit; cursor:pointer;}
 /* Alerts */
 .alert-row{display:flex; align-items:flex-start; gap:11px; padding:13px 20px; border-bottom:1px solid var(--border);}
 .alert-row:last-child{border-bottom:none;}
+.alert-clickable{cursor:pointer; transition:background .15s;}
+.alert-clickable:hover{background:var(--bg);}
 .sev-dot{width:8px; height:8px; border-radius:50%; margin-top:5px; flex-shrink:0;}
 .sev-critical{background:var(--danger);}
 .sev-warning{background:var(--warning);}
@@ -278,6 +352,8 @@ button{font-family:inherit; cursor:pointer;}
 /* Recent dashboards */
 .dash-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
 .dash-card{overflow:hidden;}
+.dash-clickable{cursor:pointer; transition:transform .15s, box-shadow .15s, border-color .15s;}
+.dash-clickable:hover{transform:translateY(-2px); box-shadow:var(--shadow); border-color:var(--teal);}
 .dash-thumb{height:96px; position:relative; overflow:hidden; border-bottom:1px solid var(--border);}
 .dash-thumb canvas{position:absolute; inset:10px;}
 .dash-meta{padding:13px 16px;}
@@ -287,6 +363,8 @@ button{font-family:inherit; cursor:pointer;}
 /* ---------- DATA CLOUD ---------- */
 .source-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
 .source-card{padding:17px 18px; display:flex; flex-direction:column; gap:10px;}
+.source-clickable{cursor:pointer; transition:transform .15s, box-shadow .15s, border-color .15s;}
+.source-clickable:hover{transform:translateY(-2px); box-shadow:var(--shadow); border-color:var(--teal);}
 .source-top{display:flex; align-items:center; gap:10px;}
 .source-mark{width:34px; height:34px; border-radius:9px; background:var(--navy-100); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:11px; color:var(--navy-ink);}
 [data-theme="dark"] .source-mark{background:#122750; color:#fff;}
@@ -352,6 +430,8 @@ button{font-family:inherit; cursor:pointer;}
 .layer-btn.active{background:var(--navy); color:#fff; border-color:var(--navy);}
 .region-row{display:flex; align-items:center; justify-content:space-between; padding:10px 20px; border-bottom:1px solid var(--border); font-size:12.5px;}
 .region-row:last-child{border-bottom:none;}
+.region-clickable{cursor:pointer; transition:background .15s;}
+.region-clickable:hover{background:var(--bg);}
 .region-row b{font-weight:700;}
 .region-bar{width:64px; height:5px; border-radius:4px; background:var(--border); overflow:hidden;}
 .region-bar i{display:block; height:100%; border-radius:4px;}
@@ -366,6 +446,12 @@ button{font-family:inherit; cursor:pointer;}
   border:1px dashed var(--border); border-radius:10px; color:var(--text-dim);
 }
 .studio-toolbar .tool svg{width:14px; height:14px;}
+.tool-clickable{cursor:pointer; transition:border-color .15s, color .15s, background .15s;}
+.tool-clickable:hover{border-color:var(--teal); color:var(--navy-ink); background:var(--teal-100);}
+.widget-remove{width:20px; height:20px; border-radius:6px; display:flex; align-items:center; justify-content:center; color:var(--text-dim); flex-shrink:0;}
+.widget-remove:hover{background:#FDE8E8; color:var(--danger);}
+.widget-new{animation:widgetIn .3s cubic-bezier(.2,.8,.2,1) both;}
+@keyframes widgetIn{from{opacity:0; transform:scale(.94) translateY(6px);} to{opacity:1; transform:scale(1) translateY(0);}}
 .widget-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
 .widget{padding:0; overflow:hidden;}
 .widget-head{display:flex; align-items:center; justify-content:space-between; padding:14px 16px 4px;}
@@ -465,16 +551,16 @@ button{font-family:inherit; cursor:pointer;}
       </a>
 
       <div class="nav-label">Roadmap · Domain OS</div>
-      <a class="nav-item locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg> GovOS <span class="badge">SOON</span></a>
-      <a class="nav-item locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.5-2 2-3.5 2-5A5 5 0 0 0 12 6a5 5 0 0 0-9 3c0 1.5.5 3 2 5 2 2.3 5 5 7 6.5 2-1.5 5-4.2 7-6.5Z"/></svg> HealthOS <span class="badge">SOON</span></a>
-      <a class="nav-item locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><path d="M12 2C8 6 8 18 12 22M12 2c4 4 4 16 0 20"/></svg> AgroOS <span class="badge">SOON</span></a>
-      <a class="nav-item locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5Z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg> EduOS <span class="badge">SOON</span></a>
-      <a class="nav-item locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg> ClimateOS <span class="badge">SOON</span></a>
+      <a class="nav-item locked" onclick="openWaitlist('GovOS')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg> GovOS <span class="badge">SOON</span></a>
+      <a class="nav-item locked" onclick="openWaitlist('HealthOS')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.5-2 2-3.5 2-5A5 5 0 0 0 12 6a5 5 0 0 0-9 3c0 1.5.5 3 2 5 2 2.3 5 5 7 6.5 2-1.5 5-4.2 7-6.5Z"/></svg> HealthOS <span class="badge">SOON</span></a>
+      <a class="nav-item locked" onclick="openWaitlist('AgroOS')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><path d="M12 2C8 6 8 18 12 22M12 2c4 4 4 16 0 20"/></svg> AgroOS <span class="badge">SOON</span></a>
+      <a class="nav-item locked" onclick="openWaitlist('EduOS')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5Z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg> EduOS <span class="badge">SOON</span></a>
+      <a class="nav-item locked" onclick="openWaitlist('ClimateOS')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg> ClimateOS <span class="badge">SOON</span></a>
     </nav>
 
     <div class="sidebar-footer">
       <b>IntelligenceOS Africa</b>
-      Turning African Data into Intelligent Decisions.<br>Prototype v1.0 · Ghana Edition
+      Turning African Data into Intelligent Decisions.<br><span style="color:var(--success);">●</span> Live · Ghana Edition · v1.0
     </div>
   </aside>
 
@@ -487,11 +573,22 @@ button{font-family:inherit; cursor:pointer;}
       <button class="icon-btn" id="menuBtn" style="display:none;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
-      <div class="workspace-pill"><span class="dot"></span> Ghana Workspace</div>
+      <div class="dd-wrap">
+        <div class="workspace-pill" onclick="toggleDropdown('ddWorkspace', event)"><span class="dot"></span> Ghana Workspace <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:11px;height:11px;margin-left:1px;"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="dropdown" id="ddWorkspace">
+          <div class="dd-label">Switch workspace</div>
+          <a class="dd-item active" onclick="selectWorkspace('Ghana', this)"><span class="dd-flag">🇬🇭</span> Ghana <svg class="dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></a>
+          <a class="dd-item locked" onclick="openWaitlist('Nigeria workspace')"><span class="dd-flag">🇳🇬</span> Nigeria <span class="badge">SOON</span></a>
+          <a class="dd-item locked" onclick="openWaitlist('Kenya workspace')"><span class="dd-flag">🇰🇪</span> Kenya <span class="badge">SOON</span></a>
+          <a class="dd-item locked" onclick="openWaitlist('Rwanda workspace')"><span class="dd-flag">🇷🇼</span> Rwanda <span class="badge">SOON</span></a>
+          <div class="dd-divider"></div>
+          <a class="dd-item" onclick="toast('Opening workspace settings…')">＋ Add a workspace</a>
+        </div>
+      </div>
 
       <div class="ai-search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" placeholder="Ask IntelligenceOS anything…" onfocus="showView('explorer', this)">
+        <input type="text" id="topSearch" placeholder="Ask IntelligenceOS anything…" onfocus="showView('explorer', this)">
         <kbd>⌘K</kbd>
       </div>
 
@@ -499,11 +596,30 @@ button{font-family:inherit; cursor:pointer;}
         <button class="icon-btn" id="themeToggle" title="Toggle theme">
           <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
         </button>
-        <button class="icon-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
-          <span class="ping"></span>
-        </button>
-        <div class="avatar">FR</div>
+        <div class="dd-wrap">
+          <button class="icon-btn" onclick="toggleDropdown('ddNotif', event)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+            <span class="ping" id="notifPing"></span>
+          </button>
+          <div class="dropdown dropdown-wide" id="ddNotif">
+            <div class="dd-label">Notifications <span style="margin-left:auto; font-weight:600; color:var(--teal-600); cursor:pointer;" onclick="clearNotifs(event)">Mark all read</span></div>
+            <div class="dd-notif" data-sev="critical"><span class="sev-dot sev-critical"></span><div><b>Cholera cases reported — Volta Region</b><small>Ho Municipal · 6 confirmed cases in 48h · 2h ago</small></div></div>
+            <div class="dd-notif" data-sev="warning"><span class="sev-dot sev-warning"></span><div><b>Flood risk elevated — Ada East</b><small>River level 30% above seasonal norm · 5h ago</small></div></div>
+            <div class="dd-notif" data-sev="info"><span class="sev-dot sev-info"></span><div><b>New dataset available</b><small>WHO immunization coverage, 2026 release · 1d ago</small></div></div>
+          </div>
+        </div>
+        <div class="dd-wrap">
+          <div class="avatar" onclick="toggleDropdown('ddUser', event)">FR</div>
+          <div class="dropdown" id="ddUser">
+            <div class="dd-user"><div class="avatar" style="width:34px;height:34px;font-size:12px;">FR</div><div><b>Fadl Rahman Essel</b><small>Ghana Workspace · Admin</small></div></div>
+            <div class="dd-divider"></div>
+            <a class="dd-item" onclick="toast('Profile settings coming soon')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> Profile</a>
+            <a class="dd-item" onclick="toast('Workspace preferences coming soon')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.6 1H21a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.5 1Z"/></svg> Preferences</a>
+            <a class="dd-item" onclick="toast('Documentation opens in a new tab (coming soon)')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg> Documentation</a>
+            <div class="dd-divider"></div>
+            <a class="dd-item" style="color:var(--danger);" onclick="toast('Signed out (demo)')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg> Sign out</a>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -518,7 +634,7 @@ button{font-family:inherit; cursor:pointer;}
           <p>Here's what changed across Ghana's intelligence network since your last visit.</p>
         </div>
         <div style="display:flex; gap:10px;">
-          <button class="btn btn-ghost">
+          <button class="btn btn-ghost" onclick="showView('studio'); toast('New blank dashboard ready in Studio')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
             New dashboard
           </button>
@@ -531,7 +647,7 @@ button{font-family:inherit; cursor:pointer;}
 
       <!-- KPIs -->
       <div class="kpi-grid">
-        <div class="card kpi">
+        <div class="card kpi kpi-clickable" onclick="showView('datacloud'); toast('Filtered to Ghana Health Service datasets')">
           <div class="kpi-top">
             <span class="kpi-label">Health facilities monitored</span>
             <div class="kpi-icon" style="background:var(--navy-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M19 14c1.5-2 2-3.5 2-5A5 5 0 0 0 12 6a5 5 0 0 0-9 3c0 1.5.5 3 2 5 2 2.3 5 5 7 6.5 2-1.5 5-4.2 7-6.5Z"/></svg></div>
@@ -540,7 +656,7 @@ button{font-family:inherit; cursor:pointer;}
           <div class="kpi-delta up">▲ 2.1% <span>vs last quarter</span></div>
           <canvas class="kpi-spark" id="spark1"></canvas>
         </div>
-        <div class="card kpi">
+        <div class="card kpi kpi-clickable" onclick="showView('gis'); setTimeout(()=>setLayer('health'),80)">
           <div class="kpi-top">
             <span class="kpi-label">Districts, rising maternal mortality</span>
             <div class="kpi-icon" style="background:#FDE8E8;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>
@@ -549,7 +665,7 @@ button{font-family:inherit; cursor:pointer;}
           <div class="kpi-delta down">▲ 3 districts <span>needs attention</span></div>
           <canvas class="kpi-spark" id="spark2"></canvas>
         </div>
-        <div class="card kpi">
+        <div class="card kpi kpi-clickable" onclick="showView('gis'); setTimeout(()=>setLayer('agri'),80)">
           <div class="kpi-top">
             <span class="kpi-label">Farmers in national registry</span>
             <div class="kpi-icon" style="background:var(--teal-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2"><path d="M12 2v20M2 12h20"/><path d="M12 2C8 6 8 18 12 22M12 2c4 4 4 16 0 20"/></svg></div>
@@ -558,7 +674,7 @@ button{font-family:inherit; cursor:pointer;}
           <div class="kpi-delta up">▲ 4.6% <span>this season</span></div>
           <canvas class="kpi-spark" id="spark3"></canvas>
         </div>
-        <div class="card kpi">
+        <div class="card kpi kpi-clickable" onclick="showView('tender')">
           <div class="kpi-top">
             <span class="kpi-label">Tenders matched this week</span>
             <div class="kpi-icon" style="background:#FEF3E2;"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
@@ -573,8 +689,8 @@ button{font-family:inherit; cursor:pointer;}
         <div class="stack">
           <!-- Insight feed -->
           <div class="card">
-            <div class="card-head"><h3>Today's AI intelligence</h3><a class="link" href="#">View all →</a></div>
-            <div class="insight">
+            <div class="card-head"><h3>Today's AI intelligence</h3><a class="link" href="#" onclick="showAllInsights();return false;">View all →</a></div>
+            <div class="insight insight-clickable" data-idx="0">
               <div class="insight-icon" style="background:#FDE8E8;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>
               <div class="insight-body">
                 <span class="tag" style="color:var(--danger);">Risk detected</span>
@@ -583,7 +699,7 @@ button{font-family:inherit; cursor:pointer;}
                 <div class="meta"><span>Africa Data Cloud · Ghana Health Service</span><span>2h ago</span></div>
               </div>
             </div>
-            <div class="insight">
+            <div class="insight insight-clickable" data-idx="1">
               <div class="insight-icon" style="background:#FEF3E2;"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2"><path d="M12 2v20M2 12h20"/><path d="M12 2C8 6 8 18 12 22M12 2c4 4 4 16 0 20"/></svg></div>
               <div class="insight-body">
                 <span class="tag" style="color:#B45309;">Climate watch</span>
@@ -592,7 +708,7 @@ button{font-family:inherit; cursor:pointer;}
                 <div class="meta"><span>Climate Intelligence · GMet + satellite</span><span>5h ago</span></div>
               </div>
             </div>
-            <div class="insight">
+            <div class="insight insight-clickable" data-idx="2">
               <div class="insight-icon" style="background:var(--teal-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
               <div class="insight-body">
                 <span class="tag" style="color:var(--teal-600);">Opportunity</span>
@@ -601,7 +717,7 @@ button{font-family:inherit; cursor:pointer;}
                 <div class="meta"><span>Tender Intelligence</span><span>Yesterday</span></div>
               </div>
             </div>
-            <div class="insight">
+            <div class="insight insight-clickable" data-idx="3">
               <div class="insight-icon" style="background:var(--navy-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></div>
               <div class="insight-body">
                 <span class="tag" style="color:var(--navy-ink);">Positive trend</span>
@@ -616,19 +732,19 @@ button{font-family:inherit; cursor:pointer;}
           <div class="card">
             <div class="card-head"><h3>Pinned dashboards</h3><a class="link" href="#" onclick="showView('studio');return false;">Open studio →</a></div>
             <div class="dash-grid" style="padding:18px 20px;">
-              <div class="card dash-card">
+              <div class="card dash-card dash-clickable" onclick="showView('studio'); toast('Opening Maternal Health Overview')">
                 <div class="dash-thumb"><canvas id="thumb1"></canvas></div>
                 <div class="dash-meta"><h5>Maternal Health Overview</h5><p>16 regions · updated daily</p></div>
               </div>
-              <div class="card dash-card">
+              <div class="card dash-card dash-clickable" onclick="showView('studio'); toast('Opening Agriculture Yield Forecast')">
                 <div class="dash-thumb"><canvas id="thumb2"></canvas></div>
                 <div class="dash-meta"><h5>Agriculture Yield Forecast</h5><p>Satellite + GMet · weekly</p></div>
               </div>
-              <div class="card dash-card">
+              <div class="card dash-card dash-clickable" onclick="showView('studio'); toast('Opening Tender Pipeline')">
                 <div class="dash-thumb"><canvas id="thumb3"></canvas></div>
                 <div class="dash-meta"><h5>Tender Pipeline</h5><p>Auto-scored · live</p></div>
               </div>
-              <div class="card dash-card">
+              <div class="card dash-card dash-clickable" onclick="showView('studio'); toast('Opening Education Access Index')">
                 <div class="dash-thumb"><canvas id="thumb4"></canvas></div>
                 <div class="dash-meta"><h5>Education Access Index</h5><p>GES · termly</p></div>
               </div>
@@ -640,9 +756,9 @@ button{font-family:inherit; cursor:pointer;}
           <!-- Alerts -->
           <div class="card">
             <div class="card-head"><h3>Live alerts</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">3 active</span></div>
-            <div class="alert-row"><span class="sev-dot sev-critical"></span><div><h5>Cholera cases reported — Volta Region</h5><p>Ho Municipal · 6 confirmed cases in 48h</p></div></div>
-            <div class="alert-row"><span class="sev-dot sev-warning"></span><div><h5>Flood risk elevated — Ada East</h5><p>River level 30% above seasonal norm</p></div></div>
-            <div class="alert-row"><span class="sev-dot sev-info"></span><div><h5>New dataset available</h5><p>WHO immunization coverage, 2026 release</p></div></div>
+            <div class="alert-row alert-clickable" data-idx="0"><span class="sev-dot sev-critical"></span><div><h5>Cholera cases reported — Volta Region</h5><p>Ho Municipal · 6 confirmed cases in 48h</p></div></div>
+            <div class="alert-row alert-clickable" data-idx="1"><span class="sev-dot sev-warning"></span><div><h5>Flood risk elevated — Ada East</h5><p>River level 30% above seasonal norm</p></div></div>
+            <div class="alert-row alert-clickable" data-idx="2"><span class="sev-dot sev-info"></span><div><h5>New dataset available</h5><p>WHO immunization coverage, 2026 release</p></div></div>
           </div>
 
           <!-- Quick actions -->
@@ -657,7 +773,7 @@ button{font-family:inherit; cursor:pointer;}
                 <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
                 <span>Build a dashboard</span>
               </a>
-              <a class="qa">
+              <a class="qa" onclick="openReportModal()">
                 <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6M9 11h2"/></svg></div>
                 <span>Generate a report</span>
               </a>
@@ -683,20 +799,21 @@ button{font-family:inherit; cursor:pointer;}
         </div>
         <div class="ai-search" style="max-width:320px; flex:none;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="text" placeholder="Search datasets…">
+          <input type="text" id="dataCloudSearch" placeholder="Search datasets…" oninput="filterSources(this.value)">
         </div>
       </div>
 
-      <div class="source-grid">
-        <div class="card source-card"><div class="source-top"><div class="source-mark">GSS</div><div><b>Ghana Statistical Service</b><small>National · Census, LFS, GLSS</small></div></div><p>Population, labour force, living standards and multiple indicator cluster surveys.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 4m ago</span><span>128 datasets</span></div></div>
-        <div class="card source-card"><div class="source-top"><div class="source-mark">GHS</div><div><b>Ghana Health Service</b><small>National · DHIMS2</small></div></div><p>Facility-level health records, disease surveillance, maternal & child health indicators.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 11m ago</span><span>64 datasets</span></div></div>
-        <div class="card source-card"><div class="source-top"><div class="source-mark">WB</div><div><b>World Bank</b><small>Global · Open Data</small></div></div><p>Macroeconomic, poverty, and development indicators across 217 economies.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 1h ago</span><span>1,240 datasets</span></div></div>
-        <div class="card source-card"><div class="source-top"><div class="source-mark">WHO</div><div><b>World Health Organization</b><small>Global · GHO</small></div></div><p>Immunization coverage, mortality, and health system performance indicators.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 22m ago</span><span>310 datasets</span></div></div>
-        <div class="card source-card"><div class="source-top"><div class="source-mark">EPA</div><div><b>Environmental Protection Agency</b><small>National · Ghana</small></div></div><p>Air quality, emissions and environmental compliance monitoring.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 38m ago</span><span>42 datasets</span></div></div>
-        <div class="card source-card"><div class="source-top"><div class="source-mark">OSM</div><div><b>OpenStreetMap</b><small>Global · Geospatial</small></div></div><p>Roads, buildings, health facilities and points of interest, continuously updated.</p><div class="source-foot"><span><span class="live-dot"></span>Live feed</span><span>Unlimited</span></div></div>
-        <div class="card source-card"><div class="source-top"><div class="source-mark">FAO</div><div><b>Food & Agriculture Org.</b><small>Global · FAOSTAT</small></div></div><p>Crop production, trade, food security and land-use statistics.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 3h ago</span><span>420 datasets</span></div></div>
-        <div class="card source-card"><div class="source-top"><div class="source-mark">GMet</div><div><b>Ghana Meteorological Agency</b><small>National · Climate</small></div></div><p>Rainfall, temperature and satellite-derived climate observations.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 6m ago</span><span>58 datasets</span></div></div>
+      <div class="source-grid" id="sourceGrid">
+        <div class="card source-card source-clickable" data-search="ghana statistical service gss census labour survey population"><div class="source-top"><div class="source-mark">GSS</div><div><b>Ghana Statistical Service</b><small>National · Census, LFS, GLSS</small></div></div><p>Population, labour force, living standards and multiple indicator cluster surveys.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 4m ago</span><span>128 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-search="ghana health service ghs dhims2 disease maternal"><div class="source-top"><div class="source-mark">GHS</div><div><b>Ghana Health Service</b><small>National · DHIMS2</small></div></div><p>Facility-level health records, disease surveillance, maternal & child health indicators.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 11m ago</span><span>64 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-search="world bank open data macroeconomic poverty development"><div class="source-top"><div class="source-mark">WB</div><div><b>World Bank</b><small>Global · Open Data</small></div></div><p>Macroeconomic, poverty, and development indicators across 217 economies.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 1h ago</span><span>1,240 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-search="world health organization who gho immunization mortality"><div class="source-top"><div class="source-mark">WHO</div><div><b>World Health Organization</b><small>Global · GHO</small></div></div><p>Immunization coverage, mortality, and health system performance indicators.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 22m ago</span><span>310 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-search="environmental protection agency epa air quality emissions"><div class="source-top"><div class="source-mark">EPA</div><div><b>Environmental Protection Agency</b><small>National · Ghana</small></div></div><p>Air quality, emissions and environmental compliance monitoring.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 38m ago</span><span>42 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-search="openstreetmap osm roads buildings geospatial"><div class="source-top"><div class="source-mark">OSM</div><div><b>OpenStreetMap</b><small>Global · Geospatial</small></div></div><p>Roads, buildings, health facilities and points of interest, continuously updated.</p><div class="source-foot"><span><span class="live-dot"></span>Live feed</span><span>Unlimited</span></div></div>
+        <div class="card source-card source-clickable" data-search="food agriculture organization fao faostat crop trade"><div class="source-top"><div class="source-mark">FAO</div><div><b>Food & Agriculture Org.</b><small>Global · FAOSTAT</small></div></div><p>Crop production, trade, food security and land-use statistics.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 3h ago</span><span>420 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-search="ghana meteorological agency gmet rainfall temperature climate"><div class="source-top"><div class="source-mark">GMet</div><div><b>Ghana Meteorological Agency</b><small>National · Climate</small></div></div><p>Rainfall, temperature and satellite-derived climate observations.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 6m ago</span><span>58 datasets</span></div></div>
       </div>
+      <div id="sourceEmpty" style="display:none; text-align:center; padding:50px 20px; color:var(--text-dim); font-size:13px;">No datasets match your search.</div>
     </section>
 
     <!-- =====================================================
@@ -779,22 +896,22 @@ button{font-family:inherit; cursor:pointer;}
           <h1>Build a dashboard in minutes.</h1>
           <p>Drag widgets onto the canvas. Every chart is wired to live data from the Africa Data Cloud.</p>
         </div>
-        <button class="btn btn-teal">
+        <button class="btn btn-teal" id="publishBtn" onclick="publishDashboard()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
           Publish dashboard
         </button>
       </div>
 
       <div class="studio-toolbar">
-        <div class="tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg>Line chart</div>
-        <div class="tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="8"/><rect x="12" y="6" width="3" height="12"/><rect x="17" y="13" width="3" height="5"/></svg>Bar chart</div>
-        <div class="tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 9 9h-9V3Z"/></svg>Donut</div>
-        <div class="tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Table</div>
-        <div class="tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 3-6-3"/></svg>Map</div>
-        <div class="tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/></svg>KPI card</div>
+        <div class="tool tool-clickable" onclick="addWidget('line')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg>Line chart</div>
+        <div class="tool tool-clickable" onclick="addWidget('bar')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="8"/><rect x="12" y="6" width="3" height="12"/><rect x="17" y="13" width="3" height="5"/></svg>Bar chart</div>
+        <div class="tool tool-clickable" onclick="addWidget('donut')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 9 9h-9V3Z"/></svg>Donut</div>
+        <div class="tool tool-clickable" onclick="addWidget('kpi')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Table</div>
+        <div class="tool tool-clickable" onclick="showView('gis'); toast('GIS map widgets are added from GIS Intelligence')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 3-6-3"/></svg>Map</div>
+        <div class="tool tool-clickable" onclick="addWidget('kpi')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/></svg>KPI card</div>
       </div>
 
-      <div class="widget-grid">
+      <div class="widget-grid" id="widgetGrid">
         <div class="card widget">
           <div class="widget-head"><b>Maternal mortality trend</b><span class="grip">⠿⠿</span></div>
           <div class="widget-body"><canvas id="w1" height="150"></canvas></div>
@@ -814,7 +931,7 @@ button{font-family:inherit; cursor:pointer;}
           <div class="widget-head"><b>Tender pipeline value</b><span class="grip">⠿⠿</span></div>
           <div class="widget-body"><canvas id="w4" height="150"></canvas></div>
         </div>
-        <div class="add-widget">
+        <div class="add-widget" id="addWidgetBtn" onclick="addWidget('line')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           <span>Add widget</span>
         </div>
@@ -848,9 +965,127 @@ button{font-family:inherit; cursor:pointer;}
   </div>
 </div>
 
+<!-- Global modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) closeModal()">
+  <div class="modal" id="modalBox"></div>
+</div>
+
+<!-- Toast stack -->
+<div class="toast-stack" id="toastStack"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
+/* =============================================================
+   UI SYSTEM — dropdowns, modals, toasts
+============================================================= */
+function closeAllDropdowns(except){
+  document.querySelectorAll('.dropdown.open').forEach(d=>{ if(d.id!==except) d.classList.remove('open'); });
+}
+function toggleDropdown(id, evt){
+  if(evt) evt.stopPropagation();
+  const el = document.getElementById(id);
+  const wasOpen = el.classList.contains('open');
+  closeAllDropdowns();
+  el.classList.toggle('open', !wasOpen);
+}
+document.addEventListener('click', ()=> closeAllDropdowns());
+document.addEventListener('keydown', e=>{
+  if((e.metaKey||e.ctrlKey) && e.key.toLowerCase()==='k'){
+    e.preventDefault();
+    showView('explorer');
+    setTimeout(()=> document.getElementById('explorerInput').focus(), 80);
+  }
+  if(e.key==='Escape'){ closeAllDropdowns(); closeModal(); }
+});
+
+function selectWorkspace(name, el){
+  document.querySelectorAll('#ddWorkspace .dd-item').forEach(i=>i.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelector('.workspace-pill').innerHTML = '<span class="dot"></span> '+name+' Workspace <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:11px;height:11px;margin-left:1px;"><path d="m6 9 6 6 6-6"/></svg>';
+  closeAllDropdowns();
+  toast(name+' workspace selected');
+}
+function clearNotifs(evt){
+  if(evt) evt.stopPropagation();
+  document.getElementById('notifPing').style.display = 'none';
+  document.querySelectorAll('.dd-notif').forEach(n=> n.style.opacity = .55);
+  toast('All notifications marked as read');
+}
+
+/* Modal */
+function openModal(html){
+  document.getElementById('modalBox').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+function openReportModal(){
+  openModal(`
+    <div class="modal-head">
+      <div><div class="eyebrow" style="margin-bottom:8px;"><span class="compass-dot"></span>AI REPORT GENERATOR</div><h3>Generate a report</h3></div>
+      <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>Choose what this report should cover. IntelligenceOS will pull the relevant data, write the narrative, and format it as a publication-ready document.</p>
+      <div style="display:flex; flex-direction:column; gap:8px; margin-top:14px;">
+        <label style="display:flex; align-items:center; gap:9px; padding:11px 13px; border:1px solid var(--border); border-radius:10px; cursor:pointer;"><input type="radio" name="reportType" checked style="accent-color:var(--teal);"> <span style="font-size:12.8px; font-weight:600;">Executive summary — this week's intelligence</span></label>
+        <label style="display:flex; align-items:center; gap:9px; padding:11px 13px; border:1px solid var(--border); border-radius:10px; cursor:pointer;"><input type="radio" name="reportType" style="accent-color:var(--teal);"> <span style="font-size:12.8px; font-weight:600;">Maternal health briefing — Upper West</span></label>
+        <label style="display:flex; align-items:center; gap:9px; padding:11px 13px; border:1px solid var(--border); border-radius:10px; cursor:pointer;"><input type="radio" name="reportType" style="accent-color:var(--teal);"> <span style="font-size:12.8px; font-weight:600;">Tender pipeline summary</span></label>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Cancel</button>
+      <button class="btn btn-primary" onclick="generateReport()" style="flex:1; justify-content:center;">Generate</button>
+    </div>
+  `);
+}
+function generateReport(){
+  closeModal();
+  toast('Generating report…');
+  setTimeout(()=> toast('Report ready — check your downloads'), 1800);
+}
+function openWaitlist(name){
+  closeAllDropdowns();
+  openModal(`
+    <div class="modal-head">
+      <div>
+        <div class="eyebrow" style="margin-bottom:8px;"><span class="compass-dot"></span>ROADMAP</div>
+        <h3>${name} is coming soon</h3>
+      </div>
+      <button class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>${name} is on the IntelligenceOS build roadmap as the next domain module. Leave your email and we'll notify you the moment it opens.</p>
+      <input class="modal-input" type="email" placeholder="you@organisation.com" id="waitlistEmail">
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Not now</button>
+      <button class="btn btn-primary" onclick="joinWaitlist('${name}')" style="flex:1; justify-content:center;">Notify me</button>
+    </div>
+  `);
+}
+function joinWaitlist(name){
+  closeModal();
+  toast("You're on the list for "+name);
+}
+
+/* Toast */
+function toast(message){
+  const stack = document.getElementById('toastStack');
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>'+message+'</span>';
+  stack.appendChild(el);
+  setTimeout(()=>{
+    el.classList.add('leaving');
+    setTimeout(()=> el.remove(), 220);
+  }, 3200);
+}
+
 /* =============================================================
    THEME
 ============================================================= */
@@ -871,6 +1106,123 @@ function applyTheme(t){
 themeToggle.addEventListener('click', ()=> applyTheme(root.getAttribute('data-theme')==='dark' ? 'light' : 'dark'));
 root.setAttribute('data-theme', localStorage.getItem('ios-theme') || 'light');
 setThemeIcon(root.getAttribute('data-theme'));
+
+/* =============================================================
+   INSIGHT & ALERT DETAIL MODALS
+============================================================= */
+const insightDetails = [
+  {tag:'Risk detected', color:'var(--danger)', title:"Maternal mortality rising across 3 Upper West districts",
+   body:"Wa West, Nadowli-Kaleo and Daffiama show a sustained upward trend over 2 consecutive quarters, correlated with declining skilled-birth-attendance rates. IntelligenceOS flagged this automatically after cross-referencing DHIMS2 facility records against historical baselines — no manual query was needed.",
+   source:"Africa Data Cloud · Ghana Health Service · 2h ago", cta:"Open in GIS Intelligence", ctaView:"gis", ctaLayer:"health"},
+  {tag:'Climate watch', color:'#B45309', title:"Rainfall 18% below seasonal average in Northern Region",
+   body:"Satellite rainfall estimates suggest elevated risk to maize yield across Savelugu and Tolon ahead of the September harvest window. This pattern typically precedes a 12–20% yield reduction if it persists past the next two weeks.",
+   source:"Climate Intelligence · GMet + satellite · 5h ago", cta:"Open in AI Explorer", ctaView:"explorer"},
+  {tag:'Opportunity', color:'var(--teal-600)', title:"14 new tenders match your organisation's profile",
+   body:"Includes 3 EU-funded M&E consultancies and a World Bank data-systems RFP closing in 11 days — all above your 70% fit threshold. Fit scoring weighs sector match, budget range, past delivery history and required certifications.",
+   source:"Tender Intelligence · Yesterday", cta:"View Tender Intelligence", ctaView:"tender"},
+  {tag:'Positive trend', color:'var(--navy-ink)', title:"Youth unemployment falls for a third straight quarter",
+   body:"Greater Accra shows the steepest decline (-1.8pp), led by growth in ICT and logistics sector registrations. This continues a national trend visible since Q2, and correlates with a rise in SME business registrations over the same period.",
+   source:"Business Intelligence · GSS Labour Survey · 2 days ago", cta:"Open in AI Explorer", ctaView:"explorer"}
+];
+const alertDetails = [
+  {sev:'critical', title:"Cholera cases reported — Volta Region", body:"6 confirmed cases in Ho Municipal over the past 48 hours, reported through the DHIMS2 disease surveillance feed. Ghana Health Service has been notified. IntelligenceOS is monitoring adjacent districts for early signs of spread.", meta:"Ho Municipal · Disease surveillance · 2h ago"},
+  {sev:'warning', title:"Flood risk elevated — Ada East", body:"River level readings are running 30% above the seasonal norm following upstream rainfall. Historical patterns suggest a 5–7 day lag before flood risk peaks in low-lying communities.", meta:"Ada East · Hydrology feed · 5h ago"},
+  {sev:'info', title:"New dataset available", body:"WHO has published its 2026 immunization coverage release, now indexed in the Africa Data Cloud and available to query in the AI Data Explorer.", meta:"World Health Organization · 1d ago"}
+];
+function openInsight(idx){
+  const d = insightDetails[idx];
+  openModal(`
+    <div class="modal-head">
+      <div><span class="tag" style="color:${d.color}; display:block; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;">${d.tag}</span><h3>${d.title}</h3></div>
+      <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body"><p>${d.body}</p><p style="margin-top:12px; font-size:11.5px; color:var(--text-dim);">${d.source}</p></div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      <button class="btn btn-primary" onclick="closeModal(); showView('${d.ctaView}');${d.ctaLayer ? " setTimeout(()=>setLayer('"+d.ctaLayer+"'),80);" : ""}" style="flex:1; justify-content:center;">${d.cta}</button>
+    </div>
+  `);
+}
+function openAlert(idx){
+  const d = alertDetails[idx];
+  const sevColor = d.sev==='critical'?'var(--danger)':d.sev==='warning'?'var(--warning)':'var(--teal)';
+  openModal(`
+    <div class="modal-head">
+      <div><span style="display:inline-flex; align-items:center; gap:6px; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:${sevColor}; margin-bottom:8px;"><span class="sev-dot sev-${d.sev}"></span>${d.sev} alert</span><h3>${d.title}</h3></div>
+      <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body"><p>${d.body}</p><p style="margin-top:12px; font-size:11.5px; color:var(--text-dim);">${d.meta}</p></div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Dismiss</button>
+      <button class="btn btn-primary" onclick="closeModal(); showView('gis');" style="flex:1; justify-content:center;">View on map</button>
+    </div>
+  `);
+}
+document.querySelectorAll('.insight-clickable').forEach(el=> el.addEventListener('click', ()=> openInsight(+el.dataset.idx)));
+document.querySelectorAll('.alert-clickable').forEach(el=> el.addEventListener('click', ()=> openAlert(+el.dataset.idx)));
+
+function showAllInsights(){
+  const extra = [
+    "School feeding programme coverage expands to 4 new districts in Bono East",
+    "Cocoa farmgate price index up 6% month-on-month",
+    "3 health facilities in Northern Region report medicine stockouts",
+    "New EPA air quality monitoring station live in Tema",
+    "GSS releases preliminary Q3 labour force figures",
+    "Road network completeness in Savannah Region improves to 71%",
+    "USAID publishes new nutrition programme dataset",
+    "Enrollment gender parity reaches 0.97 nationally"
+  ];
+  const rows = [...insightDetails.map(d=>({tag:d.tag,color:d.color,title:d.title})), ...extra.map(t=>({tag:'Update',color:'var(--text-dim)',title:t}))];
+  openModal(`
+    <div class="modal-head">
+      <h3>Today's AI intelligence — all 12</h3>
+      <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body" style="padding-top:2px;">
+      ${rows.map(r=>`<div style="display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid var(--border);"><span style="width:6px;height:6px;border-radius:50%;background:${r.color};flex-shrink:0;"></span><span style="font-size:12.8px; color:var(--text); font-weight:600;">${r.title}</span></div>`).join('')}
+    </div>
+  `);
+}
+
+/* =============================================================
+   AFRICA DATA CLOUD — search + dataset preview
+============================================================= */
+function filterSources(query){
+  const q = query.trim().toLowerCase();
+  let visible = 0;
+  document.querySelectorAll('.source-clickable').forEach(card=>{
+    const match = !q || card.dataset.search.includes(q) || card.textContent.toLowerCase().includes(q);
+    card.style.display = match ? '' : 'none';
+    if(match) visible++;
+  });
+  document.getElementById('sourceEmpty').style.display = visible===0 ? 'block' : 'none';
+}
+document.querySelectorAll('.source-clickable').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    const name = card.querySelector('b').textContent;
+    const sub = card.querySelector('small').textContent;
+    const desc = card.querySelector('p').textContent;
+    const count = card.querySelector('.source-foot > span:last-child').textContent;
+    const mark = card.querySelector('.source-mark').textContent;
+    openModal(`
+      <div class="modal-head">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="source-mark" style="width:42px;height:42px;font-size:12px;">${mark}</div>
+          <div><h3>${name}</h3><small style="color:var(--text-dim); font-size:11.5px;">${sub}</small></div>
+        </div>
+        <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="modal-body">
+        <p>${desc}</p>
+        <p style="margin-top:12px;"><b>${count}</b> indexed and query-ready in the Africa Data Cloud. Ask about this source directly in the AI Data Explorer, or reference it when building a dashboard in Dashboard Studio.</p>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+        <button class="btn btn-primary" onclick="closeModal(); showView('explorer');" style="flex:1; justify-content:center;">Query this source</button>
+      </div>
+    `);
+  });
+});
 
 /* =============================================================
    VIEW ROUTING
@@ -952,6 +1304,45 @@ mkChart('w3',{type:'doughnut',data:{labels:['Health','Education','Agriculture','
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:9,font:{size:10.5,family:'Plus Jakarta Sans'}}}},cutout:'62%'}});
 mkChart('w4',{type:'bar',data:{labels:['Won','Submitted','In progress','Identified'],datasets:[{data:[420,680,310,890],backgroundColor:'#082B5A',borderRadius:6}]},
   options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#E4E9F1'}},y:{grid:{display:false}}}}});
+
+/* Dashboard Studio — add / remove widgets */
+let widgetCounter = 100;
+const widgetTemplates = {
+  line: {name:'New trend line', build:(id)=> mkChart(id,{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun'],datasets:[{data:[12,19,14,22,20,27],borderColor:'#00BFA6',backgroundColor:'#00BFA618',borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#00BFA6',tension:.35,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:themeVar('--border')}}}}})},
+  bar: {name:'New comparison', build:(id)=> mkChart(id,{type:'bar',data:{labels:['A','B','C','D','E'],datasets:[{data:[8,14,9,17,11],backgroundColor:'#082B5A',borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:themeVar('--border')}}}}})},
+  donut: {name:'New breakdown', build:(id)=> mkChart(id,{type:'doughnut',data:{labels:['A','B','C','D'],datasets:[{data:[40,25,20,15],backgroundColor:['#082B5A','#00BFA6','#F59E0B','#E4E9F1'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:9,font:{size:10.5,family:'Plus Jakarta Sans'}}}},cutout:'62%'}})}
+};
+function addWidget(type){
+  widgetCounter++;
+  const grid = document.getElementById('widgetGrid');
+  const addBtn = document.getElementById('addWidgetBtn');
+  const card = document.createElement('div');
+  card.className = 'card widget widget-new';
+
+  if(type==='kpi'){
+    const values = ['87.4%','2,140','+12.3%','GHS 1.2M'];
+    const labels = ['Coverage rate — auto-computed','Records this month','Change vs last period','Estimated budget impact'];
+    const i = widgetCounter % values.length;
+    card.innerHTML = '<div class="widget-head"><b>New KPI card</b><span class="widget-remove" onclick="this.closest(\'.widget\').remove()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div><div class="widget-big-num" style="padding:6px 18px 16px;">'+values[i]+'<small>'+labels[i]+'</small></div>';
+    grid.insertBefore(card, addBtn);
+    toast('KPI card added');
+    return;
+  }
+
+  const id = 'wnew'+widgetCounter;
+  const tpl = widgetTemplates[type] || widgetTemplates.line;
+  card.innerHTML = '<div class="widget-head"><b>'+tpl.name+'</b><span class="widget-remove" onclick="this.closest(\'.widget\').remove()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div><div class="widget-body"><canvas id="'+id+'" height="150"></canvas></div>';
+  grid.insertBefore(card, addBtn);
+  tpl.build(id);
+  toast(tpl.name+' widget added');
+}
+function publishDashboard(){
+  const btn = document.getElementById('publishBtn');
+  const original = btn.innerHTML;
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Published';
+  toast('Dashboard published — visible to your workspace');
+  setTimeout(()=>{ btn.innerHTML = original; }, 2200);
+}
 
 /* =============================================================
    AI DATA EXPLORER — canned responses
@@ -1103,8 +1494,37 @@ function renderLayer(layerKey){
     const val = r[cfg.key];
     const color = riskColor(val, cfg);
     const pct = Math.min(100, (val/cfg.max)*100);
-    return '<div class="region-row"><b>'+r.name+'</b><div style="display:flex;align-items:center;gap:8px;"><div class="region-bar"><i style="width:'+pct+'%; background:'+color+';"></i></div><span style="color:'+color+'; font-weight:700; min-width:44px; text-align:right;">'+val+cfg.unit+'</span></div></div>';
+    return '<div class="region-row region-clickable" onclick="focusRegion(\''+r.name.replace(/'/g,"\\'")+'\')"><b>'+r.name+'</b><div style="display:flex;align-items:center;gap:8px;"><div class="region-bar"><i style="width:'+pct+'%; background:'+color+';"></i></div><span style="color:'+color+'; font-weight:700; min-width:44px; text-align:right;">'+val+cfg.unit+'</span></div></div>';
   }).join('');
+}
+function focusRegion(name){
+  const r = regions.find(x=>x.name===name);
+  if(!r) return;
+  const cfg = layerConfig[currentLayer];
+  const val = r[cfg.key];
+  if(window._leafletMap){
+    window._leafletMap.flyTo([r.lat, r.lon], 8.2, {duration:.6});
+    const marker = markers.find(m=>m._region.name===name);
+    if(marker) marker.openTooltip();
+  }
+  openModal(`
+    <div class="modal-head">
+      <h3>${r.name} Region</h3>
+      <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:14px;">
+        <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Health risk</div><div style="font-weight:800; font-size:15px;">${r.health}/100k</div></div>
+        <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Agri yield</div><div style="font-weight:800; font-size:15px;">${r.agri} t/ha</div></div>
+        <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Edu access</div><div style="font-weight:800; font-size:15px;">${r.edu}%</div></div>
+      </div>
+      <p>Currently viewing the <b>${cfg.label.split('·')[1].trim()}</b> layer — ${r.name} sits at <b>${val}${cfg.unit}</b>, ranked among Ghana's 16 regions on this indicator.</p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      <button class="btn btn-primary" onclick="closeModal(); showView('explorer');" style="flex:1; justify-content:center;">Ask AI about ${r.name}</button>
+    </div>
+  `);
 }
 function setLayer(layerKey){
   currentLayer = layerKey;
