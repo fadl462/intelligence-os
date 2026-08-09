@@ -225,6 +225,24 @@ someone landing on the URL cold (e.g. sharing it with a client or
 investor). Option A if the URL is mainly shared with people who
 already know to expect the app.
 
+5. CURSOR NOT CHANGING TO POINTER ON HOVER — FIXED
+   Root cause: browsers only apply the automatic pointer cursor to
+   <a> elements that have a real href attribute, or to native form
+   controls. Throughout the app, many clickable elements are <a> or
+   <div> tags driven by onclick/JS instead of href (sidebar nav
+   items, quick actions, dropdown menu items, "add widget", widget
+   remove buttons) — so they fell back to the default text/arrow
+   cursor instead of signaling they're clickable. Audited every
+   interactive element across all 12 modules plus every dropdown and
+   modal, found 6 element types missing the fix (sidebar nav, quick
+   action cards, dropdown menu items, "View all"-style links, add
+   widget, widget remove buttons), and added explicit cursor:pointer
+   to each. Verified programmatically — not just by eye — by reading
+   the actual computed CSS cursor value for all 22 interactive
+   element types across every view, confirming every one now reports
+   "pointer". landing.html was also audited the same way and had no
+   issues, since every link there uses a real href.
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file

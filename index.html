@@ -125,7 +125,7 @@ button{font-family:inherit; cursor:pointer;}
   padding:10px 12px; border-radius:10px;
   font-size:13.6px; font-weight:600; color:var(--text-dim);
   margin-bottom:2px; position:relative;
-  border:1px solid transparent;
+  border:1px solid transparent; cursor:pointer;
   transition:background .15s ease, color .15s ease;
 }
 .nav-item svg{width:17px; height:17px; flex-shrink:0; opacity:.85;}
@@ -216,7 +216,7 @@ button{font-family:inherit; cursor:pointer;}
 .dd-label{display:flex; align-items:center; font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text-dim); padding:8px 10px 6px;}
 .dd-item{
   display:flex; align-items:center; gap:9px; padding:9px 10px; border-radius:9px; font-size:13px; font-weight:600;
-  color:var(--text); position:relative;
+  color:var(--text); position:relative; cursor:pointer;
 }
 .dd-item svg{width:15px; height:15px; color:var(--text-dim); flex-shrink:0;}
 .dd-item:hover{background:var(--bg);}
@@ -323,7 +323,7 @@ button{font-family:inherit; cursor:pointer;}
 
 .card-head{display:flex; align-items:center; justify-content:space-between; padding:17px 20px; border-bottom:1px solid var(--border);}
 .card-head h3{font-size:14.5px; font-weight:700;}
-.card-head .link{font-size:12px; font-weight:700; color:var(--teal-600);}
+.card-head .link{font-size:12px; font-weight:700; color:var(--teal-600); cursor:pointer;}
 
 /* Insight feed */
 .insight{display:flex; gap:13px; padding:16px 20px; border-bottom:1px solid var(--border);}
@@ -356,7 +356,7 @@ button{font-family:inherit; cursor:pointer;}
 .qa-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:18px 20px;}
 .qa{
   display:flex; flex-direction:column; gap:9px; padding:14px; border-radius:11px; border:1px solid var(--border);
-  transition:border-color .15s, transform .15s;
+  cursor:pointer; transition:border-color .15s, transform .15s;
 }
 .qa:hover{border-color:var(--teal); transform:translateY(-2px);}
 .qa-icon{width:30px; height:30px; border-radius:8px; background:var(--navy-100); display:flex; align-items:center; justify-content:center;}
@@ -465,7 +465,7 @@ button{font-family:inherit; cursor:pointer;}
 .studio-toolbar .tool svg{width:14px; height:14px;}
 .tool-clickable{cursor:pointer; transition:border-color .15s, color .15s, background .15s;}
 .tool-clickable:hover{border-color:var(--teal); color:var(--navy-ink); background:var(--teal-100);}
-.widget-remove{width:20px; height:20px; border-radius:6px; display:flex; align-items:center; justify-content:center; color:var(--text-dim); flex-shrink:0;}
+.widget-remove{width:20px; height:20px; border-radius:6px; display:flex; align-items:center; justify-content:center; color:var(--text-dim); flex-shrink:0; cursor:pointer;}
 .widget-remove:hover{background:#FDE8E8; color:var(--danger);}
 .widget-new{animation:widgetIn .3s cubic-bezier(.2,.8,.2,1) both;}
 @keyframes widgetIn{from{opacity:0; transform:scale(.94) translateY(6px);} to{opacity:1; transform:scale(1) translateY(0);}}
@@ -480,7 +480,7 @@ button{font-family:inherit; cursor:pointer;}
 .widget-big-num small{display:block; font-size:11px; font-weight:600; color:var(--text-dim); margin-top:4px;}
 .add-widget{
   border:1.5px dashed var(--border); border-radius:var(--radius); display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:8px; min-height:180px; color:var(--text-dim);
+  align-items:center; justify-content:center; gap:8px; min-height:180px; color:var(--text-dim); cursor:pointer;
 }
 .add-widget svg{width:22px; height:22px;}
 .add-widget span{font-size:12.5px; font-weight:700;}
