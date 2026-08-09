@@ -484,6 +484,46 @@ button{font-family:inherit; cursor:pointer;}
 .add-widget svg{width:22px; height:22px;}
 .add-widget span{font-size:12.5px; font-weight:700;}
 
+/* ---------- TENDER INTELLIGENCE ---------- */
+.tender-filters{display:flex; gap:12px; padding:16px 20px; flex-wrap:wrap; align-items:center;}
+.tender-select{
+  padding:9px 12px; border-radius:10px; border:1px solid var(--border); background:var(--surface); color:var(--text);
+  font-family:inherit; font-size:12.5px; font-weight:600; outline:none;
+}
+.tender-select:focus{border-color:var(--teal);}
+.tender-min-fit{display:flex; align-items:center; gap:9px; font-size:12px; font-weight:600; color:var(--text-dim); margin-left:auto;}
+.tender-min-fit input[type=range]{accent-color:var(--teal); width:110px;}
+.tender-min-fit span:last-child{min-width:32px; color:var(--text); font-weight:700;}
+.tender-layout{display:grid; grid-template-columns:1fr 320px; gap:18px; align-items:start;}
+.tender-list{display:flex; flex-direction:column; gap:12px;}
+.tender-card{padding:17px 19px; display:flex; gap:16px; align-items:flex-start; cursor:pointer; transition:border-color .15s, transform .15s, box-shadow .15s;}
+.tender-card:hover{border-color:var(--teal); transform:translateY(-1px); box-shadow:var(--shadow);}
+.tender-fit{
+  width:52px; height:52px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:13px; border:3px solid;
+}
+.tender-body{flex:1; min-width:0;}
+.tender-top{display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:4px;}
+.tender-top h4{font-size:14px; font-weight:700; line-height:1.35;}
+.tender-org{font-size:11.5px; color:var(--text-dim); margin-bottom:9px;}
+.tender-meta{display:flex; gap:14px; flex-wrap:wrap; font-size:11.5px; color:var(--text-dim);}
+.tender-meta span{display:flex; align-items:center; gap:5px;}
+.tender-meta svg{width:12px; height:12px;}
+.tender-stage-badge{
+  font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; padding:4px 9px; border-radius:20px; flex-shrink:0;
+}
+.stage-identified{background:var(--navy-100); color:var(--navy-ink);}
+.stage-in_progress{background:#FEF3E2; color:#B45309;}
+.stage-submitted{background:var(--teal-100); color:var(--teal-600);}
+.stage-won{background:#E7F7EC; color:var(--success);}
+[data-theme="dark"] .stage-won{background:#0e2c1a;}
+
+.pipeline-board{padding:16px 20px; display:flex; flex-direction:column; gap:14px;}
+.pipeline-col-label{display:flex; align-items:center; justify-content:space-between; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--text-dim); margin-bottom:8px;}
+.pipeline-items{display:flex; flex-direction:column; gap:7px;}
+.pipeline-item{font-size:12px; font-weight:600; padding:9px 11px; border-radius:9px; background:var(--bg); border:1px solid var(--border); line-height:1.4;}
+.pipeline-empty{font-size:11.5px; color:var(--text-dim); font-style:italic; padding:2px 2px 4px;}
+
 /* ---------- PHASE 2 TEASER ---------- */
 .teaser{padding:60px 30px; text-align:center;}
 .teaser .ring{
@@ -504,6 +544,7 @@ button{font-family:inherit; cursor:pointer;}
 @media (max-width:1180px){
   .cc-grid{grid-template-columns:1fr;}
   .gis-layout{grid-template-columns:1fr;}
+  .tender-layout{grid-template-columns:1fr;}
   .kpi-grid{grid-template-columns:repeat(2,1fr);}
   .dash-grid{grid-template-columns:repeat(2,1fr);}
   .source-grid{grid-template-columns:repeat(2,1fr);}
@@ -564,7 +605,6 @@ button{font-family:inherit; cursor:pointer;}
       <a class="nav-item" data-view="tender">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6M9 11h2"/></svg>
         Tender Intelligence
-        <span class="badge">PHASE 2</span>
       </a>
 
       <div class="nav-label">Roadmap · Domain OS</div>
@@ -969,12 +1009,89 @@ button{font-family:inherit; cursor:pointer;}
       </div>
     </section>
     <section class="view" id="view-tender">
-      <div class="card teaser">
-        <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6M9 11h2"/></svg></div>
-        <h2>Tender Intelligence — Phase 2</h2>
-        <p>Continuous monitoring of government, NGO, UN and donor opportunities — auto-scored for fit, competition and deadline, matched directly to your organisation's profile.</p>
-        <div class="teaser-features">
-          <span>Live monitoring</span><span>AI fit scoring</span><span>Compliance matrix</span><span>Deadline alerts</span>
+      <div class="view-head">
+        <div>
+          <div class="eyebrow"><span class="compass-dot"></span>TENDER INTELLIGENCE</div>
+          <h1>Every opportunity, scored for fit.</h1>
+          <p>Continuously monitored across government, NGO, UN and donor sources — ranked by fit, deadline and competition.</p>
+        </div>
+        <button class="btn btn-primary" onclick="toast('Scanning 40+ sources for new opportunities…')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v6h-6"/></svg>
+          Refresh scan
+        </button>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="card kpi">
+          <div class="kpi-top"><span class="kpi-label">Open opportunities</span><div class="kpi-icon" style="background:var(--navy-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></div>
+          <div class="kpi-value" id="tOpenCount">14</div>
+          <div class="kpi-delta up">▲ 4 new <span>this week</span></div>
+        </div>
+        <div class="card kpi">
+          <div class="kpi-top"><span class="kpi-label">Average fit score</span><div class="kpi-icon" style="background:var(--teal-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div></div>
+          <div class="kpi-value" id="tAvgFit">81%</div>
+          <div class="kpi-delta up">▲ 3pt <span>vs last month</span></div>
+        </div>
+        <div class="card kpi">
+          <div class="kpi-top"><span class="kpi-label">Closing within 7 days</span><div class="kpi-icon" style="background:#FEF3E2;"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></div></div>
+          <div class="kpi-value" id="tClosingSoon">3</div>
+          <div class="kpi-delta down">Act soon <span id="tClosingSoonSub">2 above 85% fit</span></div>
+        </div>
+        <div class="card kpi">
+          <div class="kpi-top"><span class="kpi-label">Active pipeline value</span><div class="kpi-icon" style="background:#FDE8E8;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div></div>
+          <div class="kpi-value">GH₵2.3M</div>
+          <div class="kpi-delta up">▲ 12% <span>this quarter</span></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:22px;">
+        <div class="tender-filters">
+          <div class="ai-search" style="max-width:280px; flex:1;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="tenderSearch" placeholder="Search opportunities…" oninput="renderTenders()">
+          </div>
+          <select id="tenderSector" class="tender-select" onchange="renderTenders()">
+            <option value="">All sectors</option>
+            <option>M&E / Research</option>
+            <option>Health</option>
+            <option>Data Systems</option>
+            <option>Agriculture</option>
+            <option>Education</option>
+            <option>Governance</option>
+          </select>
+          <select id="tenderSort" class="tender-select" onchange="renderTenders()">
+            <option value="fit">Sort: Fit score</option>
+            <option value="deadline">Sort: Deadline</option>
+            <option value="budget">Sort: Budget</option>
+          </select>
+          <div class="tender-min-fit">
+            <span>Min fit</span>
+            <input type="range" id="tenderMinFit" min="0" max="100" value="0" oninput="document.getElementById('tenderMinFitLabel').textContent=this.value+'%'; renderTenders();">
+            <span id="tenderMinFitLabel">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tender-layout">
+        <div id="tenderList" class="tender-list"></div>
+
+        <div class="stack">
+          <div class="card">
+            <div class="card-head"><h3>Pipeline</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;" id="pipelineCount">12 tracked</span></div>
+            <div class="pipeline-board" id="pipelineBoard"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>How fit scoring works</h3></div>
+            <div class="modal-body" style="padding:16px 20px; font-size:12px;">
+              <p style="margin-bottom:8px;">Every opportunity is scored 0–100% by weighing:</p>
+              <div style="display:flex; flex-direction:column; gap:7px;">
+                <div style="display:flex; justify-content:space-between;"><span>Sector match</span><b style="color:var(--text);">35%</b></div>
+                <div style="display:flex; justify-content:space-between;"><span>Past delivery history</span><b style="color:var(--text);">25%</b></div>
+                <div style="display:flex; justify-content:space-between;"><span>Budget range fit</span><b style="color:var(--text);">20%</b></div>
+                <div style="display:flex; justify-content:space-between;"><span>Certification requirements</span><b style="color:var(--text);">20%</b></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1240,6 +1357,146 @@ document.querySelectorAll('.source-clickable').forEach(card=>{
     `);
   });
 });
+
+/* =============================================================
+   TENDER INTELLIGENCE
+============================================================= */
+const tenderData = [
+  {id:1, title:"EU M&E Framework — Disability Inclusion", org:"European Union Delegation, Ghana", sector:"M&E / Research", budget:"€180,000", budgetVal:180000, deadline:"9 days", deadlineVal:9, fit:92, stage:"identified", summary:"Framework consultancy for monitoring and evaluation across the EU's disability-inclusion portfolio in Ghana, including baseline studies, annual reviews and a final evaluation."},
+  {id:2, title:"World Bank Data Systems RFP", org:"World Bank Group", sector:"Data Systems", budget:"$240,000", budgetVal:240000, deadline:"11 days", deadlineVal:11, fit:88, stage:"identified", summary:"Design and deployment of a district-level data systems platform integrating health, education and agriculture indicators for national planning."},
+  {id:3, title:"UNICEF Survey Design & Analysis", org:"UNICEF Ghana", sector:"M&E / Research", budget:"$95,000", budgetVal:95000, deadline:"14 days", deadlineVal:14, fit:84, stage:"in_progress", summary:"Design, field and analyse a multi-round household survey on child welfare indicators across 6 regions, including enumerator training and a public dashboard."},
+  {id:4, title:"GIZ Programme Evaluation", org:"GIZ Ghana", sector:"M&E / Research", budget:"€65,000", budgetVal:65000, deadline:"6 days", deadlineVal:6, fit:79, stage:"submitted", summary:"Mid-term evaluation of a vocational training programme spanning 4 regions, including stakeholder interviews and a theory-of-change reassessment."},
+  {id:5, title:"USAID Dashboard Development", org:"USAID", sector:"Data Systems", budget:"$120,000", budgetVal:120000, deadline:"20 days", deadlineVal:20, fit:75, stage:"identified", summary:"Build a live performance-monitoring dashboard for a 5-year agriculture resilience programme, integrating satellite and field survey data."},
+  {id:6, title:"Ghana Health Service DHIMS2 Support", org:"Ghana Health Service", sector:"Health", budget:"GH₵420,000", budgetVal:420000, deadline:"17 days", deadlineVal:17, fit:81, stage:"identified", summary:"Technical support and capacity building for regional health teams on DHIMS2 data quality, validation workflows and reporting automation."},
+  {id:7, title:"AfDB Agriculture M&E Consultancy", org:"African Development Bank", sector:"Agriculture", budget:"$150,000", budgetVal:150000, deadline:"25 days", deadlineVal:25, fit:71, stage:"identified", summary:"Design an M&E framework for a regional agriculture value-chain programme spanning Ghana, Côte d'Ivoire and Burkina Faso."},
+  {id:8, title:"Mastercard Foundation Research Study", org:"Mastercard Foundation", sector:"Education", budget:"$88,000", budgetVal:88000, deadline:"13 days", deadlineVal:13, fit:86, stage:"won", summary:"Qualitative research study on youth employment pathways, building on prior work with the Foundation's Young Africa Works initiative."},
+  {id:9, title:"Electoral Commission Data Audit", org:"Electoral Commission of Ghana", sector:"Governance", budget:"GH₵310,000", budgetVal:310000, deadline:"30 days", deadlineVal:30, fit:64, stage:"identified", summary:"Independent data quality audit of the biometric voter register ahead of the next electoral cycle."},
+  {id:10, title:"WHO Immunization Data Review", org:"World Health Organization", sector:"Health", budget:"$70,000", budgetVal:70000, deadline:"22 days", deadlineVal:22, fit:77, stage:"in_progress", summary:"Review and reconcile national immunization coverage data against facility-level records across 3 regions."},
+  {id:11, title:"NDC Constituency Feasibility Survey", org:"Political client (Jaman North)", sector:"M&E / Research", budget:"GH₵85,000", budgetVal:85000, deadline:"5 days", deadlineVal:5, fit:95, stage:"submitted", summary:"Political feasibility survey including KoboToolbox data collection and a full data analysis plan for a constituency primary."},
+  {id:12, title:"Inscend–World Bank Dashboard Bid", org:"World Bank (via Inscend Consulting)", sector:"Data Systems", budget:"$60,000", budgetVal:60000, deadline:"16 days", deadlineVal:16, fit:83, stage:"submitted", summary:"Interactive Afrobarometer dashboard build for a World Bank governance-data contract, led through Inscend Consulting."},
+  {id:13, title:"JMK Procurement Analytics Retainer", org:"JMK Consulting Limited", sector:"Data Systems", budget:"GH₵140,000", budgetVal:140000, deadline:"4 days", deadlineVal:4, fit:97, stage:"in_progress", summary:"Ongoing retainer to maintain and extend the tender-monitoring analytics platform, including new scoring models and client-facing dashboards."},
+  {id:14, title:"CRI/Mondelez Child Research Formatting", org:"Cocoa Research Institute", sector:"Education", budget:"$28,000", budgetVal:28000, deadline:"8 days", deadlineVal:8, fit:73, stage:"identified", summary:"Formatting and finalisation of cohort research reports on child welfare in cocoa-growing communities, across two cohorts."},
+];
+const stageLabels = {identified:'Identified', in_progress:'In progress', submitted:'Submitted', won:'Won'};
+const stageOrder = ['identified','in_progress','submitted','won'];
+
+function fitColor(fit){
+  if(fit>=85) return 'var(--success)';
+  if(fit>=70) return 'var(--warning)';
+  return 'var(--danger)';
+}
+function renderTenders(){
+  const q = (document.getElementById('tenderSearch')?.value || '').toLowerCase().trim();
+  const sector = document.getElementById('tenderSector')?.value || '';
+  const sort = document.getElementById('tenderSort')?.value || 'fit';
+  const minFit = +(document.getElementById('tenderMinFit')?.value || 0);
+
+  let items = tenderData.filter(t=>{
+    const matchesQ = !q || t.title.toLowerCase().includes(q) || t.org.toLowerCase().includes(q);
+    const matchesSector = !sector || t.sector === sector;
+    const matchesFit = t.fit >= minFit;
+    return matchesQ && matchesSector && matchesFit;
+  });
+  if(sort==='fit') items.sort((a,b)=>b.fit-a.fit);
+  if(sort==='deadline') items.sort((a,b)=>a.deadlineVal-b.deadlineVal);
+  if(sort==='budget') items.sort((a,b)=>b.budgetVal-a.budgetVal);
+
+  const listEl = document.getElementById('tenderList');
+  if(!listEl) return;
+
+  const openEl = document.getElementById('tOpenCount');
+  if(openEl) openEl.textContent = tenderData.length;
+  const avgFitEl = document.getElementById('tAvgFit');
+  if(avgFitEl) avgFitEl.textContent = Math.round(tenderData.reduce((s,t)=>s+t.fit,0)/tenderData.length)+'%';
+  const closingSoon = tenderData.filter(t=>t.deadlineVal<=7);
+  const closingEl = document.getElementById('tClosingSoon');
+  if(closingEl) closingEl.textContent = closingSoon.length;
+  const closingSubEl = document.getElementById('tClosingSoonSub');
+  if(closingSubEl) closingSubEl.textContent = closingSoon.filter(t=>t.fit>=85).length+' above 85% fit';
+
+  if(items.length===0){
+    listEl.innerHTML = '<div class="card" style="padding:50px 20px; text-align:center; color:var(--text-dim); font-size:13px;">No opportunities match these filters.</div>';
+    return;
+  }
+  listEl.innerHTML = items.map(t=>`
+    <div class="card tender-card" onclick="openTender(${t.id})">
+      <div class="tender-fit" style="color:${fitColor(t.fit)}; border-color:${fitColor(t.fit)};">${t.fit}%</div>
+      <div class="tender-body">
+        <div class="tender-top">
+          <h4>${t.title}</h4>
+          <span class="tender-stage-badge stage-${t.stage}">${stageLabels[t.stage]}</span>
+        </div>
+        <div class="tender-org">${t.org}</div>
+        <div class="tender-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>${t.sector}</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>${t.budget}</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Closes in ${t.deadline}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  renderPipeline();
+}
+function renderPipeline(){
+  const board = document.getElementById('pipelineBoard');
+  if(!board) return;
+  document.getElementById('pipelineCount').textContent = tenderData.length+' tracked';
+  board.innerHTML = stageOrder.map(stage=>{
+    const items = tenderData.filter(t=>t.stage===stage);
+    return `<div>
+      <div class="pipeline-col-label"><span>${stageLabels[stage]}</span><span>${items.length}</span></div>
+      <div class="pipeline-items">
+        ${items.length ? items.map(t=>`<div class="pipeline-item">${t.title}</div>`).join('') : '<div class="pipeline-empty">Nothing here yet</div>'}
+      </div>
+    </div>`;
+  }).join('');
+}
+function openTender(id){
+  const t = tenderData.find(x=>x.id===id);
+  if(!t) return;
+  const idx = stageOrder.indexOf(t.stage);
+  const nextStage = stageOrder[idx+1];
+  openModal(`
+    <div class="modal-head">
+      <div>
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+          <span class="tender-fit" style="width:34px;height:34px;font-size:11px;color:${fitColor(t.fit)};border-color:${fitColor(t.fit)};border-width:2px;">${t.fit}%</span>
+          <span class="tender-stage-badge stage-${t.stage}">${stageLabels[t.stage]}</span>
+        </div>
+        <h3>${t.title}</h3>
+        <small style="color:var(--text-dim); font-size:11.5px;">${t.org}</small>
+      </div>
+      <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>${t.summary}</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:14px;">
+        <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Sector</div><div style="font-weight:700; font-size:12.5px;">${t.sector}</div></div>
+        <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Budget</div><div style="font-weight:700; font-size:12.5px;">${t.budget}</div></div>
+        <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Deadline</div><div style="font-weight:700; font-size:12.5px;">${t.deadline}</div></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      ${nextStage
+        ? `<button class="btn btn-primary" onclick="advanceTender(${t.id})" style="flex:1; justify-content:center;">Advance to "${stageLabels[nextStage]}"</button>`
+        : `<button class="btn btn-teal" disabled style="flex:1; justify-content:center; opacity:.7; cursor:default;">🎉 Won</button>`}
+    </div>
+  `);
+}
+function advanceTender(id){
+  const t = tenderData.find(x=>x.id===id);
+  if(!t) return;
+  const idx = stageOrder.indexOf(t.stage);
+  if(idx < stageOrder.length-1){
+    t.stage = stageOrder[idx+1];
+    toast(t.title+' moved to '+stageLabels[t.stage]);
+  }
+  closeModal();
+  renderTenders();
+}
+if(document.getElementById('tenderList')) renderTenders();
 
 /* =============================================================
    VIEW ROUTING

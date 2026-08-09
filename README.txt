@@ -23,10 +23,31 @@ WHAT'S BUILT
    togglable data layers, clickable region detail panel
 5. Dashboard Studio — widget canvas; toolbar buttons add real
    Chart.js widgets to the canvas; publish flow with confirmation
-6. Survey Intelligence & Tender Intelligence — Phase 2 module previews
-7. Sidebar roadmap — GovOS / HealthOS / AgroOS / EduOS / ClimateOS,
+6. Tender Intelligence — FULL MODULE (not a teaser): 14 tracked
+   opportunities, live search/sector/min-fit filters, sort by fit
+   score/deadline/budget, a fit-scoring breakdown, and a working
+   pipeline board (Identified → In Progress → Submitted → Won) that
+   you can actually advance opportunities through — the list, KPIs,
+   and pipeline board all stay in sync in real time
+7. Survey Intelligence — still a Phase 2 preview panel
+8. Sidebar roadmap — GovOS / HealthOS / AgroOS / EduOS / ClimateOS,
    each opens a waitlist modal
-8. Full dark/light mode, responsive to mobile, ⌘K search shortcut
+9. Full dark/light mode, responsive to mobile, ⌘K search shortcut
+
+TENDER INTELLIGENCE — WHY THIS MODULE FIRST
+------------------------------------------------
+Per the recommendation in the previous version of this README ("pick
+ONE flagship use case and take it end-to-end"), Tender Intelligence
+was chosen because it maps directly onto real work you already do —
+tender monitoring for JMK Consulting and your own freelance pipeline.
+The 14 opportunities include realistic entries tied to your actual
+context (JMK, Inscend, the Jaman North political survey, CRI/Mondelez)
+alongside donor-realistic ones (EU, World Bank, UNICEF, GIZ, USAID,
+AfDB, WHO). Every number on the KPI strip (open count, average fit,
+closing-soon count) is computed live from the underlying data rather
+than hardcoded, so advancing a tender through the pipeline updates
+everything downstream — this is the pattern to repeat when the other
+modules get built out for real.
 
 INTERACTIVE SYSTEMS (v1.0 update)
 -------------------------------------
@@ -107,19 +128,23 @@ of the build.
 
 SUGGESTED NEXT PHASES
 -----------------------
-Phase 1 (done):    Interactive frontend, all core screens clickable
+Phase 1 (done):    Interactive frontend, all core screens clickable,
+                    Tender Intelligence built out as the flagship
+                    end-to-end module
 Phase 2:           Real backend (FastAPI/Node + Postgres), auth, and
                     2-3 real data connectors (start with GSS + World
-                    Bank APIs)
+                    Bank APIs) — Tender Intelligence is the natural
+                    first module to connect to a real data source,
+                    since the UI and interaction pattern already work
 Phase 3:           Replace canned AI Explorer responses with a real
                     LLM-backed query engine (RAG over connected data)
 Phase 4:           GIS layer backed by real district-level data
-Phase 5:           Survey Intelligence & Tender Intelligence built
-                    out from preview to full module
+Phase 5:           Survey Intelligence built out the same way Tender
+                    Intelligence was — full module, not a teaser
 Phase 6:           Mobile app, multi-tenancy, deployment infra
 
-Recommended: pick ONE flagship use case — maternal health monitoring
-for Ghana Health Service, or tender matching for your own consultancy
-pipeline — and take it end-to-end with real data before building out
-the other 17 modules. A platform that does one thing brilliantly with
-real data is worth more than eighteen modules that are all still demos.
+Recommended: Tender Intelligence is now the strongest candidate to
+connect to a real data source first, since the entire interaction
+model (filtering, scoring, pipeline tracking) is already built and
+tested — it just needs real tenders flowing in instead of the 14
+demo entries.
