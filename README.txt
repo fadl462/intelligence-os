@@ -257,6 +257,53 @@ already know to expect the app.
      mode, and doesn't blur since the source asset has more native
      resolution than the new display size needs.
 
+NEW: DASHBOARD STUDIO — 30 CHART & WIDGET TYPES ACROSS 6 CATEGORIES
+------------------------------------------------------------------------
+Dashboard Studio went from 6 basic chart types to a genuinely
+comprehensive chart library, organized the same way professional
+dataviz references categorize chart types (comparison, correlation,
+part-to-whole, time, distribution, specialized):
+
+COMPARISON (7): Column, Horizontal bar, Grouped bar, Stacked bar,
+  Lollipop chart, Bullet chart, Dot plot
+CORRELATION (3): Scatter plot, Bubble chart, Heatmap
+PART-TO-WHOLE (6): Pie chart, Donut chart, 100% stacked bar, Treemap,
+  Waffle chart, Funnel chart
+TIME (5): Line chart, Area chart, Stacked area, Spline (smooth line),
+  Step line chart
+DISTRIBUTION (3): Radar/spider chart, Polar area chart, Histogram
+SPECIALIZED (4): Gauge chart, Waterfall chart, Population pyramid,
+  Combo chart (bar + line on dual axes)
+OTHER (2): KPI card, Table
+
+Click "Add widget" to open a categorized picker (30 cards across 7
+sections) instead of the old flat 6-button toolbar. Quick-access
+chips for the 4 most common types (Line, Bar, Donut, KPI) remain in
+the toolbar for one-click adds without opening the picker.
+
+Native Chart.js types (line, bar, pie, doughnut, radar, polarArea,
+scatter, bubble, and their stacked/grouped/horizontal variants) are
+built directly on Chart.js for reliability. Six types Chart.js doesn't
+support natively — gauge, funnel, heatmap, waterfall, bullet, and
+treemap — are hand-built with CSS/HTML for the same visual quality
+without adding fragile plugin dependencies.
+
+TESTED: added all 30 chart types in a single sweep (zero console
+errors), verified remove-widget still works correctly afterward,
+checked the picker's responsive 2-column mobile layout, and verified
+both light and dark mode for every custom (non-Chart.js) type.
+
+BUGFIX DURING THIS BUILD: the gauge chart's canvas had a sizing
+conflict between an inline max-width CSS rule and Chart.js's own
+sizing logic, causing it to render invisible in dark mode and
+distorted in light mode. Fixed by switching to the same
+position:absolute canvas-in-a-sized-wrapper pattern already proven
+elsewhere in the app (KPI sparklines, Explorer chart). Also found and
+fixed an unrelated class-name collision — a static GovOS info card
+was reusing the ".modal-body" class name, which could have caused
+future bugs if any code ever queried that class expecting the actual
+modal; renamed it to ".info-card-body".
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file

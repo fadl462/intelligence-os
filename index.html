@@ -459,7 +459,8 @@ button{font-family:inherit; cursor:pointer;}
 .legend-row i{width:10px; height:10px; border-radius:3px;}
 
 /* ---------- DASHBOARD STUDIO ---------- */
-.studio-toolbar{display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;}
+.studio-toolbar{display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; align-items:center;}
+.studio-toolbar-hint{font-size:11.5px; color:var(--text-dim); font-weight:600;}
 .studio-toolbar .tool{
   display:flex; align-items:center; gap:7px; font-size:12px; font-weight:700; padding:9px 13px;
   border:1px dashed var(--border); border-radius:10px; color:var(--text-dim);
@@ -478,6 +479,7 @@ button{font-family:inherit; cursor:pointer;}
 .widget-head .grip{color:var(--text-dim); font-size:14px; letter-spacing:2px;}
 .widget-body{padding:8px 16px 16px; position:relative; height:150px; box-sizing:border-box;}
 .widget-body canvas{position:absolute !important; inset:8px 16px 16px; width:calc(100% - 32px) !important; height:126px !important;}
+.widget-body-flex{padding:10px 16px 16px; box-sizing:border-box;}
 .widget-big-num{font-size:26px; font-weight:800; padding:18px 18px 4px;}
 .widget-big-num small{display:block; font-size:11px; font-weight:600; color:var(--text-dim); margin-top:4px;}
 .add-widget{
@@ -537,6 +539,74 @@ button{font-family:inherit; cursor:pointer;}
 .domain-row-body small{font-size:11px; color:var(--text-dim);}
 .domain-row-value{font-size:12.5px; font-weight:800; flex-shrink:0; text-align:right;}
 .domain-row-value small{display:block; font-size:10px; font-weight:600; color:var(--text-dim);}
+
+/* ---------- CHART PICKER MODAL ---------- */
+.picker-cat{margin-bottom:22px;}
+.picker-cat:last-child{margin-bottom:0;}
+.picker-cat-label{font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); margin-bottom:10px;}
+.picker-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:9px;}
+.picker-card{display:flex; flex-direction:column; align-items:center; gap:7px; padding:14px 8px; border-radius:11px; border:1px solid var(--border); cursor:pointer; transition:border-color .15s, background .15s, transform .15s; text-align:center;}
+.picker-card:hover{border-color:var(--teal); background:var(--bg); transform:translateY(-1px);}
+.picker-card svg{width:20px; height:20px; color:var(--navy-ink);}
+.picker-card span{font-size:10.8px; font-weight:700; line-height:1.25;}
+
+/* ---------- CUSTOM CHART WIDGETS (non-Chart.js) ---------- */
+/* Heatmap */
+.heatmap-widget{padding:4px 2px;}
+.heatmap-row{display:flex; align-items:center; gap:3px; margin-bottom:3px;}
+.heatmap-row-label{width:64px; font-size:10px; font-weight:700; color:var(--text-dim); flex-shrink:0; text-align:right; padding-right:4px;}
+.heatmap-cell{flex:1; height:20px; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:8.5px; font-weight:700; color:#fff;}
+.heatmap-cols{display:flex; gap:3px; margin-left:68px; margin-bottom:4px;}
+.heatmap-cols span{flex:1; font-size:9px; font-weight:700; color:var(--text-dim); text-align:center;}
+
+/* Waffle */
+.waffle-widget{display:grid; grid-template-columns:repeat(10,1fr); gap:3px; padding:6px;}
+.waffle-cell{aspect-ratio:1; border-radius:2px; background:var(--border);}
+.waffle-cell.filled{background:var(--teal);}
+.waffle-label{text-align:center; margin-top:10px; font-size:22px; font-weight:800; color:var(--text);}
+.waffle-label small{display:block; font-size:11px; font-weight:600; color:var(--text-dim); margin-top:2px;}
+
+/* Treemap */
+.treemap-widget{display:flex; flex-wrap:wrap; gap:3px; height:150px;}
+.treemap-box{border-radius:6px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-size:10.5px; font-weight:700; padding:4px; text-align:center; line-height:1.3;}
+.treemap-box small{font-weight:600; opacity:.85; font-size:9.5px;}
+
+/* Funnel */
+.funnel-widget{display:flex; flex-direction:column; align-items:center; gap:4px; padding:6px 0;}
+.funnel-row{display:flex; flex-direction:column; align-items:center; gap:2px;}
+.funnel-bar{height:26px; border-radius:5px; background:var(--navy); display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:700;}
+.funnel-row small{font-size:9.5px; color:var(--text-dim); font-weight:600;}
+
+/* Bullet */
+.bullet-widget{padding:18px 16px;}
+.bullet-track{position:relative; height:22px; border-radius:5px; overflow:hidden; background:var(--border); display:flex;}
+.bullet-range{height:100%;}
+.bullet-bar{position:absolute; left:0; top:6px; bottom:6px; background:var(--navy); border-radius:3px;}
+.bullet-target{position:absolute; top:-3px; bottom:-3px; width:3px; background:var(--danger);}
+.bullet-labels{display:flex; justify-content:space-between; margin-top:8px; font-size:10.5px; color:var(--text-dim); font-weight:600;}
+
+/* Dot plot */
+.dotplot-widget{display:flex; flex-direction:column; gap:9px; padding:4px 4px;}
+.dotplot-row{display:flex; align-items:center; gap:9px;}
+.dotplot-label{width:70px; font-size:10.5px; font-weight:700; color:var(--text-dim); flex-shrink:0;}
+.dotplot-track{flex:1; height:4px; background:var(--border); border-radius:3px; position:relative;}
+.dotplot-dot{position:absolute; top:50%; width:12px; height:12px; border-radius:50%; background:var(--teal); border:2px solid var(--surface); box-shadow:0 0 0 1px var(--teal); transform:translate(-50%,-50%);}
+.dotplot-val{width:34px; font-size:10.5px; font-weight:800; text-align:right; flex-shrink:0;}
+
+/* Gauge */
+.gauge-widget{position:relative; display:flex; flex-direction:column; align-items:center; padding-top:2px;}
+.gauge-canvas-wrap{position:relative; width:100%; height:120px;}
+.gauge-canvas-wrap canvas{position:absolute !important; inset:0; width:100% !important; height:100% !important;}
+.gauge-center{position:absolute; top:66%; left:50%; transform:translate(-50%,-50%); text-align:center;}
+.gauge-center b{font-size:22px; font-weight:800; display:block;}
+.gauge-center span{font-size:9.5px; color:var(--text-dim); font-weight:700; text-transform:uppercase; letter-spacing:.04em;}
+
+/* Population pyramid label tweak reuses chart, no extra CSS needed */
+/* Table widget */
+.table-widget{width:100%; border-collapse:collapse; font-size:11.5px;}
+.table-widget th{text-align:left; padding:6px 8px; color:var(--text-dim); font-weight:700; font-size:9.5px; text-transform:uppercase; border-bottom:1px solid var(--border);}
+.table-widget td{padding:6px 8px; border-bottom:1px solid var(--border);}
+.table-widget tr:last-child td{border-bottom:none;}
 
 /* ---------- DOMAIN OS PREVIEW PAGES ---------- */
 .domain-hero{display:flex; align-items:center; gap:16px; margin-bottom:8px;}
@@ -644,6 +714,7 @@ button{font-family:inherit; cursor:pointer;}
   .domain-waitlist-form{flex-direction:column;}
   .tender-filters{flex-direction:column; align-items:stretch;}
   .tender-min-fit{margin-left:0;}
+  .picker-grid{grid-template-columns:repeat(2,1fr);}
 }
 </style>
 </head>
@@ -1044,12 +1115,17 @@ button{font-family:inherit; cursor:pointer;}
       </div>
 
       <div class="studio-toolbar">
-        <div class="tool tool-clickable" onclick="addWidget('line')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg>Line chart</div>
-        <div class="tool tool-clickable" onclick="addWidget('bar')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="8"/><rect x="12" y="6" width="3" height="12"/><rect x="17" y="13" width="3" height="5"/></svg>Bar chart</div>
-        <div class="tool tool-clickable" onclick="addWidget('donut')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 9 9h-9V3Z"/></svg>Donut</div>
-        <div class="tool tool-clickable" onclick="addWidget('kpi')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Table</div>
+        <button class="btn btn-primary" onclick="openChartPicker()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          Add widget
+        </button>
+        <span class="studio-toolbar-hint">30 chart &amp; widget types across 6 categories</span>
+        <div style="flex:1;"></div>
+        <div class="tool tool-clickable" onclick="addWidgetOfType('line')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg>Line</div>
+        <div class="tool tool-clickable" onclick="addWidgetOfType('column')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="8"/><rect x="12" y="6" width="3" height="12"/><rect x="17" y="13" width="3" height="5"/></svg>Bar</div>
+        <div class="tool tool-clickable" onclick="addWidgetOfType('donut')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 9 9h-9V3Z"/></svg>Donut</div>
+        <div class="tool tool-clickable" onclick="addWidgetOfType('kpi')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/></svg>KPI</div>
         <div class="tool tool-clickable" onclick="showView('gis'); toast('GIS map widgets are added from GIS Intelligence')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 3-6-3"/></svg>Map</div>
-        <div class="tool tool-clickable" onclick="addWidget('kpi')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/></svg>KPI card</div>
       </div>
 
       <div class="widget-grid" id="widgetGrid">
@@ -1072,7 +1148,7 @@ button{font-family:inherit; cursor:pointer;}
           <div class="widget-head"><b>Tender pipeline value</b><span class="grip">⠿⠿</span></div>
           <div class="widget-body"><canvas id="w4" height="150"></canvas></div>
         </div>
-        <div class="add-widget" id="addWidgetBtn" onclick="addWidget('line')">
+        <div class="add-widget" id="addWidgetBtn" onclick="openChartPicker()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           <span>Add widget</span>
         </div>
@@ -1217,7 +1293,7 @@ button{font-family:inherit; cursor:pointer;}
           </div>
           <div class="card">
             <div class="card-head"><h3>How fit scoring works</h3></div>
-            <div class="modal-body" style="padding:16px 20px; font-size:12px;">
+            <div class="info-card-body" style="padding:16px 20px; font-size:12px;">
               <p style="margin-bottom:8px;">Every opportunity is scored 0–100% by weighing:</p>
               <div style="display:flex; flex-direction:column; gap:7px;">
                 <div style="display:flex; justify-content:space-between;"><span>Sector match</span><b style="color:var(--text);">35%</b></div>
@@ -2207,37 +2283,213 @@ mkChart('w3',{type:'doughnut',data:{labels:['Health','Education','Agriculture','
 mkChart('w4',{type:'bar',data:{labels:['Won','Submitted','In progress','Identified'],datasets:[{data:[420,680,310,890],backgroundColor:'#082B5A',borderRadius:6}]},
   options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#E4E9F1'}},y:{grid:{display:false}}}}});
 
-/* Dashboard Studio — add / remove widgets */
+/* =============================================================
+   DASHBOARD STUDIO — CHART & WIDGET LIBRARY (30 types, 6 categories)
+============================================================= */
+const PAL = {navy:'#082B5A', navy2:'#0B3B77', teal:'#00BFA6', warn:'#F59E0B', danger:'#DC2626', grey:'#6B7280'};
+const PAL_SET = [PAL.navy, PAL.teal, PAL.warn, PAL.danger, PAL.grey, PAL.navy2];
 let widgetCounter = 100;
-const widgetTemplates = {
-  line: {name:'New trend line', build:(id)=> mkChart(id,{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun'],datasets:[{data:[12,19,14,22,20,27],borderColor:'#00BFA6',backgroundColor:'#00BFA618',borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#00BFA6',tension:.35,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:themeVar('--border')}}}}})},
-  bar: {name:'New comparison', build:(id)=> mkChart(id,{type:'bar',data:{labels:['A','B','C','D','E'],datasets:[{data:[8,14,9,17,11],backgroundColor:'#082B5A',borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:themeVar('--border')}}}}})},
-  donut: {name:'New breakdown', build:(id)=> mkChart(id,{type:'doughnut',data:{labels:['A','B','C','D'],datasets:[{data:[40,25,20,15],backgroundColor:['#082B5A','#00BFA6','#F59E0B','#E4E9F1'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:9,font:{size:10.5,family:'Plus Jakarta Sans'}}}},cutout:'62%'}})}
+
+function stdOpts(extra){
+  return Object.assign({responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{grid:{display:false}}, y:{grid:{color:themeVar('--border')}}}}, extra||{});
+}
+
+const chartTypeLibrary = {
+  /* ---------------- COMPARISON ---------------- */
+  column:{name:'Column chart', category:'Comparison', icon:'<path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="8"/><rect x="12" y="6" width="3" height="12"/><rect x="17" y="13" width="3" height="5"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'bar',data:{labels:['Ashanti','Northern','Volta','Gt. Accra','Western'],datasets:[{data:[14,9,7,21,11],backgroundColor:PAL.navy,borderRadius:6}]},options:stdOpts()})},
+  bar_h:{name:'Horizontal bar', category:'Comparison', icon:'<path d="M3 3v18h18"/><rect x="6" y="6" width="12" height="3"/><rect x="6" y="11" width="8" height="3"/><rect x="6" y="16" width="15" height="3"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'bar',data:{labels:['Korle Bu','Komfo Anokye','Tamale Tchg.','37 Military','Ridge Hosp.'],datasets:[{data:[4200,3800,2600,2100,1900],backgroundColor:PAL.teal,borderRadius:6}]},options:stdOpts({indexAxis:'y'})})},
+  grouped_bar:{name:'Grouped bar', category:'Comparison', icon:'<path d="M3 3v18h18"/><rect x="6" y="12" width="2.5" height="6" fill="currentColor" stroke="none"/><rect x="9" y="8" width="2.5" height="10" fill="currentColor" stroke="none"/><rect x="14" y="10" width="2.5" height="8" fill="currentColor" stroke="none"/><rect x="17" y="6" width="2.5" height="12" fill="currentColor" stroke="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'bar',data:{labels:['Ashanti','Northern','Volta','Upper West'],datasets:[{label:'Boys',data:[82,71,76,64],backgroundColor:PAL.navy,borderRadius:4},{label:'Girls',data:[79,68,74,66],backgroundColor:PAL.teal,borderRadius:4}]},options:stdOpts({plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:9,font:{size:10,family:'Plus Jakarta Sans'}}}}})})},
+  stacked_bar:{name:'Stacked bar', category:'Comparison', icon:'<path d="M3 3v18h18"/><rect x="6" y="14" width="4" height="4" fill="currentColor" stroke="none"/><rect x="6" y="9" width="4" height="5" fill-opacity=".55" fill="currentColor" stroke="none"/><rect x="12" y="11" width="4" height="7" fill="currentColor" stroke="none"/><rect x="12" y="6" width="4" height="5" fill-opacity=".55" fill="currentColor" stroke="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'bar',data:{labels:['Q1','Q2','Q3','Q4'],datasets:[{label:'Health',data:[32,30,34,33],backgroundColor:PAL.navy},{label:'Education',data:[24,26,22,25],backgroundColor:PAL.teal},{label:'Agriculture',data:[18,17,19,18],backgroundColor:PAL.warn}]},options:stdOpts({plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:9,font:{size:10,family:'Plus Jakarta Sans'}}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:themeVar('--border')}}}})})},
+  lollipop:{name:'Lollipop chart', category:'Comparison', icon:'<path d="M6 20V10M6 10a3 3 0 1 0 0-.01" fill="none"/><path d="M12 20v-6M12 14a3 3 0 1 0 0-.01" fill="none"/><path d="M18 20V6M18 6a3 3 0 1 0 0-.01" fill="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{data:{labels:['JMK Retainer','NDC Survey','EU M&E','WB Data Sys.','Mastercard'],datasets:[
+      {type:'bar',data:[97,95,92,88,86],backgroundColor:themeVar('--border'),barThickness:2,categoryPercentage:.9},
+      {type:'bar',data:[97,95,92,88,86].map(()=>0),backgroundColor:'transparent',barThickness:2},
+    ]},options:stdOpts({indexAxis:'y',plugins:{legend:{display:false}}})}),
+    custom:(container,id)=>{
+      const data=[{l:'JMK Retainer',v:97},{l:'NDC Survey',v:95},{l:'EU M&E',v:92},{l:'WB Data Sys.',v:88},{l:'Mastercard',v:86}];
+      const max=100;
+      container.innerHTML='<div class="dotplot-widget">'+data.map(d=>`<div class="dotplot-row"><span class="dotplot-label">${d.l}</span><div class="dotplot-track"><div class="dotplot-dot" style="left:${(d.v/max)*100}%;"></div></div><span class="dotplot-val">${d.v}%</span></div>`).join('')+'</div>';
+    }},
+  bullet:{name:'Bullet chart', category:'Comparison', icon:'<rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="10" width="11" height="4" rx="1" fill="currentColor" stroke="none"/><path d="M15 8v8" stroke-width="2.5"/>', kind:'custom',
+    custom:(container)=>{
+      container.innerHTML=`
+        <div class="bullet-widget">
+          <div class="bullet-track">
+            <div class="bullet-range" style="width:60%; background:${themeVar('--border')};"></div>
+            <div class="bullet-range" style="width:25%; background:color-mix(in srgb, ${PAL.grey} 30%, transparent);"></div>
+            <div class="bullet-range" style="width:15%; background:color-mix(in srgb, ${PAL.grey} 15%, transparent);"></div>
+            <div class="bullet-bar" style="width:94%;"></div>
+            <div class="bullet-target" style="left:95%;"></div>
+          </div>
+          <div class="bullet-labels"><span>0%</span><span>Immunization coverage: 94% (target 95%)</span><span>100%</span></div>
+        </div>`;
+    }},
+  dot_plot:{name:'Dot plot', category:'Comparison', icon:'<circle cx="6" cy="7" r="2" fill="currentColor" stroke="none"/><circle cx="14" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="10" cy="17" r="2" fill="currentColor" stroke="none"/><path d="M3 7h18M3 12h18M3 17h18" stroke-width="1" opacity=".3"/>', kind:'custom',
+    custom:(container)=>{
+      const data=[{l:'Gt. Accra',v:78},{l:'Ashanti',v:71},{l:'Western',v:64},{l:'Volta',v:60},{l:'Northern',v:44}];
+      container.innerHTML='<div class="dotplot-widget">'+data.map(d=>`<div class="dotplot-row"><span class="dotplot-label">${d.l}</span><div class="dotplot-track"><div class="dotplot-dot" style="left:${d.v}%;"></div></div><span class="dotplot-val">${d.v}</span></div>`).join('')+'</div>';
+    }},
+
+  /* ---------------- CORRELATION ---------------- */
+  scatter:{name:'Scatter plot', category:'Correlation', icon:'<circle cx="6" cy="16" r="1.6" fill="currentColor" stroke="none"/><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none"/><circle cx="13" cy="13" r="1.6" fill="currentColor" stroke="none"/><circle cx="16" cy="7" r="1.6" fill="currentColor" stroke="none"/><circle cx="19" cy="9" r="1.6" fill="currentColor" stroke="none"/><path d="M3 3v18h18" fill="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'scatter',data:{datasets:[{label:'Districts',data:[{x:820,y:1.4},{x:950,y:1.7},{x:1100,y:2.0},{x:1250,y:2.3},{x:1400,y:2.5},{x:1050,y:1.9},{x:1300,y:2.4}],backgroundColor:PAL.teal}]},options:stdOpts({scales:{x:{title:{display:true,text:'Rainfall (mm)',font:{size:9.5}},grid:{color:themeVar('--border')}},y:{title:{display:true,text:'Yield (t/ha)',font:{size:9.5}},grid:{color:themeVar('--border')}}}})})},
+  bubble:{name:'Bubble chart', category:'Correlation', icon:'<circle cx="8" cy="14" r="3" fill="currentColor" fill-opacity=".3"/><circle cx="15" cy="9" r="5" fill="currentColor" fill-opacity=".3"/><circle cx="17" cy="17" r="2" fill="currentColor" fill-opacity=".3"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'bubble',data:{datasets:[{label:'Regions',data:[{x:20,y:30,r:14},{x:40,y:50,r:22},{x:60,y:35,r:10},{x:75,y:65,r:18},{x:30,y:70,r:8}],backgroundColor:PAL.navy+'99'}]},options:stdOpts({scales:{x:{grid:{color:themeVar('--border')}},y:{grid:{color:themeVar('--border')}}}})})},
+  heatmap:{name:'Heatmap', category:'Correlation', icon:'<rect x="3" y="3" width="5" height="5" fill="currentColor" stroke="none"/><rect x="9" y="3" width="5" height="5" fill="currentColor" fill-opacity=".5" stroke="none"/><rect x="15" y="3" width="6" height="5" fill="currentColor" fill-opacity=".2" stroke="none"/><rect x="3" y="9" width="5" height="5" fill="currentColor" fill-opacity=".7" stroke="none"/><rect x="9" y="9" width="5" height="5" fill="currentColor" fill-opacity=".3" stroke="none"/>', kind:'custom',
+    custom:(container)=>{
+      const days=['Mon','Tue','Wed','Thu','Fri'];
+      const rows=[{l:'Volta',v:[8,6,9,12,7]},{l:'Northern',v:[3,4,2,5,3]},{l:'Ashanti',v:[1,2,1,1,2]},{l:'Gt. Accra',v:[2,1,3,2,1]}];
+      const max=Math.max(...rows.flatMap(r=>r.v));
+      function color(v){ const t=v/max; const r1=222,g1=233,b1=244, r2=220,g2=38,b2=38; const r=Math.round(r1+(r2-r1)*t), g=Math.round(g1+(g2-g1)*t), b=Math.round(b1+(b2-b1)*t); return `rgb(${r},${g},${b})`; }
+      container.innerHTML='<div class="heatmap-widget"><div class="heatmap-cols">'+days.map(d=>`<span>${d}</span>`).join('')+'</div>'+
+        rows.map(r=>`<div class="heatmap-row"><span class="heatmap-row-label">${r.l}</span>`+r.v.map(v=>`<div class="heatmap-cell" style="background:${color(v)};">${v}</div>`).join('')+'</div>').join('')+'</div>';
+    }},
+
+  /* ---------------- PART-TO-WHOLE ---------------- */
+  pie:{name:'Pie chart', category:'Part-to-whole', icon:'<path d="M12 2a10 10 0 1 0 7.07 17.07L12 12Z" fill="currentColor" fill-opacity=".85" stroke="none"/><path d="M12 2v10l7.07 7.07A10 10 0 0 0 12 2Z" fill="currentColor" fill-opacity=".35" stroke="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'pie',data:{labels:['Government','Donors','Private','Other'],datasets:[{data:[45,32,16,7],backgroundColor:PAL_SET,borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:9,font:{size:10,family:'Plus Jakarta Sans'}}}}}})},
+  donut:{name:'Donut chart', category:'Part-to-whole', icon:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4" fill="var(--surface)"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'doughnut',data:{labels:['Health','Education','Agriculture','Infrastructure','Other'],datasets:[{data:[32,24,18,16,10],backgroundColor:PAL_SET,borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:9,font:{size:10,family:'Plus Jakarta Sans'}}}},cutout:'62%'}})},
+  stacked_100:{name:'100% stacked bar', category:'Part-to-whole', icon:'<rect x="3" y="5" width="18" height="4" rx="1" fill="none"/><rect x="3" y="5" width="10" height="4" rx="1" fill="currentColor" stroke="none"/><rect x="3" y="11" width="18" height="4" rx="1" fill="none"/><rect x="3" y="11" width="14" height="4" rx="1" fill="currentColor" stroke="none"/><rect x="3" y="17" width="18" height="4" rx="1" fill="none"/><rect x="3" y="17" width="7" height="4" rx="1" fill="currentColor" stroke="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'bar',data:{labels:['Ashanti','Northern','Gt. Accra'],datasets:[{label:'Farming',data:[55,68,20],backgroundColor:PAL.navy},{label:'Trading',data:[30,20,45],backgroundColor:PAL.teal},{label:'Wages',data:[15,12,35],backgroundColor:PAL.warn}]},options:stdOpts({indexAxis:'y',plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:9,font:{size:10,family:'Plus Jakarta Sans'}}}},scales:{x:{stacked:true,max:100,grid:{display:false}},y:{stacked:true,grid:{display:false}}}})})},
+  treemap:{name:'Treemap', category:'Part-to-whole', icon:'<rect x="3" y="3" width="10" height="10" fill="currentColor" fill-opacity=".8" stroke="none"/><rect x="14" y="3" width="7" height="6" fill="currentColor" fill-opacity=".5" stroke="none"/><rect x="14" y="10" width="7" height="3" fill="currentColor" fill-opacity=".3" stroke="none"/><rect x="3" y="14" width="18" height="7" fill="currentColor" fill-opacity=".2" stroke="none"/>', kind:'custom',
+    custom:(container)=>{
+      const data=[{l:'Data Systems',v:38,c:PAL.navy},{l:'Health',v:26,c:PAL.teal},{l:'Agriculture',v:18,c:PAL.warn},{l:'Education',v:12,c:PAL.grey},{l:'Governance',v:6,c:PAL.danger}];
+      container.innerHTML='<div class="treemap-widget">'+data.map(d=>`<div class="treemap-box" style="background:${d.c}; flex:${d.v} 1 ${Math.sqrt(d.v)*22}px; min-width:${d.v>10?70:44}px;">${d.l}<small>${d.v}%</small></div>`).join('')+'</div>';
+    }},
+  waffle:{name:'Waffle chart', category:'Part-to-whole', icon:'<rect x="3" y="3" width="4" height="4" fill="currentColor" stroke="none"/><rect x="9" y="3" width="4" height="4" fill="currentColor" stroke="none"/><rect x="15" y="3" width="4" height="4" fill="currentColor" fill-opacity=".2" stroke="none"/><rect x="3" y="9" width="4" height="4" fill="currentColor" stroke="none"/><rect x="9" y="9" width="4" height="4" fill="currentColor" fill-opacity=".2" stroke="none"/><rect x="15" y="9" width="4" height="4" fill="currentColor" fill-opacity=".2" stroke="none"/>', kind:'custom',
+    custom:(container)=>{
+      const pct=74;
+      let cells='';
+      for(let i=0;i<100;i++) cells+=`<div class="waffle-cell ${i<pct?'filled':''}"></div>`;
+      container.innerHTML='<div class="waffle-widget">'+cells+'</div><div class="waffle-label">'+pct+'%<small>Surveys completed this round</small></div>';
+    }},
+  funnel:{name:'Funnel chart', category:'Part-to-whole', icon:'<path d="M3 4h18l-6 8v7l-6 2v-9L3 4Z"/>', kind:'custom',
+    custom:(container)=>{
+      const data=[{l:'Identified',v:14,w:100},{l:'In progress',v:5,w:72},{l:'Submitted',v:3,w:50},{l:'Won',v:1,w:30}];
+      container.innerHTML='<div class="funnel-widget">'+data.map(d=>`<div class="funnel-row"><div class="funnel-bar" style="width:${d.w}%;">${d.v}</div><small>${d.l}</small></div>`).join('')+'</div>';
+    }},
+
+  /* ---------------- TIME ---------------- */
+  line:{name:'Line chart', category:'Time', icon:'<path d="M3 17l5-6 4 3 6-9 3 4" fill="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun'],datasets:[{data:[12,19,14,22,20,27],borderColor:PAL.teal,backgroundColor:PAL.teal+'18',borderWidth:2.5,pointRadius:3,pointBackgroundColor:PAL.teal,tension:.35,fill:true}]},options:stdOpts()})},
+  area:{name:'Area chart', category:'Time', icon:'<path d="M3 17l5-6 4 3 6-9 3 4v8H3Z" fill="currentColor" fill-opacity=".25"/><path d="M3 17l5-6 4 3 6-9 3 4" fill="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun'],datasets:[{label:'Cumulative farmers (000s)',data:[210,340,480,640,830,1020],borderColor:PAL.navy,backgroundColor:PAL.navy+'22',borderWidth:2.5,pointRadius:0,tension:0,fill:true}]},options:stdOpts()})},
+  stacked_area:{name:'Stacked area', category:'Time', icon:'<path d="M3 18l5-4 4 2 6-7 3 3v6H3Z" fill="currentColor" fill-opacity=".7" stroke="none"/><path d="M3 18l5-7 4 3 6-10 3 4v6H3Z" fill="currentColor" fill-opacity=".25" stroke="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'line',data:{labels:['2021','2022','2023','2024','2025'],datasets:[
+      {label:'Hydro',data:[40,42,41,39,38],borderColor:PAL.navy,backgroundColor:PAL.navy+'cc',fill:true,pointRadius:0,tension:.3},
+      {label:'Thermal',data:[35,33,30,28,25],borderColor:PAL.grey,backgroundColor:PAL.grey+'cc',fill:true,pointRadius:0,tension:.3},
+      {label:'Solar',data:[5,9,15,22,30],borderColor:PAL.teal,backgroundColor:PAL.teal+'cc',fill:true,pointRadius:0,tension:.3}
+    ]},options:stdOpts({plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:9,font:{size:10,family:'Plus Jakarta Sans'}}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:themeVar('--border')}}}})})},
+  spline:{name:'Spline (smooth line)', category:'Time', icon:'<path d="M3 15c3-8 6 3 9-4s6 5 9-3" fill="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul'],datasets:[{data:[24,31,28,45,52,48,61],borderColor:PAL.warn,backgroundColor:PAL.warn+'18',borderWidth:2.5,pointRadius:0,tension:.5,fill:true}]},options:stdOpts()})},
+  step_line:{name:'Step line chart', category:'Time', icon:'<path d="M3 16h4v-4h4V8h4v4h6" fill="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun'],datasets:[{label:'Fuel price (GH₵/L)',data:[14.2,14.2,15.8,15.8,15.8,16.9],borderColor:PAL.danger,backgroundColor:'transparent',borderWidth:2.5,pointRadius:2,stepped:true}]},options:stdOpts()})},
+
+  /* ---------------- DISTRIBUTION ---------------- */
+  radar:{name:'Radar chart', category:'Distribution', icon:'<path d="M12 3 20 9l-3 10H7L4 9Z" fill="none"/><path d="M12 3v10M12 13 20 9M12 13 4 9M12 13 17 19M12 13 7 19" opacity=".4"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'radar',data:{labels:['Health','Education','Agriculture','Infrastructure','Governance'],datasets:[{label:'Ashanti',data:[78,72,65,80,70],borderColor:PAL.navy,backgroundColor:PAL.navy+'2a',pointBackgroundColor:PAL.navy},{label:'Northern',data:[55,48,60,42,50],borderColor:PAL.teal,backgroundColor:PAL.teal+'2a',pointBackgroundColor:PAL.teal}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:9,font:{size:10,family:'Plus Jakarta Sans'}}}},scales:{r:{grid:{color:themeVar('--border')},angleLines:{color:themeVar('--border')},pointLabels:{font:{size:9.5}},ticks:{display:false}}}}})},
+  polar_area:{name:'Polar area chart', category:'Distribution', icon:'<circle cx="12" cy="12" r="9" fill="none"/><path d="M12 12 12 4A8 8 0 0 1 19 9Z" fill="currentColor" fill-opacity=".7" stroke="none"/><path d="M12 12 19 9A8 8 0 0 1 16 19Z" fill="currentColor" fill-opacity=".4" stroke="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'polarArea',data:{labels:['M&E','Health','Data Sys.','Agriculture','Governance'],datasets:[{data:[34,22,20,14,10],backgroundColor:PAL_SET.map(c=>c+'cc')}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:9,font:{size:9.5,family:'Plus Jakarta Sans'}}}},scales:{r:{grid:{color:themeVar('--border')},ticks:{display:false}}}}})},
+  histogram:{name:'Histogram', category:'Distribution', icon:'<path d="M3 20V10h3v10M8 20V6h3v14M13 20v-8h3v8M18 20v-4h3v4" fill="currentColor" stroke="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'bar',data:{labels:['<2 min','2–4 min','4–6 min','6–8 min','>8 min'],datasets:[{data:[18,42,35,14,6],backgroundColor:PAL.navy,borderRadius:4,categoryPercentage:1,barPercentage:1}]},options:stdOpts()})},
+
+  /* ---------------- SPECIALIZED ---------------- */
+  gauge:{name:'Gauge chart', category:'Specialized', icon:'<path d="M4 18a8 8 0 0 1 16 0" fill="none"/><path d="M4 18a8 8 0 0 1 12.5-6.6" fill="none" stroke-width="3"/><circle cx="12" cy="18" r="1.4" fill="currentColor" stroke="none"/>', kind:'custom',
+    custom:(container,id)=>{
+      const val=94;
+      container.innerHTML=`<div class="gauge-widget"><div class="gauge-canvas-wrap"><canvas id="${id}"></canvas></div><div class="gauge-center"><b>${val}%</b><span>Data quality</span></div></div>`;
+      setTimeout(()=>{
+        if(!window.Chart) return;
+        new Chart(document.getElementById(id),{type:'doughnut',data:{datasets:[{data:[val,100-val],backgroundColor:[PAL.teal,themeVar('--border')],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,circumference:180,rotation:270,cutout:'75%',plugins:{legend:{display:false},tooltip:{enabled:false}}}});
+      },30);
+    }},
+  waterfall:{name:'Waterfall chart', category:'Specialized', icon:'<rect x="3" y="14" width="3" height="6" fill="currentColor" stroke="none"/><rect x="7.5" y="7" width="3" height="7" fill="currentColor" fill-opacity=".6" stroke="none"/><rect x="12" y="11" width="3" height="5" fill="currentColor" fill-opacity=".6" stroke="none"/><rect x="16.5" y="3" width="3" height="17" fill="currentColor" stroke="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'bar',data:{labels:['Start','+ Health','− Admin','+ Donor','End'],datasets:[{data:[[0,420],[420,510],[430,510],[430,545],[0,545]],backgroundColor:[PAL.navy,PAL.teal,PAL.danger,PAL.teal,PAL.navy],borderRadius:4}]},options:stdOpts()})},
+  population_pyramid:{name:'Population pyramid', category:'Specialized', icon:'<rect x="12" y="4" width="7" height="3" fill="currentColor" stroke="none"/><rect x="5" y="4" width="7" height="3" fill="currentColor" fill-opacity=".5" stroke="none"/><rect x="12" y="9" width="5" height="3" fill="currentColor" stroke="none"/><rect x="7" y="9" width="5" height="3" fill="currentColor" fill-opacity=".5" stroke="none"/><rect x="12" y="14" width="3" height="3" fill="currentColor" stroke="none"/><rect x="9" y="14" width="3" height="3" fill="currentColor" fill-opacity=".5" stroke="none"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{type:'bar',data:{labels:['0–14','15–29','30–44','45–59','60+'],datasets:[{label:'Male',data:[-18,-15,-10,-6,-4],backgroundColor:PAL.navy},{label:'Female',data:[17,16,11,7,5],backgroundColor:PAL.teal}]},options:stdOpts({indexAxis:'y',plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:9,font:{size:10,family:'Plus Jakarta Sans'}}}},scales:{x:{stacked:true,grid:{color:themeVar('--border')},ticks:{callback:v=>Math.abs(v)}},y:{stacked:true,grid:{display:false}}}})})},
+  combo:{name:'Combo chart (bar + line)', category:'Specialized', icon:'<rect x="4" y="12" width="3" height="8" fill="currentColor" stroke="none"/><rect x="10" y="8" width="3" height="12" fill="currentColor" stroke="none"/><rect x="16" y="14" width="3" height="6" fill="currentColor" stroke="none"/><path d="M4 10 10 6 16 11 20 4" fill="none" stroke-width="2"/>', kind:'canvas',
+    build:(id)=> mkChart(id,{data:{labels:['Q1','Q2','Q3','Q4'],datasets:[
+      {type:'bar',label:'Tender value (GH₵000s)',data:[320,410,380,545],backgroundColor:PAL.navy,order:2,yAxisID:'y'},
+      {type:'line',label:'Win rate %',data:[38,42,40,49],borderColor:PAL.teal,backgroundColor:PAL.teal,pointRadius:3,tension:.3,order:1,yAxisID:'y1'}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:9,font:{size:10,family:'Plus Jakarta Sans'}}}},scales:{x:{grid:{display:false}},y:{position:'left',grid:{color:themeVar('--border')}},y1:{position:'right',grid:{display:false},ticks:{callback:v=>v+'%'}}}}})},
+
+  /* ---------------- OTHER ---------------- */
+  kpi:{name:'KPI card', category:'Other', icon:'<path d="M12 2 2 7l10 5 10-5-10-5Z"/>', kind:'kpi'},
+  table:{name:'Table', category:'Other', icon:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>', kind:'custom',
+    custom:(container)=>{
+      const rows=[['Ashanti','2.1 t/ha','▲ 4%'],['Northern','1.6 t/ha','▼ 2%'],['Volta','1.9 t/ha','▲ 1%'],['Bono','2.4 t/ha','▲ 6%']];
+      container.innerHTML='<table class="table-widget"><tr><th>Region</th><th>Yield</th><th>Change</th></tr>'+rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')+'</table>';
+    }},
 };
-function addWidget(type){
+
+/* ---------------- PICKER MODAL ---------------- */
+function openChartPicker(){
+  const categories = ['Comparison','Correlation','Part-to-whole','Time','Distribution','Specialized','Other'];
+  const catDesc = {
+    'Comparison':'Compare values across categories',
+    'Correlation':'Explore relationships between variables',
+    'Part-to-whole':'Show how parts make up a total',
+    'Time':'Track change over time',
+    'Distribution':'Show spread and shape of data',
+    'Specialized':'Purpose-built for specific stories',
+    'Other':'KPI cards and tables'
+  };
+  let html = `<div class="modal-head"><div><div class="eyebrow" style="margin-bottom:8px;"><span class="compass-dot"></span>DASHBOARD STUDIO</div><h3>Add a chart or widget</h3></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div><div class="modal-body" style="max-height:60vh; overflow-y:auto;">`;
+  categories.forEach(cat=>{
+    const items = Object.entries(chartTypeLibrary).filter(([k,v])=>v.category===cat);
+    if(!items.length) return;
+    html += `<div class="picker-cat"><div class="picker-cat-label">${cat} — ${catDesc[cat]}</div><div class="picker-grid">`;
+    items.forEach(([key,def])=>{
+      html += `<div class="picker-card" onclick="addWidgetOfType('${key}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${def.icon}</svg><span>${def.name}</span></div>`;
+    });
+    html += `</div></div>`;
+  });
+  html += `</div>`;
+  openModal(html);
+}
+
+function addWidgetOfType(type){
+  closeModal();
   widgetCounter++;
+  const def = chartTypeLibrary[type];
+  if(!def) return;
   const grid = document.getElementById('widgetGrid');
   const addBtn = document.getElementById('addWidgetBtn');
   const card = document.createElement('div');
   card.className = 'card widget widget-new';
+  const removeBtn = `<span class="widget-remove" onclick="this.closest('.widget').remove()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg></span>`;
 
-  if(type==='kpi'){
-    const values = ['87.4%','2,140','+12.3%','GHS 1.2M'];
+  if(def.kind==='kpi'){
+    const values = ['87.4%','2,140','+12.3%','GH₵1.2M'];
     const labels = ['Coverage rate — auto-computed','Records this month','Change vs last period','Estimated budget impact'];
     const i = widgetCounter % values.length;
-    card.innerHTML = '<div class="widget-head"><b>New KPI card</b><span class="widget-remove" onclick="this.closest(\'.widget\').remove()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div><div class="widget-big-num" style="padding:6px 18px 16px;">'+values[i]+'<small>'+labels[i]+'</small></div>';
+    card.innerHTML = `<div class="widget-head"><b>New KPI card</b>${removeBtn}</div><div class="widget-big-num" style="padding:6px 18px 16px;">${values[i]}<small>${labels[i]}</small></div>`;
     grid.insertBefore(card, addBtn);
     toast('KPI card added');
     return;
   }
 
   const id = 'wnew'+widgetCounter;
-  const tpl = widgetTemplates[type] || widgetTemplates.line;
-  card.innerHTML = '<div class="widget-head"><b>'+tpl.name+'</b><span class="widget-remove" onclick="this.closest(\'.widget\').remove()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div><div class="widget-body"><canvas id="'+id+'" height="150"></canvas></div>';
-  grid.insertBefore(card, addBtn);
-  tpl.build(id);
-  toast(tpl.name+' widget added');
+  if(def.kind==='canvas'){
+    card.innerHTML = `<div class="widget-head"><b>${def.name}</b>${removeBtn}</div><div class="widget-body"><canvas id="${id}" height="150"></canvas></div>`;
+    grid.insertBefore(card, addBtn);
+    def.build(id);
+  } else {
+    card.innerHTML = `<div class="widget-head"><b>${def.name}</b>${removeBtn}</div><div class="widget-body-flex" id="body-${id}"></div>`;
+    grid.insertBefore(card, addBtn);
+    def.custom(document.getElementById('body-'+id), id);
+  }
+  toast(def.name+' added');
 }
+/* Backward-compatible alias */
+function addWidget(type){ addWidgetOfType(type==='bar'?'column':type); }
+
+
 function publishDashboard(){
   const btn = document.getElementById('publishBtn');
   const original = btn.innerHTML;
