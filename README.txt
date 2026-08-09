@@ -160,6 +160,71 @@ BUGFIXES (this update)
    Domain OS pages, and the AI Explorer's decorative icon. Confirmed
    visually across every affected page in dark mode.
 
+4. LOGO STILL DISTORTED — ROOT CAUSE FOUND AND FIXED
+   You were right that the logo was still wrong. Re-processing from
+   your freshly uploaded original logo files surfaced two real bugs
+   in how I'd been cropping the artwork:
+   - The sidebar/wordmark logo crop was cutting off the top and
+     bottom points of the compass star, because the compass icon is
+     genuinely taller than the "Intelligence OS / AFRICA" text block
+     next to it — my crop was using the text's row bounds instead of
+     the icon's true (taller) bounds. Fixed by surgically erasing
+     only the tagline pixels rather than cutting by row, so the full
+     compass is preserved.
+   - The favicon/icon-only crop was clipping the rightmost circuit
+     nodes, because I'd restricted the pixel search itself to the
+     same column boundary used for the crop, so pixels just past
+     that boundary could never be found. Fixed by first finding the
+     true icon/wordmark gap independent of any assumption, then
+     cropping from that.
+   Both are rebuilt from your original source file, verified via
+   direct side-by-side pixel comparison against the previous
+   (flawed) versions, and confirmed rendering correctly in both light
+   and dark mode in the live app.
+
+NEW: MARKETING LANDING PAGE (landing.html)
+---------------------------------------------
+A public-facing front door for the platform — since index.html drops
+straight into the logged-in app with no way to explain what this is
+to someone who isn't already a user. Includes:
+- Hero section with live stat bar (12 modules, 16 regions, 1.2M
+  farmers, 3,847 facilities — pulled from the same numbers as the app)
+- A 9-card module showcase covering all 12 live modules
+- A dark "product preview" panel with mock KPI cards
+- A roadmap section (Nigeria/Kenya/Rwanda workspaces, real backend,
+  LLM-backed AI Explorer, mobile app)
+- Full dark/light mode, fully responsive, built from the exact same
+  design tokens and corrected logo as the main app
+- Every CTA links to index.html ("Enter the Platform")
+
+FILE STRUCTURE — TWO OPTIONS FOR HOW TO WIRE THIS TOGETHER
+------------------------------------------------------------------
+landing.html is a SEPARATE file from index.html (the app). Right now
+your live URL (https://fadl462.github.io/intelligence-os/) opens
+index.html directly — the app, not the landing page. You have two
+options once you push landing.html to the repo:
+
+OPTION A — Keep the app as the homepage (no changes needed)
+  Leave index.html as-is. landing.html becomes an extra page at
+  https://fadl462.github.io/intelligence-os/landing.html that you
+  can link to from elsewhere (e.g. a Freelancer.com profile, a
+  LinkedIn post) as a polished pitch page, while the main URL keeps
+  opening straight into the app for anyone who already knows what
+  this is.
+
+OPTION B — Make the landing page the homepage (swap the files)
+  Rename index.html to app.html, then rename landing.html to
+  index.html. Now https://fadl462.github.io/intelligence-os/ shows
+  the landing page first, and every "Enter the Platform" button
+  correctly opens app.html — but you'll need to do a find-and-replace
+  in landing.html changing href="index.html" to href="app.html"
+  (5 occurrences) BEFORE renaming, or the buttons will 404.
+
+Recommended: Option B if you want this to read as a real product to
+someone landing on the URL cold (e.g. sharing it with a client or
+investor). Option A if the URL is mainly shared with people who
+already know to expect the app.
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file
