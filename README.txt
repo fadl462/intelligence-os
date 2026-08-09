@@ -115,6 +115,35 @@ sources is the next phase (see below). Every mocked action (waitlist
 signup, report generation, sign out, etc.) gives honest, clearly-demo
 feedback via toast rather than pretending to be a real backend call.
 
+BUGFIXES (this update)
+-------------------------
+1. KPI CARDS GROWING ABNORMALLY TALL — FIXED
+   Cause: the sparkline charts on the Command Centre KPI cards sat
+   directly inside flex-column containers with no positioned wrapper.
+   This triggers a known Chart.js issue where the canvas's resize
+   observer enters a feedback loop and the chart grows taller on
+   every frame, pushing surrounding content down the page. Fixed by
+   wrapping every chart canvas (KPI sparklines, Dashboard Studio
+   widgets, AI Explorer chart, Survey Intelligence modal chart) in a
+   fixed-height, position:relative container with the canvas
+   absolutely positioned inside it — the standard fix for this
+   Chart.js behavior. Verified by loading Chart.js locally (the
+   sandbox used to build this normally has the CDN blocked, which is
+   why the bug wasn't caught in earlier testing) and confirming every
+   chart now renders at its correct, stable size.
+
+2. LOGO WAS A CSS APPROXIMATION, NOT THE REAL ARTWORK — FIXED
+   The sidebar was displaying "IntelligenceOS" as styled text rather
+   than your actual logo image, which meant it was missing the
+   analytics-chart-inside-the-O detail from your real logo — a direct
+   miss against your own brand rule ("never redesign or reinterpret
+   the approved logo"). Fixed by embedding your actual logo artwork
+   (cropped from the official-hex horizontal lockup, tagline excluded
+   since it's illegible at sidebar size) as the sidebar logo, with a
+   light-background and dark-background version that swap
+   automatically with the theme toggle. Verified pixel-by-pixel that
+   the dark-mode swap actually fires and the correct variant renders.
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file
