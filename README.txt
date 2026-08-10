@@ -623,6 +623,67 @@ this document (index.html → app.html, homepage.html → index.html,
 plus updating the internal links to match) — still on offer whenever
 you want it, but not done here since you didn't ask for it this time.
 
+UPDATE: SECOND REVIEW ROUND — 8 CHANGES IMPLEMENTED
+------------------------------------------------------------------
+Went through a detailed 12-point review. Kept 2 points as already
+done (nav language, "One engine, twelve applications" heading),
+skipped 3 as redundant with existing content (full hero rebuild —
+duplicates the Engine section already below it; reduced module-card
+emphasis — too subjective to action without cutting good content;
+sector list under "decision-makers everywhere" — duplicates the
+Ecosystem section's existing 8 sectors), and implemented 8 concrete,
+non-redundant changes:
+
+1. Sharpened "There's an engine underneath" copy to read as
+   infrastructure language; expanded the Intelligence Core box to
+   name specific engines (AI/ML, Knowledge Graph, GIS, Prediction)
+2. Made the OS Kernel diagram INTERACTIVE — hover any engine tag
+   (AI Engine, GIS Engine, etc.) and a hint line updates live to show
+   which application it powers (e.g. "GIS Engine → AgroOS →
+   Agricultural Intelligence") — this was the review's single
+   biggest recommendation
+3. Expanded the Kernel's app row from 5 to all 8 apps, now matching
+   the ecosystem cards below it exactly, in a clean 4×2 grid
+4. Animated the "Ask IntelligenceOS" demo — it now visibly performs
+   a 4-step searching/analysing sequence (spinners → checkmarks,
+   staggered) before revealing the answer, auto-triggered once via
+   IntersectionObserver when scrolled into view, replayable by
+   clicking the question
+5. Rebuilt the linear 5-stage flow into "The Intelligence Loop" — 
+   added a 6th "Measure" stage and a visual loop-back indicator
+   ("feeds back into Collect — the system keeps learning")
+6. Replaced the 2-card BI comparison with the full 6-row table the
+   review specified (Shows data/Understands data, Reports what
+   happened/Explains why, etc.), sharpened the headline to "Not just
+   a dashboard. An intelligence system."
+7. Added a "DATA SOURCES → INTELLIGENCEOS → AFRICA" flow visual above
+   the data-source chip cloud, and made the GIS layer chips
+   (Population/Health/Education/etc.) genuinely clickable — clicking
+   switches the active state and confirms via toast
+8. Animated the Ghana → West Africa → Africa → World journey — a
+   wave pulses sequentially through the future expansion path while
+   Ghana stays permanently solid as the current live state
+
+BUG CAUGHT AND FIXED DURING TESTING: the completed Ask IntelligenceOS
+processing checklist (4 checkmarked rows) was rendering directly
+adjacent to the answer content with no visual separation — cramped
+and easy to misread as one clashing block. Fixed with a divider and
+tighter, muted styling for the completed rows so they read as a
+"receipt" rather than competing with the actual insight for
+attention.
+
+TESTED PROPERLY THIS TIME BEFORE SHIPPING: screenshotted every one of
+the 8 changes individually (not just the overall page) — confirmed
+the Ask demo animation actually plays through and completes, the
+kernel hover genuinely updates the hint text on real mouse hover (not
+just assumed from the CSS), the GIS layer chips actually switch
+active state on click, and the journey animation cycles through all
+three future steps while Ghana stays solid. Then ran a full regression:
+zero horizontal overflow across 5 viewport widths (390px–1440px),
+zero console errors through a complete scroll-through in dark mode,
+and confirmed the Intelligence Loop's 6 steps reflow cleanly into a
+2-column grid on mobile.
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file
