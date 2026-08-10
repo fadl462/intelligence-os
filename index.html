@@ -440,6 +440,22 @@ button{font-family:inherit; cursor:pointer;}
 /* ---------- GIS ---------- */
 .gis-layout{display:grid; grid-template-columns:1fr 320px; gap:18px; align-items:start;}
 #map{height:560px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border);}
+
+/* ---------- REGION HOVER TOOLTIP ---------- */
+.leaflet-tooltip.region-tooltip{
+  background:var(--surface); color:var(--text); border:1px solid var(--border);
+  border-radius:11px; padding:0; box-shadow:0 10px 30px rgba(8,43,90,.16), 0 2px 8px rgba(8,43,90,.08);
+  font-family:'Plus Jakarta Sans', sans-serif; opacity:1;
+  animation:regionTooltipIn .2s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes regionTooltipIn{from{opacity:0; transform:translateY(3px) scale(.97);} to{opacity:1; transform:translateY(0) scale(1);}}
+.leaflet-tooltip.region-tooltip:before{display:none;}
+.region-tt{padding:11px 14px; min-width:150px;}
+.region-tt-name{font-size:13px; font-weight:800; color:var(--text); margin-bottom:6px; letter-spacing:-.01em;}
+.region-tt-row{display:flex; align-items:center; justify-content:space-between; gap:14px;}
+.region-tt-label{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--text-dim);}
+.region-tt-value{font-size:13px; font-weight:800; font-variant-numeric:tabular-nums;}
+.region-tt-hint{font-size:9.5px; color:var(--text-dim); margin-top:7px; padding-top:7px; border-top:1px solid var(--border);}
 .map-style-toggle{display:flex; align-items:center; gap:8px; margin-bottom:12px; flex-wrap:wrap;}
 .map-style-label{font-size:12px; font-weight:700; color:var(--text-dim); margin-right:2px;}
 .style-btn{
@@ -2629,9 +2645,9 @@ const regions = [
   {name:'Upper West',    lat:10.0601, lon:-2.5099, health:44, agri:1.4, edu:56}
 ];
 const layerConfig = {
-  health:{key:'health', label:'Regions · maternal risk', unit:'/100k', invert:true, max:44},
-  agri:{key:'agri', label:'Regions · agriculture yield', unit:' t/ha', invert:false, max:2.4},
-  edu:{key:'edu', label:'Regions · education access', unit:'%', invert:false, max:88}
+  health:{key:'health', label:'Regions · maternal risk', short:'Maternal health risk', unit:'/100k', invert:true, max:44},
+  agri:{key:'agri', label:'Regions · agriculture yield', short:'Agriculture yield', unit:' t/ha', invert:false, max:2.4},
+  edu:{key:'edu', label:'Regions · education access', short:'Education access', unit:'%', invert:false, max:88}
 };
 let currentLayer = 'health';
 let currentMapStyle = 'symbol';
@@ -2639,6 +2655,19 @@ let markers = [];
 let geoLayer = null;
 let heatLayer = null;
 
+function regionTooltipHTML(r){
+  const cfg = layerConfig[currentLayer];
+  const val = r[cfg.key];
+  const color = riskColor(val, cfg);
+  return `<div class="region-tt">
+    <div class="region-tt-name">${r.name}</div>
+    <div class="region-tt-row">
+      <span class="region-tt-label">${cfg.short}</span>
+      <span class="region-tt-value" style="color:${color};">${val}${cfg.unit}</span>
+    </div>
+    <div class="region-tt-hint">Click for full region details</div>
+  </div>`;
+}
 function initMap(){
   const mapEl = document.getElementById('map');
   if(!window.L){
@@ -2653,7 +2682,7 @@ function initMap(){
 
   regions.forEach(r=>{
     const marker = L.circleMarker([r.lat, r.lon], {radius:10, weight:2, color:'#fff', fillOpacity:.9}).addTo(map);
-    marker.bindTooltip(r.name, {direction:'top'});
+    marker.bindTooltip(regionTooltipHTML(r), {direction:'top', offset:[0,-8], className:'region-tooltip'});
     marker._region = r;
     markers.push(marker);
   });
@@ -2662,7 +2691,7 @@ function initMap(){
     style:{color:'#fff', weight:1.5, fillOpacity:.75},
     onEachFeature:(feature, layer)=>{
       const r = regions.find(x=>x.name===feature.properties.region);
-      if(r){ layer._region = r; layer.bindTooltip(r.name, {sticky:true}); layer.on('click', ()=> focusRegion(r.name)); }
+      if(r){ layer._region = r; layer.bindTooltip(regionTooltipHTML(r), {sticky:true, className:'region-tooltip'}); layer.on('click', ()=> focusRegion(r.name)); }
     }
   });
 
@@ -2743,7 +2772,11 @@ function renderLayer(layerKey){
     const pct = Math.min(100, (val/cfg.max)*100);
     return '<div class="region-row region-clickable" onclick="focusRegion(\''+r.name.replace(/'/g,"\\'")+'\')"><b>'+r.name+'</b><div style="display:flex;align-items:center;gap:8px;"><div class="region-bar"><i style="width:'+pct+'%; background:'+color+';"></i></div><span style="color:'+color+'; font-weight:700; min-width:44px; text-align:right;">'+val+cfg.unit+'</span></div></div>';
   }).join('');
-  if(window._leafletMap) applyMapStyle(currentMapStyle);
+  if(window._leafletMap){
+    applyMapStyle(currentMapStyle);
+    markers.forEach(m=> m.setTooltipContent(regionTooltipHTML(m._region)));
+    if(geoLayer) geoLayer.eachLayer(layer=>{ if(layer._region) layer.setTooltipContent(regionTooltipHTML(layer._region)); });
+  }
 }
 function focusRegion(name){
   const r = regions.find(x=>x.name===name);
