@@ -981,7 +981,7 @@ button{font-family:inherit; cursor:pointer;}
       <div class="view-head">
         <div>
           <div class="eyebrow"><span class="compass-dot"></span>YOUR INTELLIGENCEOS WORKSPACE</div>
-          <h1>Good afternoon, Fadl.</h1>
+          <h1 id="greetingHeading">Good afternoon, Fadl.</h1>
           <p id="greetingSummary"><b>4 things</b> need your attention, <b>3 opportunities</b> were identified, and <b>2 important trends</b> changed since your last visit.</p>
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
@@ -1014,7 +1014,7 @@ button{font-family:inherit; cursor:pointer;}
         <div class="briefing-head" onclick="toggleBriefing()">
           <div class="briefing-head-left">
             <div class="briefing-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div>
-            <div><h3>Your Intelligence Briefing</h3><p>Good afternoon, Fadl. Here's what changed overnight.</p></div>
+            <div><h3>Your Intelligence Briefing</h3><p id="briefingGreeting">Good afternoon, Fadl. Here's what changed overnight.</p></div>
           </div>
           <svg class="briefing-chevron" id="briefingChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
         </div>
@@ -3287,6 +3287,30 @@ function setLayer(layerKey){
   document.querySelectorAll('.layer-btn').forEach(b=> b.classList.toggle('active', b.dataset.layer===layerKey));
   renderLayer(layerKey);
 }
+function updateGreeting(){
+  const hour = new Date().getHours();
+  let greeting, briefingText;
+  if(hour >= 5 && hour < 12){
+    greeting = 'Good morning, Fadl.';
+    briefingText = "Good morning, Fadl. Here's what changed overnight.";
+  } else if(hour >= 12 && hour < 17){
+    greeting = 'Good afternoon, Fadl.';
+    briefingText = "Good afternoon, Fadl. Here's what changed since this morning.";
+  } else if(hour >= 17 && hour < 22){
+    greeting = 'Good evening, Fadl.';
+    briefingText = "Good evening, Fadl. Here's what changed today.";
+  } else {
+    greeting = 'Good night, Fadl.';
+    briefingText = "Still up, Fadl? Here's what changed today.";
+  }
+  const h1 = document.getElementById('greetingHeading');
+  const p = document.getElementById('briefingGreeting');
+  if(h1) h1.textContent = greeting;
+  if(p) p.textContent = briefingText;
+}
+updateGreeting();
+setInterval(updateGreeting, 60000);
+
 window.addEventListener('load', function(){
   renderLayer(currentLayer);
   initMap();
