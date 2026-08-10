@@ -559,6 +559,45 @@ full scroll-through in both light and dark mode.
 
 homepage.html and landing.html remain byte-for-byte identical.
 
+UPDATE: REAL GHANA MAPS + NAV RIGHT-ALIGNMENT BUG FIXED
+------------------------------------------------------------------
+Two direct fixes from feedback:
+
+1. ALL THREE DECORATIVE MAPS ARE NOW REAL GHANA GEOGRAPHY, NOT
+   HAND-DRAWN BLOBS. The hero live panel, the "Ask IntelligenceOS"
+   mini map, and the GIS + Intelligence section visual were all
+   using invented, generic blob shapes that didn't represent any
+   real place. Fixed properly, not just "close enough": computed an
+   accurate national outline by taking the real Ghana region
+   boundary data already verified and used in the actual app's
+   choropleth map (from geoBoundaries via the GitHub API), unioning
+   all 16 regions into a single polygon with Shapely (a real GIS
+   library, not a manual approximation), then simplifying it to a
+   clean ~117-point outline suitable for a small decorative graphic.
+   Verified visually before embedding — rendered the outline alone
+   on a plain background and confirmed it's immediately recognizable
+   as Ghana. Also repositioned the colored dots on each map to sit
+   at sensible real locations (e.g., the Ask IntelligenceOS map's
+   risk dots now cluster in the north, matching the accompanying
+   text about Upper West/North East/Savannah).
+
+2. THEME TOGGLE AND "LAUNCH INTELLIGENCEOS" WERE COLLAPSING TO THE
+   TOP-LEFT NEXT TO THE LOGO instead of staying at the top-right.
+   Root cause: the right-alignment relied on margin-left:auto on the
+   "Africa ▾" region pill — but that pill gets hidden at narrower
+   desktop widths (below 1320px, added in an earlier round), and
+   once it disappeared, so did the only thing pushing everything
+   after it to the right. Fixed properly by moving the auto-margin
+   onto a dedicated wrapper around the region pill + icon/button
+   cluster together, so right-alignment no longer depends on any one
+   specific element staying visible — it now holds regardless of
+   which nav elements are hidden at a given screen width. Verified
+   specifically at 1024px (where the bug was originally visible) as
+   well as across the full 390px-1440px range, in both light and
+   dark mode.
+
+homepage.html and landing.html remain byte-for-byte identical.
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file
