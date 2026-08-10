@@ -598,6 +598,31 @@ Two direct fixes from feedback:
 
 homepage.html and landing.html remain byte-for-byte identical.
 
+FILE STRUCTURE — SIMPLIFIED TO TWO FILES
+-------------------------------------------
+landing.html has been retired entirely. It was only ever a duplicate
+copy of homepage.html, kept in sync to paper over a URL-confusion
+problem — a real design smell, not a real solution. Going forward
+there are exactly two files:
+
+- index.html   — the actual product/app (Command Centre, GIS
+                  Intelligence, Dashboard Studio, all 12 modules)
+- homepage.html — the public marketing homepage
+
+Confirmed there are zero remaining references to landing.html
+anywhere in either file before removing it — the app's "click logo
+to go home" link points to homepage.html, and homepage.html's
+"Launch IntelligenceOS" buttons point to index.html. Delete
+landing.html from your repo; nothing links to it anymore.
+
+Your live URL (https://fadl462.github.io/intelligence-os/) will
+continue to open index.html directly (the app) since that's the
+GitHub Pages default for a repo root. If you'd rather the homepage
+open first at that bare URL, that's the rename described earlier in
+this document (index.html → app.html, homepage.html → index.html,
+plus updating the internal links to match) — still on offer whenever
+you want it, but not done here since you didn't ask for it this time.
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file
