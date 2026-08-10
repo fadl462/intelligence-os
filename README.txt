@@ -500,6 +500,31 @@ BUGS CAUGHT DURING TESTING (both real, both fixed):
   zero console errors throughout, including a full scroll-through of
   the entire page and dark mode toggle.
 
+UPDATE: FIXED A STALE CROSS-LINK BETWEEN THE APP AND HOMEPAGE
+------------------------------------------------------------------
+Caught while reviewing consistency across all three HTML files: the
+app's sidebar logo (click-to-go-home) was still linking to the
+EARLIER, simpler landing.html from several rounds ago — not the new
+comprehensive homepage.html built to address the review comments.
+This meant the round-trip (homepage → Launch IntelligenceOS → app →
+click logo) would dead-end back on an outdated page missing the
+entire Engine/Kernel/status-bar work.
+
+Fixed the link and verified the full loop with both files actually
+present together (not just checking the href string) — launched the
+app from homepage.html, confirmed the URL changed to index.html,
+clicked the app's logo, confirmed it correctly landed back on
+homepage.html. Zero console errors through the whole round-trip.
+
+FILE STATUS — landing.html IS NOW FULLY OBSOLETE
+--------------------------------------------------
+With this fix, there is no longer any link anywhere in the system
+that points to landing.html. It's safe to stop pushing it to your
+repo — homepage.html is the complete, current, and only marketing
+entry point. Keeping landing.html around only risks someone linking
+to it externally (e.g., from a saved bookmark or an old social post)
+and seeing the outdated version.
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file
