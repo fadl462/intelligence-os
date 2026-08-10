@@ -439,17 +439,25 @@ button{font-family:inherit; cursor:pointer;}
 
 /* ---------- GIS ---------- */
 .gis-layout{display:grid; grid-template-columns:1fr 320px; gap:18px; align-items:start;}
-#map{height:560px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border);}
+#map{height:560px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); position:relative;}
 
-/* ---------- REGION HOVER TOOLTIP ---------- */
-.leaflet-tooltip.region-tooltip{
-  background:var(--surface); color:var(--text); border:1px solid var(--border);
-  border-radius:11px; padding:0; box-shadow:0 10px 30px rgba(8,43,90,.16), 0 2px 8px rgba(8,43,90,.08);
-  font-family:'Plus Jakarta Sans', sans-serif; opacity:1;
-  animation:regionTooltipIn .2s cubic-bezier(.2,.8,.2,1) both;
+/* ---------- REGION HOVER: POP-OUT + CUSTOM TOOLTIP ---------- */
+.leaflet-interactive{
+  transition:transform .5s cubic-bezier(.22,.9,.3,1), filter .5s cubic-bezier(.22,.9,.3,1);
+  transform-box:fill-box; transform-origin:center;
 }
-@keyframes regionTooltipIn{from{opacity:0; transform:translateY(3px) scale(.97);} to{opacity:1; transform:translateY(0) scale(1);}}
-.leaflet-tooltip.region-tooltip:before{display:none;}
+.region-popped{
+  transform:scale(1.05);
+  filter:drop-shadow(0 14px 22px rgba(8,43,90,.4)) brightness(1.07);
+}
+.region-tooltip-custom{
+  position:absolute; z-index:1000; left:0; top:0; transform:translate(-50%,-118%) translateY(4px) scale(.96);
+  background:var(--surface); color:var(--text); border:1px solid var(--border);
+  border-radius:11px; box-shadow:0 10px 30px rgba(8,43,90,.16), 0 2px 8px rgba(8,43,90,.08);
+  font-family:'Plus Jakarta Sans', sans-serif; opacity:0; pointer-events:none;
+  transition:opacity .2s cubic-bezier(.22,.9,.3,1), transform .2s cubic-bezier(.22,.9,.3,1);
+}
+.region-tooltip-custom.visible{opacity:1; transform:translate(-50%,-118%) translateY(0) scale(1);}
 .region-tt{padding:11px 14px; min-width:150px;}
 .region-tt-name{font-size:13px; font-weight:800; color:var(--text); margin-bottom:6px; letter-spacing:-.01em;}
 .region-tt-row{display:flex; align-items:center; justify-content:space-between; gap:14px;}
@@ -2668,6 +2676,18 @@ function regionTooltipHTML(r){
     <div class="region-tt-hint">Click for full region details</div>
   </div>`;
 }
+let customTooltipEl = null;
+function showRegionTooltip(map, latlng, r){
+  if(!customTooltipEl) return;
+  customTooltipEl.innerHTML = regionTooltipHTML(r);
+  const pt = map.latLngToContainerPoint(latlng);
+  customTooltipEl.style.left = pt.x+'px';
+  customTooltipEl.style.top = pt.y+'px';
+  customTooltipEl.classList.add('visible');
+}
+function hideRegionTooltip(){
+  if(customTooltipEl) customTooltipEl.classList.remove('visible');
+}
 function initMap(){
   const mapEl = document.getElementById('map');
   if(!window.L){
@@ -2680,10 +2700,24 @@ function initMap(){
   window._leafletMap = map;
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'© OpenStreetMap contributors', maxZoom:10}).addTo(map);
 
+  customTooltipEl = document.createElement('div');
+  customTooltipEl.className = 'region-tooltip-custom';
+  mapEl.appendChild(customTooltipEl);
+
   regions.forEach(r=>{
     const marker = L.circleMarker([r.lat, r.lon], {radius:10, weight:2, color:'#fff', fillOpacity:.9}).addTo(map);
-    marker.bindTooltip(regionTooltipHTML(r), {direction:'top', offset:[0,-8], className:'region-tooltip'});
     marker._region = r;
+    marker.on('mouseover', function(){
+      this.bringToFront();
+      const el = this.getElement();
+      if(el) el.classList.add('region-popped');
+      showRegionTooltip(map, this.getLatLng(), r);
+    });
+    marker.on('mouseout', function(){
+      const el = this.getElement();
+      if(el) el.classList.remove('region-popped');
+      hideRegionTooltip();
+    });
     markers.push(marker);
   });
 
@@ -2691,7 +2725,20 @@ function initMap(){
     style:{color:'#fff', weight:1.5, fillOpacity:.75},
     onEachFeature:(feature, layer)=>{
       const r = regions.find(x=>x.name===feature.properties.region);
-      if(r){ layer._region = r; layer.bindTooltip(regionTooltipHTML(r), {sticky:true, className:'region-tooltip'}); layer.on('click', ()=> focusRegion(r.name)); }
+      if(!r) return;
+      layer._region = r;
+      layer.on('mouseover', function(){
+        this.bringToFront();
+        const el = this.getElement();
+        if(el) el.classList.add('region-popped');
+        showRegionTooltip(map, this.getBounds().getCenter(), r);
+      });
+      layer.on('mouseout', function(){
+        const el = this.getElement();
+        if(el) el.classList.remove('region-popped');
+        hideRegionTooltip();
+      });
+      layer.on('click', ()=> focusRegion(r.name));
     }
   });
 
@@ -2774,8 +2821,6 @@ function renderLayer(layerKey){
   }).join('');
   if(window._leafletMap){
     applyMapStyle(currentMapStyle);
-    markers.forEach(m=> m.setTooltipContent(regionTooltipHTML(m._region)));
-    if(geoLayer) geoLayer.eachLayer(layer=>{ if(layer._region) layer.setTooltipContent(regionTooltipHTML(layer._region)); });
   }
 }
 function focusRegion(name){
