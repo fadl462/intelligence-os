@@ -525,6 +525,40 @@ entry point. Keeping landing.html around only risks someone linking
 to it externally (e.g., from a saved bookmark or an old social post)
 and seeing the outdated version.
 
+UPDATE: FIXED SYSTEMIC SPACING + A REAL LAYOUT BUG (full review)
+------------------------------------------------------------------
+Did a proper section-by-section visual audit of the live page (not
+just a glance) by rendering it, cropping it into ~900px segments,
+and inspecting each one. Found two real issues:
+
+1. EXCESSIVE, INCONSISTENT WHITESPACE BETWEEN SECTIONS. Nearly every
+   section boundary had a ~200-250px dead zone — noticeable enough
+   that transitions like "Explore all intelligence suites" button →
+   "Africa Data Cloud" heading, or the 5-stage flow → "Ask
+   IntelligenceOS" heading, felt like separate pages rather than one
+   continuous site. Root cause: the base section padding (110px top
+   + 110px bottom = 220px combined at every boundary) was too
+   generous once the page grew longer with the new Engine and Kernel
+   sections. Reduced to 80px top/bottom and tightened the
+   section-head bottom margin from 56px to 48px — cut ~890px off the
+   total page height while keeping generous, intentional breathing
+   room, not a cramped page.
+
+2. THE "IMPACT" PILL IN THE DATA-TO-DECISION FLOW WAS BROKEN. The
+   DATA → AI ANALYSIS → INSIGHT → PREDICTION → RECOMMENDATION →
+   ACTION → IMPACT chain was overflowing its container width at
+   1440px, causing "IMPACT" to wrap onto its own orphaned, oddly
+   centered line instead of continuing the flow naturally. Fixed by
+   widening the container and tightening the step padding/gap/font
+   size slightly so all 7 steps + 6 arrows fit on one line at normal
+   desktop widths, while still wrapping gracefully on mobile.
+
+Reverified after both fixes: zero horizontal overflow across 8
+viewport widths (390px to 1440px), zero console errors through a
+full scroll-through in both light and dark mode.
+
+homepage.html and landing.html remain byte-for-byte identical.
+
 TECHNICAL NOTES
 ----------------
 - Zero build step: plain HTML/CSS/JS in one file
