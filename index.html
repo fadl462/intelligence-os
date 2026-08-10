@@ -356,6 +356,107 @@ button{font-family:inherit; cursor:pointer;}
 
 /* Quick actions */
 .qa-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:18px 20px;}
+.qa-grid-wide{grid-template-columns:repeat(5,1fr);}
+
+/* ---------- AI BRIEFING ---------- */
+.try-asking-row{display:flex; align-items:center; gap:9px; flex-wrap:wrap; margin-bottom:18px;}
+.try-asking-label{font-size:12px; font-weight:700; color:var(--text-dim); flex-shrink:0;}
+.try-chip{font-size:12px; font-weight:600; color:var(--navy-ink); background:var(--navy-100); border:1px solid transparent; padding:7px 13px; border-radius:20px; cursor:pointer; transition:all .15s;}
+.try-chip:hover{background:var(--teal-100); color:var(--teal-600); border-color:var(--teal);}
+.briefing-card{margin-bottom:18px; overflow:hidden;}
+.briefing-head{display:flex; align-items:center; justify-content:space-between; padding:18px 22px; cursor:pointer;}
+.briefing-head-left{display:flex; align-items:center; gap:14px;}
+.briefing-icon{width:40px; height:40px; border-radius:11px; background:var(--navy); display:flex; align-items:center; justify-content:center; color:#fff; flex-shrink:0;}
+.briefing-icon svg{width:19px; height:19px;}
+.briefing-head-left h3{font-size:14.5px; margin-bottom:2px;}
+.briefing-head-left p{font-size:12px; color:var(--text-dim); font-weight:500;}
+.briefing-chevron{width:18px; height:18px; color:var(--text-dim); transition:transform .25s ease; flex-shrink:0;}
+.briefing-card.open .briefing-chevron{transform:rotate(180deg);}
+.briefing-body{max-height:0; overflow:hidden; transition:max-height .3s ease, padding .3s ease; padding:0 22px;}
+.briefing-card.open .briefing-body{max-height:500px; padding:0 22px 22px;}
+.briefing-item{display:flex; gap:14px; padding:10px 0; border-top:1px solid var(--border);}
+.briefing-num{font-size:11px; font-weight:800; color:var(--teal-600); font-family:ui-monospace,monospace; flex-shrink:0; padding-top:1px;}
+.briefing-item b{font-size:12.5px; display:block; margin-bottom:2px;}
+.briefing-item p{font-size:12px; color:var(--text-dim); line-height:1.5;}
+
+/* ---------- DAY AT A GLANCE ---------- */
+.day-glance{margin-bottom:18px;}
+.glance-stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border);}
+.glance-stat{background:var(--surface); padding:18px 20px; text-align:center;}
+.glance-stat b{font-size:26px; font-weight:800; display:block; color:var(--text);}
+.glance-stat span{font-size:11px; color:var(--text-dim); font-weight:600;}
+.glance-priority{display:flex; gap:9px; flex-wrap:wrap; padding:16px 20px;}
+.glance-chip{font-size:11.5px; font-weight:700; padding:7px 12px; border-radius:20px; display:inline-flex; align-items:center; gap:5px;}
+.glance-chip b{font-weight:800;}
+
+/* ---------- KPI SO-WHAT ---------- */
+.kpi-sowhat{font-size:10.8px; font-weight:700; margin-top:9px; padding-top:9px; border-top:1px dashed var(--border);}
+.kpi-sowhat.good{color:var(--success);}
+.kpi-sowhat.bad{color:var(--danger);}
+.kpi-sowhat.opportunity{color:var(--teal-600);}
+
+/* ---------- CONTINUE WORKING ---------- */
+.continue-row{display:flex; align-items:center; gap:12px; padding:13px 20px; border-bottom:1px solid var(--border); cursor:pointer; transition:background .15s;}
+.continue-row:last-child{border-bottom:none;}
+.continue-row:hover{background:var(--bg);}
+.continue-icon{width:34px; height:34px; border-radius:9px; background:var(--navy-100); color:var(--navy-ink); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.continue-icon svg{width:16px; height:16px;}
+.continue-body{flex:1; min-width:0;}
+.continue-body b{font-size:12.8px; display:block;}
+.continue-body span{font-size:11px; color:var(--text-dim);}
+.continue-resume{font-size:11.5px; font-weight:700; color:var(--teal-600); flex-shrink:0;}
+
+/* ---------- MY WATCHLIST ---------- */
+.watch-row{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 20px; border-bottom:1px solid var(--border); cursor:pointer; transition:background .15s;}
+.watch-row:last-child{border-bottom:none;}
+.watch-row:hover{background:var(--bg);}
+.watch-body b{font-size:12.5px; font-weight:700;}
+.watch-status{font-size:10.5px; font-weight:700; white-space:nowrap; flex-shrink:0;}
+.watch-status.good{color:var(--success);}
+.watch-status.warn{color:var(--warning);}
+.watch-status.bad{color:var(--danger);}
+
+/* ---------- MY WORK TABLE ---------- */
+.mywork-table{width:100%; border-collapse:collapse;}
+.mywork-table tr{cursor:pointer; transition:background .15s;}
+.mywork-table tr:hover{background:var(--bg);}
+.mywork-table td{padding:11px 20px; font-size:12.3px; border-bottom:1px solid var(--border);}
+.mywork-table tr:last-child td{border-bottom:none;}
+.mywork-status{font-size:10.5px; font-weight:700; padding:3px 9px; border-radius:20px;}
+.mywork-status.draft{background:var(--border); color:var(--text-dim);}
+.mywork-status.progress{background:var(--teal-100); color:var(--teal-600);}
+.mywork-status.review{background:#FEF3E2; color:#B45309;}
+.mywork-status.waiting{background:var(--navy-100); color:var(--navy-ink);}
+
+/* ---------- SUGGESTIONS ---------- */
+.suggest-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; padding:18px 20px;}
+.suggest-card{background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:12px;}
+.suggest-card p{font-size:12.5px; line-height:1.6; color:var(--text);}
+.suggest-card .btn{align-self:flex-start; padding:8px 14px; font-size:12px;}
+
+/* ---------- INTELLIGENCE MODAL SECTIONS ---------- */
+.intel-section{margin-top:16px;}
+.intel-label{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--text-dim); margin-bottom:8px;}
+.intel-evidence{list-style:none; display:flex; flex-direction:column; gap:6px;}
+.intel-evidence li{font-size:12.5px; padding-left:16px; position:relative; color:var(--text);}
+.intel-evidence li:before{content:'•'; position:absolute; left:2px; color:var(--teal-600); font-weight:900;}
+.intel-confidence-row{display:flex; align-items:center; gap:10px; margin-top:16px;}
+.intel-confidence-bar{flex:1; height:7px; border-radius:4px; background:var(--border); overflow:hidden;}
+.intel-confidence-bar i{display:block; height:100%; border-radius:4px;}
+.intel-why{margin-top:16px; background:var(--bg); border-radius:11px; padding:13px 15px;}
+.intel-why p{font-size:12.5px; line-height:1.6; color:var(--text);}
+.intel-recommend{margin-top:14px; background:var(--teal-100); border-radius:11px; padding:13px 15px;}
+.intel-recommend p{font-size:12.5px; line-height:1.6; color:var(--text);}
+.intel-recommend .intel-label{color:var(--teal-600);}
+.intel-map-mini{height:130px; border-radius:10px; background:var(--bg); border:1px solid var(--border); position:relative; overflow:hidden; margin-top:16px;}
+.intel-forecast-row{display:flex; gap:10px; margin-top:10px;}
+.intel-forecast-item{flex:1; background:var(--bg); border-radius:10px; padding:11px; text-align:center;}
+.intel-forecast-item span{font-size:9.5px; font-weight:700; text-transform:uppercase; color:var(--text-dim); display:block; margin-bottom:4px;}
+.intel-forecast-item b{font-size:14px; font-weight:800;}
+.intel-actions-row{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;}
+.intel-action-btn{display:flex; align-items:center; gap:6px; font-size:11.5px; font-weight:700; padding:8px 13px; border-radius:9px; border:1px solid var(--border); background:var(--surface); color:var(--text); cursor:pointer; transition:all .15s;}
+.intel-action-btn:hover{border-color:var(--teal); color:var(--teal-600);}
+.intel-action-btn svg{width:13px; height:13px;}
 .qa{
   display:flex; flex-direction:column; gap:9px; padding:14px; border-radius:11px; border:1px solid var(--border);
   cursor:pointer; transition:border-color .15s, transform .15s;
@@ -748,6 +849,10 @@ button{font-family:inherit; cursor:pointer;}
   .domain-waitlist-form{flex-direction:column;}
   .tender-filters{flex-direction:column; align-items:stretch;}
   .tender-min-fit{margin-left:0;}
+  .glance-stats{grid-template-columns:repeat(2,1fr);}
+  .qa-grid-wide{grid-template-columns:repeat(2,1fr);}
+  .suggest-grid{grid-template-columns:1fr;}
+  .briefing-head{flex-wrap:wrap;}
   .picker-grid{grid-template-columns:repeat(2,1fr);}
 }
 </style>
@@ -875,11 +980,15 @@ button{font-family:inherit; cursor:pointer;}
     <section class="view active" id="view-command">
       <div class="view-head">
         <div>
-          <div class="eyebrow"><span class="compass-dot"></span>AI COMMAND CENTRE</div>
+          <div class="eyebrow"><span class="compass-dot"></span>YOUR INTELLIGENCEOS WORKSPACE</div>
           <h1>Good afternoon, Fadl.</h1>
-          <p>Here's what changed across Ghana's intelligence network since your last visit.</p>
+          <p id="greetingSummary"><b>4 things</b> need your attention, <b>3 opportunities</b> were identified, and <b>2 important trends</b> changed since your last visit.</p>
         </div>
-        <div style="display:flex; gap:10px;">
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-ghost" onclick="openCustomize()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+            Customize
+          </button>
           <button class="btn btn-ghost" onclick="showView('studio'); toast('New blank dashboard ready in Studio')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
             New dashboard
@@ -891,9 +1000,57 @@ button{font-family:inherit; cursor:pointer;}
         </div>
       </div>
 
+      <div class="try-asking-row">
+        <span class="try-asking-label">Try asking:</span>
+        <a class="try-chip" onclick="showView('explorer'); toast('Opening: What changed today?')">What changed today?</a>
+        <a class="try-chip" onclick="showView('explorer'); toast('Opening: What needs my attention?')">What needs my attention?</a>
+        <a class="try-chip" onclick="showView('explorer'); toast('Opening: Show emerging risks')">Show emerging risks</a>
+        <a class="try-chip" onclick="showView('tender'); toast('Opening: Find new opportunities')">Find new opportunities</a>
+        <a class="try-chip" onclick="showView('studio'); toast('Opening: Build a dashboard')">Build a dashboard</a>
+      </div>
+
+      <!-- AI Briefing -->
+      <div class="card briefing-card">
+        <div class="briefing-head" onclick="toggleBriefing()">
+          <div class="briefing-head-left">
+            <div class="briefing-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <div><h3>Your Intelligence Briefing</h3><p>Good afternoon, Fadl. Here's what changed overnight.</p></div>
+          </div>
+          <svg class="briefing-chevron" id="briefingChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+        <div class="briefing-body" id="briefingBody">
+          <div class="briefing-item"><span class="briefing-num">01</span><div><b>Health</b><p>Maternal mortality increased in 3 Upper West districts.</p></div></div>
+          <div class="briefing-item"><span class="briefing-num">02</span><div><b>Climate</b><p>Northern rainfall is 18% below seasonal average.</p></div></div>
+          <div class="briefing-item"><span class="briefing-num">03</span><div><b>Opportunities</b><p>14 tenders match your organisation's profile.</p></div></div>
+          <div class="briefing-item"><span class="briefing-num">04</span><div><b>Business</b><p>Youth unemployment declined for a third straight quarter.</p></div></div>
+          <div class="briefing-item"><span class="briefing-num">05</span><div><b>Data</b><p>WHO released a new immunisation coverage dataset.</p></div></div>
+          <button class="btn btn-teal" style="margin-top:6px;" onclick="toast('Audio briefings are coming soon — for now, read the summary above')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5v14l11-7Z"/></svg>
+            Listen to briefing
+          </button>
+        </div>
+      </div>
+
+      <!-- Your Day at a Glance -->
+      <div class="card day-glance">
+        <div class="card-head"><h3>Your Day at a Glance</h3></div>
+        <div class="glance-stats">
+          <div class="glance-stat"><b>4</b><span>Things requiring attention</span></div>
+          <div class="glance-stat"><b>3</b><span>Opportunities</span></div>
+          <div class="glance-stat"><b>3</b><span>Tasks due today</span></div>
+          <div class="glance-stat"><b>12</b><span>New intelligence signals</span></div>
+        </div>
+        <div class="glance-priority">
+          <span class="glance-chip" style="background:#FDE8E8; color:var(--danger);">🔴 Needs attention <b>3</b></span>
+          <span class="glance-chip" style="background:#FEF3E2; color:#B45309;">🟠 Monitor <b>6</b></span>
+          <span class="glance-chip" style="background:#E7F7EC; color:var(--success);">🟢 Positive <b>4</b></span>
+          <span class="glance-chip" style="background:var(--teal-100); color:var(--teal-600);">🔵 Opportunities <b>3</b></span>
+        </div>
+      </div>
+
       <!-- KPIs -->
       <div class="kpi-grid">
-        <div class="card kpi kpi-clickable" onclick="showView('datacloud'); toast('Filtered to Ghana Health Service datasets')">
+        <div class="card kpi kpi-clickable" onclick="openKPIIntelligence('facilities')">
           <div class="kpi-top">
             <span class="kpi-label">Health facilities monitored</span>
             <div class="kpi-icon" style="background:var(--navy-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy-ink)" stroke-width="2"><path d="M19 14c1.5-2 2-3.5 2-5A5 5 0 0 0 12 6a5 5 0 0 0-9 3c0 1.5.5 3 2 5 2 2.3 5 5 7 6.5 2-1.5 5-4.2 7-6.5Z"/></svg></div>
@@ -901,8 +1058,9 @@ button{font-family:inherit; cursor:pointer;}
           <div class="kpi-value">3,847</div>
           <div class="kpi-delta up">▲ 2.1% <span>vs last quarter</span></div>
           <div class="kpi-spark"><canvas id="spark1"></canvas></div>
+          <div class="kpi-sowhat good">🟢 All facilities reporting normally</div>
         </div>
-        <div class="card kpi kpi-clickable" onclick="showView('gis'); setTimeout(()=>setLayer('health'),80)">
+        <div class="card kpi kpi-clickable" onclick="openKPIIntelligence('maternal')">
           <div class="kpi-top">
             <span class="kpi-label">Districts, rising maternal mortality</span>
             <div class="kpi-icon" style="background:#FDE8E8;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>
@@ -910,8 +1068,9 @@ button{font-family:inherit; cursor:pointer;}
           <div class="kpi-value">12</div>
           <div class="kpi-delta down">▲ 3 districts <span>needs attention</span></div>
           <div class="kpi-spark"><canvas id="spark2"></canvas></div>
+          <div class="kpi-sowhat bad">🔴 3 require immediate attention — View →</div>
         </div>
-        <div class="card kpi kpi-clickable" onclick="showView('gis'); setTimeout(()=>setLayer('agri'),80)">
+        <div class="card kpi kpi-clickable" onclick="openKPIIntelligence('farmers')">
           <div class="kpi-top">
             <span class="kpi-label">Farmers in national registry</span>
             <div class="kpi-icon" style="background:var(--teal-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2"><path d="M12 2v20M2 12h20"/><path d="M12 2C8 6 8 18 12 22M12 2c4 4 4 16 0 20"/></svg></div>
@@ -919,8 +1078,9 @@ button{font-family:inherit; cursor:pointer;}
           <div class="kpi-value">1.20M</div>
           <div class="kpi-delta up">▲ 4.6% <span>this season</span></div>
           <div class="kpi-spark"><canvas id="spark3"></canvas></div>
+          <div class="kpi-sowhat good">🟢 Registration pace ahead of target</div>
         </div>
-        <div class="card kpi kpi-clickable" onclick="showView('tender')">
+        <div class="card kpi kpi-clickable" onclick="openKPIIntelligence('tenders')">
           <div class="kpi-top">
             <span class="kpi-label">Tenders matched this week</span>
             <div class="kpi-icon" style="background:#FEF3E2;"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
@@ -928,6 +1088,7 @@ button{font-family:inherit; cursor:pointer;}
           <div class="kpi-value">38</div>
           <div class="kpi-delta up">▲ 9 new <span>since Monday</span></div>
           <div class="kpi-spark"><canvas id="spark4"></canvas></div>
+          <div class="kpi-sowhat opportunity">🔵 14 above your fit threshold — Review →</div>
         </div>
       </div>
 
@@ -936,64 +1097,68 @@ button{font-family:inherit; cursor:pointer;}
           <!-- Insight feed -->
           <div class="card">
             <div class="card-head"><h3>Today's AI intelligence</h3><a class="link" href="#" onclick="showAllInsights();return false;">View all →</a></div>
-            <div class="insight insight-clickable" data-idx="0">
-              <div class="insight-icon" style="background:#FDE8E8;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>
-              <div class="insight-body">
-                <span class="tag" style="color:var(--danger);">Risk detected</span>
-                <h4>Maternal mortality rising across 3 Upper West districts</h4>
-                <p>Wa West, Nadowli-Kaleo and Daffiama show a sustained upward trend over 2 consecutive quarters, correlated with declining skilled-birth-attendance rates.</p>
-                <div class="meta"><span>Africa Data Cloud · Ghana Health Service</span><span>2h ago</span></div>
+            <div id="insightFeed">
+              <div class="insight insight-clickable" data-idx="0" data-cat="health">
+                <div class="insight-icon" style="background:#FDE8E8;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>
+                <div class="insight-body">
+                  <span class="tag" style="color:var(--danger);">Risk detected</span>
+                  <h4>Maternal mortality rising across 3 Upper West districts</h4>
+                  <p>Wa West, Nadowli-Kaleo and Daffiama show a sustained upward trend over 2 consecutive quarters, correlated with declining skilled-birth-attendance rates.</p>
+                  <div class="meta"><span>Africa Data Cloud · Ghana Health Service</span><span>2h ago</span></div>
+                </div>
               </div>
-            </div>
-            <div class="insight insight-clickable" data-idx="1">
-              <div class="insight-icon" style="background:#FEF3E2;"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2"><path d="M12 2v20M2 12h20"/><path d="M12 2C8 6 8 18 12 22M12 2c4 4 4 16 0 20"/></svg></div>
-              <div class="insight-body">
-                <span class="tag" style="color:#B45309;">Climate watch</span>
-                <h4>Rainfall 18% below seasonal average in Northern Region</h4>
-                <p>Satellite rainfall estimates suggest elevated risk to maize yield across Savelugu and Tolon ahead of the September harvest window.</p>
-                <div class="meta"><span>Climate Intelligence · GMet + satellite</span><span>5h ago</span></div>
+              <div class="insight insight-clickable" data-idx="1" data-cat="climate">
+                <div class="insight-icon" style="background:#FEF3E2;"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2"><path d="M12 2v20M2 12h20"/><path d="M12 2C8 6 8 18 12 22M12 2c4 4 4 16 0 20"/></svg></div>
+                <div class="insight-body">
+                  <span class="tag" style="color:#B45309;">Climate watch</span>
+                  <h4>Rainfall 18% below seasonal average in Northern Region</h4>
+                  <p>Satellite rainfall estimates suggest elevated risk to maize yield across Savelugu and Tolon ahead of the September harvest window.</p>
+                  <div class="meta"><span>Climate Intelligence · GMet + satellite</span><span>5h ago</span></div>
+                </div>
               </div>
-            </div>
-            <div class="insight insight-clickable" data-idx="2">
-              <div class="insight-icon" style="background:var(--teal-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
-              <div class="insight-body">
-                <span class="tag" style="color:var(--teal-600);">Opportunity</span>
-                <h4>14 new tenders match your organisation's profile</h4>
-                <p>Includes 3 EU-funded M&E consultancies and a World Bank data-systems RFP closing in 11 days — all above your 70% fit threshold.</p>
-                <div class="meta"><span>Tender Intelligence</span><span>Yesterday</span></div>
+              <div class="insight insight-clickable" data-idx="2" data-cat="tenders">
+                <div class="insight-icon" style="background:var(--teal-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+                <div class="insight-body">
+                  <span class="tag" style="color:var(--teal-600);">Opportunity</span>
+                  <h4>14 new tenders match your organisation's profile</h4>
+                  <p>Includes 3 EU-funded M&E consultancies and a World Bank data-systems RFP closing in 11 days — all above your 70% fit threshold.</p>
+                  <div class="meta"><span>Tender Intelligence</span><span>Yesterday</span></div>
+                </div>
               </div>
-            </div>
-            <div class="insight insight-clickable" data-idx="3">
-              <div class="insight-icon" style="background:var(--navy-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy-ink)" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></div>
-              <div class="insight-body">
-                <span class="tag" style="color:var(--navy-ink);">Positive trend</span>
-                <h4>Youth unemployment falls for a third straight quarter</h4>
-                <p>Greater Accra shows the steepest decline (-1.8pp), led by growth in ICT and logistics sector registrations.</p>
-                <div class="meta"><span>Business Intelligence · GSS Labour Survey</span><span>2 days ago</span></div>
+              <div class="insight insight-clickable" data-idx="3" data-cat="business">
+                <div class="insight-icon" style="background:var(--navy-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy-ink)" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></div>
+                <div class="insight-body">
+                  <span class="tag" style="color:var(--navy-ink);">Positive trend</span>
+                  <h4>Youth unemployment falls for a third straight quarter</h4>
+                  <p>Greater Accra shows the steepest decline (-1.8pp), led by growth in ICT and logistics sector registrations.</p>
+                  <div class="meta"><span>Business Intelligence · GSS Labour Survey</span><span>2 days ago</span></div>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Recent dashboards -->
+          <!-- Continue Working -->
           <div class="card">
-            <div class="card-head"><h3>Pinned dashboards</h3><a class="link" href="#" onclick="showView('studio');return false;">Open studio →</a></div>
-            <div class="dash-grid" style="padding:18px 20px;">
-              <div class="card dash-card dash-clickable" onclick="showView('studio'); toast('Opening Maternal Health Overview')">
-                <div class="dash-thumb"><canvas id="thumb1"></canvas></div>
-                <div class="dash-meta"><h5>Maternal Health Overview</h5><p>16 regions · updated daily</p></div>
-              </div>
-              <div class="card dash-card dash-clickable" onclick="showView('studio'); toast('Opening Agriculture Yield Forecast')">
-                <div class="dash-thumb"><canvas id="thumb2"></canvas></div>
-                <div class="dash-meta"><h5>Agriculture Yield Forecast</h5><p>Satellite + GMet · weekly</p></div>
-              </div>
-              <div class="card dash-card dash-clickable" onclick="showView('studio'); toast('Opening Tender Pipeline')">
-                <div class="dash-thumb"><canvas id="thumb3"></canvas></div>
-                <div class="dash-meta"><h5>Tender Pipeline</h5><p>Auto-scored · live</p></div>
-              </div>
-              <div class="card dash-card dash-clickable" onclick="showView('studio'); toast('Opening Education Access Index')">
-                <div class="dash-thumb"><canvas id="thumb4"></canvas></div>
-                <div class="dash-meta"><h5>Education Access Index</h5><p>GES · termly</p></div>
-              </div>
+            <div class="card-head"><h3>Continue Working</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">4 in progress</span></div>
+            <div class="continue-row" onclick="showView('studio'); toast('Opening Maternal Health Dashboard')">
+              <div class="continue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+              <div class="continue-body"><b>Maternal Health Dashboard</b><span>Last opened 23 minutes ago</span></div>
+              <span class="continue-resume">Resume →</span>
+            </div>
+            <div class="continue-row" onclick="showView('explorer'); toast('Opening Ghana Education Analysis')">
+              <div class="continue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+              <div class="continue-body"><b>Ghana Education Analysis</b><span>Last edited yesterday</span></div>
+              <span class="continue-resume">Resume →</span>
+            </div>
+            <div class="continue-row" onclick="showView('survey'); toast('Opening 2026 NGO Baseline Survey')">
+              <div class="continue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+              <div class="continue-body"><b>2026 NGO Baseline Survey</b><span>184 responses · 72% complete</span></div>
+              <span class="continue-resume">Resume →</span>
+            </div>
+            <div class="continue-row" onclick="showView('tender'); toast('Opening World Bank Tender Analysis')">
+              <div class="continue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+              <div class="continue-body"><b>World Bank Tender Analysis</b><span>Draft proposal</span></div>
+              <span class="continue-resume">Resume →</span>
             </div>
           </div>
         </div>
@@ -1007,28 +1172,107 @@ button{font-family:inherit; cursor:pointer;}
             <div class="alert-row alert-clickable" data-idx="2"><span class="sev-dot sev-info"></span><div><h5>New dataset available</h5><p>WHO immunization coverage, 2026 release</p></div></div>
           </div>
 
-          <!-- Quick actions -->
+          <!-- My Watchlist -->
           <div class="card">
-            <div class="card-head"><h3>Quick actions</h3></div>
-            <div class="qa-grid">
-              <a class="qa" onclick="showView('explorer')">
-                <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
-                <span>Ask AI a question</span>
-              </a>
-              <a class="qa" onclick="showView('studio')">
-                <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-                <span>Build a dashboard</span>
-              </a>
-              <a class="qa" onclick="openReportModal()">
-                <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6M9 11h2"/></svg></div>
-                <span>Generate a report</span>
-              </a>
-              <a class="qa" onclick="showView('gis')">
-                <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 3-6-3"/></svg></div>
-                <span>Explore the map</span>
-              </a>
+            <div class="card-head"><h3>My Watchlist</h3><a class="link" href="#" onclick="addWatchItem();return false;">+ Add</a></div>
+            <div class="watch-row" onclick="showView('gis'); setTimeout(()=>setLayer('health'),80)">
+              <div class="watch-body"><b>Maternal mortality — Upper West</b></div>
+              <span class="watch-status warn">🟠 Trend changed</span>
+            </div>
+            <div class="watch-row" onclick="toast('Opening Northern Region rainfall trend')">
+              <div class="watch-body"><b>Northern Region rainfall</b></div>
+              <span class="watch-status bad">🔴 Below average</span>
+            </div>
+            <div class="watch-row" onclick="showView('tender')">
+              <div class="watch-body"><b>World Bank consultancies</b></div>
+              <span class="watch-status good">🟢 3 new matches</span>
+            </div>
+            <div class="watch-row" onclick="toast('Opening agricultural price trend')">
+              <div class="watch-body"><b>Agricultural prices</b></div>
+              <span class="watch-status good">🟢 Stable</span>
             </div>
           </div>
+
+          <!-- My Work -->
+          <div class="card">
+            <div class="card-head"><h3>My Work</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">2 due today</span></div>
+            <table class="mywork-table">
+              <tr onclick="toast('Opening Health report draft')"><td><b>Health report</b></td><td><span class="mywork-status draft">Draft</span></td><td>Today</td></tr>
+              <tr onclick="showView('survey')"><td><b>Survey analysis</b></td><td><span class="mywork-status progress">72%</span></td><td>Tomorrow</td></tr>
+              <tr onclick="showView('tender')"><td><b>Tender proposal</b></td><td><span class="mywork-status review">Review</span></td><td>Wed</td></tr>
+              <tr onclick="showView('studio')"><td><b>Dashboard</b></td><td><span class="mywork-status waiting">Waiting approval</span></td><td>Fri</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- IntelligenceOS Suggestions -->
+      <div class="card" style="margin-top:18px;">
+        <div class="card-head"><h3>IntelligenceOS Suggestions</h3></div>
+        <div class="suggest-grid">
+          <div class="suggest-card">
+            <p>You have <b>3 datasets</b> related to maternal health. Would you like me to combine them into an analysis?</p>
+            <button class="btn btn-primary" onclick="showView('explorer'); toast('Combining 3 maternal health datasets…')">Analyse</button>
+          </div>
+          <div class="suggest-card">
+            <p>A new World Bank tender matches your organisation's profile at <b>92%</b>.</p>
+            <button class="btn btn-primary" onclick="showView('tender')">Review opportunity</button>
+          </div>
+          <div class="suggest-card">
+            <p>Your agricultural dashboard has not been updated for <b>14 days</b>.</p>
+            <button class="btn btn-primary" onclick="showView('studio'); toast('Refreshing Agriculture Yield Forecast…')">Refresh data</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick actions -->
+      <div class="card" style="margin-top:18px;">
+        <div class="card-head"><h3>Quick Actions</h3></div>
+        <div class="qa-grid qa-grid-wide">
+          <a class="qa" onclick="showView('explorer')">
+            <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+            <span>Ask IntelligenceOS</span>
+          </a>
+          <a class="qa" onclick="showView('explorer')">
+            <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></div>
+            <span>Analyse Data</span>
+          </a>
+          <a class="qa" onclick="showView('studio')">
+            <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <span>Build Dashboard</span>
+          </a>
+          <a class="qa" onclick="openReportModal()">
+            <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6M9 11h2"/></svg></div>
+            <span>Generate Report</span>
+          </a>
+          <a class="qa" onclick="showView('survey'); toast('Opening AI Questionnaire Builder')">
+            <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <span>Create Survey</span>
+          </a>
+          <a class="qa" onclick="showView('tender')">
+            <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+            <span>Find Tenders</span>
+          </a>
+          <a class="qa" onclick="showView('gis')">
+            <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 3-6-3"/></svg></div>
+            <span>Explore Map</span>
+          </a>
+          <a class="qa" onclick="showView('datacloud'); toast('Opening dataset upload')">
+            <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg></div>
+            <span>Upload Dataset</span>
+          </a>
+          <a class="qa" onclick="addWatchItem()">
+            <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2Zm6-6v-5a6 6 0 0 0-4-5.65V4a2 2 0 1 0-4 0v.35A6 6 0 0 0 6 10v5l-2 2v1h16v-1l-2-2Z"/></svg></div>
+            <span>Create Alert</span>
+          </a>
+          <a class="qa" onclick="toast('Workspace switcher — see the dropdown at top left')">
+            <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <span>Create Workspace</span>
+          </a>
+          <a class="qa" onclick="showView('explorer'); toast('Starting new research thread')">
+            <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <span>Start Research</span>
+          </a>
         </div>
       </div>
     </section>
@@ -1672,22 +1916,172 @@ setThemeIcon(root.getAttribute('data-theme'));
 const insightDetails = [
   {tag:'Risk detected', color:'var(--danger)', title:"Maternal mortality rising across 3 Upper West districts",
    body:"Wa West, Nadowli-Kaleo and Daffiama show a sustained upward trend over 2 consecutive quarters, correlated with declining skilled-birth-attendance rates. IntelligenceOS flagged this automatically after cross-referencing DHIMS2 facility records against historical baselines — no manual query was needed.",
+   evidence:["2 consecutive quarters of increase","3 districts affected","4 underlying indicators correlated","Skilled-birth-attendance down 6pt"],
+   confidence:87, whyMatters:"If the current trend continues, these districts may experience further pressure on maternal health services over the next two quarters.",
+   recommends:"Review facility staffing and skilled-birth-attendance data in the affected districts.",
    source:"Africa Data Cloud · Ghana Health Service · 2h ago", cta:"Open in GIS Intelligence", ctaView:"gis", ctaLayer:"health"},
   {tag:'Climate watch', color:'#B45309', title:"Rainfall 18% below seasonal average in Northern Region",
    body:"Satellite rainfall estimates suggest elevated risk to maize yield across Savelugu and Tolon ahead of the September harvest window. This pattern typically precedes a 12–20% yield reduction if it persists past the next two weeks.",
+   evidence:["18% below seasonal average","2 districts most exposed","Satellite + ground station cross-check","Pattern matches 2023 deficit precedent"],
+   confidence:79, whyMatters:"If rainfall doesn't recover within two weeks, maize yield in Savelugu and Tolon could fall 12–20% ahead of the September harvest.",
+   recommends:"Alert AgroOS users in affected districts and flag irrigation-dependent farms for early intervention.",
    source:"Climate Intelligence · GMet + satellite · 5h ago", cta:"Open in AI Explorer", ctaView:"explorer"},
   {tag:'Opportunity', color:'var(--teal-600)', title:"14 new tenders match your organisation's profile",
    body:"Includes 3 EU-funded M&E consultancies and a World Bank data-systems RFP closing in 11 days — all above your 70% fit threshold. Fit scoring weighs sector match, budget range, past delivery history and required certifications.",
+   evidence:["14 tenders above 70% fit","3 EU-funded M&E consultancies","1 closing within 11 days","Avg fit score 81%"],
+   confidence:94, whyMatters:"The World Bank data-systems RFP closes in 11 days — missing the window means waiting for the next funding cycle.",
+   recommends:"Prioritise review of the World Bank RFP first given its closing date, then the 3 EU-funded consultancies.",
    source:"Tender Intelligence · Yesterday", cta:"View Tender Intelligence", ctaView:"tender"},
   {tag:'Positive trend', color:'var(--navy-ink)', title:"Youth unemployment falls for a third straight quarter",
    body:"Greater Accra shows the steepest decline (-1.8pp), led by growth in ICT and logistics sector registrations. This continues a national trend visible since Q2, and correlates with a rise in SME business registrations over the same period.",
+   evidence:["3 consecutive quarters of decline","Greater Accra: -1.8pp","ICT + logistics sectors leading","SME registrations up over same period"],
+   confidence:91, whyMatters:"A sustained three-quarter trend suggests a structural shift rather than seasonal noise — worth monitoring for policy planning.",
+   recommends:"Cross-reference with SME registration data to identify which sectors are driving the shift.",
    source:"Business Intelligence · GSS Labour Survey · 2 days ago", cta:"Open in AI Explorer", ctaView:"explorer"}
 ];
 const alertDetails = [
-  {sev:'critical', title:"Cholera cases reported — Volta Region", body:"6 confirmed cases in Ho Municipal over the past 48 hours, reported through the DHIMS2 disease surveillance feed. Ghana Health Service has been notified. IntelligenceOS is monitoring adjacent districts for early signs of spread.", meta:"Ho Municipal · Disease surveillance · 2h ago"},
-  {sev:'warning', title:"Flood risk elevated — Ada East", body:"River level readings are running 30% above the seasonal norm following upstream rainfall. Historical patterns suggest a 5–7 day lag before flood risk peaks in low-lying communities.", meta:"Ada East · Hydrology feed · 5h ago"},
-  {sev:'info', title:"New dataset available", body:"WHO has published its 2026 immunization coverage release, now indexed in the Africa Data Cloud and available to query in the AI Data Explorer.", meta:"World Health Organization · 1d ago"}
+  {sev:'critical', title:"Cholera cases reported — Volta Region", body:"6 confirmed cases in Ho Municipal over the past 48 hours, reported through the DHIMS2 disease surveillance feed. Ghana Health Service has been notified. IntelligenceOS is monitoring adjacent districts for early signs of spread.",
+   location:"Ho Municipal, Volta Region", time:"2 hours ago", source:"DHIMS2 disease surveillance", confidence:96, action:"Notify regional health teams and monitor adjacent districts for 72 hours.",
+   meta:"Ho Municipal · Disease surveillance · 2h ago"},
+  {sev:'warning', title:"Flood risk elevated — Ada East", body:"River level readings are running 30% above the seasonal norm following upstream rainfall. Historical patterns suggest a 5–7 day lag before flood risk peaks in low-lying communities.",
+   location:"Ada East District", time:"5 hours ago", source:"Hydrology feed", confidence:83, action:"Alert low-lying communities and pre-position NADMO response resources within 5 days.",
+   meta:"Ada East · Hydrology feed · 5h ago"},
+  {sev:'info', title:"New dataset available", body:"WHO has published its 2026 immunization coverage release, now indexed in the Africa Data Cloud and available to query in the AI Data Explorer.",
+   location:"National", time:"1 day ago", source:"World Health Organization", confidence:100, action:"No action required — dataset is ready to query in AI Data Explorer.",
+   meta:"World Health Organization · 1d ago"}
 ];
+const kpiIntelligence = {
+  facilities:{
+    title:"Health Facility Intelligence", color:'var(--navy-ink)',
+    whatHappened:"3,847 health facilities are actively reporting into DHIMS2, up 2.1% versus last quarter. All facilities are reporting on schedule with no coverage gaps detected.",
+    why:["79 new facilities onboarded this quarter","Reporting compliance at 98.4%, up from 96.1%","No regions below 90% facility coverage"],
+    forecast:[{label:'Next quarter',value:'+1.8%'},{label:'Coverage gap risk',value:'Low'},{label:'Facilities at risk',value:'0'}],
+    recommend:"No action required. Continue monitoring reporting compliance in Upper West, where 2 facilities show delayed submissions.",
+    evidence:"Ghana Health Service DHIMS2 · Africa Data Cloud · Updated hourly",
+    ctaView:'gis', ctaLayer:'health'
+  },
+  maternal:{
+    title:"Maternal Mortality Intelligence", color:'var(--danger)',
+    whatHappened:"12 districts show an upward trend in maternal mortality risk. 3 — Wa West, Nadowli-Kaleo and Daffiama — require immediate attention, having sustained the increase over 2 consecutive quarters.",
+    why:["Correlates with declining skilled-birth-attendance rates","Facility access constrained in 3 of the 12 districts","Staffing shortages reported in 2 affected districts","Referral pattern delays increased 14% quarter-on-quarter"],
+    forecast:[{label:'If trend continues',value:'+2 districts'},{label:'Timeframe',value:'2 quarters'},{label:'Confidence',value:'87%'}],
+    recommend:"Review facility staffing and skilled-birth-attendance data in Wa West, Nadowli-Kaleo and Daffiama. Fast-track the 4 facility upgrades already identified in Tender Intelligence.",
+    evidence:"DHIMS2 facility records · Ghana Health Service · Africa Data Cloud",
+    ctaView:'gis', ctaLayer:'health'
+  },
+  farmers:{
+    title:"Agriculture Registry Intelligence", color:'var(--teal-600)',
+    whatHappened:"1.20M farmers are now in the national registry, up 4.6% this season — ahead of the annual registration target pace by 3 weeks.",
+    why:["Registration campaigns active in 14 of 16 regions","Mobile registration units deployed in Northern and Savannah","Digital ID linkage now at 68% of registered farmers"],
+    forecast:[{label:'Year-end projection',value:'1.35M'},{label:'Target',value:'1.30M'},{label:'Pace vs target',value:'Ahead'}],
+    recommend:"On track — no intervention needed. Consider prioritising digital ID linkage in the 2 regions with lowest campaign coverage.",
+    evidence:"Ministry of Food & Agriculture · Africa Data Cloud · Updated weekly",
+    ctaView:'gis', ctaLayer:'agri'
+  },
+  tenders:{
+    title:"Tender Opportunity Intelligence", color:'#B45309',
+    whatHappened:"38 tenders matched your organisation's profile this week, 9 new since Monday. 14 sit above your 70% fit threshold, including 3 EU-funded M&E consultancies and 1 World Bank data-systems RFP.",
+    why:["Fit scoring weighs sector match, budget range, delivery history and certifications","World Bank RFP closes in 11 days","Average fit score across matches: 81%"],
+    forecast:[{label:'Closing this week',value:'2'},{label:'Avg fit score',value:'81%'},{label:'Est. pipeline value',value:'GH₵2.3M'}],
+    recommend:"Prioritise the World Bank data-systems RFP given its closing date, then review the 3 EU-funded consultancies.",
+    evidence:"Tender Intelligence · 40+ monitored sources · Updated continuously",
+    ctaView:'tender'
+  }
+};
+function openKPIIntelligence(key){
+  const d = kpiIntelligence[key];
+  openModal(`
+    <div class="modal-head">
+      <div><span class="tag" style="color:${d.color}; display:block; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;">Intelligence Brief</span><h3>${d.title}</h3></div>
+      <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="intel-label">What happened</div>
+      <p>${d.whatHappened}</p>
+      <div class="intel-section">
+        <div class="intel-label">Why</div>
+        <ul class="intel-evidence">${d.why.map(w=>`<li>${w}</li>`).join('')}</ul>
+      </div>
+      <div class="intel-section">
+        <div class="intel-label">Where</div>
+        <div class="intel-map-mini">
+          <svg viewBox="0 0 200 130" style="width:100%; height:100%;">
+            <path d="M 88 122 L 79 128 L 76 128 L 71 124 L 55 121 L 62 120 L 63 119 L 62 116 L 63 114 L 62 109 L 60 108 L 58 109 L 58 107 L 56 107 L 51 93 L 58 81 L 62 68 L 65 63 L 65 60 L 68 58 L 65 45 L 62 42 L 63 39 L 61 37 L 61 33 L 61 27 L 60 24 L 58 17 L 61 13 L 84 14 L 103 13 L 113 11 L 116 9 L 120 11 L 123 14 L 121 20 L 126 24 L 129 27 L 130 33 L 128 43 L 130 44 L 133 48 L 132 56 L 137 68 L 138 72 L 136 85 L 135 92 L 137 100 L 135 101 L 137 107 L 139 110 L 143 116 L 149 119 L 143 128 L 128 128 L 114 134 L 105 140 L 95 142 L 88 122 Z" fill="none" stroke="var(--border)" stroke-width="1.3" transform="scale(0.95) translate(3,-8)"/>
+            ${key==='maternal' ? '<circle cx="72" cy="24" r="5.5" fill="#DC2626" opacity=".85"/><circle cx="98" cy="28" r="5" fill="#DC2626" opacity=".85"/><circle cx="88" cy="42" r="4.5" fill="#F59E0B" opacity=".85"/>' : ''}
+            ${key==='farmers' ? '<circle cx="75" cy="60" r="6" fill="#00BFA6" opacity=".85"/><circle cx="95" cy="80" r="5.5" fill="#00BFA6" opacity=".85"/><circle cx="65" cy="95" r="5" fill="#00BFA6" opacity=".85"/>' : ''}
+            ${key==='facilities' ? '<circle cx="80" cy="50" r="4" fill="#082B5A" opacity=".85"/><circle cx="100" cy="70" r="4" fill="#082B5A" opacity=".85"/><circle cx="70" cy="100" r="4" fill="#082B5A" opacity=".85"/><circle cx="110" cy="40" r="4" fill="#082B5A" opacity=".85"/>' : ''}
+            ${key==='tenders' ? '<circle cx="85" cy="55" r="5" fill="#B45309" opacity=".85"/><circle cx="105" cy="90" r="5" fill="#B45309" opacity=".85"/>' : ''}
+          </svg>
+        </div>
+      </div>
+      <div class="intel-section">
+        <div class="intel-label">What is likely to happen</div>
+        <div class="intel-forecast-row">
+          ${d.forecast.map(f=>`<div class="intel-forecast-item"><span>${f.label}</span><b>${f.value}</b></div>`).join('')}
+        </div>
+      </div>
+      <div class="intel-recommend">
+        <div class="intel-label">What you should consider</div>
+        <p>${d.recommend}</p>
+      </div>
+      <div class="intel-section">
+        <div class="intel-label">Evidence</div>
+        <p style="font-size:11.5px; color:var(--text-dim);">${d.evidence}</p>
+      </div>
+      <div class="intel-actions-row">
+        <button class="intel-action-btn" onclick="openReportModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Create report</button>
+        <button class="intel-action-btn" onclick="toast('Share link copied')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5 8.6 10.5"/></svg>Share</button>
+        <button class="intel-action-btn" onclick="closeModal(); showView('studio');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Create dashboard</button>
+        <button class="intel-action-btn" onclick="closeModal(); showView('explorer');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Ask AI</button>
+        <button class="intel-action-btn" onclick="toast('Exporting as PDF…')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Export</button>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      <button class="btn btn-primary" onclick="closeModal(); showView('${d.ctaView}');${d.ctaLayer ? " setTimeout(()=>setLayer('"+d.ctaLayer+"'),80);" : ""}" style="flex:1; justify-content:center;">Open full view</button>
+    </div>
+  `);
+}
+function toggleBriefing(){
+  document.querySelector('.briefing-card').classList.toggle('open');
+}
+function addWatchItem(){
+  toast('Tell IntelligenceOS what to watch — try "Watch cocoa prices" in Ask AI');
+}
+const customizeCategories = {health:true, climate:true, tenders:true, education:false, agriculture:false};
+function openCustomize(){
+  openModal(`
+    <div class="modal-head">
+      <h3>Customize your workspace</h3>
+      <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom:14px;">Choose which intelligence categories appear in your Today's Intelligence feed.</p>
+      ${Object.entries({health:'Health', climate:'Climate', tenders:'Tenders & Opportunities', education:'Education', agriculture:'Agriculture', business:'Business'}).map(([key,label])=>`
+        <label style="display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--border); cursor:pointer;">
+          <input type="checkbox" id="cust-${key}" ${customizeCategories[key]!==false ? 'checked' : ''} style="width:16px; height:16px; accent-color:var(--teal);">
+          <span style="font-size:13px; font-weight:600;">${label}</span>
+        </label>
+      `).join('')}
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Cancel</button>
+      <button class="btn btn-primary" onclick="saveCustomize()" style="flex:1; justify-content:center;">Save preferences</button>
+    </div>
+  `);
+}
+function saveCustomize(){
+  ['health','climate','tenders','education','agriculture','business'].forEach(key=>{
+    const box = document.getElementById('cust-'+key);
+    if(box) customizeCategories[key] = box.checked;
+  });
+  document.querySelectorAll('#insightFeed .insight').forEach(el=>{
+    const cat = el.dataset.cat;
+    el.style.display = (customizeCategories[cat]===false) ? 'none' : 'flex';
+  });
+  closeModal();
+  toast('Preferences saved — Command Centre updated');
+}
 function openInsight(idx){
   const d = insightDetails[idx];
   openModal(`
@@ -1695,7 +2089,27 @@ function openInsight(idx){
       <div><span class="tag" style="color:${d.color}; display:block; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;">${d.tag}</span><h3>${d.title}</h3></div>
       <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
-    <div class="modal-body"><p>${d.body}</p><p style="margin-top:12px; font-size:11.5px; color:var(--text-dim);">${d.source}</p></div>
+    <div class="modal-body">
+      <p>${d.body}</p>
+      <div class="intel-section">
+        <div class="intel-label">Evidence</div>
+        <ul class="intel-evidence">${d.evidence.map(e=>`<li>${e}</li>`).join('')}</ul>
+      </div>
+      <div class="intel-confidence-row">
+        <span class="intel-label" style="margin:0;">Confidence</span>
+        <div class="intel-confidence-bar"><i style="width:${d.confidence}%; background:${d.color};"></i></div>
+        <b style="color:${d.color};">${d.confidence}%</b>
+      </div>
+      <div class="intel-why">
+        <div class="intel-label">Why this matters</div>
+        <p>${d.whyMatters}</p>
+      </div>
+      <div class="intel-recommend">
+        <div class="intel-label">IntelligenceOS recommends</div>
+        <p>${d.recommends}</p>
+      </div>
+      <p style="margin-top:14px; font-size:11.5px; color:var(--text-dim);">${d.source}</p>
+    </div>
     <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
       <button class="btn btn-primary" onclick="closeModal(); showView('${d.ctaView}');${d.ctaLayer ? " setTimeout(()=>setLayer('"+d.ctaLayer+"'),80);" : ""}" style="flex:1; justify-content:center;">${d.cta}</button>
@@ -1710,10 +2124,26 @@ function openAlert(idx){
       <div><span style="display:inline-flex; align-items:center; gap:6px; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:${sevColor}; margin-bottom:8px;"><span class="sev-dot sev-${d.sev}"></span>${d.sev} alert</span><h3>${d.title}</h3></div>
       <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
-    <div class="modal-body"><p>${d.body}</p><p style="margin-top:12px; font-size:11.5px; color:var(--text-dim);">${d.meta}</p></div>
+    <div class="modal-body">
+      <p>${d.body}</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px;">
+        <div style="background:var(--bg); border-radius:10px; padding:11px 13px;"><div style="font-size:9.5px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:3px;">Location</div><div style="font-weight:700; font-size:12.5px;">${d.location}</div></div>
+        <div style="background:var(--bg); border-radius:10px; padding:11px 13px;"><div style="font-size:9.5px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:3px;">Time</div><div style="font-weight:700; font-size:12.5px;">${d.time}</div></div>
+        <div style="background:var(--bg); border-radius:10px; padding:11px 13px;"><div style="font-size:9.5px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:3px;">Source</div><div style="font-weight:700; font-size:12.5px;">${d.source}</div></div>
+        <div style="background:var(--bg); border-radius:10px; padding:11px 13px;"><div style="font-size:9.5px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:3px;">Confidence</div><div style="font-weight:700; font-size:12.5px; color:${sevColor};">${d.confidence}%</div></div>
+      </div>
+      <div class="intel-recommend" style="margin-top:14px;">
+        <div class="intel-label">Recommended action</div>
+        <p>${d.action}</p>
+      </div>
+    </div>
     <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Dismiss</button>
-      <button class="btn btn-primary" onclick="closeModal(); showView('gis');" style="flex:1; justify-content:center;">View on map</button>
+      <button class="btn btn-ghost" onclick="closeModal(); showView('gis');" style="flex:1; justify-content:center;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 3-6-3"/></svg>
+        View Map
+      </button>
+      <button class="btn btn-primary" onclick="closeModal(); showView('explorer');" style="flex:1; justify-content:center;">Investigate</button>
     </div>
   `);
 }
