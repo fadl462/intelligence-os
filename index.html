@@ -807,6 +807,39 @@ button{font-family:inherit; cursor:pointer;}
 .gis-gap-list{display:flex; flex-direction:column; gap:6px; margin-bottom:12px;}
 .gis-gap-row{display:flex; align-items:center; justify-content:space-between; font-size:12.5px; padding:8px 12px; background:var(--bg); border-radius:8px;}
 
+.gis-optimal-list{display:flex; flex-direction:column; gap:8px; margin-top:12px;}
+.gis-optimal-item{display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--bg); border-radius:10px; cursor:pointer; transition:all .15s;}
+.gis-optimal-item:hover{border-color:var(--teal);}
+.gis-optimal-rank{width:26px; height:26px; border-radius:50%; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:12px; flex-shrink:0;}
+.gis-optimal-item b{display:block; font-size:12.8px;}
+.gis-optimal-item span{font-size:11px; color:var(--text-dim);}
+.gis-optimal-score{margin-left:auto; font-size:13px; font-weight:800; color:var(--teal-600); flex-shrink:0;}
+
+.gis-scenario-picker{margin:12px 0;}
+.gis-scenario-picker select{width:100%; padding:11px 14px; border-radius:10px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-family:inherit; font-size:13px;}
+.gis-scenario-compare{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:12px;}
+.gis-scenario-col{border-radius:11px; padding:14px 16px;}
+.gis-scenario-col.current{background:var(--bg); border:1px solid var(--border);}
+.gis-scenario-col.proposed{background:var(--teal-100); border:1px solid var(--teal);}
+.gis-scenario-col b{display:block; font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-bottom:10px; color:var(--text-dim);}
+.gis-scenario-col.proposed b{color:var(--teal-600);}
+.gis-scenario-row{display:flex; justify-content:space-between; font-size:12.5px; padding:6px 0; border-bottom:1px dashed var(--border);}
+.gis-scenario-row:last-child{border-bottom:none;}
+
+.gis-fieldwork-select{display:flex; gap:10px; margin:12px 0; flex-wrap:wrap;}
+.gis-fieldwork-select select{flex:1; min-width:180px; padding:11px 14px; border-radius:10px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-family:inherit; font-size:13px;}
+.gis-fieldwork-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0;}
+
+.gis-opp-categories{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0;}
+.gis-opp-chip{font-size:12px; font-weight:700; padding:8px 14px; border-radius:20px; border:1px solid var(--border); color:var(--text-dim); cursor:pointer; transition:all .15s;}
+.gis-opp-chip:hover{border-color:var(--teal);}
+.gis-opp-chip.active{background:var(--navy); color:#fff; border-color:var(--navy);}
+.gis-opp-list{display:flex; flex-direction:column; gap:8px; margin-top:10px;}
+.gis-opp-item{display:flex; align-items:center; justify-content:space-between; padding:11px 14px; background:var(--bg); border-radius:10px; cursor:pointer;}
+.gis-opp-item:hover{background:var(--teal-100);}
+.gis-opp-item b{font-size:12.8px;}
+.gis-opp-item span{font-size:11px; color:var(--text-dim);}
+
 .gis-add-layer{font-size:12px; font-weight:700; padding:9px 14px; border-radius:10px; border:1px dashed var(--border); color:var(--text-dim); cursor:pointer; transition:all .15s;}
 .gis-add-layer:hover{border-color:var(--teal); color:var(--teal-600); border-style:solid;}
 .gis-relationship-box{display:flex; align-items:center; gap:12px; background:var(--teal-100); border:1px solid var(--teal); border-radius:11px; padding:13px 18px; margin-bottom:14px;}
@@ -828,6 +861,64 @@ button{font-family:inherit; cursor:pointer;}
 
 /* ---------- DASHBOARD STUDIO ---------- */
 .studio-toolbar{display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; align-items:center;}
+
+/* ---------- STUDIO LAUNCHER ---------- */
+.studio-cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:18px;}
+.studio-ai-build-card{padding:22px 24px;}
+#studioAiBuildProgress{margin-top:0;}
+#studioAiBuildProgress.show{margin-top:14px; padding-top:14px; border-top:1px solid var(--border);}
+.studio-template-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:0 20px 18px;}
+.studio-template-chip{font-size:12.5px; font-weight:700; padding:14px; border-radius:10px; background:var(--bg); border:1px solid var(--border); cursor:pointer; transition:all .15s; text-align:center;}
+.studio-template-chip:hover{border-color:var(--teal); transform:translateY(-2px);}
+.studio-can-build{padding:16px 22px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;}
+.studio-can-build>span:first-child{font-size:12px; font-weight:700; color:var(--text-dim); flex-shrink:0;}
+.studio-can-build-row{display:flex; gap:8px; flex-wrap:wrap; font-size:12.5px; font-weight:700; color:var(--navy-ink);}
+.studio-can-build-row span:nth-child(even){color:var(--border);}
+
+/* ---------- STUDIO CANVAS ---------- */
+.studio-ask-dashboard{display:flex; align-items:center; gap:10px; background:var(--navy); border-radius:13px; padding:6px 6px 6px 16px; margin-bottom:14px;}
+.studio-ask-dashboard svg{width:16px; height:16px; color:var(--teal); flex-shrink:0;}
+.studio-ask-dashboard input{flex:1; background:none; border:none; outline:none; color:#fff; font-family:inherit; font-size:13.5px; padding:10px 0;}
+.studio-ask-dashboard input::placeholder{color:#8296BD;}
+.studio-ask-dashboard button{font-size:12px; font-weight:700; padding:9px 16px; border-radius:9px; background:var(--teal); color:#04332C; border:none; cursor:pointer; flex-shrink:0;}
+#askDashboardResult{margin-bottom:0;}
+#askDashboardResult.show{margin-bottom:14px; padding:14px 18px; background:var(--bg); border-radius:12px; border:1px solid var(--border);}
+.studio-brief-card{background:var(--navy-100); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; margin-bottom:18px;}
+[data-theme="dark"] .studio-brief-card{background:#0d2450;}
+
+.widget-live-badge{font-size:9px; font-weight:700; padding:2px 8px; border-radius:20px; margin-left:8px; flex-shrink:0;}
+.widget-live-badge.live{background:#E7F7EC; color:var(--success);}
+.widget-live-badge.stale{background:#FEF3E2; color:#B45309;}
+.widget-live-badge.down{background:#FEF2F2; color:var(--danger);}
+[data-theme="dark"] .widget-live-badge.live{background:#0e2c1a;}
+
+.widget-big-num-kpi{padding:10px 18px 18px;}
+.wk-value{font-size:28px; font-weight:800; display:flex; align-items:center; gap:10px;}
+.wk-change{font-size:12px; font-weight:700;}
+.wk-change.up{color:var(--success);} .wk-change.down{color:var(--danger);}
+.wk-target{font-size:11.5px; color:var(--text-dim); margin:6px 0 8px;}
+.wk-status.ontrack{color:var(--success);} .wk-status.offtrack{color:var(--danger);}
+.wk-progress{height:6px; background:var(--border); border-radius:4px; overflow:hidden;}
+.wk-progress i{display:block; height:100%; background:var(--teal); border-radius:4px;}
+
+.studio-sources-panel{margin-top:18px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);}
+
+/* Chart intelligence menu */
+.widget-menu-btn{margin-left:auto; width:22px; height:22px; border-radius:6px; display:flex; align-items:center; justify-content:center; color:var(--text-dim); cursor:pointer; flex-shrink:0;}
+.widget-menu-btn:hover{background:var(--bg);}
+.widget-menu-dropdown{position:absolute; top:100%; right:0; z-index:50; background:var(--surface); border:1px solid var(--border); border-radius:11px; box-shadow:var(--shadow-lg); padding:6px; min-width:170px; display:none;}
+.widget-menu-dropdown.open{display:block;}
+.widget-menu-dropdown a{display:block; padding:8px 11px; font-size:12px; font-weight:600; color:var(--text); border-radius:7px; cursor:pointer;}
+.widget-menu-dropdown a:hover{background:var(--bg);}
+.widget-head{position:relative;}
+
+/* AI Insight widget */
+.ai-insight-widget{padding:14px 18px 18px;}
+.ai-insight-widget .intel-label{margin-bottom:6px;}
+.ai-insight-widget p{font-size:12px; line-height:1.6; color:var(--text); margin-bottom:8px;}
+.ai-insight-widget .aiw-why{font-size:11px; color:var(--text-dim); margin-bottom:4px;}
+.ai-insight-widget .aiw-why b{color:var(--text); font-weight:700; display:block; font-size:10px; text-transform:uppercase; margin-bottom:2px;}
+.ai-insight-widget button{margin-top:8px; font-size:11px; font-weight:700; color:var(--teal-600); background:none; border:none; cursor:pointer;}
 .studio-toolbar-hint{font-size:11.5px; color:var(--text-dim); font-weight:600;}
 .studio-toolbar .tool{
   display:flex; align-items:center; gap:7px; font-size:12px; font-weight:700; padding:9px 13px;
@@ -1079,6 +1170,9 @@ button{font-family:inherit; cursor:pointer;}
   .dc-ask-best-grid{grid-template-columns:repeat(2,1fr);}
   .expl-recent-grid{grid-template-columns:1fr;}
   .expl-capability-grid{grid-template-columns:1fr 1fr;}
+  .studio-template-grid{grid-template-columns:1fr 1fr;}
+  .studio-cta-row{flex-direction:column; align-items:stretch;}
+  .studio-cta-row .btn{width:100%; justify-content:center;}
   .expl-insight-cards{grid-template-columns:1fr;}
   .expl-gap-box{grid-template-columns:1fr;}
   .expl-forecast-scenarios{grid-template-columns:1fr;}
@@ -1932,6 +2026,10 @@ button{font-family:inherit; cursor:pointer;}
         <button class="gis-tool-btn" onclick="setGisTool(this,'compare')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="8"/><rect x="12" y="6" width="3" height="12"/><rect x="17" y="13" width="3" height="5"/></svg>Compare</button>
         <button class="gis-tool-btn" onclick="setGisTool(this,'gaps')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>Data Gaps</button>
         <button class="gis-tool-btn" onclick="monitorThisMap()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2Zm6-6v-5a6 6 0 0 0-4-5.65V4a2 2 0 1 0-4 0v.35A6 6 0 0 0 6 10v5l-2 2v1h16v-1l-2-2Z"/></svg>Monitor</button>
+        <button class="gis-tool-btn" onclick="setGisTool(this,'optimal')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 2.9 6.4 6.9.9-5 4.9 1.2 6.9L12 17.8l-6 3.3 1.2-6.9-5-4.9 6.9-.9L12 2Z"/></svg>Optimal Location</button>
+        <button class="gis-tool-btn" onclick="setGisTool(this,'scenario')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>What If?</button>
+        <button class="gis-tool-btn" onclick="setGisTool(this,'fieldwork')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 3-6-3"/><circle cx="9" cy="9" r="1.5" fill="currentColor" stroke="none"/></svg>Fieldwork</button>
+        <button class="gis-tool-btn" onclick="setGisTool(this,'opportunity')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>Opportunities</button>
       </div>
 
       <!-- Tool panels -->
@@ -1971,6 +2069,48 @@ button{font-family:inherit; cursor:pointer;}
         <div class="gis-gap-list" id="gisGapList"></div>
         <p class="gis-time-note"><b>3 districts</b> have insufficient recent data.</p>
         <button class="btn btn-primary" onclick="showView('survey'); toast('Opening Survey Intelligence to collect missing data')">Collect data →</button>
+      </div>
+
+      <div class="gis-tool-panel" id="gisPanelOptimal" style="display:none;">
+        <b>Where should we build the next health facility?</b>
+        <p class="gis-time-note">IntelligenceOS scores every district on population need, existing facility coverage, travel distance and maternal health risk.</p>
+        <div class="gis-optimal-list" id="gisOptimalList"></div>
+      </div>
+
+      <div class="gis-tool-panel" id="gisPanelScenario" style="display:none;">
+        <b>What if?</b>
+        <div class="gis-scenario-picker">
+          <select id="scenarioType" onchange="renderScenario()">
+            <option value="facilities">What if we add 10 health facilities?</option>
+            <option value="rainfall">What if rainfall decreases by 15%?</option>
+            <option value="teachers">What if teacher numbers increase by 15%?</option>
+          </select>
+        </div>
+        <div id="gisScenarioResult"></div>
+      </div>
+
+      <div class="gis-tool-panel" id="gisPanelFieldwork" style="display:none;">
+        <b>Prepare fieldwork plan</b>
+        <p class="gis-time-note">Select target communities and IntelligenceOS builds a complete fieldwork brief.</p>
+        <div class="gis-fieldwork-select">
+          <select id="fieldworkRegion"></select>
+          <button class="btn btn-primary" onclick="prepareFieldwork()">Prepare fieldwork plan</button>
+        </div>
+        <div id="gisFieldworkResult"></div>
+      </div>
+
+      <div class="gis-tool-panel" id="gisPanelOpportunity" style="display:none;">
+        <b>Opportunity Map</b>
+        <p class="gis-time-note">Show regions with high potential, good access and low current investment.</p>
+        <div class="gis-opp-categories" id="gisOppCategories">
+          <span class="gis-opp-chip active" onclick="setOppCategory(this,'agriculture')">🌾 Agriculture</span>
+          <span class="gis-opp-chip" onclick="setOppCategory(this,'infrastructure')">🏗 Infrastructure</span>
+          <span class="gis-opp-chip" onclick="setOppCategory(this,'healthcare')">🏥 Healthcare</span>
+          <span class="gis-opp-chip" onclick="setOppCategory(this,'education')">🎓 Education</span>
+          <span class="gis-opp-chip" onclick="setOppCategory(this,'business')">💼 Business</span>
+          <span class="gis-opp-chip" onclick="setOppCategory(this,'energy')">⚡ Renewable Energy</span>
+        </div>
+        <div id="gisOpportunityResult"></div>
       </div>
 
       <div class="layer-toggle" id="gisLayerToggle">
@@ -2026,13 +2166,88 @@ button{font-family:inherit; cursor:pointer;}
       <div class="view-head">
         <div>
           <div class="eyebrow"><span class="compass-dot"></span>DASHBOARD STUDIO</div>
-          <h1>Build a dashboard in minutes.</h1>
-          <p>Drag widgets onto the canvas. Every chart is wired to live data from the Africa Data Cloud.</p>
+          <h1 id="studioHeading">Turn any data into a living intelligence dashboard.</h1>
+          <p id="studioSubhead">Connect your data, let IntelligenceOS build the first version, refine it visually, publish it, and keep it alive automatically.</p>
         </div>
-        <button class="btn btn-teal" id="publishBtn" onclick="publishDashboard()">
+        <button class="btn btn-teal" id="publishBtn" onclick="publishDashboard()" style="display:none;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
           Publish dashboard
         </button>
+      </div>
+
+      <!-- ============ STUDIO LAUNCHER (homepage state) ============ -->
+      <div id="studioLauncher">
+        <div class="studio-cta-row">
+          <button class="btn btn-primary btn-lg" onclick="focusAiBuildBox()">✨ Create with AI</button>
+          <button class="btn btn-ghost" onclick="enterCanvas('scratch')">Start from scratch</button>
+          <button class="btn btn-ghost" onclick="scrollToTemplates()">Templates</button>
+          <button class="btn btn-ghost" onclick="toast('Import from Excel, CSV, JSON, API or Africa Data Cloud')">Import data</button>
+        </div>
+
+        <div class="card studio-ai-build-card">
+          <div class="dc-ask-head">
+            <div class="dc-ask-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <div><h3>What do you want to build?</h3><p>Describe your dashboard — IntelligenceOS finds the data and builds the first version.</p></div>
+          </div>
+          <div class="ai-search dc-main-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="studioAiInput" placeholder="Build a Ghana maternal health dashboard showing regional trends, district risk and facility access…" onkeydown="if(event.key==='Enter') runStudioAiBuild(this.value)">
+          </div>
+          <button class="btn btn-primary" style="margin-top:12px;" onclick="runStudioAiBuild(document.getElementById('studioAiInput').value)">Build dashboard →</button>
+          <div id="studioAiBuildProgress"></div>
+        </div>
+
+        <div class="card" id="studioTemplates" style="margin-top:18px;">
+          <div class="card-head"><h3>Start With a Template</h3></div>
+          <div class="studio-template-grid">
+            <div class="studio-template-chip" onclick="enterCanvas('executive')">📊 Executive</div>
+            <div class="studio-template-chip" onclick="enterCanvas('me')">📋 M&amp;E</div>
+            <div class="studio-template-chip" onclick="enterCanvas('health')">🏥 Health</div>
+            <div class="studio-template-chip" onclick="enterCanvas('agriculture')">🌾 Agriculture</div>
+            <div class="studio-template-chip" onclick="enterCanvas('government')">🏛 Government</div>
+            <div class="studio-template-chip" onclick="enterCanvas('research')">🔬 Research</div>
+            <div class="studio-template-chip" onclick="enterCanvas('finance')">💰 Finance</div>
+            <div class="studio-template-chip" onclick="enterCanvas('tenders')">📄 Tenders</div>
+          </div>
+        </div>
+
+        <div class="dc-grid-2" style="margin-top:18px;">
+          <div class="card">
+            <div class="card-head"><h3>Recent Dashboards</h3></div>
+            <div class="dc-watch-row" onclick="enterCanvas('health')"><span>Maternal Health</span><b>Today</b></div>
+            <div class="dc-watch-row" onclick="enterCanvas('agriculture')"><span>Agriculture</span><b>Yesterday</b></div>
+            <div class="dc-watch-row" onclick="enterCanvas('tenders')"><span>Tender Pipeline</span><b>3 days ago</b></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Your Published Dashboards</h3></div>
+            <div class="dc-watch-row" onclick="enterCanvas('executive')"><span>Ghana Health Intelligence</span><b>🟢 Live</b></div>
+            <div class="dc-watch-row" onclick="enterCanvas('government')"><span>GTVP Tracer Study 2026</span><b>🟢 Live</b></div>
+          </div>
+        </div>
+
+        <div class="card studio-can-build" style="margin-top:18px;">
+          <span>IntelligenceOS can build:</span>
+          <div class="studio-can-build-row">
+            <span>Analyse</span><span>·</span><span>Visualise</span><span>·</span><span>Explain</span><span>·</span><span>Predict</span><span>·</span><span>Monitor</span><span>·</span><span>Report</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ STUDIO CANVAS (editor state) ============ -->
+      <div id="studioCanvas" style="display:none;">
+      <div class="studio-ask-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="askDashboardInput" placeholder="Ask this dashboard anything — try: Which region requires the most attention?" onkeydown="if(event.key==='Enter') askThisDashboard(this.value)">
+        <button onclick="askThisDashboard(document.getElementById('askDashboardInput').value)">Ask</button>
+      </div>
+      <div id="askDashboardResult"></div>
+
+      <div class="studio-brief-card" id="studioBriefCard">
+        <div class="dc-ask-head" style="margin-bottom:0;">
+          <div class="dc-ask-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+          <div><h3>Executive Intelligence Brief</h3><p id="studioBriefText">This dashboard shows that Ghana's maternal health indicators have diverged significantly across regions. Three regions require priority attention, while Greater Accra and Eastern show comparatively stronger performance.</p></div>
+        </div>
+        <a class="link" href="#" onclick="toast('Opening full briefing');return false;" style="margin-top:8px; display:inline-block;">Read full briefing →</a>
       </div>
 
       <div class="studio-toolbar">
@@ -2040,39 +2255,55 @@ button{font-family:inherit; cursor:pointer;}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           Add widget
         </button>
-        <span class="studio-toolbar-hint">30 chart &amp; widget types across 6 categories</span>
+        <span class="studio-toolbar-hint">39 chart &amp; widget types across 10 categories</span>
         <div style="flex:1;"></div>
+        <button class="btn btn-ghost" onclick="backToLauncher()">← All dashboards</button>
         <div class="tool tool-clickable" onclick="addWidgetOfType('line')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg>Line</div>
         <div class="tool tool-clickable" onclick="addWidgetOfType('column')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="8"/><rect x="12" y="6" width="3" height="12"/><rect x="17" y="13" width="3" height="5"/></svg>Bar</div>
         <div class="tool tool-clickable" onclick="addWidgetOfType('donut')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 9 9h-9V3Z"/></svg>Donut</div>
-        <div class="tool tool-clickable" onclick="addWidgetOfType('kpi')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/></svg>KPI</div>
+        <div class="tool tool-clickable" onclick="addWidgetOfType('aiinsight')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/></svg>AI Insight</div>
         <div class="tool tool-clickable" onclick="showView('gis'); toast('GIS map widgets are added from GIS Intelligence')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 3-6-3"/></svg>Map</div>
       </div>
 
       <div class="widget-grid" id="widgetGrid">
         <div class="card widget">
-          <div class="widget-head"><b>Maternal mortality trend</b><span class="grip">⠿⠿</span></div>
+          <div class="widget-head"><b>Maternal mortality trend</b><span class="widget-live-badge live">🟢 LIVE</span><span class="widget-menu-btn" onclick="toggleWidgetMenu(this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></span><div class="widget-menu-dropdown"><a onclick="widgetAction('explain','Maternal mortality trend')">✨ Explain this</a><a onclick="widgetAction('ask','Maternal mortality trend')">Ask AI about this</a><a onclick="widgetAction('anomalies','Maternal mortality trend')">Find anomalies</a><a onclick="widgetAction('forecast','Maternal mortality trend')">Forecast</a><a onclick="widgetAction('compare','Maternal mortality trend')">Compare</a><a onclick="widgetAction('change','Maternal mortality trend')">Change chart</a><a onclick="widgetAction('download','Maternal mortality trend')">Download</a><a onclick="widgetAction('share','Maternal mortality trend')">Share</a></div></div>
           <div class="widget-body"><canvas id="w1" height="150"></canvas></div>
         </div>
         <div class="card widget">
-          <div class="widget-head"><b>Regional yield comparison</b><span class="grip">⠿⠿</span></div>
+          <div class="widget-head"><b>Regional yield comparison</b><span class="widget-live-badge stale">🟡 Updated 2h ago</span><span class="widget-menu-btn" onclick="toggleWidgetMenu(this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></span><div class="widget-menu-dropdown"><a onclick="widgetAction('explain','Regional yield comparison')">✨ Explain this</a><a onclick="widgetAction('ask','Regional yield comparison')">Ask AI about this</a><a onclick="widgetAction('anomalies','Regional yield comparison')">Find anomalies</a><a onclick="widgetAction('forecast','Regional yield comparison')">Forecast</a><a onclick="widgetAction('compare','Regional yield comparison')">Compare</a><a onclick="widgetAction('change','Regional yield comparison')">Change chart</a><a onclick="widgetAction('download','Regional yield comparison')">Download</a><a onclick="widgetAction('share','Regional yield comparison')">Share</a></div></div>
           <div class="widget-body"><canvas id="w2" height="150"></canvas></div>
         </div>
         <div class="card widget">
-          <div class="widget-head"><b>Budget by sector</b><span class="grip">⠿⠿</span></div>
+          <div class="widget-head"><b>Budget by sector</b><span class="widget-live-badge live">🟢 LIVE</span><span class="widget-menu-btn" onclick="toggleWidgetMenu(this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></span><div class="widget-menu-dropdown"><a onclick="widgetAction('explain','Budget by sector')">✨ Explain this</a><a onclick="widgetAction('ask','Budget by sector')">Ask AI about this</a><a onclick="widgetAction('anomalies','Budget by sector')">Find anomalies</a><a onclick="widgetAction('forecast','Budget by sector')">Forecast</a><a onclick="widgetAction('compare','Budget by sector')">Compare</a><a onclick="widgetAction('change','Budget by sector')">Change chart</a><a onclick="widgetAction('download','Budget by sector')">Download</a><a onclick="widgetAction('share','Budget by sector')">Share</a></div></div>
           <div class="widget-body"><canvas id="w3" height="150"></canvas></div>
         </div>
         <div class="card widget">
-          <div class="widget-big-num">94.2%<small>Immunization coverage — national avg</small></div>
+          <div class="widget-head"><b>Immunization coverage</b><span class="widget-live-badge live">🟢 LIVE</span><span class="widget-menu-btn" onclick="toggleWidgetMenu(this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></span><div class="widget-menu-dropdown"><a onclick="widgetAction('explain','Immunization coverage')">✨ Explain this</a><a onclick="widgetAction('ask','Immunization coverage')">Ask AI about this</a><a onclick="widgetAction('forecast','Immunization coverage')">Forecast</a><a onclick="widgetAction('compare','Immunization coverage')">Compare</a><a onclick="widgetAction('download','Immunization coverage')">Download</a><a onclick="widgetAction('share','Immunization coverage')">Share</a></div></div>
+          <div class="widget-big-num-kpi">
+            <div class="wk-value">94.2%<span class="wk-change up">▲ 2.1%</span></div>
+            <div class="wk-target">Target: 95% · <b class="wk-status ontrack">On track</b></div>
+            <div class="wk-progress"><i style="width:99%;"></i></div>
+          </div>
         </div>
         <div class="card widget">
-          <div class="widget-head"><b>Tender pipeline value</b><span class="grip">⠿⠿</span></div>
+          <div class="widget-head"><b>Tender pipeline value</b><span class="widget-live-badge live">🟢 LIVE</span><span class="widget-menu-btn" onclick="toggleWidgetMenu(this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></span><div class="widget-menu-dropdown"><a onclick="widgetAction('explain','Tender pipeline value')">✨ Explain this</a><a onclick="widgetAction('ask','Tender pipeline value')">Ask AI about this</a><a onclick="widgetAction('anomalies','Tender pipeline value')">Find anomalies</a><a onclick="widgetAction('forecast','Tender pipeline value')">Forecast</a><a onclick="widgetAction('compare','Tender pipeline value')">Compare</a><a onclick="widgetAction('change','Tender pipeline value')">Change chart</a><a onclick="widgetAction('download','Tender pipeline value')">Download</a><a onclick="widgetAction('share','Tender pipeline value')">Share</a></div></div>
           <div class="widget-body"><canvas id="w4" height="150"></canvas></div>
         </div>
         <div class="add-widget" id="addWidgetBtn" onclick="openChartPicker()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           <span>Add widget</span>
         </div>
+      </div>
+
+      <div class="studio-sources-panel" id="studioSourcesPanel">
+        <div class="card-head"><h3>Sources &amp; Methodology</h3></div>
+        <div class="dc-ws-meta-grid" style="padding:0 20px 16px;">
+          <div><span>Sources</span><b>GSS, GHS, WHO, World Bank</b></div>
+          <div><span>Last updated</span><b id="studioSourceUpdated">Today</b></div>
+          <div><span>Methodology</span><b>District-level aggregation, quarterly refresh</b></div>
+        </div>
+      </div>
       </div>
     </section>
 
@@ -3718,11 +3949,65 @@ const chartTypeLibrary = {
       const rows=[['Ashanti','2.1 t/ha','▲ 4%'],['Northern','1.6 t/ha','▼ 2%'],['Volta','1.9 t/ha','▲ 1%'],['Bono','2.4 t/ha','▲ 6%']];
       container.innerHTML='<table class="table-widget"><tr><th>Region</th><th>Yield</th><th>Change</th></tr>'+rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')+'</table>';
     }},
+
+  /* ---------------- TEXT & INTELLIGENCE ---------------- */
+  aiinsight:{name:'AI Insight', category:'Text & Intelligence', icon:'<path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/>', kind:'custom',
+    custom:(container)=>{
+      container.innerHTML=`<div class="ai-insight-widget">
+        <div class="intel-label">AI Insight</div>
+        <p>Maternal mortality increased in 3 regions over the last two quarters. Upper West recorded the largest increase at 8.4%.</p>
+        <div class="aiw-why"><b>Why this matters</b>The increase coincides with declining skilled-birth attendance and facility access.</div>
+        <div class="aiw-why"><b>Recommended action</b>Review district-level health capacity in the affected areas.</div>
+        <button onclick="showView('explorer')">Explore →</button>
+      </div>`;
+    }},
+  execsummary:{name:'Executive Summary', category:'Text & Intelligence', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>', kind:'custom',
+    custom:(container)=>{
+      container.innerHTML=`<div class="ai-insight-widget"><div class="intel-label">Executive Summary</div><p>Ghana's maternal health indicators have diverged significantly across regions this quarter. Three regions require priority attention, while Greater Accra and Eastern show comparatively stronger performance across all tracked indicators.</p></div>`;
+    }},
+  alertcard:{name:'Alert Card', category:'Text & Intelligence', icon:'<path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/>', kind:'custom',
+    custom:(container)=>{
+      container.innerHTML=`<div class="ai-insight-widget"><div class="intel-label" style="color:var(--danger);">🔴 Alert — Threshold Exceeded</div><p>Maternal mortality reached 358, exceeding the target of 300 by 58 points (+8.4%).</p><button onclick="toast('Alert configuration opened')">Configure alert</button></div>`;
+    }},
+  recommendcard:{name:'Recommendation Card', category:'Text & Intelligence', icon:'<path d="m12 2 2.9 6.4 6.9.9-5 4.9 1.2 6.9L12 17.8l-6 3.3 1.2-6.9-5-4.9 6.9-.9L12 2Z"/>', kind:'custom',
+    custom:(container)=>{
+      container.innerHTML=`<div class="ai-insight-widget"><div class="intel-label">Recommendation</div><p>Fast-track 4 facility upgrades in Upper West and North East to close the largest coverage gaps identified this quarter.</p><button onclick="showView('tender')">View related tenders →</button></div>`;
+    }},
+  keyfinding:{name:'Key Finding', category:'Text & Intelligence', icon:'<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>', kind:'custom',
+    custom:(container)=>{
+      container.innerHTML=`<div class="ai-insight-widget"><div class="intel-label">Key Finding</div><p>Districts within 10km of a health facility show 34% lower maternal mortality than districts beyond that radius — the strongest single predictor found in this dataset.</p></div>`;
+    }},
+
+  /* ---------------- MONITORING ---------------- */
+  livekpi:{name:'Live KPI (with target)', category:'Monitoring', icon:'<path d="M12 2 2 7l10 5 10-5-10-5Z"/>', kind:'custom',
+    custom:(container)=>{
+      container.innerHTML=`<div class="widget-big-num-kpi" style="padding:10px 4px 4px;">
+        <div class="wk-value">94.2%<span class="wk-change up">▲ 2.1%</span></div>
+        <div class="wk-target">Target: 95% · <b class="wk-status ontrack">On track</b></div>
+        <div class="wk-progress"><i style="width:99%;"></i></div>
+      </div>`;
+    }},
+  statusindicator:{name:'Status Indicator', category:'Monitoring', icon:'<circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/>', kind:'custom',
+    custom:(container)=>{
+      container.innerHTML=`<div class="ai-insight-widget" style="display:flex; align-items:center; gap:12px; padding:16px 4px;">
+        <span style="font-size:22px;">🟢</span><div><b style="display:block; font-size:13px;">All systems reporting</b><span style="font-size:11px; color:var(--text-dim);">18 widgets connected · Last checked 2 min ago</span></div>
+      </div>`;
+    }},
+
+  /* ---------------- DATA ---------------- */
+  sourcecard:{name:'Source Card', category:'Data', icon:'<path d="M4 4h16v4H4zM4 10h16v4H4zM4 16h16v4H4z"/>', kind:'custom',
+    custom:(container)=>{
+      container.innerHTML=`<div class="ai-insight-widget"><div class="intel-label">Sources</div><p>Ghana Statistical Service · Ghana Health Service · World Bank · WHO</p><div class="aiw-why"><b>Last updated</b>Today</div></div>`;
+    }},
+  dataquality:{name:'Data Quality', category:'Data', icon:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>', kind:'custom',
+    custom:(container)=>{
+      container.innerHTML=`<div class="dc-ws-quality" style="margin:8px 4px;"><div class="dc-ws-quality-ring" style="--pct:94; --qcolor:var(--success);"><span>94</span></div><div><b style="font-size:13px; display:block;">Data Quality — Excellent</b><p style="font-size:11px; color:var(--text-dim);">Completeness, freshness and consistency all above threshold.</p></div></div>`;
+    }},
 };
 
 /* ---------------- PICKER MODAL ---------------- */
 function openChartPicker(){
-  const categories = ['Comparison','Correlation','Part-to-whole','Time','Distribution','Specialized','Other'];
+  const categories = ['Comparison','Correlation','Part-to-whole','Time','Distribution','Specialized','Text & Intelligence','Monitoring','Data','Other'];
   const catDesc = {
     'Comparison':'Compare values across categories',
     'Correlation':'Explore relationships between variables',
@@ -3730,6 +4015,9 @@ function openChartPicker(){
     'Time':'Track change over time',
     'Distribution':'Show spread and shape of data',
     'Specialized':'Purpose-built for specific stories',
+    'Text & Intelligence':'Let AI interpret and narrate the data',
+    'Monitoring':'Track targets and live status',
+    'Data':'Show sources, quality and structure',
     'Other':'KPI cards and tables'
   };
   let html = `<div class="modal-head"><div><div class="eyebrow" style="margin-bottom:8px;"><span class="compass-dot"></span>DASHBOARD STUDIO</div><h3>Add a chart or widget</h3></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div><div class="modal-body" style="max-height:60vh; overflow-y:auto;">`;
@@ -3746,7 +4034,26 @@ function openChartPicker(){
   openModal(html);
 }
 
-function addWidgetOfType(type){
+function menuBtn(widgetName){
+  const esc = widgetName.replace(/'/g,"\\'");
+  return `<span class="widget-menu-btn" onclick="toggleWidgetMenu(this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg></span>
+  <div class="widget-menu-dropdown">
+    <a onclick="widgetAction('explain','${esc}')">✨ Explain this</a>
+    <a onclick="widgetAction('ask','${esc}')">Ask AI about this</a>
+    <a onclick="widgetAction('anomalies','${esc}')">Find anomalies</a>
+    <a onclick="widgetAction('forecast','${esc}')">Forecast</a>
+    <a onclick="widgetAction('compare','${esc}')">Compare</a>
+    <a onclick="widgetAction('change','${esc}')">Change chart</a>
+    <a onclick="widgetAction('download','${esc}')">Download</a>
+    <a onclick="widgetAction('share','${esc}')">Share</a>
+  </div>`;
+}
+function liveBadge(i){
+  const states = [['live','🟢 LIVE'],['live','🟢 LIVE'],['stale','🟡 Updated 2h ago']];
+  const [cls,label] = states[i % states.length];
+  return `<span class="widget-live-badge ${cls}">${label}</span>`;
+}
+function addWidgetOfType(type, silent){
   closeModal();
   widgetCounter++;
   const def = chartTypeLibrary[type];
@@ -3756,38 +4063,159 @@ function addWidgetOfType(type){
   const card = document.createElement('div');
   card.className = 'card widget widget-new';
   const removeBtn = `<span class="widget-remove" onclick="this.closest('.widget').remove()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg></span>`;
+  const badge = liveBadge(widgetCounter);
+  const menu = menuBtn(def.name);
 
   if(def.kind==='kpi'){
     const values = ['87.4%','2,140','+12.3%','GH₵1.2M'];
     const labels = ['Coverage rate — auto-computed','Records this month','Change vs last period','Estimated budget impact'];
     const i = widgetCounter % values.length;
-    card.innerHTML = `<div class="widget-head"><b>New KPI card</b>${removeBtn}</div><div class="widget-big-num" style="padding:6px 18px 16px;">${values[i]}<small>${labels[i]}</small></div>`;
+    card.innerHTML = `<div class="widget-head"><b>New KPI card</b>${badge}${menu}${removeBtn}</div><div class="widget-big-num" style="padding:6px 18px 16px;">${values[i]}<small>${labels[i]}</small></div>`;
     grid.insertBefore(card, addBtn);
-    toast('KPI card added');
+    if(!silent) toast('KPI card added');
     return;
   }
 
   const id = 'wnew'+widgetCounter;
   if(def.kind==='canvas'){
-    card.innerHTML = `<div class="widget-head"><b>${def.name}</b>${removeBtn}</div><div class="widget-body"><canvas id="${id}" height="150"></canvas></div>`;
+    card.innerHTML = `<div class="widget-head"><b>${def.name}</b>${badge}${menu}${removeBtn}</div><div class="widget-body"><canvas id="${id}" height="150"></canvas></div>`;
     grid.insertBefore(card, addBtn);
     def.build(id);
   } else {
-    card.innerHTML = `<div class="widget-head"><b>${def.name}</b>${removeBtn}</div><div class="widget-body-flex" id="body-${id}"></div>`;
+    card.innerHTML = `<div class="widget-head"><b>${def.name}</b>${badge}${menu}${removeBtn}</div><div class="widget-body-flex" id="body-${id}"></div>`;
     grid.insertBefore(card, addBtn);
     def.custom(document.getElementById('body-'+id), id);
   }
-  toast(def.name+' added');
+  if(!silent) toast(def.name+' added');
 }
 /* Backward-compatible alias */
 function addWidget(type){ addWidgetOfType(type==='bar'?'column':type); }
 
 
+/* =============================================================
+   DASHBOARD STUDIO — launcher, AI build, dashboard intelligence
+============================================================= */
+const studioTemplates = {
+  scratch:{heading:'Untitled dashboard', widgets:[]},
+  executive:{heading:'Executive Overview', widgets:['livekpi','column','donut','aiinsight']},
+  me:{heading:'M&E Dashboard', widgets:['line','table','execsummary','dataquality']},
+  health:{heading:'Ghana Health Intelligence', widgets:['line','aiinsight','livekpi','column']},
+  agriculture:{heading:'Agriculture Dashboard', widgets:['column','line','keyfinding','table']},
+  government:{heading:'National Development Dashboard', widgets:['donut','livekpi','execsummary','column']},
+  research:{heading:'Research Data Dashboard', widgets:['scatter','table','dataquality','sourcecard']},
+  finance:{heading:'Finance Dashboard', widgets:['line','waterfall','livekpi','column']},
+  tenders:{heading:'Tender Pipeline Dashboard', widgets:['funnel','table','livekpi','alertcard']},
+};
+function enterCanvas(templateKey){
+  const t = studioTemplates[templateKey] || studioTemplates.scratch;
+  document.getElementById('studioLauncher').style.display = 'none';
+  document.getElementById('studioCanvas').style.display = 'block';
+  document.getElementById('publishBtn').style.display = 'flex';
+  document.getElementById('studioHeading').textContent = t.heading;
+  document.getElementById('studioSubhead').textContent = 'Every chart is wired to live data from the Africa Data Cloud.';
+  if(templateKey!=='scratch'){
+    const extra = templateKey==='health' ? ['aiinsight'] : t.widgets;
+    extra.forEach(type=> setTimeout(()=> addWidgetOfType(type, true), 0));
+  }
+  window.scrollTo({top:0, behavior:'instant'});
+}
+function backToLauncher(){
+  document.getElementById('studioLauncher').style.display = 'block';
+  document.getElementById('studioCanvas').style.display = 'none';
+  document.getElementById('publishBtn').style.display = 'none';
+  document.getElementById('studioHeading').textContent = 'Turn any data into a living intelligence dashboard.';
+  document.getElementById('studioSubhead').textContent = 'Connect your data, let IntelligenceOS build the first version, refine it visually, publish it, and keep it alive automatically.';
+}
+function focusAiBuildBox(){
+  document.getElementById('studioAiInput').scrollIntoView({behavior:'smooth', block:'center'});
+  document.getElementById('studioAiInput').focus();
+}
+function scrollToTemplates(){
+  document.getElementById('studioTemplates').scrollIntoView({behavior:'smooth', block:'center'});
+}
+function runStudioAiBuild(query){
+  if(!query || !query.trim()) return;
+  const steps = ['Finding relevant datasets','Selecting appropriate indicators','Choosing charts','Building the layout','Adding filters','Generating titles','Adding AI insights','Adding source information'];
+  const el = document.getElementById('studioAiBuildProgress');
+  el.classList.add('show');
+  el.innerHTML = steps.map((s,i)=>`<div class="ask-proc-row" data-step="${i}"><span class="ask-proc-spin"></span>${s}…</div>`).join('');
+  el.querySelectorAll('.ask-proc-row').forEach((row,i)=>{
+    setTimeout(()=> row.classList.add('show'), i*220);
+    setTimeout(()=> row.classList.add('done'), i*220+280);
+  });
+  const q = query.toLowerCase();
+  let key = 'health';
+  if(q.includes('agri')||q.includes('maize')||q.includes('crop')||q.includes('farm')) key='agriculture';
+  else if(q.includes('tender')||q.includes('opportunit')) key='tenders';
+  else if(q.includes('financ')||q.includes('budget')||q.includes('cost')) key='finance';
+  else if(q.includes('research')||q.includes('survey')||q.includes('baseline')) key='research';
+  else if(q.includes('educat')||q.includes('school')||q.includes('teacher')) key='government';
+  setTimeout(()=>{
+    toast('Dashboard built — 4 widgets added based on your description');
+    enterCanvas(key);
+  }, steps.length*220+500);
+}
+const dashboardAskAnswers = {
+  'which region requires the most attention?':'Upper West requires the most attention — it combines the highest maternal health risk (44/100) with below-average facility access across 3 of its 11 districts.',
+  'what changed since last month?':'Maternal mortality risk rose 8% in Upper West and North East. Tender pipeline value increased 14%. Agriculture yield held steady nationally.',
+  'what are the biggest risks?':'Three risks stand out: rising maternal mortality in Upper West, declining maize yield in the north tied to rainfall deficit, and 2 tender deadlines closing within 6 days.',
+  'which indicators are improving?':'Youth unemployment is falling for a third straight quarter, immunization coverage is up 2.1% vs last quarter, and tender pipeline value is up 14% since Monday.',
+  'why did this kpi decline?':'The clearest decline is regional maize yield in Northern and Savannah, coinciding with an 18% rainfall deficit during the July–August growth window.',
+  'what should i tell the minister?':'Lead with the positive: youth unemployment falling for a third straight quarter. Flag the priority risk: 3 districts in Upper West need facility investment. Close with the opportunity: 14 new tenders match your organisation this week.'
+};
+function askThisDashboard(query){
+  if(!query || !query.trim()) return;
+  const key = query.trim().toLowerCase();
+  const answer = dashboardAskAnswers[key] || 'Based on the widgets in this dashboard, the clearest signal is the divergence between Upper West (highest risk) and Greater Accra (strongest performance) — worth a closer look with Ask AI in the AI Data Explorer.';
+  const el = document.getElementById('askDashboardResult');
+  el.classList.add('show');
+  el.innerHTML = `<div style="display:flex; gap:10px;"><div class="ai-avatar" style="flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div><p style="font-size:12.8px; line-height:1.6;">${answer}</p></div>`;
+}
+function toggleWidgetMenu(btn){
+  document.querySelectorAll('.widget-menu-dropdown.open').forEach(d=>{ if(d!==btn.nextElementSibling) d.classList.remove('open'); });
+  btn.nextElementSibling.classList.toggle('open');
+}
+document.addEventListener('click', (e)=>{
+  if(!e.target.closest('.widget-menu-btn')) document.querySelectorAll('.widget-menu-dropdown.open').forEach(d=> d.classList.remove('open'));
+});
+function widgetAction(action, widgetName){
+  document.querySelectorAll('.widget-menu-dropdown.open').forEach(d=> d.classList.remove('open'));
+  const actions = {
+    explain:()=> toast('Explaining "'+widgetName+'"…'),
+    ask:()=> showView('explorer'),
+    anomalies:()=> toast('Scanning "'+widgetName+'" for anomalies…'),
+    forecast:()=> toast('Forecasting "'+widgetName+'"…'),
+    compare:()=> toast('Opening comparison for "'+widgetName+'"…'),
+    change:()=> openChartPicker(),
+    download:()=> toast('Downloading "'+widgetName+'"…'),
+    share:()=> toast('Share link copied for "'+widgetName+'"'),
+  };
+  (actions[action]||(()=>{}))();
+}
 function publishDashboard(){
+  const btn = document.getElementById('publishBtn');
+  const widgetCount = document.querySelectorAll('#widgetGrid .widget').length;
+  openModal(`
+    <div class="modal-head"><h3>Dashboard Health</h3><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <div class="gis-gap-list">
+        <div class="gis-gap-row"><span>🟢 ${widgetCount} widgets connected</span></div>
+        <div class="gis-gap-row"><span>🟢 ${widgetCount} data sources valid</span></div>
+        <div class="gis-gap-row"><span>🟡 2 datasets older than 30 days</span></div>
+      </div>
+      <p style="margin-top:12px; font-size:12px; color:var(--text-dim);">Your dashboard is ready to publish. Minor freshness warnings won't block publishing.</p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Review issues</button>
+      <button class="btn btn-primary" onclick="closeModal(); confirmPublish();" style="flex:1; justify-content:center;">Publish anyway</button>
+    </div>
+  `);
+}
+function confirmPublish(){
   const btn = document.getElementById('publishBtn');
   const original = btn.innerHTML;
   btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Published';
-  toast('Dashboard published — visible to your workspace');
+  toast('Dashboard published — living dashboard now monitoring for change');
   setTimeout(()=>{ btn.innerHTML = original; }, 2200);
 }
 
@@ -4314,12 +4742,16 @@ function setLayer(layerKey){ toggleGisLayer(document.querySelector(`.layer-btn[d
 function setGisTool(el, tool){
   document.querySelectorAll('.gis-tool-btn').forEach(b=> b.classList.remove('active'));
   if(el) el.classList.add('active');
-  ['time','forecast','compare','gaps'].forEach(t=>{
+  ['time','forecast','compare','gaps','optimal','scenario','fieldwork','opportunity'].forEach(t=>{
     const p = document.getElementById('gisPanel'+t.charAt(0).toUpperCase()+t.slice(1));
     if(p) p.style.display = (t===tool) ? 'block' : 'none';
   });
   if(tool==='compare') populateCompareSelects();
   if(tool==='gaps') populateGapList();
+  if(tool==='optimal') renderOptimalLocation();
+  if(tool==='scenario') renderScenario();
+  if(tool==='fieldwork') populateFieldworkSelect();
+  if(tool==='opportunity') renderOpportunity('agriculture');
 }
 function findHotspots(){
   const sorted = [...regions].sort((a,b)=> b.health-a.health).slice(0,3);
@@ -4385,6 +4817,82 @@ function populateGapList(){
     const status = i<2 ? '🔴 Data gap' : i<4 ? '🟠 Partial' : '🟢 Strong';
     return `<div class="gis-gap-row"><span>${r.name}</span><span>${status}</span></div>`;
   }).join('');
+}
+/* ---------- Optimal Location ---------- */
+function renderOptimalLocation(){
+  const scored = regions.map(r=>{
+    const popScore = parseFloat(r.pop) * (r.pop.includes('M')?1:0.1);
+    const needScore = (r.health/44)*40 + (popScore/6)*30 + ((400-r.facilities)/400)*30;
+    return {...r, score: Math.round(needScore)};
+  }).sort((a,b)=> b.score-a.score).slice(0,3);
+  document.getElementById('gisOptimalList').innerHTML = scored.map((r,i)=>`
+    <div class="gis-optimal-item" onclick="focusRegion('${r.name.replace(/'/g,"\\'")}')">
+      <div class="gis-optimal-rank">${i+1}</div>
+      <div><b>${r.name}</b><span>Population ${r.pop} · ${r.facilities} existing facilities · Health risk ${r.health}/100</span></div>
+      <div class="gis-optimal-score">${r.score}/100</div>
+    </div>`).join('');
+}
+/* ---------- Scenario Modelling (What If?) ---------- */
+const scenarioData = {
+  facilities:{label:'+10 health facilities', current:{Population:'34.1M covered', Cost:'—', Coverage:'68% within 10km', Risk:'12 districts elevated'}, proposed:{Population:'34.1M covered', Cost:'GH₵48M capex', Coverage:'81% within 10km', Risk:'5 districts elevated'}, note:'Adding 10 facilities in the highest-need districts would reduce elevated-risk districts from 12 to an estimated 5, based on current travel-time coverage models.'},
+  rainfall:{label:'Rainfall −15%', current:{Yield:'1.9 t/ha national avg', Farms:'1.2M affected', Food:'Baseline production'}, proposed:{Yield:'1.5 t/ha national avg', Farms:'1.2M affected', Food:'−21% projected'}, note:'A 15% rainfall reduction is projected to cut national maize yield by roughly 21%, concentrated in Northern, Savannah and Upper regions.'},
+  teachers:{label:'+15% teachers', current:{Ratio:'38:1 national avg', Shortfall:'+3,860 needed', Coverage:'Uneven across regions'}, proposed:{Ratio:'33:1 national avg', Shortfall:'+1,240 needed', Coverage:'More even distribution'}, note:'A 15% increase in trained teachers would bring the national pupil:teacher ratio close to the 30:1 target, most improving Savannah and North East.'}
+};
+function renderScenario(){
+  const type = document.getElementById('scenarioType').value;
+  const d = scenarioData[type];
+  const rows = (obj)=> Object.entries(obj).map(([k,v])=>`<div class="gis-scenario-row"><span>${k}</span><b>${v}</b></div>`).join('');
+  document.getElementById('gisScenarioResult').innerHTML = `
+    <div class="gis-scenario-compare">
+      <div class="gis-scenario-col current"><b>Current</b>${rows(d.current)}</div>
+      <div class="gis-scenario-col proposed"><b>Proposed — ${d.label}</b>${rows(d.proposed)}</div>
+    </div>
+    <p class="gis-time-note" style="margin-top:12px;">${d.note}</p>
+    <button class="btn btn-primary" style="margin-top:10px;" onclick="showView('explorer'); toast('Opening full scenario analysis in AI Data Explorer')">Explore this scenario →</button>
+  `;
+}
+/* ---------- Fieldwork Planning ---------- */
+function populateFieldworkSelect(){
+  const sel = document.getElementById('fieldworkRegion');
+  if(sel.options.length<2) sel.innerHTML = regions.map(r=>`<option value="${r.name}">${r.name}</option>`).join('');
+}
+function prepareFieldwork(){
+  const name = document.getElementById('fieldworkRegion').value;
+  const r = regions.find(x=>x.name===name);
+  if(!r) return;
+  document.getElementById('gisFieldworkResult').innerHTML = `
+    <div class="intel-section" style="padding:14px 0 0; border-top:1px solid var(--border); margin-top:12px;">
+      <div class="intel-label">Fieldwork Brief — ${r.name}</div>
+      <div class="gis-fieldwork-grid">
+        <div class="gis-profile-stat"><span>Target population</span><b>${r.pop}</b></div>
+        <div class="gis-profile-stat"><span>Existing facilities</span><b>${r.facilities}</b></div>
+        <div class="gis-profile-stat"><span>Priority districts</span><b>${Math.max(2, Math.round(r.health/10))}</b></div>
+        <div class="gis-profile-stat"><span>Data gaps identified</span><b>3 indicators</b></div>
+      </div>
+      <p style="margin-top:10px; font-size:12.5px; color:var(--text-dim);">Recommended: household survey covering maternal health access, facility staffing and referral patterns across ${Math.max(2, Math.round(r.health/10))} priority districts.</p>
+      <button class="btn btn-primary" style="margin-top:10px;" onclick="showView('survey'); toast('Creating survey for ${r.name.replace(/'/g,"\\'")} fieldwork plan')">Create survey →</button>
+    </div>
+  `;
+}
+/* ---------- Opportunity Map ---------- */
+const opportunityData = {
+  agriculture:[{n:'Bono',d:'High yield, strong road access, low irrigation investment'},{n:'Ashanti',d:'Established markets, expanding processing capacity'},{n:'Eastern',d:'Good rainfall, underused arable land'}],
+  infrastructure:[{n:'Savannah',d:'Rapid population growth, limited road network'},{n:'Northern',d:'Regional hub potential, ageing infrastructure'},{n:'Oti',d:'New region status, greenfield investment needs'}],
+  healthcare:[{n:'Upper West',d:'High need, strong government partnership interest'},{n:'North East',d:'Underserved, low facility density'},{n:'Savannah',d:'Growing population, facility gap'}],
+  education:[{n:'Savannah',d:'Lowest teacher ratio, strong community demand'},{n:'North East',d:'New region, school infrastructure gap'},{n:'Northern',d:'Large youth population, digital learning potential'}],
+  business:[{n:'Greater Accra',d:'Established market access, logistics hub'},{n:'Ashanti',d:'Second-largest market, manufacturing base'},{n:'Western',d:'Port access, trade corridor potential'}],
+  energy:[{n:'Northern',d:'High solar potential, grid extension gap'},{n:'Upper East',d:'Strong solar irradiance, agri-processing demand'},{n:'Savannah',d:'Large open land, off-grid opportunity'}]
+};
+function setOppCategory(el, cat){
+  document.querySelectorAll('.gis-opp-chip').forEach(c=> c.classList.remove('active'));
+  el.classList.add('active');
+  renderOpportunity(cat);
+}
+function renderOpportunity(cat){
+  const list = opportunityData[cat] || [];
+  document.getElementById('gisOpportunityResult').innerHTML = '<div class="gis-opp-list">' + list.map(o=>`
+    <div class="gis-opp-item" onclick="focusRegion('${o.n.replace(/'/g,"\\'")}')"><div><b>${o.n}</b><span>${o.d}</span></div><span style="color:var(--teal-600); font-weight:700;">View →</span></div>
+  `).join('') + '</div>';
 }
 function monitorThisMap(){
   toast('Monitoring '+layerConfig[currentLayer].short+' across Ghana — alerts will appear in AI Command Centre');
