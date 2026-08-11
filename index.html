@@ -613,6 +613,109 @@ button{font-family:inherit; cursor:pointer;}
 .result-table th{text-align:left; padding:9px 20px; color:var(--text-dim); font-weight:700; font-size:10.6px; text-transform:uppercase; letter-spacing:.04em; border-bottom:1px solid var(--border);}
 .result-table td{padding:9px 20px; border-bottom:1px solid var(--border);}
 .result-table tr:last-child td{border-bottom:none;}
+
+/* ---------- EXPLORER — MODES & ATTACH ---------- */
+.explorer-mode-toggle{display:inline-flex; gap:4px; background:var(--surface); border:1px solid var(--border); border-radius:11px; padding:4px;}
+.expl-mode{font-size:12px; font-weight:700; padding:8px 16px; border-radius:8px; color:var(--text-dim); cursor:pointer; transition:all .15s;}
+.expl-mode.active{background:var(--navy); color:#fff;}
+.expl-attach-row{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:12px;}
+.expl-attach{font-size:11.5px; font-weight:700; padding:6px 12px; border-radius:20px; border:1px dashed var(--border); color:var(--text-dim); cursor:pointer; transition:all .15s;}
+.expl-attach:hover{border-color:var(--teal); color:var(--teal-600); border-style:solid;}
+
+/* ---------- EXPLORER HOMEPAGE STATE ---------- */
+.expl-recent-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:0 20px 18px;}
+.expl-recent-card{background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:13px 14px; cursor:pointer; transition:all .15s;}
+.expl-recent-card:hover{border-color:var(--teal); transform:translateY(-2px);}
+.expl-recent-card b{display:block; font-size:12.5px; margin-bottom:4px;}
+.expl-recent-card span{font-size:10.5px; color:var(--text-dim);}
+.expl-capability-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:0 20px 18px;}
+.expl-cap{background:var(--bg); border-radius:10px; padding:16px 14px; text-align:center;}
+.expl-cap b{display:block; font-size:12.5px; margin-bottom:8px;}
+.expl-cap svg{width:12px; height:12px; color:var(--border); margin:0 auto 8px;}
+.expl-cap span{font-size:11px; color:var(--text-dim); font-weight:600;}
+.expl-source-chips{display:flex; gap:9px; flex-wrap:wrap;}
+.expl-source-chips span{font-size:11.5px; font-weight:700; padding:6px 13px; border-radius:20px; background:var(--navy-100); color:var(--navy-ink);}
+
+/* ---------- EXPLORER RESULT STATE ---------- */
+.expl-result-head{padding:16px 20px 0; text-align:left; display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+.expl-question-label{font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); width:100%;}
+.expl-question-text{font-size:15px; font-weight:800; flex:1;}
+.expl-mode-badge{font-size:10.5px; font-weight:700; padding:4px 10px; border-radius:20px; background:var(--teal-100); color:var(--teal-600); flex-shrink:0;}
+.expl-evidence-row{display:flex; gap:10px; flex-wrap:wrap; padding:0 20px 14px;}
+.expl-evidence-chip{font-size:11.5px; font-weight:700; padding:7px 13px; border-radius:9px; background:var(--bg); border:1px solid var(--border);}
+.expl-viz-tabs{display:flex; align-items:center; gap:6px; padding:0 20px; border-top:1px solid var(--border); border-bottom:1px solid var(--border);}
+.expl-viz-tab{font-size:12px; font-weight:700; padding:10px 14px; color:var(--text-dim); cursor:pointer; border-bottom:2px solid transparent;}
+.expl-viz-tab.active{color:var(--navy-ink); border-bottom-color:var(--teal);}
+.expl-explain-btn{margin-left:auto; font-size:11.5px; font-weight:700; padding:6px 12px; border-radius:20px; background:var(--teal-100); color:var(--teal-600); cursor:pointer; border:none;}
+.expl-explain-btn:hover{background:var(--teal); color:#fff;}
+.result-map{padding:8px 20px 16px;}
+.expl-map-dot{cursor:pointer;}
+
+.expl-explain-panel{display:none; padding:16px 20px; background:var(--bg); margin:0 20px 16px; border-radius:12px; border:1px solid var(--border);}
+.expl-explain-panel.show{display:block; animation:rise .25s ease both;}
+.expl-why-text{font-size:12.8px; line-height:1.65; color:var(--text);}
+.expl-confidence-row{display:flex; align-items:center; justify-content:space-between; margin-top:12px; padding-top:12px; border-top:1px dashed var(--border); font-size:12.5px; font-weight:700;}
+.expl-confidence-row b{color:var(--success);}
+.expl-confidence-note{font-size:11px; color:var(--text-dim); margin-top:6px;}
+
+.intel-section{padding:16px 20px; border-top:1px solid var(--border);}
+.expl-insight-cards{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:10px;}
+.expl-insight-card{display:flex; gap:10px; padding:12px 14px; border-radius:10px; background:var(--bg); border:1px solid var(--border); cursor:pointer; transition:all .15s;}
+.expl-insight-card:hover{border-color:var(--teal); transform:translateY(-1px);}
+.expl-insight-icon{width:26px; height:26px; border-radius:7px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:13px;}
+.expl-insight-card b{display:block; font-size:9.5px; text-transform:uppercase; letter-spacing:.04em; margin-bottom:3px;}
+.expl-insight-card span{font-size:11.5px; font-weight:600; color:var(--text); line-height:1.4;}
+
+.expl-gap-box{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:10px 0;}
+.expl-gap-col b{display:block; font-size:11.5px; margin-bottom:8px;}
+.expl-gap-col ul{list-style:none; padding:0; display:flex; flex-direction:column; gap:6px;}
+.expl-gap-col li{font-size:11.5px; color:var(--text-dim);}
+.expl-gap-note{font-size:11.5px; color:var(--text-dim); font-style:italic;}
+
+.expl-forecast-row{display:flex; align-items:center; gap:14px; margin:10px 0 14px;}
+.expl-forecast-col{background:var(--bg); border-radius:10px; padding:10px 16px; flex:1;}
+.expl-forecast-col span{display:block; font-size:9.5px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:3px;}
+.expl-forecast-col b{font-size:13px;}
+.expl-forecast-arrow{color:var(--border); font-size:16px;}
+.expl-forecast-scenarios{display:grid; grid-template-columns:repeat(3,1fr); gap:10px;}
+.expl-scenario{border-radius:10px; padding:12px 14px; text-align:center;}
+.expl-scenario span{display:block; font-size:9.5px; font-weight:700; text-transform:uppercase; margin-bottom:4px;}
+.expl-scenario b{font-size:14px;}
+.expl-scenario.worst{background:#FEF2F2; color:var(--danger);}
+.expl-scenario.expected{background:var(--navy-100); color:var(--navy-ink);}
+.expl-scenario.best{background:#E7F7EC; color:var(--success);}
+[data-theme="dark"] .expl-scenario.worst{background:#2a1414;}
+[data-theme="dark"] .expl-scenario.best{background:#0e2c1a;}
+.expl-forecast-note{font-size:11px; color:var(--text-dim); margin-top:10px;}
+
+.expl-followup-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+.expl-followup-row button{font-size:12px; font-weight:600; padding:8px 13px; border-radius:20px; border:1px solid var(--border); background:var(--surface); color:var(--text-dim); cursor:pointer; transition:all .15s;}
+.expl-followup-row button:hover{border-color:var(--teal); color:var(--teal-600);}
+
+.expl-toolbox{border-top:1px solid var(--border); padding:16px 20px;}
+.expl-toolbox-tabs{display:flex; gap:6px; margin-bottom:12px;}
+.expl-tb-tab{font-size:12px; font-weight:700; padding:8px 14px; border-radius:9px; color:var(--text-dim); cursor:pointer; border:1px solid transparent;}
+.expl-tb-tab.active{background:var(--navy-100); color:var(--navy-ink); border-color:var(--border);}
+.expl-toolbox-body{display:flex; flex-wrap:wrap; gap:8px;}
+.expl-toolbox-body span{font-size:11.5px; font-weight:600; padding:7px 12px; border-radius:8px; background:var(--bg); border:1px solid var(--border); color:var(--text-dim); cursor:pointer; transition:all .15s;}
+.expl-toolbox-body span:hover{border-color:var(--teal); color:var(--teal-600);}
+
+.expl-keepgoing{border-top:1px solid var(--border); padding:16px 20px;}
+.expl-keepgoing-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+.expl-keepgoing-row button{font-size:12px; font-weight:700; padding:8px 14px; border-radius:20px; border:1px solid var(--border); background:var(--surface); color:var(--navy-ink); cursor:pointer; transition:all .15s;}
+.expl-keepgoing-row button:hover{background:var(--navy); color:#fff; border-color:var(--navy);}
+
+.expl-turn-into{border-top:1px solid var(--border); padding:16px 20px;}
+.expl-turn-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+.expl-turn-row button{font-size:12px; font-weight:700; padding:9px 14px; border-radius:9px; border:1px solid var(--border); background:var(--bg); color:var(--text); cursor:pointer; transition:all .15s;}
+.expl-turn-row button:hover{border-color:var(--teal); background:var(--teal-100); color:var(--teal-600);}
+
+.expl-param-bar{display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--border); background:var(--bg); border-radius:0 0 var(--radius-lg) var(--radius-lg);}
+.expl-param{flex:1; min-width:120px; padding:12px 16px; cursor:pointer; border-right:1px solid var(--border); transition:background .15s;}
+.expl-param:last-child{border-right:none;}
+.expl-param:hover{background:var(--surface);}
+.expl-param small{display:block; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--text-dim); margin-bottom:3px;}
+.expl-param b{font-size:12px; color:var(--navy-ink);}
 .risk-pill{font-size:10.5px; font-weight:700; padding:3px 8px; border-radius:20px;}
 .risk-high{background:#FDE8E8; color:var(--danger);}
 .risk-med{background:#FEF3E2; color:#B45309;}
@@ -925,6 +1028,13 @@ button{font-family:inherit; cursor:pointer;}
   .dc-grid-2{grid-template-columns:1fr;}
   .dc-intel-actions{grid-template-columns:repeat(3,1fr);}
   .dc-ask-best-grid{grid-template-columns:repeat(2,1fr);}
+  .expl-recent-grid{grid-template-columns:1fr;}
+  .expl-capability-grid{grid-template-columns:1fr 1fr;}
+  .expl-insight-cards{grid-template-columns:1fr;}
+  .expl-gap-box{grid-template-columns:1fr;}
+  .expl-forecast-scenarios{grid-template-columns:1fr;}
+  .expl-param-bar{flex-direction:column;}
+  .expl-param{border-right:none; border-bottom:1px solid var(--border);}
 }
 @media (max-width:860px){
   .sidebar{transform:translateX(-100%);}
@@ -1524,31 +1634,195 @@ button{font-family:inherit; cursor:pointer;}
         <div>
           <div class="eyebrow"><span class="compass-dot"></span>AI DATA EXPLORER</div>
           <h1>Ask a question. Get an answer.</h1>
-          <p>Natural language in. Maps, charts, tables and forecasts out — grounded in the Africa Data Cloud.</p>
+          <p>Ask questions in plain language and turn data into maps, charts, explanations, forecasts, comparisons and decisions — grounded in the Africa Data Cloud and your organisation's data.</p>
         </div>
       </div>
 
       <div class="explorer-box">
-        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="var(--navy-ink)" stroke-width="1.6" style="margin:0 auto;"><circle cx="12" cy="12" r="9"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/><path fill="var(--teal)" stroke="none" d="m14.5 9.5-2.2 5.2-5.2 2.2 2.2-5.2 5.2-2.2Z"/></svg>
+        <div class="explorer-mode-toggle">
+          <button class="expl-mode active" id="modeQuick" onclick="setExplorerMode('quick')">⚡ Quick Answer</button>
+          <button class="expl-mode" id="modeDeep" onclick="setExplorerMode('deep')">🔬 Deep Analysis</button>
+        </div>
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="var(--navy-ink)" stroke-width="1.6" style="display:block; margin:14px auto 0;"><circle cx="12" cy="12" r="9"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/><path fill="var(--teal)" stroke="none" d="m14.5 9.5-2.2 5.2-5.2 2.2 2.2-5.2 5.2-2.2Z"/></svg>
         <div class="explorer-input-wrap">
-          <input type="text" id="explorerInput" placeholder="Show districts where maternal mortality is rising…">
+          <input type="text" id="explorerInput" placeholder="Ask IntelligenceOS about your data…">
           <button onclick="runExplorer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
+        <div class="expl-attach-row">
+          <span class="expl-attach" onclick="toast('Attach a dataset from Africa Data Cloud')">+ Dataset</span>
+          <span class="expl-attach" onclick="toast('Attach a dashboard from Dashboard Studio')">+ Dashboard</span>
+          <span class="expl-attach" onclick="toast('Attach a document')">+ Document</span>
+          <span class="expl-attach" onclick="toast('Attach a survey from Survey Intelligence')">+ Survey</span>
+          <span class="expl-attach" onclick="toast('Attach a map from GIS Intelligence')">+ Map</span>
+        </div>
         <div class="chip-row">
-          <button class="chip" onclick="askChip('Show districts where maternal mortality is rising')">Show districts where maternal mortality is rising</button>
-          <button class="chip" onclick="askChip('Which regions need more teachers?')">Which regions need more teachers?</button>
-          <button class="chip" onclick="askChip('Compare maize yield across regions')">Compare maize yield across regions</button>
-          <button class="chip" onclick="askChip('Which tenders match our organisation?')">Which tenders match our organisation?</button>
+          <button class="chip" onclick="askChip('Show districts where maternal mortality is rising')">What changed this month?</button>
+          <button class="chip" onclick="askChip('Compare maize yield across regions')">Compare regions</button>
+          <button class="chip" onclick="askChip('Which regions need more teachers?')">Find emerging risks</button>
+          <button class="chip" onclick="askChip('Show districts where maternal mortality is rising')">Explain this trend</button>
+          <button class="chip" onclick="askChip('Which tenders match our organisation?')">Forecast next year</button>
+          <button class="chip" onclick="askChip('Compare maize yield across regions')">Find correlations</button>
+        </div>
+      </div>
+
+      <!-- HOMEPAGE STATE (shown before first query) -->
+      <div id="explorerHome">
+        <div class="card" style="margin-top:18px;">
+          <div class="card-head"><h3>Your Recent Intelligence</h3></div>
+          <div class="expl-recent-grid">
+            <div class="expl-recent-card" onclick="askChip('Show districts where maternal mortality is rising')"><b>Maternal Health</b><span>Analysed 2 hours ago</span></div>
+            <div class="expl-recent-card" onclick="askChip('Compare maize yield across regions')"><b>Agriculture</b><span>Analysed yesterday</span></div>
+            <div class="expl-recent-card" onclick="askChip('Which regions need more teachers?')"><b>Youth Employment</b><span>Analysed 3 days ago</span></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:18px;">
+          <div class="card-head"><h3>What Can IntelligenceOS Do?</h3></div>
+          <div class="expl-capability-grid">
+            <div class="expl-cap"><b>Analyse</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Explain</span></div>
+            <div class="expl-cap"><b>Visualise</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Map / Chart</span></div>
+            <div class="expl-cap"><b>Predict</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Forecast</span></div>
+            <div class="expl-cap"><b>Compare</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Countries</span></div>
+            <div class="expl-cap"><b>Discover</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Patterns</span></div>
+            <div class="expl-cap"><b>Create</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Reports</span></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:18px; padding:16px 22px;">
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--text-dim); margin-bottom:12px;">Data Powering Your Answers</div>
+          <div class="expl-source-chips">
+            <span>GSS</span><span>GHS</span><span>WHO</span><span>World Bank</span><span>FAO</span><span>GMet</span><span>Your data</span>
+          </div>
         </div>
       </div>
 
       <div class="card explorer-result" id="explorerResult">
+        <div class="expl-result-head">
+          <div class="expl-question-label">QUESTION</div>
+          <div class="expl-question-text" id="explQuestionText">—</div>
+          <span class="expl-mode-badge" id="explModeBadge">⚡ Quick Answer</span>
+        </div>
         <div class="ai-line">
           <div class="ai-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div>
           <p id="explorerAnswer"></p>
         </div>
-        <div class="result-chart"><canvas id="explorerChart" height="110"></canvas></div>
-        <table class="result-table" id="explorerTable"></table>
+        <div class="expl-evidence-row" id="explEvidenceRow"></div>
+
+        <div class="expl-viz-tabs">
+          <button class="expl-viz-tab active" onclick="setExplVizTab(this,'chart')">Chart</button>
+          <button class="expl-viz-tab" onclick="setExplVizTab(this,'map')">Map</button>
+          <button class="expl-viz-tab" onclick="setExplVizTab(this,'table')">Table</button>
+          <button class="expl-explain-btn" onclick="toggleExplain()">✨ Explain</button>
+        </div>
+        <div class="result-chart" id="explVizChart"><canvas id="explorerChart" height="110"></canvas></div>
+        <div class="result-map" id="explVizMap" style="display:none;">
+          <svg viewBox="0 0 200 160" style="width:100%; height:170px;">
+            <path id="explMapPath" d="M 87.7 144.0 L 79.2 150.0 L 76.8 150.4 L 71.5 146.3 L 54.6 142.7 L 55.4 141.8 L 62.2 142.5 L 63.0 141.6 L 61.6 138.4 L 62.9 136.2 L 61.8 131.2 L 60.0 130.3 L 58.4 131.1 L 57.9 129.0 L 56.3 129.2 L 56.5 125.9 L 51.2 109.2 L 52.3 106.8 L 51.8 104.8 L 57.9 95.7 L 58.6 87.5 L 61.7 80.1 L 62.5 80.8 L 63.9 78.6 L 65.6 78.4 L 65.1 76.4 L 68.0 74.5 L 65.3 58.9 L 64.1 56.7 L 61.7 55.8 L 61.9 54.0 L 64.4 51.6 L 63.0 50.3 L 63.8 46.5 L 61.9 44.6 L 61.6 42.0 L 62.9 39.0 L 61.3 31.2 L 62.2 29.9 L 60.2 28.3 L 61.9 26.1 L 59.8 25.4 L 58.3 19.5 L 60.9 15.1 L 60.6 13.3 L 84.3 14.0 L 91.3 13.0 L 102.5 13.4 L 103.0 14.2 L 104.4 13.3 L 108.2 13.7 L 109.0 15.4 L 110.1 13.6 L 113.0 12.8 L 113.2 10.9 L 114.4 10.7 L 114.7 11.9 L 116.5 9.6 L 120.5 11.5 L 122.2 11.0 L 123.3 13.9 L 120.6 19.7 L 121.3 21.5 L 125.7 23.8 L 126.7 26.5 L 128.8 26.1 L 129.5 28.5 L 131.2 28.5 L 130.3 33.1 L 131.7 34.0 L 130.4 34.6 L 130.2 42.4 L 128.3 42.8 L 129.0 44.2 L 130.9 44.2 L 127.8 44.6 L 129.4 46.1 L 127.6 47.0 L 128.6 47.8 L 132.4 46.3 L 135.0 48.3 L 132.5 56.2 L 134.1 59.9 L 133.3 61.6 L 130.7 62.5 L 132.8 66.0 L 136.7 68.2 L 138.5 71.6 L 138.5 72.8 L 135.4 74.6 L 136.3 85.5 L 133.9 88.0 L 133.9 90.9 L 135.0 92.4 L 136.6 92.2 L 137.0 94.0 L 135.6 100.8 L 134.0 101.6 L 134.9 102.7 L 134.2 104.7 L 136.8 106.7 L 136.9 109.5 L 138.8 110.0 L 138.9 113.1 L 142.1 115.5 L 144.5 115.5 L 146.2 119.1 L 148.8 119.1 L 148.8 120.4 L 145.6 122.5 L 142.8 127.5 L 128.2 127.9 L 114.1 134.1 L 104.8 140.0 L 98.8 140.4 L 95.4 142.4 L 87.7 144.0 Z" fill="none" stroke="var(--border)" stroke-width="1.5"/>
+            <g id="explMapDots"></g>
+          </svg>
+        </div>
+        <table class="result-table" id="explorerTable" style="display:none;"></table>
+
+        <div class="expl-explain-panel" id="explExplainPanel">
+          <div class="intel-label">Why is this happening?</div>
+          <p id="explWhyText" class="expl-why-text"></p>
+          <div class="intel-label" style="margin-top:12px;">Supporting evidence</div>
+          <ul class="intel-evidence" id="explSupportingList"></ul>
+          <div class="expl-confidence-row">
+            <span>How confident are we?</span>
+            <b id="explConfidenceVal">87% — High</b>
+          </div>
+          <p class="expl-confidence-note" id="explConfidenceNote"></p>
+        </div>
+
+        <div class="intel-section" id="explInsightSection">
+          <div class="intel-label">AI detected <span id="explSignalCount">4</span> important signals</div>
+          <div class="expl-insight-cards" id="explInsightCards"></div>
+        </div>
+
+        <div class="intel-section" id="explGapSection" style="display:none;">
+          <div class="intel-label">⚠ Data Gap Detected</div>
+          <div class="expl-gap-box">
+            <div class="expl-gap-col"><b>We have sufficient data on:</b><ul id="explGapHave"></ul></div>
+            <div class="expl-gap-col"><b>But limited data on:</b><ul id="explGapLimited"></ul></div>
+          </div>
+          <p class="expl-gap-note">These gaps limit confidence in causal interpretation.</p>
+          <button class="btn btn-primary" style="margin-top:10px;" onclick="showView('survey'); toast('Opening Survey Intelligence to collect missing data')">Collect missing data →</button>
+        </div>
+
+        <div class="intel-section" id="explForecastSection" style="display:none;">
+          <div class="intel-label">Forecast</div>
+          <div class="expl-forecast-row">
+            <div class="expl-forecast-col"><span>Historical</span><b id="explForecastHist">2018 → 2026</b></div>
+            <div class="expl-forecast-arrow">→</div>
+            <div class="expl-forecast-col"><span>Forecast</span><b id="explForecastFuture">2027 → 2030</b></div>
+          </div>
+          <div class="expl-forecast-scenarios">
+            <div class="expl-scenario worst"><span>Worst case</span><b id="explWorst">—</b></div>
+            <div class="expl-scenario expected"><span>Expected</span><b id="explExpected">—</b></div>
+            <div class="expl-scenario best"><span>Best case</span><b id="explBest">—</b></div>
+          </div>
+          <p class="expl-forecast-note" id="explForecastNote"></p>
+        </div>
+
+        <div class="intel-section">
+          <div class="intel-label">Data Context</div>
+          <div class="dc-ws-meta-grid" id="explDataContext"></div>
+          <a class="link" href="#" onclick="toast('Opening data lineage view');return false;" style="font-size:11.5px;">View sources & lineage →</a>
+        </div>
+
+        <div class="intel-section">
+          <div class="intel-label">You may also want to ask</div>
+          <div class="expl-followup-row" id="explFollowups"></div>
+        </div>
+
+        <div class="expl-toolbox">
+          <div class="expl-toolbox-tabs">
+            <button class="expl-tb-tab active" onclick="setToolboxTab(this,'analyse')">Analyse</button>
+            <button class="expl-tb-tab" onclick="setToolboxTab(this,'visualise')">Visualise</button>
+            <button class="expl-tb-tab" onclick="setToolboxTab(this,'produce')">Produce</button>
+            <button class="expl-tb-tab" onclick="setToolboxTab(this,'share')">Share</button>
+          </div>
+          <div class="expl-toolbox-body" id="explToolboxBody"></div>
+        </div>
+
+        <div class="expl-keepgoing">
+          <div class="intel-label">Keep analysing</div>
+          <div class="expl-keepgoing-row">
+            <button onclick="toggleExplain()">Why?</button>
+            <button onclick="toast('Opening comparison view…')">Compare</button>
+            <button onclick="revealForecast()">Forecast</button>
+            <button onclick="toggleExplain()">Explain</button>
+            <button onclick="toast('Searching for related data…')">Find related data</button>
+            <button onclick="toast('Scanning for anomalies…')">Look for anomalies</button>
+            <button onclick="toast('Opening scenario builder…')">Test a scenario</button>
+            <button onclick="closeExplorerToDashboard()">Create dashboard</button>
+            <button onclick="closeExplorerToReport()">Generate report</button>
+            <button onclick="sendAnalysisToCommandCentre()">Monitor this</button>
+          </div>
+        </div>
+
+        <div class="expl-turn-into">
+          <div class="intel-label">Turn this into…</div>
+          <div class="expl-turn-row">
+            <button onclick="closeExplorerToDashboard()">📊 Dashboard</button>
+            <button onclick="closeExplorerToReport()">📄 Report</button>
+            <button onclick="toast('Drafting policy brief…')">📑 Policy Brief</button>
+            <button onclick="toast('Building presentation…')">📽 Presentation</button>
+            <button onclick="showView('gis')">🗺 Interactive Map</button>
+            <button onclick="toast('Creating data story…')">📱 Data Story</button>
+            <button onclick="toast('Drafting executive email…')">📧 Executive Email</button>
+            <button onclick="sendAnalysisToCommandCentre()">📋 Briefing</button>
+          </div>
+        </div>
+
+        <div class="expl-param-bar">
+          <span class="expl-param" onclick="toast('Change measure — try a different indicator')"><small>Measure</small><b id="paramMeasure">Maternal mortality</b></span>
+          <span class="expl-param" onclick="toast('Change geography — Region / District / Facility')"><small>Geography</small><b id="paramGeo">Region</b></span>
+          <span class="expl-param" onclick="toast('Change period — try 2018–2026')"><small>Period</small><b id="paramPeriod">2015–2026</b></span>
+          <span class="expl-param" onclick="toast('Change filter')"><small>Filter</small><b id="paramFilter">Ghana</b></span>
+          <span class="expl-param" onclick="setExplVizTab(document.querySelector('.expl-viz-tab'),'chart')"><small>Visualisation</small><b id="paramViz">Bar chart</b></span>
+        </div>
       </div>
     </section>
 
@@ -3379,12 +3653,29 @@ function publishDashboard(){
 ============================================================= */
 const explorerAnswers = {
   'default':{
-    text:"I found districts where maternal mortality has risen for two or more consecutive quarters, ranked by severity. Wa West shows the sharpest increase, driven by declining skilled-birth-attendance coverage.",
+    text:"12 districts show an increasing maternal mortality trend over the analysed period. Three districts require priority attention based on the magnitude and persistence of the increase — Wa West shows the sharpest rise, driven by declining skilled-birth-attendance coverage.",
     labels:['Wa West','Nadowli-Kaleo','Daffiama','Sissala East','Lawra'],
     data:[38,31,27,22,19],
     color:'#DC2626',
     table:[['Wa West','Upper West','+38%','High'],['Nadowli-Kaleo','Upper West','+31%','High'],['Daffiama','Upper West','+27%','Medium'],['Sissala East','Upper West','+22%','Medium'],['Lawra','Upper West','+19%','Medium']],
-    tableHead:['District','Region','Change (2Q)','Risk']
+    tableHead:['District','Region','Change (2Q)','Risk'],
+    evidence:['12 districts increasing','3 high-priority districts','2 consecutive quarters of deterioration','87% confidence'],
+    mapDots:[{x:72,y:24,c:'#DC2626'},{x:98,y:28,c:'#DC2626'},{x:88,y:42,c:'#F59E0B'},{x:78,y:34,c:'#F59E0B'}],
+    why:"The increase appears to coincide with declining skilled-birth attendance and increased facility pressure in the affected districts. Referral delays and workforce shortages compound the trend in the three highest-priority districts.",
+    supporting:['Skilled birth attendance','Facility capacity','Health workforce','Population','Referral patterns'],
+    confidence:{val:87,label:'High'},
+    confidenceNote:'Based on 5 datasets covering 2019–2026.',
+    insights:[
+      {type:'risk', icon:'🔴', title:'Risk', desc:'Wa West facility capacity is 34% below district need.'},
+      {type:'opportunity', icon:'🟢', title:'Opportunity', desc:'Mobile clinic pilot in Lawra reduced referral time 22%.'},
+      {type:'anomaly', icon:'🟠', title:'Anomaly', desc:'Daffiama differs significantly from its 5-year historical pattern.'},
+      {type:'trend', icon:'🔵', title:'Trend', desc:'Skilled-birth attendance declining across all Upper West districts.'},
+    ],
+    gaps:{have:['Mortality records','Facility availability','Skilled birth attendance'], limited:['Referral delays','Household transport access','Facility staffing at district level']},
+    forecast:{hist:'2019 → 2026', future:'2027 → 2030', worst:'+9 districts', expected:'+5 districts', best:'+2 districts', note:'Based on historical trend, seasonal variation and current facility investment plans.'},
+    dataContext:{datasets:5, sources:'Ghana Health Service, Ghana Statistical Service, World Bank, WHO, OpenStreetMap', period:'2019–2026', geography:'District level', records:'1.84M', updated:'Today', quality:94},
+    followups:['Why are these districts changing?','Compare them with other regions','Show the trend over 10 years','What factors correlate with this?','Forecast the next 2 years'],
+    params:{measure:'Maternal mortality', geo:'District', period:'2019–2026', filter:'Upper West', viz:'Bar chart'}
   },
   'Which regions need more teachers?':{
     text:"Based on pupil-to-teacher ratios against the national target of 30:1, these regions have the largest shortfall — Savannah needs the most additional trained teachers relative to enrolment.",
@@ -3392,7 +3683,24 @@ const explorerAnswers = {
     data:[46,42,39,36,34],
     color:'#082B5A',
     table:[['Savannah','46:1','+1,240 needed'],['North East','42:1','+890 needed'],['Upper West','39:1','+710 needed'],['Oti','36:1','+540 needed'],['Northern','34:1','+480 needed']],
-    tableHead:['Region','Pupil:Teacher','Shortfall']
+    tableHead:['Region','Pupil:Teacher','Shortfall'],
+    evidence:['5 regions above target ratio','+3,860 teachers needed nationally','30:1 national target','82% confidence'],
+    mapDots:[{x:98,y:28,c:'#082B5A'},{x:88,y:20,c:'#082B5A'},{x:72,y:24,c:'#F59E0B'},{x:110,y:30,c:'#F59E0B'}],
+    why:"Teacher shortages concentrate in regions with the fastest enrolment growth and lowest housing/incentive allowances for postings. Savannah and North East both saw enrolment rise faster than teacher recruitment over the last 3 years.",
+    supporting:['Enrolment growth','Teacher recruitment pipeline','Posting incentive allowances','Housing availability'],
+    confidence:{val:82,label:'High'},
+    confidenceNote:'Based on 3 datasets covering 2020–2026.',
+    insights:[
+      {type:'risk', icon:'🔴', title:'Risk', desc:'Savannah ratio has worsened for 3 consecutive years.'},
+      {type:'opportunity', icon:'🟢', title:'Opportunity', desc:'North East incentive pilot improved retention 14%.'},
+      {type:'anomaly', icon:'🟠', title:'Anomaly', desc:'Oti enrolment spiked 18% in a single year.'},
+      {type:'trend', icon:'🔵', title:'Trend', desc:'Rural postings increasingly declined by newly trained teachers.'},
+    ],
+    gaps:{have:['Enrolment records','Teacher counts','Ratios by district'], limited:['Teacher qualification levels','Subject-specific shortages','Attrition reasons']},
+    forecast:{hist:'2020 → 2026', future:'2027 → 2029', worst:'Ratio worsens to 52:1', expected:'Ratio holds near 44:1', best:'Ratio improves to 36:1', note:'Based on enrolment projections and current teacher training college output.'},
+    dataContext:{datasets:3, sources:'Ghana Education Service, GSS, World Bank', period:'2020–2026', geography:'Regional', records:'640K', updated:'2 days ago', quality:89},
+    followups:['Why is Savannah worsening?','Compare with 2015 baseline','Forecast teacher supply for 2030','Which districts within Savannah are worst?'],
+    params:{measure:'Pupil:teacher ratio', geo:'Region', period:'2020–2026', filter:'Ghana', viz:'Bar chart'}
   },
   'Compare maize yield across regions':{
     text:"Bono and Ashanti lead national maize yield this season. Northern and Savannah trail behind, consistent with the rainfall deficit flagged in this week's climate watch.",
@@ -3400,7 +3708,24 @@ const explorerAnswers = {
     data:[2.4,2.1,2.0,1.9,1.6,1.4],
     color:'#00BFA6',
     table:[['Bono','2.4 t/ha','Above average'],['Ashanti','2.1 t/ha','Above average'],['Eastern','2.0 t/ha','Average'],['Volta','1.9 t/ha','Average'],['Northern','1.6 t/ha','Below average'],['Savannah','1.4 t/ha','Below average']],
-    tableHead:['Region','Yield','Status']
+    tableHead:['Region','Yield','Status'],
+    evidence:['6 regions compared','0.6 t/ha gap top-to-bottom','18% rainfall deficit in north','91% confidence'],
+    mapDots:[{x:65,y:70,c:'#16A34A'},{x:60,y:80,c:'#16A34A'},{x:100,y:60,c:'#F59E0B'},{x:88,y:20,c:'#DC2626'},{x:75,y:22,c:'#DC2626'}],
+    why:"Northern and Savannah yields track closely with this season's rainfall deficit — both regions received 18% below seasonal average precipitation during the critical growth window in July–August.",
+    supporting:['Rainfall totals','Soil moisture index','Fertilizer access','Seed variety adoption'],
+    confidence:{val:91,label:'High'},
+    confidenceNote:'Based on 4 datasets covering 2018–2026.',
+    insights:[
+      {type:'risk', icon:'🔴', title:'Risk', desc:'Northern Region maize production declining for 2nd season.'},
+      {type:'opportunity', icon:'🟢', title:'Opportunity', desc:'Bono productivity gains from improved seed adoption.'},
+      {type:'anomaly', icon:'🟠', title:'Anomaly', desc:'Savannah yield differs significantly from historical pattern.'},
+      {type:'trend', icon:'🔵', title:'Trend', desc:'Irrigated agriculture expanding in Volta and Eastern.'},
+    ],
+    gaps:{have:['Yield records','Rainfall data','Regional boundaries'], limited:['Soil quality by district','Farmer input costs','Post-harvest losses']},
+    forecast:{hist:'2018 → 2026', future:'2027 → 2028', worst:'1.1 t/ha (north)', expected:'1.5 t/ha (north)', best:'1.9 t/ha (north)', note:'Based on historical trend and current seasonal rainfall forecast.'},
+    dataContext:{datasets:4, sources:'FAO, Ghana Meteorological Agency, MoFA, Ghana Statistical Service', period:'2018–2026', geography:'Regional', records:'420K', updated:'6 hours ago', quality:88},
+    followups:['Why is the north underperforming?','Compare to last 5 seasons','Forecast next season yield','What if rainfall improves 10%?'],
+    params:{measure:'Maize yield', geo:'Region', period:'2018–2026', filter:'Ghana', viz:'Bar chart'}
   },
   'Which tenders match our organisation?':{
     text:"14 open opportunities score above your 70% fit threshold this week. Top matches combine M&E expertise with your GIS and data-systems delivery history.",
@@ -3408,11 +3733,30 @@ const explorerAnswers = {
     data:[92,88,84,79,75],
     color:'#F59E0B',
     table:[['EU M&E Framework','92%','Closes in 9 days'],['WB Data Systems RFP','88%','Closes in 11 days'],['UNICEF Survey Design','84%','Closes in 14 days'],['GIZ Evaluation','79%','Closes in 6 days'],['USAID Dashboard','75%','Closes in 20 days']],
-    tableHead:['Opportunity','Fit score','Deadline']
+    tableHead:['Opportunity','Fit score','Deadline'],
+    evidence:['14 opportunities above threshold','92% top fit score','5 funders represented','96% confidence'],
+    mapDots:[{x:98,y:28,c:'#F59E0B'},{x:60,y:80,c:'#F59E0B'}],
+    why:"Your organisation's fit score is driven primarily by matching sector tags (M&E, GIS, Data Systems) and prior delivery history with EU and World Bank-funded programmes, both of which score heavily in the matching model.",
+    supporting:['Sector tag overlap','Prior delivery history','Budget range fit','Geographic coverage match'],
+    confidence:{val:96,label:'Very High'},
+    confidenceNote:'Based on 14 opportunities scored against your organisation profile.',
+    insights:[
+      {type:'opportunity', icon:'🟢', title:'Opportunity', desc:'EU M&E Framework closes in 9 days — highest fit this week.'},
+      {type:'trend', icon:'🔵', title:'Trend', desc:'Data Systems RFPs increasing 22% quarter-on-quarter.'},
+      {type:'risk', icon:'🔴', title:'Risk', desc:'GIZ Evaluation closes in 6 days — fastest deadline.'},
+      {type:'anomaly', icon:'🟠', title:'Anomaly', desc:'USAID Dashboard budget is unusually high for its scope.'},
+    ],
+    gaps:null,
+    forecast:null,
+    dataContext:{datasets:1, sources:'Tender Intelligence live feed', period:'Live', geography:'Ghana + Regional', records:'1,240 opportunities', updated:'Just now', quality:97},
+    followups:['Show only EU-funded opportunities','Which have I already applied to?','Forecast next quarter\'s pipeline','Draft an EOI for the top match'],
+    params:{measure:'Fit score', geo:'National', period:'Live', filter:'Above 70%', viz:'Bar chart'}
   }
 };
 
 let explorerChartInstance = null;
+let currentExplorerKey = 'default';
+let explorerMode = 'quick';
 function riskPill(v){
   const s = String(v).toLowerCase();
   if(s.includes('high')) return '<span class="risk-pill risk-high">'+v+'</span>';
@@ -3420,15 +3764,59 @@ function riskPill(v){
   if(s.includes('low')||s.includes('above')) return '<span class="risk-pill risk-low">'+v+'</span>';
   return v;
 }
+function setExplorerMode(mode){
+  explorerMode = mode;
+  document.getElementById('modeQuick').classList.toggle('active', mode==='quick');
+  document.getElementById('modeDeep').classList.toggle('active', mode==='deep');
+  const badge = document.getElementById('explModeBadge');
+  if(badge) badge.textContent = mode==='quick' ? '⚡ Quick Answer' : '🔬 Deep Analysis';
+}
+function setExplVizTab(el, tab){
+  document.querySelectorAll('.expl-viz-tab').forEach(t=> t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('explVizChart').style.display = tab==='chart' ? 'block' : 'none';
+  document.getElementById('explVizMap').style.display = tab==='map' ? 'block' : 'none';
+  document.getElementById('explorerTable').style.display = tab==='table' ? 'table' : 'none';
+}
+function toggleExplain(){
+  document.getElementById('explExplainPanel').classList.toggle('show');
+}
+function revealForecast(){
+  const sec = document.getElementById('explForecastSection');
+  if(sec) sec.scrollIntoView({behavior:'smooth', block:'center'});
+}
+function setToolboxTab(el, tab){
+  document.querySelectorAll('.expl-tb-tab').forEach(t=> t.classList.remove('active'));
+  el.classList.add('active');
+  const items = {
+    analyse:['Trends','Correlations','Outliers','Distribution','Rankings','Growth rates','Change over time','Regional comparison','Statistical significance','Forecasting','Scenario analysis'],
+    visualise:['Chart','Map','Table','KPI','Heatmap','Scatterplot','Timeline','Treemap','Sankey','Network','Bubble chart'],
+    produce:['Dashboard','Report','Presentation','Policy brief','Data story','Infographic'],
+    share:['Link','Workspace','PDF','Excel','CSV','PowerPoint']
+  };
+  document.getElementById('explToolboxBody').innerHTML = items[tab].map(x=>`<span onclick="toast('${x} — coming from this analysis')">${x}</span>`).join('');
+}
+function closeExplorerToDashboard(){ toast('Sending this analysis to Dashboard Studio…'); setTimeout(()=> showView('studio'), 500); }
+function closeExplorerToReport(){ openReportModal(); }
+function sendAnalysisToCommandCentre(){ toast('Added to My Work — find it in AI Command Centre tomorrow'); }
+
 function renderExplorer(key){
   const d = explorerAnswers[key] || explorerAnswers['default'];
+  currentExplorerKey = (key in explorerAnswers) ? key : 'default';
   const resultEl = document.getElementById('explorerResult');
   const answerEl = document.getElementById('explorerAnswer');
+  const homeEl = document.getElementById('explorerHome');
+  if(homeEl) homeEl.style.display = 'none';
   resultEl.classList.add('show');
   answerEl.innerHTML = '<span class="typing"><span></span><span></span><span></span></span>';
+  document.getElementById('explQuestionText').textContent = document.getElementById('explorerInput').value || key;
+  document.getElementById('explExplainPanel').classList.remove('show');
+  setExplVizTab(document.querySelector('.expl-viz-tab'), 'chart');
 
   setTimeout(()=>{
     answerEl.textContent = d.text;
+
+    document.getElementById('explEvidenceRow').innerHTML = d.evidence.map(e=>`<span class="expl-evidence-chip">${e}</span>`).join('');
 
     if(window.Chart){
       if(explorerChartInstance) explorerChartInstance.destroy();
@@ -3443,6 +3831,57 @@ function renderExplorer(key){
     let head = '<tr>'+d.tableHead.map(h=>'<th>'+h+'</th>').join('')+'</tr>';
     let rows = d.table.map(r=>'<tr>'+r.map((c,i)=> i===r.length-1 ? '<td>'+riskPill(c)+'</td>' : '<td>'+c+'</td>').join('')+'</tr>').join('');
     table.innerHTML = head+rows;
+
+    document.getElementById('explMapDots').innerHTML = d.mapDots.map(p=>`<circle class="expl-map-dot" cx="${p.x}" cy="${p.y}" r="5" fill="${p.c}" opacity=".85"/>`).join('');
+
+    document.getElementById('explWhyText').textContent = d.why;
+    document.getElementById('explSupportingList').innerHTML = d.supporting.map(s=>`<li>${s}</li>`).join('');
+    document.getElementById('explConfidenceVal').textContent = d.confidence.val+'% — '+d.confidence.label;
+    document.getElementById('explConfidenceNote').textContent = d.confidenceNote;
+
+    document.getElementById('explSignalCount').textContent = d.insights.length;
+    document.getElementById('explInsightCards').innerHTML = d.insights.map(i=>`
+      <div class="expl-insight-card" onclick="toggleExplain()">
+        <div class="expl-insight-icon" style="background:var(--bg);">${i.icon}</div>
+        <div><b style="color:var(--text-dim);">${i.title}</b><span>${i.desc}</span></div>
+      </div>`).join('');
+
+    const gapSec = document.getElementById('explGapSection');
+    if(d.gaps){
+      gapSec.style.display = 'block';
+      document.getElementById('explGapHave').innerHTML = d.gaps.have.map(g=>`<li>✓ ${g}</li>`).join('');
+      document.getElementById('explGapLimited').innerHTML = d.gaps.limited.map(g=>`<li>⚠ ${g}</li>`).join('');
+    } else { gapSec.style.display = 'none'; }
+
+    const fcSec = document.getElementById('explForecastSection');
+    if(d.forecast){
+      fcSec.style.display = 'block';
+      document.getElementById('explForecastHist').textContent = d.forecast.hist;
+      document.getElementById('explForecastFuture').textContent = d.forecast.future;
+      document.getElementById('explWorst').textContent = d.forecast.worst;
+      document.getElementById('explExpected').textContent = d.forecast.expected;
+      document.getElementById('explBest').textContent = d.forecast.best;
+      document.getElementById('explForecastNote').textContent = d.forecast.note;
+    } else { fcSec.style.display = 'none'; }
+
+    document.getElementById('explDataContext').innerHTML = `
+      <div><span>Data used</span><b>${d.dataContext.datasets} datasets</b></div>
+      <div><span>Period</span><b>${d.dataContext.period}</b></div>
+      <div><span>Geography</span><b>${d.dataContext.geography}</b></div>
+      <div><span>Records</span><b>${d.dataContext.records}</b></div>
+      <div><span>Last updated</span><b>${d.dataContext.updated}</b></div>
+      <div><span>Quality</span><b style="color:${qualityColor(d.dataContext.quality)};">${d.dataContext.quality}/100</b></div>
+    `;
+
+    document.getElementById('explFollowups').innerHTML = d.followups.map(f=>`<button onclick="askChip('${f.replace(/'/g,"\\'")}')">${f}</button>`).join('');
+
+    setToolboxTab(document.querySelector('.expl-tb-tab'), 'analyse');
+
+    document.getElementById('paramMeasure').textContent = d.params.measure;
+    document.getElementById('paramGeo').textContent = d.params.geo;
+    document.getElementById('paramPeriod').textContent = d.params.period;
+    document.getElementById('paramFilter').textContent = d.params.filter;
+    document.getElementById('paramViz').textContent = d.params.viz;
   }, 650);
 }
 function askChip(text){
