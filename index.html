@@ -983,6 +983,42 @@ button{font-family:inherit; cursor:pointer;}
 .survey-process-row span:not(.survey-process-arrow){font-size:12.5px; font-weight:700; padding:8px 16px; border-radius:20px; background:var(--navy-100); color:var(--navy-ink);}
 .survey-process-arrow{color:var(--border); font-size:14px;}
 .newstudy-grid{display:grid; grid-template-columns:1fr 1fr; gap:9px; margin:14px 0;}
+
+/* ---------- Questionnaire Builder ---------- */
+.qb-layout{display:grid; grid-template-columns:1fr 1fr; gap:16px; min-height:340px;}
+.qb-list{border:1px solid var(--border); border-radius:11px; overflow-y:auto; max-height:400px;}
+.qb-section-label{font-size:9.5px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--text-dim); padding:10px 14px 6px; background:var(--bg);}
+.qb-question-row{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:11px 14px; font-size:12px; font-weight:600; border-bottom:1px solid var(--border); cursor:pointer; transition:background .15s;}
+.qb-question-row:hover{background:var(--bg);}
+.qb-question-row.active{background:var(--teal-100); color:var(--teal-600);}
+.qb-flag{flex-shrink:0;}
+.qb-panel{border:1px solid var(--border); border-radius:11px; padding:16px; overflow-y:auto; max-height:400px;}
+.qb-panel-field{margin-bottom:11px;}
+.qb-panel-field span{display:block; font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--text-dim); margin-bottom:3px;}
+.qb-panel-field b{font-size:12.5px; font-weight:700; line-height:1.4;}
+.qb-panel-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:11px;}
+.qb-ai-review{background:var(--teal-100); border-radius:10px; padding:12px 14px; margin-top:10px;}
+.qb-ai-review p{font-size:11.5px; line-height:1.55; color:var(--text); margin:4px 0 8px;}
+.qb-ai-review button{font-size:11px; font-weight:700; padding:6px 12px; border-radius:7px; background:var(--navy); color:#fff; border:none; cursor:pointer;}
+
+/* ---------- AI Audit ---------- */
+.audit-row{display:flex; align-items:flex-start; gap:11px; padding:11px 0; border-bottom:1px solid var(--border);}
+.audit-row:last-child{border-bottom:none;}
+.audit-row svg{width:17px; height:17px; flex-shrink:0; margin-top:1px;}
+.audit-row b{display:block; font-size:12.5px; margin-bottom:2px;}
+.audit-row span{font-size:11.5px; color:var(--text-dim);}
+.audit-row.warn b{color:#B45309;}
+
+/* ---------- Data Cleaning Workspace ---------- */
+.dcw-issue-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0;}
+.dcw-issue-card{background:var(--bg); border-radius:10px; padding:13px 15px; cursor:pointer; transition:all .15s; border:1px solid var(--border);}
+.dcw-issue-card:hover{border-color:var(--teal);}
+.dcw-issue-card b{display:block; font-size:20px; margin-bottom:2px;}
+.dcw-issue-card span{font-size:11px; color:var(--text-dim);}
+.dcw-record-row{display:flex; align-items:center; justify-content:space-between; padding:10px 14px; background:var(--bg); border-radius:9px; margin-bottom:7px; font-size:12px;}
+.dcw-record-actions{display:flex; gap:5px;}
+.dcw-record-actions button{font-size:10px; font-weight:700; padding:5px 9px; border-radius:6px; border:1px solid var(--border); background:var(--surface); cursor:pointer;}
+.dcw-record-actions button:hover{border-color:var(--teal); color:var(--teal-600);}
 .newstudy-option{font-size:12.5px; font-weight:700; padding:12px 14px; border-radius:10px; border:1px solid var(--border); background:var(--bg); cursor:pointer; transition:all .15s;}
 .newstudy-option:hover{border-color:var(--teal); background:var(--teal-100); color:var(--teal-600);}
 .study-quality-ring-row{display:flex; align-items:center; gap:16px; background:var(--bg); border-radius:12px; padding:16px 18px; margin:12px 0;}
@@ -1236,6 +1272,8 @@ button{font-family:inherit; cursor:pointer;}
   .ai-search{display:none;}
   .kpi-grid,.dash-grid,.source-grid,.widget-grid,.domain-features,.kpi-grid-6{grid-template-columns:1fr;}
   .tender-priority-grid,.tender-source-grid{grid-template-columns:1fr;}
+  .qb-layout{grid-template-columns:1fr;}
+  .dcw-issue-grid,.qb-panel-grid{grid-template-columns:1fr 1fr;}
   .domain-waitlist-form{flex-direction:column;}
   .tender-filters{flex-direction:column; align-items:stretch;}
   .tender-min-fit{margin-left:0;}
@@ -2442,12 +2480,24 @@ button{font-family:inherit; cursor:pointer;}
             <div id="enumeratorList"></div>
           </div>
           <div class="card">
-            <div class="card-head"><h3>Real-Time Quality Engine</h3></div>
-            <div style="padding:16px 20px; display:flex; flex-direction:column; gap:11px;">
-              <div class="quality-check"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>GPS location validated against expected district</span></div>
-              <div class="quality-check"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Duplicate submission detection</span></div>
-              <div class="quality-check"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Outlier flagging on numeric responses</span></div>
-              <div class="quality-check warn"><svg viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><span>7 responses flagged for review — survey time under 3 minutes</span></div>
+            <div class="card-head"><h3>Data Quality</h3><a class="link" href="#" onclick="openDataCleaningWorkspace();return false;">Open workspace →</a></div>
+            <div style="padding:12px 20px 6px; display:flex; gap:14px; font-size:11.5px; color:var(--text-dim);">
+              <span><b style="color:var(--text); font-size:15px;">3,842</b> records</span>
+              <span><b style="color:var(--success); font-size:15px;">3,611</b> valid</span>
+              <span><b style="color:var(--danger); font-size:15px;">47</b> critical</span>
+            </div>
+            <div class="dcw-issue-grid" style="padding:8px 20px 16px;">
+              <div class="dcw-issue-card" onclick="openDataCleaningWorkspace('missing')"><b>84</b><span>Missing values</span></div>
+              <div class="dcw-issue-card" onclick="openDataCleaningWorkspace('duplicates')"><b>18</b><span>Duplicates</span></div>
+              <div class="dcw-issue-card" onclick="openDataCleaningWorkspace('outliers')"><b>32</b><span>Outliers</span></div>
+              <div class="dcw-issue-card" onclick="openDataCleaningWorkspace('gps')"><b>7</b><span>GPS anomalies</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Questionnaire Intelligence</h3></div>
+            <div class="ai-insight-widget" style="padding:16px 20px;">
+              <p>Every question in your active studies carries its own intelligence — indicator mapping, skip logic, bias detection and AI review. See it for the GFD Disability Inclusion Baseline.</p>
+              <button onclick="openQuestionnaireBuilder()">Open Questionnaire Builder →</button>
             </div>
           </div>
           <div class="card">
@@ -3997,8 +4047,148 @@ function openStudyBuilderModal(prompt){
         </div>
       </div>
       <p style="margin-top:10px; font-size:12px; color:var(--text-dim);">Review and edit every section below before publishing — IntelligenceOS never publishes a study without your approval.</p>
+      <div style="display:flex; gap:8px; margin-top:14px;">
+        <button class="btn btn-primary" onclick="closeModal(); openQuestionnaireBuilder();">Review Questionnaire →</button>
+        <button class="btn btn-ghost" onclick="closeModal(); openAuditModal();">Run AI Audit</button>
+      </div>
     `;
   }, steps.length*220+400);
+}
+/* ---------- Data Cleaning Workspace ---------- */
+const dcwIssueData = {
+  missing:{label:'Missing values', count:84, records:[
+    {id:'R-0342', field:'Staff count', note:'Left blank'},
+    {id:'R-0198', field:'Policy adoption year', note:'Left blank'},
+    {id:'R-0567', field:'Accessibility rating', note:'Left blank'},
+  ]},
+  duplicates:{label:'Duplicates', count:18, records:[
+    {id:'R-0089 / R-0091', field:'Same institution, same enumerator', note:'98% response match'},
+    {id:'R-0234 / R-0235', field:'Same GPS, 4 min apart', note:'Identical responses'},
+  ]},
+  outliers:{label:'Outliers', count:32, records:[
+    {id:'R-0412', field:'Staff count', note:'Value 4,200 — likely data entry error'},
+    {id:'R-0501', field:'Interview duration', note:'2 minutes — far below 11 min average'},
+  ]},
+  gps:{label:'GPS anomalies', count:7, records:[
+    {id:'R-0301', field:'Location', note:'Recorded 40km outside assigned district'},
+    {id:'R-0288', field:'Location', note:'GPS accuracy >500m — low confidence'},
+  ]},
+};
+function openDataCleaningWorkspace(issueType){
+  const issue = issueType ? dcwIssueData[issueType] : null;
+  openModal(`
+    <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>DATA QUALITY</div><h3>${issue ? issue.label : 'Data Cleaning Workspace'}</h3></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      ${issue ? `
+        <p style="font-size:12px; color:var(--text-dim); margin-bottom:12px;">${issue.count} records flagged. The researcher decides — IntelligenceOS never silently changes research data.</p>
+        ${issue.records.map(r=>`
+          <div class="dcw-record-row">
+            <div><b>${r.id}</b> · ${r.field}<br><span style="color:var(--text-dim); font-size:11px;">${r.note}</span></div>
+            <div class="dcw-record-actions">
+              <button onclick="toast('${r.id} marked Fix')">Fix</button>
+              <button onclick="toast('${r.id} marked Exclude')">Exclude</button>
+              <button onclick="toast('${r.id} marked Flag')">Flag</button>
+              <button onclick="toast('${r.id} marked Retain')">Retain</button>
+            </div>
+          </div>
+        `).join('')}
+        <button class="btn btn-ghost" style="margin-top:10px;" onclick="openDataCleaningWorkspace()">← Back to all issues</button>
+      ` : `
+        <div class="dcw-issue-grid">
+          <div class="dcw-issue-card" onclick="openDataCleaningWorkspace('missing')"><b>84</b><span>Missing values</span></div>
+          <div class="dcw-issue-card" onclick="openDataCleaningWorkspace('duplicates')"><b>18</b><span>Duplicates</span></div>
+          <div class="dcw-issue-card" onclick="openDataCleaningWorkspace('outliers')"><b>32</b><span>Outliers</span></div>
+          <div class="dcw-issue-card" onclick="openDataCleaningWorkspace('gps')"><b>7</b><span>GPS anomalies</span></div>
+        </div>
+        <p style="font-size:11.5px; color:var(--text-dim); margin-top:8px;">Click any issue type to review and resolve the flagged records.</p>
+      `}
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      <button class="btn btn-primary" onclick="closeModal(); showView('explorer');" style="flex:1; justify-content:center;">Analyse clean data →</button>
+    </div>
+  `);
+}
+
+/* ---------- Intelligent Questionnaire Builder ---------- */
+const questionnaireData = [
+  {id:1, section:'A — Respondent profile', text:'What is your position at this institution?', type:'Single choice', required:true, indicator:'—', objective:'Establish respondent authority to answer', analysis:'Categorical distribution', skip:'None', validation:'Required', translation:'English / Twi / Ewe / Ga', ai:'This question is well-scoped and unambiguous. No changes recommended.'},
+  {id:2, section:'B — Institutional policy', text:'Does your institution have a disability inclusion policy?', type:'Yes / No', required:true, indicator:'Institutional policy adoption', objective:'Measure institutional readiness', analysis:'Binary proportion', skip:'If Yes → Q3, If No → Q5', validation:'Required', translation:'English / Twi / Ewe / Ga', ai:'This question may benefit from a follow-up asking whether the policy is actively implemented, not just adopted on paper.', flagged:true},
+  {id:3, section:'B — Institutional policy', text:'In what year was the policy adopted?', type:'Number', required:false, indicator:'Policy maturity', objective:'Establish policy age as a proxy for institutionalisation', analysis:'Descriptive statistics', skip:'Shown only if Q2 = Yes', validation:'Range 2000–2026', translation:'English / Twi / Ewe / Ga', ai:"Well-formed. Consider adding \"Don't know\" as a response option."},
+  {id:4, section:'C — Accessibility', text:'Does the building have a wheelchair-accessible entrance?', type:'Yes / No / Partial', required:true, indicator:'Physical accessibility', objective:'Measure infrastructure readiness', analysis:'Binary + partial category proportion', skip:'None', validation:'Required', translation:'English / Twi / Ewe / Ga', ai:'Strong indicator alignment. No changes recommended.'},
+  {id:5, section:'D — Staff capacity', text:'How would you rate staff awareness of disability inclusion practices?', type:'Likert scale (1–5)', required:true, indicator:'Staff capacity', objective:'Measure perceived readiness', analysis:'Mean score, distribution', skip:'None', validation:'Required', translation:'English / Twi / Ewe / Ga', ai:'This is a self-reported perception question — pair with an objective capacity question to reduce social-desirability bias.', flagged:true},
+];
+function openQuestionnaireBuilder(){
+  openModal(`
+    <div class="modal-head">
+      <div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>QUESTIONNAIRE BUILDER</div><h3>35-question baseline questionnaire</h3></div>
+      <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:12px; color:var(--text-dim); margin-bottom:12px;">Click any question to see the intelligence behind it — indicator mapping, skip logic, and AI review.</p>
+      <div class="qb-layout">
+        <div class="qb-list" id="qbList"></div>
+        <div class="qb-panel" id="qbPanel"><p style="color:var(--text-dim); font-size:12px; padding:20px;">Select a question to see its intelligence panel.</p></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="openAuditModal()" style="flex:1; justify-content:center;">Run AI Audit</button>
+      <button class="btn btn-primary" onclick="toast('29 more questions follow the same pattern — full questionnaire ready for field testing')" style="flex:1; justify-content:center;">Looks good →</button>
+    </div>
+  `);
+  renderQbList();
+}
+function renderQbList(){
+  const el = document.getElementById('qbList');
+  let lastSection = '';
+  el.innerHTML = questionnaireData.map(q=>{
+    const sectionHeader = q.section!==lastSection ? `<div class="qb-section-label">${q.section}</div>` : '';
+    lastSection = q.section;
+    return sectionHeader + `<div class="qb-question-row" onclick="showQbPanel(${q.id})" id="qbrow-${q.id}">
+      <span>${q.text}</span>${q.flagged ? '<span class="qb-flag">✨</span>' : ''}
+    </div>`;
+  }).join('');
+}
+function showQbPanel(id){
+  const q = questionnaireData.find(x=>x.id===id);
+  if(!q) return;
+  document.querySelectorAll('.qb-question-row').forEach(r=> r.classList.remove('active'));
+  document.getElementById('qbrow-'+id).classList.add('active');
+  document.getElementById('qbPanel').innerHTML = `
+    <div class="qb-panel-field"><span>Question</span><b>${q.text}</b></div>
+    <div class="qb-panel-grid">
+      <div class="qb-panel-field"><span>Type</span><b>${q.type}</b></div>
+      <div class="qb-panel-field"><span>Required</span><b>${q.required?'Yes':'No'}</b></div>
+    </div>
+    <div class="qb-panel-field"><span>Indicator</span><b>${q.indicator}</b></div>
+    <div class="qb-panel-field"><span>Objective</span><b>${q.objective}</b></div>
+    <div class="qb-panel-field"><span>Analysis</span><b>${q.analysis}</b></div>
+    <div class="qb-panel-field"><span>Skip logic</span><b>${q.skip}</b></div>
+    <div class="qb-panel-field"><span>Validation</span><b>${q.validation}</b></div>
+    <div class="qb-panel-field"><span>Translation</span><b>${q.translation}</b></div>
+    <div class="qb-ai-review"><div class="intel-label">✨ AI Review</div><p>${q.ai}</p>${q.flagged ? `<button onclick="toast('Question improved — follow-up sub-question added')">Improve question</button>` : ''}</div>
+  `;
+}
+
+/* ---------- AI Questionnaire Audit ---------- */
+function openAuditModal(){
+  openModal(`
+    <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>AI QUESTIONNAIRE AUDIT</div><h3>Pre-publication check</h3></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <div class="audit-row"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Structure</b><span>Objectives aligned with questions</span></div></div>
+      <div class="audit-row warn"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><div><b>Bias</b><span>Potentially leading question detected — Q14</span></div></div>
+      <div class="audit-row warn"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><div><b>Duplication</b><span>Question 27 overlaps with Question 31</span></div></div>
+      <div class="audit-row warn"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><div><b>Coverage</b><span>No question measures outcome indicator 4</span></div></div>
+      <div class="audit-row"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Response burden</b><span>Estimated completion: 11 minutes</span></div></div>
+      <div class="audit-row"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Logic</b><span>Skip patterns validated</span></div></div>
+      <div class="audit-row"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Translation</b><span>Consistent terminology</span></div></div>
+      <div class="audit-row"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Analysis readiness</b><span>92% of questions mapped to analysis variables</span></div></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal(); openQuestionnaireBuilder();" style="flex:1; justify-content:center;">Fix 3 issues</button>
+      <button class="btn btn-primary" onclick="toast('Study published — fieldwork can now begin'); closeModal();" style="flex:1; justify-content:center;">Publish survey</button>
+    </div>
+  `);
 }
 function selectStudyTemplate(name){
   closeModal();
