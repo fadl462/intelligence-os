@@ -1123,6 +1123,37 @@ button{font-family:inherit; cursor:pointer;}
 .tender-min-fit input[type=range]{accent-color:var(--teal); width:110px;}
 .tender-min-fit span:last-child{min-width:32px; color:var(--text); font-weight:700;}
 .tender-layout{display:grid; grid-template-columns:1fr 320px; gap:18px; align-items:start;}
+
+/* ---------- TENDER INTELLIGENCE — new components ---------- */
+.tender-priority-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:16px 20px;}
+.tender-priority-card{border-radius:12px; padding:16px 17px; border:1px solid var(--border);}
+.tender-priority-card.act{background:#FEF2F2; border-color:#FCA5A5;}
+.tender-priority-card.review{background:#FEF3E2; border-color:#FCD34D;}
+.tender-priority-card.opp{background:#E7F7EC; border-color:#86EFAC;}
+[data-theme="dark"] .tender-priority-card.act{background:#2a1414;}
+[data-theme="dark"] .tender-priority-card.review{background:#2a2114;}
+[data-theme="dark"] .tender-priority-card.opp{background:#0e2c1a;}
+.tender-priority-label{font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px;}
+.tender-priority-card.act .tender-priority-label{color:var(--danger);}
+.tender-priority-card.review .tender-priority-label{color:#B45309;}
+.tender-priority-card.opp .tender-priority-label{color:var(--success);}
+.tender-priority-card b{display:block; font-size:13px; margin-bottom:6px; line-height:1.35;}
+.tender-priority-card p{font-size:11px; color:var(--text-dim); margin-bottom:10px;}
+.tender-priority-card button{font-size:11.5px; font-weight:700; padding:7px 13px; border-radius:8px; border:none; background:var(--navy); color:#fff; cursor:pointer;}
+
+.tender-source-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:0 20px 18px;}
+.tender-source-card{background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:13px 14px; cursor:pointer; transition:all .15s;}
+.tender-source-card:hover{border-color:var(--teal);}
+.tender-source-card b{display:block; font-size:12.5px; margin-bottom:4px;}
+.tender-source-card span{font-size:10.5px; color:var(--text-dim); display:block;}
+.tender-source-status{font-size:9.5px; font-weight:700; margin-top:6px; display:inline-block;}
+.deadline-badge{font-size:9px; font-weight:800; padding:2px 8px; border-radius:20px; margin-left:6px;}
+.deadline-critical{background:#FEF2F2; color:var(--danger);}
+.deadline-urgent{background:#FEF3E2; color:#B45309;}
+.deadline-upcoming{background:var(--navy-100); color:var(--navy-ink);}
+.deadline-future{background:#E7F7EC; color:var(--success);}
+.newsource-check-row{display:flex; align-items:flex-start; gap:8px; font-size:11.5px; color:var(--text-dim); padding:5px 0;}
+.newsource-check-row svg{width:13px; height:13px; color:var(--success); flex-shrink:0; margin-top:2px;}
 .tender-list{display:flex; flex-direction:column; gap:12px;}
 .tender-card{padding:17px 19px; display:flex; gap:16px; align-items:flex-start; cursor:pointer; transition:border-color .15s, transform .15s, box-shadow .15s;}
 .tender-card:hover{border-color:var(--teal); transform:translateY(-1px); box-shadow:var(--shadow);}
@@ -1177,6 +1208,7 @@ button{font-family:inherit; cursor:pointer;}
   .gov-sim{grid-template-columns:1fr;}
   .kpi-grid{grid-template-columns:repeat(2,1fr);}
   .kpi-grid-6{grid-template-columns:repeat(3,1fr);}
+  .tender-priority-grid,.tender-source-grid{grid-template-columns:repeat(2,1fr);}
   .dash-grid{grid-template-columns:repeat(2,1fr);}
   .source-grid{grid-template-columns:repeat(2,1fr);}
   .widget-grid{grid-template-columns:repeat(2,1fr);}
@@ -1203,6 +1235,7 @@ button{font-family:inherit; cursor:pointer;}
   .main{margin-left:0;}
   .ai-search{display:none;}
   .kpi-grid,.dash-grid,.source-grid,.widget-grid,.domain-features,.kpi-grid-6{grid-template-columns:1fr;}
+  .tender-priority-grid,.tender-source-grid{grid-template-columns:1fr;}
   .domain-waitlist-form{flex-direction:column;}
   .tender-filters{flex-direction:column; align-items:stretch;}
   .tender-min-fit{margin-left:0;}
@@ -2432,25 +2465,31 @@ button{font-family:inherit; cursor:pointer;}
       <div class="view-head">
         <div>
           <div class="eyebrow"><span class="compass-dot"></span>TENDER INTELLIGENCE</div>
-          <h1>Every opportunity, scored for fit.</h1>
-          <p>Continuously monitored across government, NGO, UN and donor sources — ranked by fit, deadline and competition.</p>
+          <h1>Every opportunity. Understood, scored and pursued.</h1>
+          <p>Find the right opportunities. Understand them instantly. Decide intelligently. Build stronger bids. Manage every submission. Learn from every outcome.</p>
         </div>
-        <button class="btn btn-primary" onclick="toast('Scanning 40+ sources for new opportunities…')">
+        <button class="btn btn-primary" onclick="toast('Scanning 47 connected sources for new opportunities…')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v6h-6"/></svg>
           Refresh scan
         </button>
       </div>
 
-      <div class="kpi-grid">
+      <div class="ai-search dc-main-search" style="margin-bottom:18px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="tenderAskInput" placeholder="Ask Tender Intelligence anything — try: Which opportunities should we pursue?" onkeydown="if(event.key==='Enter') runTenderAsk(this.value)">
+      </div>
+      <div id="tenderAskResult" class="gis-ask-result" style="margin-bottom:18px;"></div>
+
+      <div class="kpi-grid kpi-grid-6">
         <div class="card kpi">
-          <div class="kpi-top"><span class="kpi-label">Open opportunities</span><div class="kpi-icon" style="background:var(--navy-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy-ink)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></div>
+          <div class="kpi-top"><span class="kpi-label">New opportunities</span><div class="kpi-icon" style="background:var(--navy-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy-ink)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></div>
           <div class="kpi-value" id="tOpenCount">14</div>
           <div class="kpi-delta up">▲ 4 new <span>this week</span></div>
         </div>
         <div class="card kpi">
-          <div class="kpi-top"><span class="kpi-label">Average fit score</span><div class="kpi-icon" style="background:var(--teal-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div></div>
-          <div class="kpi-value" id="tAvgFit">81%</div>
-          <div class="kpi-delta up">▲ 3pt <span>vs last month</span></div>
+          <div class="kpi-top"><span class="kpi-label">Strong matches</span><div class="kpi-icon" style="background:var(--teal-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div></div>
+          <div class="kpi-value" id="tAvgFit">6</div>
+          <div class="kpi-delta up">Above 85% <span>fit</span></div>
         </div>
         <div class="card kpi">
           <div class="kpi-top"><span class="kpi-label">Closing within 7 days</span><div class="kpi-icon" style="background:#FEF3E2;"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></div></div>
@@ -2458,10 +2497,38 @@ button{font-family:inherit; cursor:pointer;}
           <div class="kpi-delta down">Act soon <span id="tClosingSoonSub">2 above 85% fit</span></div>
         </div>
         <div class="card kpi">
-          <div class="kpi-top"><span class="kpi-label">Active pipeline value</span><div class="kpi-icon" style="background:#FDE8E8;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div></div>
+          <div class="kpi-top"><span class="kpi-label">Pipeline value</span><div class="kpi-icon" style="background:#FDE8E8;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div></div>
           <div class="kpi-value">GH₵2.3M</div>
           <div class="kpi-delta up">▲ 12% <span>this quarter</span></div>
         </div>
+        <div class="card kpi">
+          <div class="kpi-top"><span class="kpi-label">Bid readiness</span><div class="kpi-icon" style="background:var(--navy-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy-ink)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div></div>
+          <div class="kpi-value">81%</div>
+          <div class="kpi-delta up">Across <span>active bids</span></div>
+        </div>
+        <div class="card kpi">
+          <div class="kpi-top"><span class="kpi-label">Win rate</span><div class="kpi-icon" style="background:#E7F7EC;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="m12 2 2.9 6.4 6.9.9-5 4.9 1.2 6.9L12 17.8l-6 3.3 1.2-6.9-5-4.9 6.9-.9L12 2Z"/></svg></div></div>
+          <div class="kpi-value">42%</div>
+          <div class="kpi-delta up">Last <span>12 months</span></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:18px;">
+        <div class="card-head"><h3>AI Bid Priorities</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">What needs your attention?</span></div>
+        <div class="tender-priority-grid" id="tenderPriorities"></div>
+      </div>
+
+      <div class="card" style="margin-bottom:18px;">
+        <div class="card-head"><h3>My Opportunity Network</h3><a class="link" href="#" onclick="openAddSourceModal();return false;">+ Add Source</a></div>
+        <p style="padding:0 20px 12px; font-size:12px; color:var(--text-dim);">Connect the sources you trust. IntelligenceOS monitors them for you.</p>
+        <div class="dc-health-bar" style="margin:0 20px 16px; width:auto;">
+          <span><b>47</b> connected sources</span><span class="dc-sep">·</span>
+          <span><b>42</b> healthy</span><span class="dc-sep">·</span>
+          <span><b>3</b> attention required</span><span class="dc-sep">·</span>
+          <span><b>2</b> offline</span><span class="dc-sep">·</span>
+          <span><b>1,284</b> opportunities monitored</span>
+        </div>
+        <div class="tender-source-grid" id="tenderSourceGrid"></div>
       </div>
 
       <div class="card" style="margin-bottom:22px;">
@@ -2509,6 +2576,33 @@ button{font-family:inherit; cursor:pointer;}
                 <div style="display:flex; justify-content:space-between;"><span>Past delivery history</span><b style="color:var(--text);">25%</b></div>
                 <div style="display:flex; justify-content:space-between;"><span>Budget range fit</span><b style="color:var(--text);">20%</b></div>
                 <div style="display:flex; justify-content:space-between;"><span>Certification requirements</span><b style="color:var(--text);">20%</b></div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Market Intelligence</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">1,284 opportunities</span></div>
+            <div style="padding:14px 20px 18px; display:flex; flex-direction:column; gap:9px;">
+              <div class="study-issue-row" style="cursor:default;"><span>Health</span><b>24%</b></div>
+              <div class="study-issue-row" style="cursor:default;"><span>Agriculture</span><b>18%</b></div>
+              <div class="study-issue-row" style="cursor:default;"><span>Education</span><b>15%</b></div>
+              <div class="study-issue-row" style="cursor:default;"><span>Data Systems</span><b>12%</b></div>
+              <div class="study-issue-row" style="cursor:default;"><span>Governance</span><b>11%</b></div>
+            </div>
+            <p style="padding:0 20px 16px; font-size:11px; color:var(--text-dim);">World Bank data-system opportunities increased 18% over the last quarter.</p>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Win / Loss Analytics</h3></div>
+            <div style="padding:16px 20px;">
+              <div style="display:flex; gap:10px; margin-bottom:14px;">
+                <div style="flex:1; background:#E7F7EC; border-radius:10px; padding:12px; text-align:center;"><div style="font-size:9.5px; font-weight:700; text-transform:uppercase; color:var(--success);">Won</div><div style="font-weight:800; font-size:18px; color:var(--success);">42%</div></div>
+                <div style="flex:1; background:#FEF2F2; border-radius:10px; padding:12px; text-align:center;"><div style="font-size:9.5px; font-weight:700; text-transform:uppercase; color:var(--danger);">Lost</div><div style="font-weight:800; font-size:18px; color:var(--danger);">58%</div></div>
+              </div>
+              <div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:8px;">Reasons for losses</div>
+              <div style="display:flex; flex-direction:column; gap:6px; font-size:11.5px;">
+                <div style="display:flex; justify-content:space-between;"><span>Price</span><b>24%</b></div>
+                <div style="display:flex; justify-content:space-between;"><span>Technical score</span><b>21%</b></div>
+                <div style="display:flex; justify-content:space-between;"><span>Experience</span><b>17%</b></div>
+                <div style="display:flex; justify-content:space-between;"><span>Eligibility</span><b>11%</b></div>
               </div>
             </div>
           </div>
@@ -3335,6 +3429,102 @@ const tenderData = [
 const stageLabels = {identified:'Identified', in_progress:'In progress', submitted:'Submitted', won:'Won'};
 const stageOrder = ['identified','in_progress','submitted','won'];
 
+const tenderSources = [
+  {name:'Ghana PPA', type:'Procurement portal', status:'healthy', opportunities:84, lastChecked:'8 minutes ago', url:'ghana.gov/ppa'},
+  {name:'World Bank Procurement', type:'Structured API', status:'healthy', opportunities:42, lastChecked:'12 minutes ago', url:'worldbank.org/procurement'},
+  {name:'AfDB Procurement', type:'Procurement portal', status:'healthy', opportunities:31, lastChecked:'22 minutes ago', url:'afdb.org/procurement'},
+  {name:'UNGM', type:'UN portal', status:'healthy', opportunities:27, lastChecked:'18 minutes ago', url:'ungm.org'},
+  {name:'GIZ Ghana', type:'Organisation page', status:'attention', opportunities:14, lastChecked:'3 hours ago', url:'giz.de/ghana'},
+  {name:'ReliefWeb', type:'Aggregator', status:'healthy', opportunities:38, lastChecked:'6 minutes ago', url:'reliefweb.int'},
+  {name:'DevelopmentAid', type:'Tender board', status:'offline', opportunities:0, lastChecked:'2 days ago', url:'developmentaid.org'},
+  {name:'UNDP Ghana', type:'Organisation page', status:'healthy', opportunities:19, lastChecked:'34 minutes ago', url:'undp.org/ghana'},
+  {name:'TED (EU)', type:'Open Data API', status:'healthy', opportunities:21, lastChecked:'9 minutes ago', url:'ted.europa.eu'},
+];
+function sourceStatusMeta(status){
+  return {healthy:{icon:'🟢', label:'Healthy', color:'var(--success)'}, attention:{icon:'🟡', label:'Attention', color:'#B45309'}, offline:{icon:'🔴', label:'Offline', color:'var(--danger)'}}[status];
+}
+function renderTenderSources(){
+  const grid = document.getElementById('tenderSourceGrid');
+  if(!grid) return;
+  grid.innerHTML = tenderSources.map(s=>{
+    const m = sourceStatusMeta(s.status);
+    return `<div class="tender-source-card" onclick="viewSource('${s.name.replace(/'/g,"\\'")}')">
+      <b>${s.name}</b><span>${s.type} · ${s.opportunities} opportunities</span>
+      <span class="tender-source-status" style="color:${m.color};">${m.icon} ${m.label} · ${s.lastChecked}</span>
+    </div>`;
+  }).join('');
+}
+function viewSource(name){
+  const s = tenderSources.find(x=>x.name===name);
+  if(!s) return;
+  const m = sourceStatusMeta(s.status);
+  openModal(`
+    <div class="modal-head"><h3>${s.name}</h3><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <div class="dc-ws-meta-grid">
+        <div><span>Type</span><b>${s.type}</b></div>
+        <div><span>Status</span><b style="color:${m.color};">${m.icon} ${m.label}</b></div>
+        <div><span>Opportunities monitored</span><b>${s.opportunities}</b></div>
+        <div><span>Last checked</span><b>${s.lastChecked}</b></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      <button class="btn btn-primary" onclick="closeModal(); document.getElementById('tenderSearch').value='${s.name.replace(/'/g,"\\'")}'; renderTenders();" style="flex:1; justify-content:center;">View opportunities</button>
+    </div>
+  `);
+}
+function openAddSourceModal(){
+  openModal(`
+    <div class="modal-head"><h3>Add Source</h3><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <div class="intel-label">Source name</div>
+      <div class="ai-search dc-main-search" style="margin:8px 0 14px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4zM4 10h16v4H4zM4 16h16v4H4z"/></svg>
+        <input type="text" id="newSourceInput" placeholder="e.g. World Bank Procurement, Ghana PPA…">
+      </div>
+      <button class="btn btn-primary" onclick="checkSourceDuplicate()">Check &amp; Connect</button>
+      <div id="sourceCheckResult"></div>
+    </div>
+  `);
+}
+function checkSourceDuplicate(){
+  const val = (document.getElementById('newSourceInput').value || '').trim().toLowerCase();
+  const el = document.getElementById('sourceCheckResult');
+  if(!val){ toast('Enter a source name or URL first'); return; }
+  const existing = tenderSources.find(s => val.includes(s.name.toLowerCase().split(' ')[0]) || s.name.toLowerCase().includes(val));
+  if(existing){
+    const m = sourceStatusMeta(existing.status);
+    el.innerHTML = `
+      <div class="intel-section" style="padding:16px 0 0; margin-top:14px; border-top:1px solid var(--border);">
+        <div class="intel-label" style="color:var(--danger);">🚫 Source Already Exists</div>
+        <p style="margin:8px 0 12px;">IntelligenceOS already monitors this source. You don't need to add it again.</p>
+        <div class="dc-ws-meta-grid">
+          <div><span>Source</span><b>${existing.name}</b></div>
+          <div><span>Status</span><b style="color:${m.color};">${m.icon} ${m.label}</b></div>
+          <div><span>Last checked</span><b>${existing.lastChecked}</b></div>
+          <div><span>Opportunities</span><b>${existing.opportunities}</b></div>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:14px;">
+          <button class="btn btn-ghost" onclick="closeModal(); viewSource('${existing.name.replace(/'/g,"\\'")}')" style="flex:1; justify-content:center;">View Source</button>
+          <button class="btn btn-primary" onclick="closeModal(); document.getElementById('tenderSearch').value='${existing.name.replace(/'/g,"\\'")}'; renderTenders();" style="flex:1; justify-content:center;">View Opportunities</button>
+        </div>
+      </div>`;
+  } else {
+    const steps = ['Checking URL accessibility','Validating domain','Scanning for opportunity listings','Checking publication & closing dates','Checking for duplicate source identity'];
+    el.innerHTML = `<div class="intel-section" style="padding:16px 0 0; margin-top:14px; border-top:1px solid var(--border);"><div class="intel-label">Source Validation</div><div id="sourceValidateSteps" style="margin-top:8px;"></div></div>`;
+    const stepsEl = document.getElementById('sourceValidateSteps');
+    steps.forEach((s,i)=>{
+      setTimeout(()=>{
+        stepsEl.innerHTML += `<div class="newsource-check-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>${s}</div>`;
+      }, i*260);
+    });
+    setTimeout(()=>{
+      stepsEl.innerHTML += `<p style="margin-top:12px; font-weight:700; color:var(--success);">Source Health: 94/100 — Ready to connect</p>
+        <button class="btn btn-primary" style="margin-top:10px;" onclick="toast('Source connected — monitoring begins now'); closeModal();">Connect source</button>`;
+    }, steps.length*260+300);
+  }
+}
 function fitColor(fit){
   if(fit>=85) return 'var(--success)';
   if(fit>=70) return 'var(--warning)';
@@ -3362,7 +3552,7 @@ function renderTenders(){
   const openEl = document.getElementById('tOpenCount');
   if(openEl) openEl.textContent = tenderData.length;
   const avgFitEl = document.getElementById('tAvgFit');
-  if(avgFitEl) avgFitEl.textContent = Math.round(tenderData.reduce((s,t)=>s+t.fit,0)/tenderData.length)+'%';
+  if(avgFitEl) avgFitEl.textContent = tenderData.filter(t=>t.fit>=85).length;
   const closingSoon = tenderData.filter(t=>t.deadlineVal<=7);
   const closingEl = document.getElementById('tClosingSoon');
   if(closingEl) closingEl.textContent = closingSoon.length;
@@ -3407,17 +3597,37 @@ function renderPipeline(){
     </div>`;
   }).join('');
 }
+const fitBreakdownData = {
+  95:{sector:98, services:100, geography:100, experience:95, team:92, financial:88, eligibility:100, strategic:96},
+  92:{sector:95, services:100, geography:100, experience:91, team:87, financial:82, eligibility:100, strategic:94},
+  default:{sector:82, services:88, geography:95, experience:74, team:70, financial:68, eligibility:90, strategic:78}
+};
+function deadlineBadge(days){
+  if(days<3) return '<span class="deadline-badge deadline-critical">🔴 Critical</span>';
+  if(days<=7) return '<span class="deadline-badge deadline-urgent">🟠 Urgent</span>';
+  if(days<=14) return '<span class="deadline-badge deadline-upcoming">🟡 Upcoming</span>';
+  return '<span class="deadline-badge deadline-future">🟢 Future</span>';
+}
+function bidRecommendation(fit){
+  if(fit>=85) return {label:'🟢 BID', color:'var(--success)'};
+  if(fit>=70) return {label:'🟡 REVIEW', color:'#B45309'};
+  return {label:'🔴 NO-BID', color:'var(--danger)'};
+}
 function openTender(id){
   const t = tenderData.find(x=>x.id===id);
   if(!t) return;
   const idx = stageOrder.indexOf(t.stage);
   const nextStage = stageOrder[idx+1];
+  const bd = fitBreakdownData[t.fit] || fitBreakdownData.default;
+  const rec = bidRecommendation(t.fit);
+  const readiness = Math.max(45, t.fit - 12 + (t.id % 7));
   openModal(`
     <div class="modal-head">
       <div>
         <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
           <span class="tender-fit" style="width:34px;height:34px;font-size:11px;color:${fitColor(t.fit)};border-color:${fitColor(t.fit)};border-width:2px;">${t.fit}%</span>
           <span class="tender-stage-badge stage-${t.stage}">${stageLabels[t.stage]}</span>
+          ${deadlineBadge(t.deadlineVal)}
         </div>
         <h3>${t.title}</h3>
         <small style="color:var(--text-dim); font-size:11.5px;">${t.org}</small>
@@ -3426,17 +3636,60 @@ function openTender(id){
     </div>
     <div class="modal-body">
       <p>${t.summary}</p>
-      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:14px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:14px 0;">
         <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Sector</div><div style="font-weight:700; font-size:12.5px;">${t.sector}</div></div>
         <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Budget</div><div style="font-weight:700; font-size:12.5px;">${t.budget}</div></div>
         <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Deadline</div><div style="font-weight:700; font-size:12.5px;">${t.deadline}</div></div>
       </div>
+
+      <div class="intel-section" style="padding:14px 0 0; border-top:1px solid var(--border);">
+        <div class="intel-label">Fit Score Breakdown</div>
+        <div style="display:flex; flex-direction:column; gap:6px; margin-top:8px;">
+          ${Object.entries({Sector:bd.sector,Services:bd.services,Geography:bd.geography,Experience:bd.experience,Team:bd.team,'Financial capacity':bd.financial,Eligibility:bd.eligibility,'Strategic alignment':bd.strategic}).map(([k,v])=>`
+            <div style="display:flex; align-items:center; gap:10px; font-size:11.5px;"><span style="width:130px; color:var(--text-dim); flex-shrink:0;">${k}</span><div class="survey-progress-bar" style="flex:1;"><i style="width:${v}%; background:${fitColor(v)};"></i></div><b style="width:32px; text-align:right;">${v}%</b></div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="intel-section">
+        <div class="intel-label">AI Explanation</div>
+        <p style="font-size:12.5px;">Strong alignment with your M&E, research and data systems experience. Your organisation has relevant assignments and sufficient geographic experience. ${bd.financial<75 ? 'The main gap is financial capacity documentation.' : bd.team<80 ? 'The main gap is team availability for this specific scope.' : 'No major gaps identified.'}</p>
+      </div>
+
+      <div class="intel-section" style="display:flex; align-items:center; gap:16px;">
+        <div><div class="intel-label">Bid Recommendation</div><b style="font-size:15px; color:${rec.color};">${rec.label}</b></div>
+        <div style="flex:1;"><div class="intel-label">Bid Readiness</div>
+          <div style="display:flex; align-items:center; gap:8px;"><div class="survey-progress-bar" style="flex:1;"><i style="width:${readiness}%; background:${fitColor(readiness)};"></i></div><b>${readiness}%</b></div>
+        </div>
+      </div>
+
+      <div class="intel-section">
+        <div class="intel-label">Requirement Matrix</div>
+        <table class="result-table" style="margin-top:8px;">
+          <tr><th>Requirement</th><th>Evidence</th><th>Status</th></tr>
+          <tr><td>5 years experience</td><td>Company profile</td><td>✓</td></tr>
+          <tr><td>3 similar assignments</td><td>Experience library</td><td>✓</td></tr>
+          <tr><td>Senior M&E expert</td><td>Expert library</td><td>✓</td></tr>
+          <tr><td>Financial capacity</td><td>Financial document</td><td>${bd.financial<75?'⚠':'✓'}</td></tr>
+          <tr><td>Registration</td><td>Certificate</td><td>✓</td></tr>
+        </table>
+      </div>
+
+      <div class="intel-section">
+        <div class="intel-label">Bid Checklist</div>
+        <div style="display:flex; flex-direction:column; gap:7px; margin-top:8px; font-size:12px;">
+          <div>☑ TOR reviewed</div><div>☑ Eligibility checked</div><div>☑ Experience identified</div><div>☑ Team identified</div>
+          <div style="color:var(--text-dim);">☐ Technical proposal</div><div style="color:var(--text-dim);">☐ Financial proposal</div><div style="color:var(--text-dim);">☐ Internal approval</div>
+        </div>
+      </div>
     </div>
-    <div class="modal-foot">
-      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
-      ${nextStage
-        ? `<button class="btn btn-primary" onclick="advanceTender(${t.id})" style="flex:1; justify-content:center;">Advance to "${stageLabels[nextStage]}"</button>`
-        : `<button class="btn btn-teal" disabled style="flex:1; justify-content:center; opacity:.7; cursor:default;">🎉 Won</button>`}
+    <div class="intel-label" style="padding:0 24px;">Actions</div>
+    <div class="intel-actions-row" style="padding:10px 24px 22px;">
+      ${nextStage ? `<button class="intel-action-btn" onclick="advanceTender(${t.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Advance to "${stageLabels[nextStage]}"</button>` : ''}
+      <button class="intel-action-btn" onclick="closeModal(); showView('explorer');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Ask AI</button>
+      <button class="intel-action-btn" onclick="closeModal(); showView('gis');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 3-6-3"/></svg>Explore Geographically</button>
+      <button class="intel-action-btn" onclick="closeModal(); showView('studio'); enterCanvas('tenders');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Create Dashboard</button>
+      <button class="intel-action-btn" onclick="toast('Challenging this bid — looking for weaknesses…')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>Red Team Review</button>
     </div>
   `);
 }
@@ -3451,7 +3704,54 @@ function advanceTender(id){
   closeModal();
   renderTenders();
 }
-if(document.getElementById('tenderList')) renderTenders();
+
+/* ---------- AI Bid Priorities ---------- */
+function renderTenderPriorities(){
+  const el = document.getElementById('tenderPriorities');
+  if(!el) return;
+  const actNow = [...tenderData].filter(t=>t.stage!=='won').sort((a,b)=> (a.deadlineVal - b.deadlineVal*0.3) - (b.fit*0.4))[0];
+  const urgent = [...tenderData].sort((a,b)=> a.deadlineVal - b.deadlineVal).find(t=>t.fit>=85) || tenderData[0];
+  const review = tenderData.find(t=> t.fit>=70 && t.fit<90 && t.stage==='identified') || tenderData[1];
+  const opp = [...tenderData].filter(t=>t.stage==='identified' && t.fit>=80).sort((a,b)=>b.fit-a.fit)[0] || tenderData[2];
+  el.innerHTML = `
+    <div class="tender-priority-card act">
+      <div class="tender-priority-label">🔴 Act Now</div>
+      <b>${urgent.title}</b>
+      <p>${urgent.fit}% fit · Closes in ${urgent.deadline}</p>
+      <button onclick="openTender(${urgent.id})">Open Bid Room</button>
+    </div>
+    <div class="tender-priority-card review">
+      <div class="tender-priority-label">🟠 Review</div>
+      <b>${review.title}</b>
+      <p>${review.fit}% fit · One eligibility requirement needs review</p>
+      <button onclick="openTender(${review.id})">Review</button>
+    </div>
+    <div class="tender-priority-card opp">
+      <div class="tender-priority-label">🟢 Opportunity</div>
+      <b>${opp.title}</b>
+      <p>${opp.fit}% fit · Strong capability match</p>
+      <button onclick="openTender(${opp.id})">Evaluate</button>
+    </div>
+  `;
+}
+
+/* ---------- Ask Tender Intelligence ---------- */
+const tenderAskAnswers = {
+  'which opportunities should we pursue?':'Three opportunities score above 90% fit with acceptable readiness: JMK Procurement Analytics Retainer (97%), NDC Constituency Feasibility Survey (95%), and EU M&E Framework (92%). All three align closely with your M&E and data-systems track record.',
+  'what did we lose last quarter?':'You lost 3 opportunities last quarter, primarily on price (2 cases) and technical score (1 case). The largest was a $180K World Bank consultancy where a competitor undercut your bid by 22%.',
+  'which donor gives us the highest win rate?':'JMK and Inscend-routed World Bank opportunities show your highest win rate at 58%, followed by EU-funded opportunities at 47%. AfDB opportunities have the lowest win rate at 22%, mostly due to eligibility gaps.',
+};
+function runTenderAsk(query){
+  if(!query || !query.trim()) return;
+  const key = query.trim().toLowerCase();
+  const answer = tenderAskAnswers[key] || 'Based on current pipeline data, your strongest opportunities combine high fit with approaching deadlines — check AI Bid Priorities above for the specific recommendations.';
+  const el = document.getElementById('tenderAskResult');
+  el.classList.add('show');
+  el.innerHTML = `<div class="ai-insight-widget" style="padding:14px 18px;"><p>${answer}</p></div>`;
+}
+
+if(document.getElementById('tenderList')){ renderTenders(); renderTenderPriorities(); renderTenderSources(); }
+
 
 /* =============================================================
    SURVEY INTELLIGENCE
