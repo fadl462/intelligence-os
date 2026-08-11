@@ -304,6 +304,7 @@ button{font-family:inherit; cursor:pointer;}
 
 /* ---------- KPI GRID ---------- */
 .kpi-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:22px;}
+.kpi-grid-6{grid-template-columns:repeat(6,1fr);}
 .kpi{padding:19px 20px; display:flex; flex-direction:column; gap:10px;}
 .kpi-clickable{cursor:pointer; transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;}
 .kpi-clickable:hover{transform:translateY(-2px); box-shadow:var(--shadow); border-color:var(--teal);}
@@ -964,7 +965,8 @@ button{font-family:inherit; cursor:pointer;}
 .survey-progress-row{display:flex; align-items:center; gap:10px; font-size:11.5px; color:var(--text-dim);}
 .survey-progress-bar{flex:1; height:6px; border-radius:4px; background:var(--border); overflow:hidden;}
 .survey-progress-bar i{display:block; height:100%; background:var(--teal); border-radius:4px;}
-.enum-row{display:flex; align-items:center; gap:11px; padding:11px 20px; border-bottom:1px solid var(--border);}
+.enum-row{display:flex; align-items:center; gap:11px; padding:11px 20px; border-bottom:1px solid var(--border); cursor:pointer; transition:background .15s;}
+.enum-row:hover{background:var(--bg);}
 .enum-row:last-child{border-bottom:none;}
 .enum-rank{width:20px; font-size:12px; font-weight:800; color:var(--text-dim); flex-shrink:0;}
 .enum-avatar{width:32px; height:32px; border-radius:9px; background:linear-gradient(135deg,var(--navy),var(--teal)); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:11px; flex-shrink:0;}
@@ -975,6 +977,21 @@ button{font-family:inherit; cursor:pointer;}
 .quality-check{display:flex; align-items:flex-start; gap:9px; font-size:12px; color:var(--text-dim); line-height:1.5;}
 .quality-check svg{width:15px; height:15px; flex-shrink:0; margin-top:1px;}
 .quality-check.warn{color:#B45309;}
+
+/* ---------- SURVEY INTELLIGENCE — new components ---------- */
+.survey-process-row{display:flex; align-items:center; gap:10px; margin-bottom:18px; flex-wrap:wrap;}
+.survey-process-row span:not(.survey-process-arrow){font-size:12.5px; font-weight:700; padding:8px 16px; border-radius:20px; background:var(--navy-100); color:var(--navy-ink);}
+.survey-process-arrow{color:var(--border); font-size:14px;}
+.newstudy-grid{display:grid; grid-template-columns:1fr 1fr; gap:9px; margin:14px 0;}
+.newstudy-option{font-size:12.5px; font-weight:700; padding:12px 14px; border-radius:10px; border:1px solid var(--border); background:var(--bg); cursor:pointer; transition:all .15s;}
+.newstudy-option:hover{border-color:var(--teal); background:var(--teal-100); color:var(--teal-600);}
+.study-quality-ring-row{display:flex; align-items:center; gap:16px; background:var(--bg); border-radius:12px; padding:16px 18px; margin:12px 0;}
+.study-issue-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:12px 0;}
+.study-issue-row{display:flex; align-items:center; justify-content:space-between; font-size:12px; padding:8px 12px; background:var(--bg); border-radius:8px; cursor:pointer;}
+.study-issue-row:hover{background:var(--teal-100);}
+.study-fieldmap{background:var(--navy); border-radius:12px; overflow:hidden; height:220px; position:relative;}
+.study-fieldmap svg{width:100%; height:100%;}
+.study-legend-row{display:flex; gap:14px; flex-wrap:wrap; font-size:11px; font-weight:600; color:var(--text-dim); margin-top:8px;}
 
 /* ---------- DOMAIN MODULE SHARED WIDGETS ---------- */
 .gov-sim{display:grid; grid-template-columns:1fr 1fr; gap:24px; padding:18px 20px;}
@@ -1159,6 +1176,7 @@ button{font-family:inherit; cursor:pointer;}
   .survey-layout{grid-template-columns:1fr;}
   .gov-sim{grid-template-columns:1fr;}
   .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .kpi-grid-6{grid-template-columns:repeat(3,1fr);}
   .dash-grid{grid-template-columns:repeat(2,1fr);}
   .source-grid{grid-template-columns:repeat(2,1fr);}
   .widget-grid{grid-template-columns:repeat(2,1fr);}
@@ -1184,7 +1202,7 @@ button{font-family:inherit; cursor:pointer;}
   .sidebar.open{transform:translateX(0);}
   .main{margin-left:0;}
   .ai-search{display:none;}
-  .kpi-grid,.dash-grid,.source-grid,.widget-grid,.domain-features{grid-template-columns:1fr;}
+  .kpi-grid,.dash-grid,.source-grid,.widget-grid,.domain-features,.kpi-grid-6{grid-template-columns:1fr;}
   .domain-waitlist-form{flex-direction:column;}
   .tender-filters{flex-direction:column; align-items:stretch;}
   .tender-min-fit{margin-left:0;}
@@ -2314,58 +2332,97 @@ button{font-family:inherit; cursor:pointer;}
       <div class="view-head">
         <div>
           <div class="eyebrow"><span class="compass-dot"></span>SURVEY INTELLIGENCE</div>
-          <h1>From questionnaire to insight.</h1>
-          <p>Design, field, clean and analyse surveys in one workspace — beyond Kobo, beyond SurveyCTO.</p>
+          <h1>From questionnaire to evidence.</h1>
+          <p>A complete intelligence workspace for designing surveys, managing fieldwork, assuring data quality, analysing responses and turning evidence into decisions.</p>
         </div>
-        <button class="btn btn-primary" onclick="toast('Opening AI Questionnaire Builder…')">
+        <button class="btn btn-primary" onclick="openNewStudyModal()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-          New survey
+          New Study
         </button>
       </div>
 
-      <div class="kpi-grid">
+      <div class="survey-process-row">
+        <span>Design</span><span class="survey-process-arrow">→</span>
+        <span>Collect</span><span class="survey-process-arrow">→</span>
+        <span>Validate</span><span class="survey-process-arrow">→</span>
+        <span>Analyse</span><span class="survey-process-arrow">→</span>
+        <span>Act</span>
+      </div>
+
+      <div class="kpi-grid kpi-grid-6">
         <div class="card kpi">
-          <div class="kpi-top"><span class="kpi-label">Active surveys</span><div class="kpi-icon" style="background:var(--navy-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy-ink)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div></div>
+          <div class="kpi-top"><span class="kpi-label">Active studies</span><div class="kpi-icon" style="background:var(--navy-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy-ink)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div></div>
           <div class="kpi-value" id="sActiveCount">4</div>
           <div class="kpi-delta up">▲ 1 new <span>this month</span></div>
         </div>
         <div class="card kpi">
-          <div class="kpi-top"><span class="kpi-label">Responses collected</span><div class="kpi-icon" style="background:var(--teal-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2"><path d="M9 17H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4M9 17v4l4-4M9 17h4"/></svg></div></div>
+          <div class="kpi-top"><span class="kpi-label">Responses</span><div class="kpi-icon" style="background:var(--teal-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2"><path d="M9 17H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4M9 17v4l4-4M9 17h4"/></svg></div></div>
           <div class="kpi-value" id="sResponseCount">3,842</div>
           <div class="kpi-delta up">▲ 214 <span>today</span></div>
         </div>
         <div class="card kpi">
-          <div class="kpi-top"><span class="kpi-label">Enumerators in field</span><div class="kpi-icon" style="background:#FEF3E2;"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div></div>
+          <div class="kpi-top"><span class="kpi-label">Field teams</span><div class="kpi-icon" style="background:#FEF3E2;"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div></div>
           <div class="kpi-value">18</div>
           <div class="kpi-delta up">GPS-tracked <span>live</span></div>
         </div>
         <div class="card kpi">
-          <div class="kpi-top"><span class="kpi-label">Average data quality</span><div class="kpi-icon" style="background:#E7F7EC;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div></div>
+          <div class="kpi-top"><span class="kpi-label">Data quality</span><div class="kpi-icon" style="background:#E7F7EC;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div></div>
           <div class="kpi-value" id="sAvgQuality">94%</div>
           <div class="kpi-delta up">▲ 2pt <span>vs last round</span></div>
+        </div>
+        <div class="card kpi">
+          <div class="kpi-top"><span class="kpi-label">Completion rate</span><div class="kpi-icon" style="background:var(--navy-100);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy-ink)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div></div>
+          <div class="kpi-value">76%</div>
+          <div class="kpi-delta up">▲ 4pt <span>this week</span></div>
+        </div>
+        <div class="card kpi">
+          <div class="kpi-top"><span class="kpi-label">Quality alerts</span><div class="kpi-icon" style="background:#FEF2F2;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div></div>
+          <div class="kpi-value" style="color:var(--danger);">7</div>
+          <div class="kpi-delta" style="color:var(--danger);">Needs review <span>today</span></div>
         </div>
       </div>
 
       <div class="survey-layout">
         <div class="stack">
           <div class="card">
-            <div class="card-head"><h3>Surveys</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">6 total</span></div>
+            <div class="card-head"><h3>My Studies</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">6 total</span></div>
             <div id="surveyList"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Recent Findings</h3></div>
+            <div class="dc-watch-row" onclick="openSurvey(1)"><span>Institutional policy adoption lags in rural districts</span><b>GFD Baseline</b></div>
+            <div class="dc-watch-row" onclick="openSurvey(2)"><span>Youth employment outcomes improved 12% since Round 5</span><b>GTVP Tracer</b></div>
+            <div class="dc-watch-row" onclick="openSurvey(6)"><span>Cocoa farmer registry coverage now exceeds 60%</span><b>Registry Update</b></div>
           </div>
         </div>
 
         <div class="stack">
           <div class="card">
-            <div class="card-head"><h3>Enumerator leaderboard</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">This week</span></div>
+            <div class="card-head"><h3>Field Intelligence</h3></div>
+            <div class="ai-insight-widget" style="padding:16px 20px;">
+              <p>Collection is progressing below target in Jaman North. Two enumerators have substantially lower completion rates than the study average.</p>
+              <button onclick="openSurvey(3)">Investigate →</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Enumerator Field Performance</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">This week</span></div>
             <div id="enumeratorList"></div>
           </div>
           <div class="card">
-            <div class="card-head"><h3>AI data quality checks</h3></div>
+            <div class="card-head"><h3>Real-Time Quality Engine</h3></div>
             <div style="padding:16px 20px; display:flex; flex-direction:column; gap:11px;">
               <div class="quality-check"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>GPS location validated against expected district</span></div>
               <div class="quality-check"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Duplicate submission detection</span></div>
               <div class="quality-check"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Outlier flagging on numeric responses</span></div>
               <div class="quality-check warn"><svg viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><span>7 responses flagged for review — survey time under 3 minutes</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>AI Recommendations</h3></div>
+            <div class="ai-insight-widget" style="padding:16px 20px; display:flex; flex-direction:column; gap:12px;">
+              <div class="aiw-why"><b>Upcoming deadline</b>GFD Baseline fieldwork ends in 9 days — 188 responses remaining at current pace.</div>
+              <div class="aiw-why"><b>Suggested action</b>Reassign 1 enumerator from Ashanti to Jaman North to close the gap.</div>
+              <button onclick="toast('Opening enumerator reassignment…')">Review suggestion</button>
             </div>
           </div>
         </div>
@@ -3408,11 +3465,11 @@ const surveyData = [
   {id:6, title:"Cocoa Farmer Registry Update", client:"Inscend Consulting", status:"active", responses:1274, target:2000, region:"Western & Ashanti", trend:[140,160,155,180,200,210,230]},
 ];
 const enumeratorData = [
-  {name:"Abena Owusu", region:"Akosombo", submissions:112, quality:98},
-  {name:"Kwame Mensah", region:"Jaman North", submissions:104, quality:96},
-  {name:"Efua Asante", region:"Western Region", submissions:97, quality:94},
-  {name:"Yaw Boateng", region:"Ashanti Region", submissions:89, quality:91},
-  {name:"Adjoa Frimpong", region:"National (GTVP)", submissions:81, quality:89},
+  {name:"Abena Owusu", region:"Akosombo", submissions:112, quality:98, gps:99, avgDuration:"12m 31s", dupRate:0, fieldScore:96},
+  {name:"Kwame Mensah", region:"Jaman North", submissions:104, quality:96, gps:97, avgDuration:"13m 08s", dupRate:0, fieldScore:94},
+  {name:"Efua Asante", region:"Western Region", submissions:97, quality:94, gps:95, avgDuration:"14m 52s", dupRate:1, fieldScore:90},
+  {name:"Yaw Boateng", region:"Ashanti Region", submissions:89, quality:91, gps:92, avgDuration:"11m 40s", dupRate:2, fieldScore:85},
+  {name:"Adjoa Frimpong", region:"National (GTVP)", submissions:81, quality:89, gps:88, avgDuration:"9m 12s", dupRate:4, fieldScore:76},
 ];
 function initials(name){ return name.split(' ').map(s=>s[0]).join('').slice(0,2); }
 function renderSurveys(){
@@ -3442,20 +3499,32 @@ function renderSurveys(){
 
   const enumEl = document.getElementById('enumeratorList');
   if(enumEl){
-    enumEl.innerHTML = enumeratorData.map((e,i)=>`
-      <div class="enum-row">
+    const sorted = [...enumeratorData].sort((a,b)=> b.fieldScore-a.fieldScore);
+    enumEl.innerHTML = sorted.map((e,i)=>`
+      <div class="enum-row" onclick="openEnumeratorProfile('${e.name.replace(/'/g,"\\'")}')">
         <span class="enum-rank">#${i+1}</span>
         <div class="enum-avatar">${initials(e.name)}</div>
-        <div class="enum-body"><b>${e.name}</b><small>${e.region} · ${e.submissions} submissions</small></div>
-        <span class="enum-quality" style="color:${e.quality>=95?'var(--success)':e.quality>=90?'var(--warning)':'var(--danger)'};">${e.quality}%</span>
+        <div class="enum-body"><b>${e.name}</b><small>${e.region} · Field Performance</small></div>
+        <span class="enum-quality" style="color:${e.fieldScore>=90?'var(--success)':e.fieldScore>=80?'var(--warning)':'var(--danger)'};">${e.fieldScore}/100</span>
       </div>
     `).join('');
   }
 }
+const studyExtras = {
+  1:{clustersAssigned:18, clustersDone:11, behind:2, gpsAnomalies:1, insight:"Collection is progressing below target in Jaman North-adjacent districts. Two enumerators have substantially lower completion rates than the study average.", qScore:91,
+     ask:{"what are the main findings so far?":"Institutional disability policy adoption is uneven — 61% of surveyed institutions have a written policy, but only 34% report active implementation. Accessibility infrastructure lags policy in every district surveyed."}},
+  2:{clustersAssigned:75, clustersDone:61, behind:3, gpsAnomalies:0, insight:"Youth employment outcomes have improved 12% since Round 5, concentrated in Greater Accra and Ashanti. Rural districts show slower improvement.", qScore:96,
+     ask:{"what changed since round 5?":"Employment outcomes rose 12% nationally, driven mainly by urban districts. Rural tracer respondents show only a 3% improvement, suggesting the intervention's effect is uneven geographically."}},
+  3:{clustersAssigned:12, clustersDone:10, behind:1, gpsAnomalies:0, insight:"Jaman North feasibility data collection is nearly complete. Early responses show strong support for the proposed intervention across surveyed communities.", qScore:93,
+     ask:{"what are the main findings so far?":"Early results show 78% favourable sentiment toward the proposed intervention, with the strongest support in the constituency's southern communities."}},
+  6:{clustersAssigned:40, clustersDone:24, behind:5, gpsAnomalies:2, insight:"Cocoa farmer registry coverage now exceeds 60% in Western Region but lags in Ashanti. Two enumerators show unusually fast completion times worth reviewing.", qScore:88,
+     ask:{"what are the main findings so far?":"Registry coverage is strongest in Western Region (68%) and weakest in Ashanti (49%). Farm size and cooperative membership are the strongest predictors of registry completion."}},
+};
 function openSurvey(id){
   const s = surveyData.find(x=>x.id===id);
   if(!s) return;
   const pct = s.target ? Math.round((s.responses/s.target)*100) : 0;
+  const ex = studyExtras[id] || {clustersAssigned:0, clustersDone:0, behind:0, gpsAnomalies:0, insight:"No active field intelligence for this study yet.", qScore:s.status==='completed'?97:0, ask:{}};
   openModal(`
     <div class="modal-head">
       <div>
@@ -3466,17 +3535,45 @@ function openSurvey(id){
       <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
     <div class="modal-body">
-      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:16px;">
-        <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Responses</div><div style="font-weight:800; font-size:15px;">${s.responses.toLocaleString()}</div></div>
-        <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Target</div><div style="font-weight:800; font-size:15px;">${s.target.toLocaleString()}</div></div>
+      <div class="intel-label">Field Command</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:10px 0 16px;">
+        <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Responses</div><div style="font-weight:800; font-size:15px;">${s.responses.toLocaleString()} / ${s.target.toLocaleString()}</div></div>
         <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Complete</div><div style="font-weight:800; font-size:15px;">${pct}%</div></div>
+        <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Clusters</div><div style="font-weight:800; font-size:15px;">${ex.clustersDone} / ${ex.clustersAssigned}</div></div>
       </div>
-      <p style="margin-bottom:10px;"><b>Coverage:</b> ${s.region}</p>
-      <div style="height:90px; position:relative;"><canvas id="surveyModalChart" style="position:absolute; inset:0; width:100% !important; height:100% !important;"></canvas></div>
+      <div style="display:flex; gap:16px; font-size:11.5px; color:var(--text-dim); margin-bottom:16px;">
+        <span>🟠 ${ex.behind} behind schedule</span>
+        <span>📍 ${ex.gpsAnomalies} GPS anomalies</span>
+      </div>
+
+      <div style="height:90px; position:relative; margin-bottom:16px;"><canvas id="surveyModalChart" style="position:absolute; inset:0; width:100% !important; height:100% !important;"></canvas></div>
+
+      <div class="study-quality-ring-row">
+        <div class="dc-ws-quality-ring" style="--pct:${ex.qScore}; --qcolor:${qualityColor(ex.qScore)};"><span>${ex.qScore}</span></div>
+        <div><b style="font-size:13px; display:block;">Study Quality Score — ${qualityLabel(ex.qScore)}</b><p style="font-size:11px; color:var(--text-dim);">Based on completeness, GPS compliance, duplicate rate and enumerator consistency.</p></div>
+      </div>
+
+      <div class="intel-section" style="padding:14px 0 0; border-top:1px solid var(--border);">
+        <div class="intel-label">AI Field Intelligence</div>
+        <p>${ex.insight}</p>
+      </div>
+
+      <div class="intel-section" style="padding-top:14px;">
+        <div class="intel-label">Ask your study anything</div>
+        <div class="ai-search" style="margin-top:8px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="studyAskInput" placeholder="What are the main findings so far?" onkeydown="if(event.key==='Enter') askStudy(${id}, this.value)">
+        </div>
+        <div id="studyAskResult"></div>
+      </div>
     </div>
-    <div class="modal-foot">
-      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
-      <button class="btn btn-primary" onclick="closeModal(); showView('explorer');" style="flex:1; justify-content:center;">Ask AI about this survey</button>
+    <div class="intel-label" style="padding:0 24px;">Turn this into</div>
+    <div class="intel-actions-row" style="padding:10px 24px 22px;">
+      <button class="intel-action-btn" onclick="toast('Generating Data Story for '+'${s.title.replace(/'/g,"\\'")}'+'…')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/></svg>Data Story</button>
+      <button class="intel-action-btn" onclick="closeModal(); openReportModal();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Generate Report</button>
+      <button class="intel-action-btn" onclick="closeModal(); showView('studio'); enterCanvas('me');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Create Dashboard</button>
+      <button class="intel-action-btn" onclick="closeModal(); showView('gis');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 3-6-3"/></svg>Explore Geographically</button>
+      <button class="intel-action-btn" onclick="closeModal(); showView('explorer');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Ask AI Data Explorer</button>
     </div>
   `);
   setTimeout(()=>{
@@ -3488,7 +3585,128 @@ function openSurvey(id){
     });
   }, 50);
 }
+function askStudy(id, query){
+  if(!query || !query.trim()) return;
+  const ex = studyExtras[id];
+  const key = query.trim().toLowerCase();
+  const answer = (ex && ex.ask[key]) || 'Based on responses collected so far, the clearest pattern is geographic — outcomes diverge meaningfully between urban and rural surveyed areas. A fuller breakdown is available once data collection nears completion.';
+  const el = document.getElementById('studyAskResult');
+  el.innerHTML = `<div class="ai-insight-widget" style="padding:12px 0 0;"><p>${answer}</p></div>`;
+}
+function openEnumeratorProfile(name){
+  const e = enumeratorData.find(x=>x.name===name);
+  if(!e) return;
+  const flag = e.fieldScore<80 ? 'Short average duration and elevated duplicate rate — recommend spot-check of recent submissions.' : 'None';
+  openModal(`
+    <div class="modal-head">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="enum-avatar" style="width:42px; height:42px; font-size:13px;">${initials(e.name)}</div>
+        <div><h3>${e.name}</h3><small style="color:var(--text-dim); font-size:11.5px;">${e.region}</small></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="gis-profile-grid">
+        <div class="gis-profile-stat"><span>Field Performance</span><b style="color:${e.fieldScore>=90?'var(--success)':e.fieldScore>=80?'var(--warning)':'var(--danger)'};">${e.fieldScore}/100</b></div>
+        <div class="gis-profile-stat"><span>Submissions</span><b>${e.submissions}</b></div>
+        <div class="gis-profile-stat"><span>Data quality</span><b>${e.quality}%</b></div>
+        <div class="gis-profile-stat"><span>GPS compliance</span><b>${e.gps}%</b></div>
+        <div class="gis-profile-stat"><span>Avg. duration</span><b>${e.avgDuration}</b></div>
+        <div class="gis-profile-stat"><span>Duplicate rate</span><b>${e.dupRate}%</b></div>
+      </div>
+      <div class="intel-section" style="padding:14px 0 0; border-top:1px solid var(--border);">
+        <div class="intel-label">Attention required</div>
+        <p style="color:${flag==='None'?'var(--success)':'var(--danger)'};">${flag}</p>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      <button class="btn btn-primary" onclick="toast('Opening submission history for ${e.name.replace(/'/g,"\\'")}');" style="flex:1; justify-content:center;">Review submissions</button>
+    </div>
+  `);
+}
+
+/* ---------- New Study / AI Study Builder ---------- */
+function openNewStudyModal(){
+  const options = ['Create a survey','Conduct a baseline','Conduct an endline','Run a tracer study','Conduct an impact evaluation','Collect a registry','Run a monitoring survey','Conduct market research','Run a census','Import an existing questionnaire'];
+  openModal(`
+    <div class="modal-head"><h3>What are you trying to do?</h3><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <div class="newstudy-grid">
+        ${options.map(o=>`<div class="newstudy-option" onclick="closeModal(); openStudyBuilderModal('${o.replace(/'/g,"\\'")}');">${o}</div>`).join('')}
+      </div>
+      <div class="intel-label" style="margin-top:14px;">Or start with a template</div>
+      <div class="expl-source-chips" style="margin-top:8px;">
+        ${studyTemplateLibrary.map(t=>`<span onclick="selectStudyTemplate('${t.replace(/'/g,"\\'")}')" style="cursor:pointer;">${t}</span>`).join('')}
+      </div>
+      <div class="intel-label" style="margin-top:14px;">Or describe your study — IntelligenceOS builds it for you</div>
+      <div class="ai-search dc-main-search" style="margin-top:8px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg>
+        <input type="text" id="studyBuilderInput" placeholder="I want to conduct a baseline survey on disability inclusion among public institutions in three districts…">
+      </div>
+      <button class="btn btn-primary" style="margin-top:12px;" onclick="const v=document.getElementById('studyBuilderInput').value; closeModal(); openStudyBuilderModal(v||'Create a survey');">Build study →</button>
+    </div>
+  `);
+}
+const studyTemplateLibrary = ['Baseline Survey','Endline Survey','Tracer Study','KAP Survey','Household Survey','Customer Satisfaction','Employee Survey','Market Research','Impact Evaluation','M&E Survey','Facility Assessment','Disability Inclusion Assessment','Education Assessment','Health Survey'];
+function openStudyBuilderModal(prompt){
+  openModal(`
+    <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>AI STUDY BUILDER</div><h3>Building your study</h3></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <p style="font-style:italic; color:var(--text-dim); margin-bottom:14px;">"${prompt}"</p>
+      <div id="studyBuildProgress"></div>
+      <div id="studyBuildResult"></div>
+    </div>
+  `);
+  const steps = ['Understanding your research goal','Defining target population and geography','Drafting objectives and research questions','Selecting indicators','Generating questionnaire structure','Building sampling framework','Writing enumerator instructions','Drafting analysis plan'];
+  const el = document.getElementById('studyBuildProgress');
+  el.innerHTML = steps.map((s,i)=>`<div class="ask-proc-row" data-step="${i}"><span class="ask-proc-spin"></span>${s}…</div>`).join('');
+  el.querySelectorAll('.ask-proc-row').forEach((row,i)=>{
+    setTimeout(()=> row.classList.add('show'), i*220);
+    setTimeout(()=> row.classList.add('done'), i*220+280);
+  });
+  setTimeout(()=>{
+    document.getElementById('studyBuildResult').innerHTML = `
+      <div class="intel-section" style="padding-top:14px; border-top:1px solid var(--border);">
+        <div class="intel-label">Study Design</div>
+        <div class="dc-ws-meta-grid">
+          <div><span>Target population</span><b>Public institutions</b></div>
+          <div><span>Geography</span><b>3 districts, Ghana</b></div>
+          <div><span>Sample size</span><b>~180 institutions</b></div>
+          <div><span>Duration</span><b>6 weeks</b></div>
+        </div>
+      </div>
+      <div class="intel-section">
+        <div class="intel-label">Generated Questionnaire</div>
+        <ul class="intel-evidence">
+          <li>Section A — Respondent profile</li>
+          <li>Section B — Institutional policy</li>
+          <li>Section C — Accessibility</li>
+          <li>Section D — Staff capacity</li>
+          <li>Section E — Service delivery</li>
+          <li>Section F — Recommendations</li>
+        </ul>
+      </div>
+      <div class="intel-section">
+        <div class="intel-label">Sampling Plan</div>
+        <div class="dc-ws-meta-grid">
+          <div><span>Allocation</span><b>Proportional</b></div>
+          <div><span>Strata</span><b>3 districts</b></div>
+          <div><span>Confidence</span><b>95% · ±5%</b></div>
+          <div><span>Design effect</span><b>1.5</b></div>
+        </div>
+      </div>
+      <p style="margin-top:10px; font-size:12px; color:var(--text-dim);">Review and edit every section below before publishing — IntelligenceOS never publishes a study without your approval.</p>
+    `;
+  }, steps.length*220+400);
+}
+function selectStudyTemplate(name){
+  closeModal();
+  toast('Starting "'+name+'" template — customise questions before publishing');
+  openStudyBuilderModal('Start a '+name+' using the standard template');
+}
 if(document.getElementById('surveyList')) renderSurveys();
+
 
 /* =============================================================
    GOVOS — budget simulator, ministries, citizen services
