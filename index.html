@@ -492,6 +492,87 @@ button{font-family:inherit; cursor:pointer;}
 .source-card p{font-size:11.5px; color:var(--text-dim); line-height:1.5;}
 .source-foot{display:flex; align-items:center; justify-content:space-between; font-size:10.5px; color:var(--text-dim); padding-top:8px; border-top:1px dashed var(--border);}
 .live-dot{width:6px; height:6px; border-radius:50%; background:var(--success); display:inline-block; margin-right:5px; box-shadow:0 0 0 3px rgba(22,163,74,.15);}
+.source-quality{display:flex; align-items:center; justify-content:space-between; gap:8px;}
+
+/* ---------- AFRICA DATA CLOUD ---------- */
+.dc-online-badge{color:var(--success); font-weight:700; margin-left:8px;}
+.dc-secondary-tag{display:inline-block; margin-top:6px; font-size:11px; font-weight:700; color:var(--text-dim); background:var(--bg); padding:3px 10px; border-radius:20px; border:1px solid var(--border);}
+.dc-health-bar{display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:12px; font-weight:700; color:var(--text-dim); background:var(--bg); border:1px solid var(--border); border-radius:11px; padding:11px 18px; margin-bottom:18px;}
+.dc-health-bar b{color:var(--navy-ink);}
+.dc-sep{color:var(--border);}
+.dc-search-block{margin-bottom:18px;}
+.dc-main-search{max-width:none; margin-bottom:12px;}
+.dc-try-row{display:flex; align-items:center; gap:9px; flex-wrap:wrap;}
+.dc-try-row>span{font-size:12px; font-weight:700; color:var(--text-dim);}
+
+.dc-ask-card{margin-bottom:18px; padding:20px 22px;}
+.dc-ask-head{display:flex; align-items:center; gap:13px; margin-bottom:14px;}
+.dc-ask-icon{width:38px; height:38px; border-radius:11px; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.dc-ask-icon svg{width:18px; height:18px;}
+.dc-ask-head h3{font-size:14.5px; margin-bottom:2px;}
+.dc-ask-head p{font-size:12px; color:var(--text-dim);}
+.dc-ask-placeholder{font-size:12.5px; color:var(--text-dim); font-style:italic;}
+.dc-ask-loading{display:flex; align-items:center; gap:10px; font-size:12.5px; font-weight:600; color:var(--text-dim); font-family:'JetBrains Mono',monospace;}
+.dc-ask-count{font-size:13px; margin-bottom:12px;}
+.dc-ask-best{background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:16px 18px;}
+.dc-ask-best-label{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--teal-600); margin-bottom:6px;}
+.dc-ask-best-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px;}
+.dc-ask-best-grid div{display:flex; flex-direction:column; gap:2px;}
+.dc-ask-best-grid span{font-size:9.5px; font-weight:700; text-transform:uppercase; color:var(--text-dim);}
+.dc-ask-best-grid b{font-size:12px;}
+
+.dc-explore-layout{display:grid; grid-template-columns:1.3fr 1fr; gap:18px; padding:18px 20px;}
+.dc-africa-map{background:var(--navy); border-radius:12px; overflow:hidden; min-height:320px;}
+.dc-country-path{fill:rgba(255,255,255,.05); stroke:rgba(255,255,255,.2); stroke-width:1;}
+.dc-country-dot{fill:var(--teal); stroke:#fff; stroke-width:2; cursor:pointer; transition:r .15s;}
+.dc-country-dot:hover{fill:#fff;}
+.dc-category-list{display:grid; grid-template-columns:1fr 1fr; gap:8px; align-content:start;}
+.dc-cat-item{font-size:12.5px; font-weight:700; padding:10px 13px; border-radius:9px; border:1px solid var(--border); color:var(--text-dim); cursor:pointer; transition:all .15s;}
+.dc-cat-item:hover{border-color:var(--teal);}
+.dc-cat-item.active{background:var(--navy); color:#fff; border-color:var(--navy);}
+
+.dc-discovered-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding:0 20px 18px;}
+.dc-discovered-card{background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:13px 14px; cursor:pointer; transition:all .15s;}
+.dc-discovered-card:hover{border-color:var(--teal); transform:translateY(-2px);}
+.dc-discovered-card b{display:block; font-size:12px; margin-bottom:4px;}
+.dc-discovered-card span{font-size:10.5px; color:var(--text-dim);}
+
+.dc-grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px;}
+.dc-collection-row{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 20px; border-bottom:1px solid var(--border); cursor:pointer; transition:background .15s;}
+.dc-collection-row:last-child{border-bottom:none;}
+.dc-collection-row:hover{background:var(--bg);}
+.dc-collection-body b{display:block; font-size:12.8px; margin-bottom:3px;}
+.dc-collection-body span{font-size:10.5px; color:var(--text-dim);}
+.dc-collection-count{font-size:10.5px; font-weight:700; color:var(--teal-600); background:var(--teal-100); padding:3px 9px; border-radius:20px; flex-shrink:0;}
+.dc-watch-row{display:flex; align-items:center; justify-content:space-between; padding:11px 20px; border-bottom:1px solid var(--border); font-size:12.5px; font-weight:600;}
+.dc-watch-row:last-of-type{border-bottom:none;}
+.dc-watch-updated{padding:10px 20px 14px; font-size:11px; font-weight:700; color:var(--success);}
+.dc-intel-actions{display:grid; grid-template-columns:repeat(6,1fr); gap:10px; padding:16px 20px;}
+
+.dc-quality-badge{font-size:10px; font-weight:800; padding:2px 8px; border-radius:20px;}
+.dc-quality-badge.good{background:#E7F7EC; color:var(--success);}
+.dc-quality-badge.warn{background:#FEF3E2; color:#B45309;}
+[data-theme="dark"] .dc-quality-badge.good{background:#0e2c1a;}
+.dc-fresh-badge{font-size:10px; font-weight:600; color:var(--text-dim);}
+
+.dc-ws-meta-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:14px 0;}
+.dc-ws-meta-grid div{background:var(--bg); border-radius:10px; padding:10px 12px;}
+.dc-ws-meta-grid span{display:block; font-size:9.5px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:3px;}
+.dc-ws-meta-grid b{font-size:12px;}
+.dc-ws-freshnote{font-size:11px; color:var(--text-dim); margin-bottom:14px;}
+.dc-ws-quality{display:flex; align-items:center; gap:16px; background:var(--bg); border-radius:12px; padding:14px 16px; margin-bottom:6px;}
+.dc-ws-quality-ring{--pct:90; --qcolor:var(--success); width:56px; height:56px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; color:var(--qcolor);
+  background:conic-gradient(var(--qcolor) calc(var(--pct)*1%), var(--border) 0);}
+.dc-ws-quality-ring span{background:var(--surface); width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center;}
+.dc-ws-quality b{font-size:13px; display:block; margin-bottom:3px;}
+.dc-ws-quality p{font-size:11px; color:var(--text-dim); line-height:1.5;}
+.dc-related-row{display:flex; flex-wrap:wrap; gap:8px;}
+.dc-related-chip{font-size:11.5px; font-weight:700; padding:7px 13px; border-radius:20px; background:var(--navy-100); color:var(--navy-ink); cursor:pointer; transition:all .15s;}
+.dc-related-chip:hover{background:var(--teal-100); color:var(--teal-600);}
+.dc-citation-box{background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:12px 14px; font-size:11.5px; color:var(--text-dim); font-style:italic; line-height:1.6; margin-bottom:10px;}
+.dc-citation-formats{display:flex; align-items:center; gap:14px;}
+.dc-citation-formats a{font-size:11.5px; font-weight:700; color:var(--navy-ink); cursor:pointer;}
+.dc-citation-formats a:hover{color:var(--teal-600);}
 
 /* ---------- AI EXPLORER ---------- */
 .explorer-box{padding:26px; text-align:center; background:linear-gradient(180deg, var(--navy-100), transparent 70%); border-radius:var(--radius-lg);}
@@ -839,6 +920,11 @@ button{font-family:inherit; cursor:pointer;}
   .source-grid{grid-template-columns:repeat(2,1fr);}
   .widget-grid{grid-template-columns:repeat(2,1fr);}
   .domain-features{grid-template-columns:repeat(2,1fr);}
+  .dc-explore-layout{grid-template-columns:1fr;}
+  .dc-discovered-grid{grid-template-columns:repeat(2,1fr);}
+  .dc-grid-2{grid-template-columns:1fr;}
+  .dc-intel-actions{grid-template-columns:repeat(3,1fr);}
+  .dc-ask-best-grid{grid-template-columns:repeat(2,1fr);}
 }
 @media (max-width:860px){
   .sidebar{transform:translateX(-100%);}
@@ -851,6 +937,9 @@ button{font-family:inherit; cursor:pointer;}
   .tender-min-fit{margin-left:0;}
   .glance-stats{grid-template-columns:repeat(2,1fr);}
   .qa-grid-wide{grid-template-columns:repeat(2,1fr);}
+  .dc-discovered-grid{grid-template-columns:1fr;}
+  .dc-intel-actions{grid-template-columns:repeat(2,1fr);}
+  .dc-category-list{grid-template-columns:1fr;}
   .suggest-grid{grid-template-columns:1fr;}
   .briefing-head{flex-wrap:wrap;}
   .picker-grid{grid-template-columns:repeat(2,1fr);}
@@ -1283,27 +1372,148 @@ button{font-family:inherit; cursor:pointer;}
     <section class="view" id="view-datacloud">
       <div class="view-head">
         <div>
-          <div class="eyebrow"><span class="compass-dot"></span>AFRICA DATA CLOUD</div>
-          <h1>Every source. One search.</h1>
-          <p>Live and versioned datasets from national, continental and global sources — indexed and query-ready.</p>
+          <div class="eyebrow"><span class="compass-dot"></span>AFRICA DATA CLOUD <span class="dc-online-badge">● Cloud online</span></div>
+          <h1>Africa's Data. One Intelligent Cloud.</h1>
+          <p>Discover, connect, understand and use data from across Africa — from national statistics and health systems to agriculture, climate, economics, GIS and global development sources.<br><span class="dc-secondary-tag">Every source. One search.</span></p>
         </div>
-        <div class="ai-search" style="max-width:320px; flex:none;">
+      </div>
+
+      <div class="dc-health-bar">
+        <span><b>8,421</b> sources online</span><span class="dc-sep">·</span>
+        <span><b>24,380</b> datasets</span><span class="dc-sep">·</span>
+        <span><b>54</b> countries</span><span class="dc-sep">·</span>
+        <span><b>2.8B+</b> records</span><span class="dc-sep">·</span>
+        <span><b>94%</b> indexed</span><span class="dc-sep">·</span>
+        <span><b>97%</b> available</span>
+      </div>
+
+      <div class="dc-search-block">
+        <div class="ai-search dc-main-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="dcMainSearch" placeholder="Ask for a dataset, indicator, country, topic or source…" onkeydown="if(event.key==='Enter') runDataCloudAsk(this.value)">
+        </div>
+        <div class="dc-try-row">
+          <span>Try:</span>
+          <a class="try-chip" onclick="runDataCloudAsk('Ghana population by district')">Ghana population by district</a>
+          <a class="try-chip" onclick="runDataCloudAsk('Maternal mortality 2015–2025')">Maternal mortality 2015–2025</a>
+          <a class="try-chip" onclick="runDataCloudAsk('Agricultural production by country')">Agricultural production by country</a>
+          <a class="try-chip" onclick="runDataCloudAsk('Flood risk datasets')">Flood risk datasets</a>
+          <a class="try-chip" onclick="runDataCloudAsk('Youth unemployment Ghana')">Youth unemployment Ghana</a>
+        </div>
+      </div>
+
+      <!-- Ask Africa Data Cloud -->
+      <div class="card dc-ask-card">
+        <div class="dc-ask-head">
+          <div class="dc-ask-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <div><h3>Ask Africa Data Cloud</h3><p>What are you looking for? Describe it in plain language.</p></div>
+        </div>
+        <div id="dcAskResult" class="dc-ask-result">
+          <p class="dc-ask-placeholder">Try: "Find datasets showing youth unemployment in Ghana, Nigeria and Kenya from 2015 to 2025."</p>
+        </div>
+      </div>
+
+      <!-- Explore Africa -->
+      <div class="card" style="margin-bottom:18px;">
+        <div class="card-head"><h3>Explore Africa Through Data</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">Click a country to open its Data Intelligence</span></div>
+        <div class="dc-explore-layout">
+          <div class="dc-africa-map">
+            <svg viewBox="0 0 480 460" preserve-aspect-ratio="xMidYMid meet">
+              <path d="M 92.2 209.6 L 69.5 192.6 L 67.8 186.2 L 60.2 178.7 L 58.7 174.9 L 51.6 171.2 L 48.5 167.5 L 47.9 159.3 L 42.7 152.8 L 48.0 147.7 L 50.5 138.8 L 50.4 122.0 L 45.9 116.8 L 46.5 111.7 L 50.5 107.2 L 52.1 101.2 L 57.3 96.6 L 61.0 86.7 L 64.8 84.6 L 68.5 78.7 L 71.4 76.4 L 76.8 75.8 L 89.0 65.6 L 87.5 58.4 L 90.5 50.5 L 94.2 46.6 L 104.2 41.6 L 109.8 32.1 L 114.1 32.2 L 117.5 34.6 L 131.4 35.5 L 152.3 27.3 L 174.4 26.6 L 179.8 24.4 L 188.3 25.7 L 198.4 23.0 L 202.4 23.7 L 202.3 26.6 L 207.1 24.5 L 204.7 28.4 L 204.6 31.0 L 206.6 32.5 L 205.9 37.4 L 202.1 40.3 L 203.2 43.5 L 206.2 43.6 L 209.8 47.2 L 231.3 52.2 L 234.0 57.3 L 253.4 63.6 L 258.9 59.5 L 257.6 55.1 L 259.4 52.3 L 267.5 48.9 L 275.2 50.0 L 277.2 52.6 L 286.9 54.3 L 288.3 56.2 L 295.9 56.1 L 309.8 60.2 L 321.6 56.2 L 325.7 57.0 L 327.3 59.8 L 328.6 57.9 L 337.7 59.6 L 340.5 58.2 L 344.3 68.0 L 339.8 77.7 L 338.5 78.7 L 334.0 74.3 L 329.9 66.0 L 331.7 72.6 L 348.7 100.0 L 347.7 104.8 L 355.4 111.1 L 358.9 130.5 L 364.3 134.0 L 369.2 146.0 L 392.4 166.2 L 392.3 168.6 L 389.0 170.0 L 391.4 171.6 L 388.1 176.7 L 392.3 182.6 L 413.3 191.4 L 418.1 191.4 L 424.7 183.1 L 424.7 171.9 L 435.0 168.3 L 437.2 168.3 L 437.3 169.9 L 433.9 184.5 L 422.7 206.7 L 411.1 220.9 L 391.4 235.7 L 382.5 247.0 L 374.9 252.1 L 371.1 262.3 L 368.8 264.2 L 366.5 274.5 L 370.2 276.6 L 368.7 286.0 L 376.1 299.1 L 377.8 321.6 L 370.3 333.3 L 358.5 338.2 L 343.5 350.9 L 343.0 355.0 L 347.9 364.1 L 347.3 375.8 L 330.8 385.0 L 332.7 387.8 L 328.7 402.3 L 305.8 425.4 L 291.8 432.1 L 273.4 431.7 L 259.0 437.0 L 249.3 433.2 L 246.7 424.5 L 248.6 423.4 L 248.4 419.0 L 231.1 392.8 L 225.7 364.2 L 211.5 341.0 L 211.4 328.0 L 215.6 315.1 L 222.1 306.4 L 222.4 298.9 L 217.7 289.9 L 219.8 286.5 L 212.2 266.2 L 194.3 243.7 L 200.1 219.7 L 197.8 215.9 L 195.2 214.9 L 192.6 209.9 L 177.7 212.9 L 168.7 201.3 L 154.6 202.1 L 132.6 210.3 L 117.2 207.7 L 98.1 212.3 L 92.2 209.6 Z" class="dc-country-path" data-country="other"/>
+              <path d="M 431.9 329.1 L 430.0 325.8 L 428.9 327.5 L 430.0 331.7 L 429.5 334.2 L 427.9 335.5 L 427.5 340.4 L 414.1 380.5 L 404.4 384.2 L 396.6 380.7 L 395.0 377.7 L 394.6 372.6 L 392.6 368.0 L 392.1 363.9 L 393.1 359.8 L 395.7 358.8 L 395.8 356.9 L 398.5 352.5 L 399.0 348.9 L 396.6 342.5 L 396.1 337.2 L 398.1 334.0 L 398.9 330.4 L 401.8 330.2 L 407.1 328.0 L 409.6 327.9 L 417.6 321.1 L 419.3 318.2 L 418.5 315.7 L 421.0 316.4 L 424.2 312.4 L 424.3 309.0 L 426.2 306.4 L 429.7 311.3 L 431.1 315.1 L 432.0 322.0 L 433.5 324.7 L 431.9 329.1 Z" class="dc-country-path" data-country="other"/>
+              <circle class="dc-country-dot" cx="138.0" cy="191.7" r="7" data-country="Ghana" onclick="openCountryIntel('Ghana')"/>
+              <circle class="dc-country-dot" cx="193.6" cy="185.2" r="6" data-country="Nigeria" onclick="openCountryIntel('Nigeria')"/>
+              <circle class="dc-country-dot" cx="361.4" cy="237.5" r="6" data-country="Kenya" onclick="openCountryIntel('Kenya')"/>
+              <circle class="dc-country-dot" cx="287.3" cy="412.7" r="6" data-country="South Africa" onclick="openCountryIntel('South Africa')"/>
+              <circle class="dc-country-dot" cx="320.6" cy="83.4" r="6" data-country="Egypt" onclick="openCountryIntel('Egypt')"/>
+            </svg>
+          </div>
+          <div class="dc-category-list">
+            <div class="dc-cat-item active" onclick="setDcCategory(this,'Population')">Population</div>
+            <div class="dc-cat-item" onclick="setDcCategory(this,'Health')">Health</div>
+            <div class="dc-cat-item" onclick="setDcCategory(this,'Education')">Education</div>
+            <div class="dc-cat-item" onclick="setDcCategory(this,'Agriculture')">Agriculture</div>
+            <div class="dc-cat-item" onclick="setDcCategory(this,'Economy')">Economy</div>
+            <div class="dc-cat-item" onclick="setDcCategory(this,'Climate')">Climate</div>
+            <div class="dc-cat-item" onclick="setDcCategory(this,'Trade')">Trade</div>
+            <div class="dc-cat-item" onclick="setDcCategory(this,'Employment')">Employment</div>
+            <div class="dc-cat-item" onclick="setDcCategory(this,'Infrastructure')">Infrastructure</div>
+            <div class="dc-cat-item" onclick="setDcCategory(this,'Poverty')">Poverty</div>
+            <div class="dc-cat-item" onclick="setDcCategory(this,'Environment')">Environment</div>
+            <div class="dc-cat-item" onclick="setDcCategory(this,'Governance')">Governance</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="view-head" style="margin-top:28px;">
+        <div><h2 style="font-size:18px; font-weight:800;">Featured Sources</h2></div>
+        <div class="ai-search" style="max-width:280px; flex:none;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
           <input type="text" id="dataCloudSearch" placeholder="Search datasets…" oninput="filterSources(this.value)">
         </div>
       </div>
 
       <div class="source-grid" id="sourceGrid">
-        <div class="card source-card source-clickable" data-search="ghana statistical service gss census labour survey population"><div class="source-top"><div class="source-mark">GSS</div><div><b>Ghana Statistical Service</b><small>National · Census, LFS, GLSS</small></div></div><p>Population, labour force, living standards and multiple indicator cluster surveys.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 4m ago</span><span>128 datasets</span></div></div>
-        <div class="card source-card source-clickable" data-search="ghana health service ghs dhims2 disease maternal"><div class="source-top"><div class="source-mark">GHS</div><div><b>Ghana Health Service</b><small>National · DHIMS2</small></div></div><p>Facility-level health records, disease surveillance, maternal & child health indicators.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 11m ago</span><span>64 datasets</span></div></div>
-        <div class="card source-card source-clickable" data-search="world bank open data macroeconomic poverty development"><div class="source-top"><div class="source-mark">WB</div><div><b>World Bank</b><small>Global · Open Data</small></div></div><p>Macroeconomic, poverty, and development indicators across 217 economies.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 1h ago</span><span>1,240 datasets</span></div></div>
-        <div class="card source-card source-clickable" data-search="world health organization who gho immunization mortality"><div class="source-top"><div class="source-mark">WHO</div><div><b>World Health Organization</b><small>Global · GHO</small></div></div><p>Immunization coverage, mortality, and health system performance indicators.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 22m ago</span><span>310 datasets</span></div></div>
-        <div class="card source-card source-clickable" data-search="environmental protection agency epa air quality emissions"><div class="source-top"><div class="source-mark">EPA</div><div><b>Environmental Protection Agency</b><small>National · Ghana</small></div></div><p>Air quality, emissions and environmental compliance monitoring.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 38m ago</span><span>42 datasets</span></div></div>
-        <div class="card source-card source-clickable" data-search="openstreetmap osm roads buildings geospatial"><div class="source-top"><div class="source-mark">OSM</div><div><b>OpenStreetMap</b><small>Global · Geospatial</small></div></div><p>Roads, buildings, health facilities and points of interest, continuously updated.</p><div class="source-foot"><span><span class="live-dot"></span>Live feed</span><span>Unlimited</span></div></div>
-        <div class="card source-card source-clickable" data-search="food agriculture organization fao faostat crop trade"><div class="source-top"><div class="source-mark">FAO</div><div><b>Food & Agriculture Org.</b><small>Global · FAOSTAT</small></div></div><p>Crop production, trade, food security and land-use statistics.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 3h ago</span><span>420 datasets</span></div></div>
-        <div class="card source-card source-clickable" data-search="ghana meteorological agency gmet rainfall temperature climate"><div class="source-top"><div class="source-mark">GMet</div><div><b>Ghana Meteorological Agency</b><small>National · Climate</small></div></div><p>Rainfall, temperature and satellite-derived climate observations.</p><div class="source-foot"><span><span class="live-dot"></span>Synced 6m ago</span><span>58 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="gss" data-search="ghana statistical service gss census labour survey population"><div class="source-top"><div class="source-mark">GSS</div><div><b>Ghana Statistical Service</b><small>National · Census, LFS, GLSS</small></div></div><p>Population, labour force, living standards and multiple indicator cluster surveys.</p><div class="source-quality"><span class="dc-quality-badge good">94</span><span class="dc-fresh-badge">🟢 Updated 4m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 4m ago</span><span>128 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="ghs" data-search="ghana health service ghs dhims2 disease maternal"><div class="source-top"><div class="source-mark">GHS</div><div><b>Ghana Health Service</b><small>National · DHIMS2</small></div></div><p>Facility-level health records, disease surveillance, maternal & child health indicators.</p><div class="source-quality"><span class="dc-quality-badge good">91</span><span class="dc-fresh-badge">🟢 Updated 11m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 11m ago</span><span>64 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="wb" data-search="world bank open data macroeconomic poverty development"><div class="source-top"><div class="source-mark">WB</div><div><b>World Bank</b><small>Global · Open Data</small></div></div><p>Macroeconomic, poverty, and development indicators across 217 economies.</p><div class="source-quality"><span class="dc-quality-badge good">97</span><span class="dc-fresh-badge">🟢 Updated 1h ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 1h ago</span><span>1,240 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="who" data-search="world health organization who gho immunization mortality"><div class="source-top"><div class="source-mark">WHO</div><div><b>World Health Organization</b><small>Global · GHO</small></div></div><p>Immunization coverage, mortality, and health system performance indicators.</p><div class="source-quality"><span class="dc-quality-badge good">95</span><span class="dc-fresh-badge">🟢 Updated 22m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 22m ago</span><span>310 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="epa" data-search="environmental protection agency epa air quality emissions"><div class="source-top"><div class="source-mark">EPA</div><div><b>Environmental Protection Agency</b><small>National · Ghana</small></div></div><p>Air quality, emissions and environmental compliance monitoring.</p><div class="source-quality"><span class="dc-quality-badge warn">78</span><span class="dc-fresh-badge">🟡 Updated 38m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 38m ago</span><span>42 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="osm" data-search="openstreetmap osm roads buildings geospatial"><div class="source-top"><div class="source-mark">OSM</div><div><b>OpenStreetMap</b><small>Global · Geospatial</small></div></div><p>Roads, buildings, health facilities and points of interest, continuously updated.</p><div class="source-quality"><span class="dc-quality-badge good">89</span><span class="dc-fresh-badge">🟢 Live feed</span></div><div class="source-foot"><span><span class="live-dot"></span>Live feed</span><span>Unlimited</span></div></div>
+        <div class="card source-card source-clickable" data-key="fao" data-search="food agriculture organization fao faostat crop trade"><div class="source-top"><div class="source-mark">FAO</div><div><b>Food & Agriculture Org.</b><small>Global · FAOSTAT</small></div></div><p>Crop production, trade, food security and land-use statistics.</p><div class="source-quality"><span class="dc-quality-badge warn">82</span><span class="dc-fresh-badge">🟡 Updated 3h ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 3h ago</span><span>420 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="gmet" data-search="ghana meteorological agency gmet rainfall temperature climate"><div class="source-top"><div class="source-mark">GMet</div><div><b>Ghana Meteorological Agency</b><small>National · Climate</small></div></div><p>Rainfall, temperature and satellite-derived climate observations.</p><div class="source-quality"><span class="dc-quality-badge good">90</span><span class="dc-fresh-badge">🟢 Updated 6m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 6m ago</span><span>58 datasets</span></div></div>
       </div>
       <div id="sourceEmpty" style="display:none; text-align:center; padding:50px 20px; color:var(--text-dim); font-size:13px;">No datasets match your search.</div>
+
+      <!-- Discovered For You -->
+      <div class="card" style="margin-top:18px;">
+        <div class="card-head"><h3>Discovered For You</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">Based on your workspace activity</span></div>
+        <p style="padding:0 20px 14px; font-size:12.5px; color:var(--text-dim);">You frequently use Ghana Health Service, GSS and World Bank data. <b style="color:var(--text);">7 new datasets</b> match your interests.</p>
+        <div class="dc-discovered-grid">
+          <div class="dc-discovered-card" onclick="openDatasetWorkspace('ghs')"><b>GHS Facility Staffing 2026</b><span>Updated 2 days ago</span></div>
+          <div class="dc-discovered-card" onclick="openDatasetWorkspace('gss')"><b>GSS District Population Projections</b><span>Updated 5 days ago</span></div>
+          <div class="dc-discovered-card" onclick="openDatasetWorkspace('wb')"><b>World Bank Ghana Poverty Mapping</b><span>Updated 1 week ago</span></div>
+          <div class="dc-discovered-card" onclick="openDatasetWorkspace('who')"><b>WHO Maternal Health Indicators</b><span>Updated 1 week ago</span></div>
+        </div>
+      </div>
+
+      <div class="dc-grid-2">
+        <!-- My Collections -->
+        <div class="card">
+          <div class="card-head"><h3>My Collections</h3><a class="link" href="#" onclick="createCollection();return false;">+ New</a></div>
+          <div class="dc-collection-row" onclick="openCollection('Ghana Health Research 2026')">
+            <div class="dc-collection-body"><b>Ghana Health Research 2026</b><span>Population · Maternal mortality · Health facilities · Immunisation · Disease surveillance</span></div>
+            <span class="dc-collection-count">5 datasets</span>
+          </div>
+          <div class="dc-collection-row" onclick="openCollection('Northern Ghana Agriculture')">
+            <div class="dc-collection-body"><b>Northern Ghana Agriculture</b><span>Rainfall · Crop production · Soil · Market prices · Farmer registry</span></div>
+            <span class="dc-collection-count">5 datasets</span>
+          </div>
+        </div>
+
+        <!-- My Data Watchlist -->
+        <div class="card">
+          <div class="card-head"><h3>My Data Watchlist</h3><a class="link" href="#" onclick="createDataAlert();return false;">+ Add alert</a></div>
+          <div class="dc-watch-row"><span>Ghana Health</span><b>12 datasets</b></div>
+          <div class="dc-watch-row"><span>Agriculture</span><b>27 datasets</b></div>
+          <div class="dc-watch-row"><span>Climate</span><b>18 datasets</b></div>
+          <div class="dc-watch-row"><span>Ghana Economy</span><b>42 datasets</b></div>
+          <div class="dc-watch-updated">🟢 3 datasets updated today</div>
+        </div>
+      </div>
+
+      <!-- Data Intelligence actions -->
+      <div class="card" style="margin-top:18px;">
+        <div class="card-head"><h3>Data Intelligence</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">Build with any dataset in the Cloud</span></div>
+        <div class="dc-intel-actions">
+          <a class="qa" onclick="showView('explorer')"><div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></div><span>Analyse</span></a>
+          <a class="qa" onclick="showView('gis')"><div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 3-6-3"/></svg></div><span>Map</span></a>
+          <a class="qa" onclick="toast('Opening dataset comparison…')"><div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="8"/><rect x="12" y="6" width="3" height="12"/><rect x="17" y="13" width="3" height="5"/></svg></div><span>Compare</span></a>
+          <a class="qa" onclick="showView('explorer')"><div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><span>Ask AI</span></a>
+          <a class="qa" onclick="showView('studio')"><div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><span>Dashboard</span></a>
+          <a class="qa" onclick="toast('API access — see Dataset Workspace → API tab')"><div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3 4 7l4 4M16 3l4 4-4 4M14 3l-4 18"/></svg></div><span>API</span></a>
+        </div>
+      </div>
     </section>
 
     <!-- =====================================================
@@ -2174,7 +2384,7 @@ function showAllInsights(){
 }
 
 /* =============================================================
-   AFRICA DATA CLOUD — search + dataset preview
+   AFRICA DATA CLOUD — search + Dataset Workspace
 ============================================================= */
 function filterSources(query){
   const q = query.trim().toLowerCase();
@@ -2186,32 +2396,217 @@ function filterSources(query){
   });
   document.getElementById('sourceEmpty').style.display = visible===0 ? 'block' : 'none';
 }
-document.querySelectorAll('.source-clickable').forEach(card=>{
-  card.addEventListener('click', ()=>{
-    const name = card.querySelector('b').textContent;
-    const sub = card.querySelector('small').textContent;
-    const desc = card.querySelector('p').textContent;
-    const count = card.querySelector('.source-foot > span:last-child').textContent;
-    const mark = card.querySelector('.source-mark').textContent;
-    openModal(`
-      <div class="modal-head">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div class="source-mark" style="width:42px;height:42px;font-size:12px;">${mark}</div>
-          <div><h3>${name}</h3><small style="color:var(--text-dim); font-size:11.5px;">${sub}</small></div>
+
+const sourceIntel = {
+  gss:{name:'Ghana Statistical Service', mark:'GSS', sub:'National · Census, LFS, GLSS', desc:'Population, labour force, living standards and multiple indicator cluster surveys.',
+    coverage:'Ghana · National + Regional', period:'2010–2026', publisher:'Ghana Statistical Service', freq:'Quarterly', licence:'Open Government Data',
+    quality:94, fresh:'🟢 Updated 4 minutes ago', freshNote:'Next expected update: 6 hours',
+    summary:'This source contains 128 datasets covering Ghana\'s population, labour force and household conditions from 2010–2026, spanning all 16 regions and 261 districts.',
+    detects:['12 missing-value patterns','3 potential anomalies','8 geographic dimensions','24 time-series indicators','6 relationships with other datasets'],
+    related:['ghs','wb','osm']},
+  ghs:{name:'Ghana Health Service', mark:'GHS', sub:'National · DHIMS2', desc:'Facility-level health records, disease surveillance, maternal & child health indicators.',
+    coverage:'Ghana · Facility + District', period:'2015–2026', publisher:'Ghana Health Service', freq:'Daily', licence:'Restricted — research use',
+    quality:91, fresh:'🟢 Updated 11 minutes ago', freshNote:'Next expected update: 1 hour',
+    summary:'This source contains 64 datasets covering facility-level service delivery, disease surveillance and maternal & child health across all districts.',
+    detects:['7 missing-value patterns','2 potential anomalies','16 geographic dimensions','31 time-series indicators','9 relationships with other datasets'],
+    related:['gss','who','gmet']},
+  wb:{name:'World Bank', mark:'WB', sub:'Global · Open Data', desc:'Macroeconomic, poverty, and development indicators across 217 economies.',
+    coverage:'Global · 217 economies', period:'1960–2026', publisher:'World Bank Group', freq:'Monthly', licence:'CC BY 4.0',
+    quality:97, fresh:'🟢 Updated 1 hour ago', freshNote:'Next expected update: 23 hours',
+    summary:'This source contains 1,240 datasets covering macroeconomic performance, poverty and development indicators across 217 economies since 1960.',
+    detects:['4 missing-value patterns','1 potential anomaly','32 geographic dimensions','180 time-series indicators','14 relationships with other datasets'],
+    related:['gss','fao','who']},
+  who:{name:'World Health Organization', mark:'WHO', sub:'Global · GHO', desc:'Immunization coverage, mortality, and health system performance indicators.',
+    coverage:'Global · 194 member states', period:'2000–2026', publisher:'World Health Organization', freq:'Monthly', licence:'CC BY-NC-SA 3.0 IGO',
+    quality:95, fresh:'🟢 Updated 22 minutes ago', freshNote:'Next expected update: 4 hours',
+    summary:'This source contains 310 datasets covering immunization coverage, mortality and health system performance across 194 member states.',
+    detects:['9 missing-value patterns','2 potential anomalies','12 geographic dimensions','48 time-series indicators','11 relationships with other datasets'],
+    related:['ghs','wb','gss']},
+  epa:{name:'Environmental Protection Agency', mark:'EPA', sub:'National · Ghana', desc:'Air quality, emissions and environmental compliance monitoring.',
+    coverage:'Ghana · National', period:'2018–2026', publisher:'EPA Ghana', freq:'Hourly', licence:'Open Government Data',
+    quality:78, fresh:'🟡 Updated 38 minutes ago', freshNote:'Potentially outdated — expected hourly',
+    summary:'This source contains 42 datasets covering air quality, emissions and environmental compliance monitoring across major urban centres.',
+    detects:['18 missing-value patterns','5 potential anomalies','6 geographic dimensions','9 time-series indicators','3 relationships with other datasets'],
+    related:['gmet','osm']},
+  osm:{name:'OpenStreetMap', mark:'OSM', sub:'Global · Geospatial', desc:'Roads, buildings, health facilities and points of interest, continuously updated.',
+    coverage:'Global · Community-mapped', period:'Live', publisher:'OpenStreetMap Foundation', freq:'Continuous', licence:'ODbL 1.0',
+    quality:89, fresh:'🟢 Live feed', freshNote:'Continuously updated by community',
+    summary:'This source provides continuously updated geospatial data on roads, buildings, health facilities and points of interest across Africa.',
+    detects:['Coverage gaps in 4 rural districts','Duplicate node clusters in 2 areas','Unlimited geographic dimensions','Live time-series','7 relationships with other datasets'],
+    related:['gss','ghs','gmet']},
+  fao:{name:'Food & Agriculture Organization', mark:'FAO', sub:'Global · FAOSTAT', desc:'Crop production, trade, food security and land-use statistics.',
+    coverage:'Global · 245 countries/territories', period:'1961–2026', publisher:'FAO', freq:'Annual', licence:'CC BY 4.0',
+    quality:82, fresh:'🟡 Updated 3 hours ago', freshNote:'Next expected update: annual cycle',
+    summary:'This source contains 420 datasets covering crop production, trade, food security and land-use statistics across 245 countries and territories.',
+    detects:['22 missing-value patterns','4 potential anomalies','28 geographic dimensions','65 time-series indicators','8 relationships with other datasets'],
+    related:['wb','gmet','gss']},
+  gmet:{name:'Ghana Meteorological Agency', mark:'GMet', sub:'National · Climate', desc:'Rainfall, temperature and satellite-derived climate observations.',
+    coverage:'Ghana · National + Station-level', period:'1990–2026', publisher:'Ghana Meteorological Agency', freq:'Daily', licence:'Open Government Data',
+    quality:90, fresh:'🟢 Updated 6 minutes ago', freshNote:'Next expected update: 18 hours',
+    summary:'This source contains 58 datasets covering rainfall, temperature and satellite-derived climate observations across Ghana\'s weather station network.',
+    detects:['6 missing-value patterns','2 potential anomalies','19 geographic dimensions','22 time-series indicators','5 relationships with other datasets'],
+    related:['epa','fao','osm']},
+};
+function qualityLabel(score){ return score>=90 ? 'Excellent' : score>=75 ? 'Good' : 'Needs review'; }
+function qualityColor(score){ return score>=90 ? 'var(--success)' : score>=75 ? 'var(--warning)' : 'var(--danger)'; }
+
+function openDatasetWorkspace(key){
+  const d = sourceIntel[key];
+  if(!d) return;
+  openModal(`
+    <div class="modal-head">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="source-mark" style="width:42px;height:42px;font-size:12px;">${d.mark}</div>
+        <div><h3>${d.name}</h3><small style="color:var(--text-dim); font-size:11.5px;">${d.sub}</small></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>${d.desc}</p>
+
+      <div class="dc-ws-meta-grid">
+        <div><span>Coverage</span><b>${d.coverage}</b></div>
+        <div><span>Time period</span><b>${d.period}</b></div>
+        <div><span>Publisher</span><b>${d.publisher}</b></div>
+        <div><span>Update frequency</span><b>${d.freq}</b></div>
+        <div><span>Licence</span><b>${d.licence}</b></div>
+        <div><span>Freshness</span><b>${d.fresh}</b></div>
+      </div>
+      <p class="dc-ws-freshnote">${d.freshNote}</p>
+
+      <div class="dc-ws-quality">
+        <div class="dc-ws-quality-ring" style="--pct:${d.quality}; --qcolor:${qualityColor(d.quality)};"><span>${d.quality}</span></div>
+        <div><b>Data Quality — ${qualityLabel(d.quality)}</b><p>Based on completeness, freshness, consistency, documentation, geographic and temporal coverage.</p></div>
+      </div>
+
+      <div class="intel-section">
+        <div class="intel-label">AI Dataset Summary</div>
+        <p>${d.summary}</p>
+      </div>
+
+      <div class="intel-section">
+        <div class="intel-label">AI Detects</div>
+        <ul class="intel-evidence">${d.detects.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div>
+
+      <div class="intel-section">
+        <div class="intel-label">You may also need</div>
+        <div class="dc-related-row">
+          ${d.related.map(k=>`<span class="dc-related-chip" onclick="openDatasetWorkspace('${k}')">${sourceIntel[k].mark} — ${sourceIntel[k].name}</span>`).join('')}
         </div>
-        <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
-      <div class="modal-body">
-        <p>${desc}</p>
-        <p style="margin-top:12px;"><b>${count}</b> indexed and query-ready in the Africa Data Cloud. Ask about this source directly in the AI Data Explorer, or reference it when building a dashboard in Dashboard Studio.</p>
+
+      <div class="intel-section">
+        <div class="intel-label">Citation</div>
+        <div class="dc-citation-box" id="citeBox">${d.publisher}. (2026). ${d.name}. Africa Data Cloud, IntelligenceOS. Retrieved from IntelligenceOS Africa Data Cloud.</div>
+        <div class="dc-citation-formats">
+          <a onclick="toast('APA citation copied')">APA</a><a onclick="toast('Chicago citation copied')">Chicago</a><a onclick="toast('Harvard citation copied')">Harvard</a><a onclick="toast('MLA citation copied')">MLA</a>
+          <a onclick="navigator.clipboard && navigator.clipboard.writeText(document.getElementById('citeBox').textContent); toast('Citation copied to clipboard')" style="margin-left:auto; font-weight:800; color:var(--teal-600);">Copy citation</a>
+        </div>
       </div>
-      <div class="modal-foot">
-        <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
-        <button class="btn btn-primary" onclick="closeModal(); showView('explorer');" style="flex:1; justify-content:center;">Query this source</button>
+
+      <div class="intel-label" style="margin-top:16px;">Use this data</div>
+      <div class="intel-actions-row">
+        <button class="intel-action-btn" onclick="closeModal(); showView('explorer');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg>Analyse</button>
+        <button class="intel-action-btn" onclick="closeModal(); showView('explorer');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Ask AI</button>
+        <button class="intel-action-btn" onclick="closeModal(); showView('gis');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 3-6-3"/></svg>Map</button>
+        <button class="intel-action-btn" onclick="closeModal(); showView('studio');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Build Dashboard</button>
+        <button class="intel-action-btn" onclick="toast('Downloading '+'${d.name}'+' as CSV…')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Download</button>
+        <button class="intel-action-btn" onclick="toast('API endpoint copied — see docs.intelligenceos.africa')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3 4 7l4 4M16 3l4 4-4 4M14 3l-4 18"/></svg>API</button>
+        <button class="intel-action-btn" onclick="toast('${d.name} added to collection')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Add to Collection</button>
+        <button class="intel-action-btn" onclick="createDataAlert()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2Zm6-6v-5a6 6 0 0 0-4-5.65V4a2 2 0 1 0-4 0v.35A6 6 0 0 0 6 10v5l-2 2v1h16v-1l-2-2Z"/></svg>Create Alert</button>
+        <button class="intel-action-btn" onclick="closeModal(); openReportModal();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Create Report</button>
       </div>
-    `);
-  });
+    </div>
+  `);
+}
+document.querySelectorAll('.source-clickable').forEach(card=>{
+  card.addEventListener('click', ()=> openDatasetWorkspace(card.dataset.key));
 });
+
+/* Ask Africa Data Cloud */
+const dcAskAnswers = {
+  'ghana population by district':{count:42, source:'Ghana Statistical Service', title:'Population & Housing Census — District Report', coverage:'Ghana · 261 districts', years:'2021–2026', geo:'National + District', format:'CSV / API', quality:94},
+  'maternal mortality 2015–2025':{count:37, source:'Ghana Health Service + WHO', title:'DHIMS2 Maternal Mortality Surveillance', coverage:'Ghana · 16 regions', years:'2015–2025', geo:'National + Regional + District', format:'CSV / API', quality:91},
+  'agricultural production by country':{count:28, source:'FAO', title:'FAOSTAT Crop Production Statistics', coverage:'54 African countries', years:'1990–2026', geo:'National', format:'CSV / API / Bulk', quality:82},
+  'flood risk datasets':{count:14, source:'Ghana Meteorological Agency + OSM', title:'Flood Risk & River Level Monitoring', coverage:'Ghana · River basins', years:'2018–2026', geo:'National + Basin-level', format:'GeoJSON / API', quality:88},
+  'youth unemployment ghana':{count:19, source:'Ghana Statistical Service', title:'Labour Force Survey — Youth Employment', coverage:'Ghana · National + Regional', years:'2015–2026', geo:'National + Regional', format:'CSV / API', quality:94},
+};
+function runDataCloudAsk(query){
+  if(!query || !query.trim()) return;
+  document.getElementById('dcMainSearch').value = query;
+  const key = query.trim().toLowerCase();
+  let d = dcAskAnswers[key];
+  if(!d){
+    d = {count:Math.floor(Math.random()*20)+8, source:'Africa Data Cloud', title:'Best matching dataset for "'+query+'"', coverage:'Ghana · National', years:'2015–2026', geo:'National + Regional', format:'CSV / API', quality:87};
+  }
+  const el = document.getElementById('dcAskResult');
+  el.innerHTML = `
+    <div class="dc-ask-loading" id="dcAskLoading">
+      <span class="ask-proc-spin"></span> Searching Africa Data Cloud…
+    </div>
+  `;
+  setTimeout(()=>{
+    el.innerHTML = `
+      <p class="dc-ask-count"><b>${d.count} relevant datasets found</b> across the Africa Data Cloud.</p>
+      <div class="dc-ask-best">
+        <div class="dc-ask-best-label">Best match</div>
+        <b>${d.source}</b>
+        <div style="font-size:13px; font-weight:700; margin:2px 0 10px;">${d.title}</div>
+        <div class="dc-ask-best-grid">
+          <div><span>Coverage</span><b>${d.coverage}</b></div>
+          <div><span>Years</span><b>${d.years}</b></div>
+          <div><span>Geography</span><b>${d.geo}</b></div>
+          <div><span>Format</span><b>${d.format}</b></div>
+          <div><span>Quality</span><b style="color:${qualityColor(d.quality)};">${d.quality}%</b></div>
+        </div>
+        <button class="btn btn-primary" style="margin-top:12px;" onclick="showView('explorer')">Use this data →</button>
+      </div>
+    `;
+  }, 900);
+}
+
+function setDcCategory(el, name){
+  document.querySelectorAll('.dc-cat-item').forEach(c=> c.classList.remove('active'));
+  el.classList.add('active');
+  toast('Showing '+name+' datasets across Africa');
+}
+function openCountryIntel(country){
+  const stats = {
+    'Ghana':{pop:'34.1M', datasets:'1,200+', sources:'GSS · GHS · EPA · GMet · MoFA · GRA · NDPC'},
+    'Nigeria':{pop:'223M', datasets:'890+', sources:'NBS · NPHCDA · FMARD · NiMet'},
+    'Kenya':{pop:'55.1M', datasets:'640+', sources:'KNBS · MoH · KMD'},
+    'South Africa':{pop:'60.4M', datasets:'980+', sources:'Stats SA · DoH · SAWS'},
+    'Egypt':{pop:'112.7M', datasets:'510+', sources:'CAPMAS · MoHP'},
+  };
+  const s = stats[country] || {pop:'—', datasets:'Coming soon', sources:'—'};
+  openModal(`
+    <div class="modal-head">
+      <h3>${country} Data Intelligence</h3>
+      <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="dc-ws-meta-grid">
+        <div><span>Population</span><b>${s.pop}</b></div>
+        <div><span>Available datasets</span><b>${s.datasets}</b></div>
+      </div>
+      <div class="intel-section">
+        <div class="intel-label">Key Sources</div>
+        <p>${s.sources}</p>
+      </div>
+      ${country!=='Ghana' ? '<p style="margin-top:14px; font-size:11.5px; color:var(--text-dim);">Full '+country+' Data Intelligence launches as part of the continental rollout — Ghana Edition is live today.</p>' : ''}
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      <button class="btn btn-primary" onclick="closeModal();" style="flex:1; justify-content:center;">Explore ${country} →</button>
+    </div>
+  `);
+}
+function createCollection(){ toast('Name your collection — try "Ghana Health Research 2026"'); }
+function openCollection(name){ toast('Opening collection: '+name); }
+function createDataAlert(){ closeModal(); toast('Tell IntelligenceOS what to watch — try "Alert me when Ghana inflation exceeds 20%"'); }
+
+
 
 /* =============================================================
    TENDER INTELLIGENCE
