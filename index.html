@@ -486,6 +486,39 @@ button{font-family:inherit; cursor:pointer;}
 .source-clickable{cursor:pointer; transition:transform .15s, box-shadow .15s, border-color .15s;}
 .source-clickable:hover{transform:translateY(-2px); box-shadow:var(--shadow); border-color:var(--teal);}
 .source-top{display:flex; align-items:center; gap:10px;}
+.source-tier-badge{font-size:10px; font-weight:800; padding:2px 8px; border-radius:6px; margin-left:auto; flex-shrink:0;}
+.tier-aplus{background:#E7F7EC; color:var(--success);}
+.tier-a{background:var(--navy-100); color:var(--navy-ink);}
+.tier-b{background:var(--bg); color:var(--text-dim); border:1px solid var(--border);}
+[data-theme="dark"] .tier-aplus{background:#0e2c1a;}
+.dc-authority-legend{display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:11.5px; color:var(--text-dim); font-weight:600; padding:14px 4px 0;}
+.dc-authority-legend .source-tier-badge{margin-left:4px;}
+
+/* ---------- Source Relationship / Data Conflict ---------- */
+.prov-chain{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:6px;}
+.prov-node{border-radius:11px; padding:13px 14px; border:1px solid var(--border);}
+.prov-node.primary{background:#E7F7EC; border-color:var(--success);}
+.prov-node.secondary{background:var(--navy-100);}
+.prov-node.reference{background:var(--bg);}
+.prov-node.national{background:var(--teal-100);}
+[data-theme="dark"] .prov-node.primary{background:#0e2c1a;}
+.prov-role{display:block; font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--text-dim); margin-bottom:5px;}
+.prov-node b{display:block; font-size:12.5px; margin-bottom:5px;}
+.prov-detail{font-size:10.5px; color:var(--text-dim); line-height:1.4;}
+.prov-arrow{text-align:center; font-size:18px; color:var(--border); margin:6px 0;}
+.prov-result{background:var(--bg); border-radius:11px; padding:14px 16px;}
+.prov-result b{display:block; font-size:12.5px; margin-bottom:6px;}
+.prov-result p{font-size:12px; line-height:1.55;}
+
+.conflict-banner{background:#FEF3E2; border:1px solid #FCD34D; border-radius:10px; padding:11px 14px; font-size:12.5px; margin-bottom:12px;}
+[data-theme="dark"] .conflict-banner{background:#2a2114;}
+.conflict-row{display:flex; align-items:center; gap:12px; padding:10px 14px; background:var(--bg); border-radius:9px; margin-bottom:6px;}
+.conflict-row b{font-size:12.5px; width:100px; flex-shrink:0;}
+.conflict-val{font-size:15px; font-weight:800; flex:1;}
+.conflict-tier{font-size:10px; font-weight:800; padding:2px 8px; border-radius:6px;}
+.conflict-preferred{background:var(--teal-100); border-radius:11px; padding:13px 15px; margin-top:10px;}
+.conflict-preferred b{display:block; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--teal-600); margin-bottom:6px;}
+.conflict-preferred p{font-size:12.5px; line-height:1.55;}
 .source-mark{width:34px; height:34px; border-radius:9px; background:var(--navy-100); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:11px; color:var(--navy-ink);}
 [data-theme="dark"] .source-mark{background:#122750; color:#fff;}
 .source-top b{font-size:13px;}
@@ -1307,6 +1340,7 @@ button{font-family:inherit; cursor:pointer;}
   .tender-source-grid-inner{grid-template-columns:1fr;}
   .jig-monitor-grid{grid-template-columns:1fr;}
   .qb-layout{grid-template-columns:1fr;}
+  .prov-chain{grid-template-columns:1fr 1fr;}
   .dcw-issue-grid,.qb-panel-grid{grid-template-columns:1fr 1fr;}
   .domain-waitlist-form{flex-direction:column;}
   .tender-filters{flex-direction:column; align-items:stretch;}
@@ -1831,14 +1865,25 @@ button{font-family:inherit; cursor:pointer;}
       </div>
 
       <div class="source-grid" id="sourceGrid">
-        <div class="card source-card source-clickable" data-key="gss" data-search="ghana statistical service gss census labour survey population"><div class="source-top"><div class="source-mark">GSS</div><div><b>Ghana Statistical Service</b><small>National · Census, LFS, GLSS</small></div></div><p>Population, labour force, living standards and multiple indicator cluster surveys.</p><div class="source-quality"><span class="dc-quality-badge good">94</span><span class="dc-fresh-badge">🟢 Updated 4m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 4m ago</span><span>128 datasets</span></div></div>
-        <div class="card source-card source-clickable" data-key="ghs" data-search="ghana health service ghs dhims2 disease maternal"><div class="source-top"><div class="source-mark">GHS</div><div><b>Ghana Health Service</b><small>National · DHIMS2</small></div></div><p>Facility-level health records, disease surveillance, maternal & child health indicators.</p><div class="source-quality"><span class="dc-quality-badge good">91</span><span class="dc-fresh-badge">🟢 Updated 11m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 11m ago</span><span>64 datasets</span></div></div>
-        <div class="card source-card source-clickable" data-key="wb" data-search="world bank open data macroeconomic poverty development"><div class="source-top"><div class="source-mark">WB</div><div><b>World Bank</b><small>Global · Open Data</small></div></div><p>Macroeconomic, poverty, and development indicators across 217 economies.</p><div class="source-quality"><span class="dc-quality-badge good">97</span><span class="dc-fresh-badge">🟢 Updated 1h ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 1h ago</span><span>1,240 datasets</span></div><div class="source-verified-tag">🔴 API verified live · 12 Aug 2026</div></div>
-        <div class="card source-card source-clickable" data-key="who" data-search="world health organization who gho immunization mortality"><div class="source-top"><div class="source-mark">WHO</div><div><b>World Health Organization</b><small>Global · GHO</small></div></div><p>Immunization coverage, mortality, and health system performance indicators.</p><div class="source-quality"><span class="dc-quality-badge good">95</span><span class="dc-fresh-badge">🟢 Updated 22m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 22m ago</span><span>310 datasets</span></div><div class="source-verified-tag">🔴 API verified live · 12 Aug 2026</div></div>
-        <div class="card source-card source-clickable" data-key="epa" data-search="environmental protection agency epa air quality emissions"><div class="source-top"><div class="source-mark">EPA</div><div><b>Environmental Protection Agency</b><small>National · Ghana</small></div></div><p>Air quality, emissions and environmental compliance monitoring.</p><div class="source-quality"><span class="dc-quality-badge warn">78</span><span class="dc-fresh-badge">🟡 Updated 38m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 38m ago</span><span>42 datasets</span></div></div>
-        <div class="card source-card source-clickable" data-key="osm" data-search="openstreetmap osm roads buildings geospatial"><div class="source-top"><div class="source-mark">OSM</div><div><b>OpenStreetMap</b><small>Global · Geospatial</small></div></div><p>Roads, buildings, health facilities and points of interest, continuously updated.</p><div class="source-quality"><span class="dc-quality-badge good">89</span><span class="dc-fresh-badge">🟢 Live feed</span></div><div class="source-foot"><span><span class="live-dot"></span>Live feed</span><span>Unlimited</span></div></div>
-        <div class="card source-card source-clickable" data-key="fao" data-search="food agriculture organization fao faostat crop trade"><div class="source-top"><div class="source-mark">FAO</div><div><b>Food & Agriculture Org.</b><small>Global · FAOSTAT</small></div></div><p>Crop production, trade, food security and land-use statistics.</p><div class="source-quality"><span class="dc-quality-badge warn">82</span><span class="dc-fresh-badge">🟡 Updated 3h ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 3h ago</span><span>420 datasets</span></div></div>
-        <div class="card source-card source-clickable" data-key="gmet" data-search="ghana meteorological agency gmet rainfall temperature climate"><div class="source-top"><div class="source-mark">GMet</div><div><b>Ghana Meteorological Agency</b><small>National · Climate</small></div></div><p>Rainfall, temperature and satellite-derived climate observations.</p><div class="source-quality"><span class="dc-quality-badge good">90</span><span class="dc-fresh-badge">🟢 Updated 6m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 6m ago</span><span>58 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="gss" data-search="ghana statistical service gss census labour survey population"><div class="source-top"><div class="source-mark">GSS</div><div><b>Ghana Statistical Service</b><small>National · Census, LFS, GLSS</small></div><span class="source-tier-badge tier-aplus">A+</span></div><p>Population, labour force, living standards and multiple indicator cluster surveys.</p><div class="source-quality"><span class="dc-quality-badge good">94</span><span class="dc-fresh-badge">🟢 Updated 4m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 4m ago</span><span>128 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="ghs" data-search="ghana health service ghs dhims2 disease maternal"><div class="source-top"><div class="source-mark">GHS</div><div><b>Ghana Health Service</b><small>National · DHIMS2</small></div><span class="source-tier-badge tier-aplus">A+</span></div><p>Facility-level health records, disease surveillance, maternal & child health indicators.</p><div class="source-quality"><span class="dc-quality-badge good">91</span><span class="dc-fresh-badge">🟢 Updated 11m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 11m ago</span><span>64 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="wb" data-search="world bank open data macroeconomic poverty development"><div class="source-top"><div class="source-mark">WB</div><div><b>World Bank</b><small>Global · Open Data</small></div><span class="source-tier-badge tier-a">A</span></div><p>Macroeconomic, poverty, and development indicators across 217 economies.</p><div class="source-quality"><span class="dc-quality-badge good">97</span><span class="dc-fresh-badge">🟢 Updated 1h ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 1h ago</span><span>1,240 datasets</span></div><div class="source-verified-tag">🔴 API verified live · 12 Aug 2026</div></div>
+        <div class="card source-card source-clickable" data-key="who" data-search="world health organization who gho immunization mortality"><div class="source-top"><div class="source-mark">WHO</div><div><b>World Health Organization</b><small>Global · GHO</small></div><span class="source-tier-badge tier-a">A</span></div><p>Immunization coverage, mortality, and health system performance indicators.</p><div class="source-quality"><span class="dc-quality-badge good">95</span><span class="dc-fresh-badge">🟢 Updated 22m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 22m ago</span><span>310 datasets</span></div><div class="source-verified-tag">🔴 API verified live · 12 Aug 2026</div></div>
+        <div class="card source-card source-clickable" data-key="epa" data-search="environmental protection agency epa air quality emissions"><div class="source-top"><div class="source-mark">EPA</div><div><b>Environmental Protection Agency</b><small>National · Ghana</small></div><span class="source-tier-badge tier-aplus">A+</span></div><p>Air quality, emissions and environmental compliance monitoring.</p><div class="source-quality"><span class="dc-quality-badge warn">78</span><span class="dc-fresh-badge">🟡 Updated 38m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 38m ago</span><span>42 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="osm" data-search="openstreetmap osm roads buildings geospatial"><div class="source-top"><div class="source-mark">OSM</div><div><b>OpenStreetMap</b><small>Global · Geospatial</small></div><span class="source-tier-badge tier-b">B</span></div><p>Roads, buildings, health facilities and points of interest, continuously updated.</p><div class="source-quality"><span class="dc-quality-badge good">89</span><span class="dc-fresh-badge">🟢 Live feed</span></div><div class="source-foot"><span><span class="live-dot"></span>Live feed</span><span>Unlimited</span></div><div class="source-verified-tag">🔴 API verified live · 12 Aug 2026</div></div>
+        <div class="card source-card source-clickable" data-key="fao" data-search="food agriculture organization fao faostat crop trade"><div class="source-top"><div class="source-mark">FAO</div><div><b>Food & Agriculture Org.</b><small>Global · FAOSTAT</small></div><span class="source-tier-badge tier-a">A</span></div><p>Crop production, trade, food security and land-use statistics.</p><div class="source-quality"><span class="dc-quality-badge warn">82</span><span class="dc-fresh-badge">🟡 Updated 3h ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 3h ago</span><span>420 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="gmet" data-search="ghana meteorological agency gmet rainfall temperature climate"><div class="source-top"><div class="source-mark">GMet</div><div><b>Ghana Meteorological Agency</b><small>National · Climate</small></div><span class="source-tier-badge tier-aplus">A+</span></div><p>Rainfall, temperature and satellite-derived climate observations.</p><div class="source-quality"><span class="dc-quality-badge good">90</span><span class="dc-fresh-badge">🟢 Updated 6m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 6m ago</span><span>58 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="uneca" data-search="uneca eca economic commission africa continental statistics"><div class="source-top"><div class="source-mark">ECA</div><div><b>UN Economic Commission for Africa</b><small>Continental · ECAStats</small></div><span class="source-tier-badge tier-aplus">A+</span></div><p>Continental statistical backbone — harmonises 54 member states with 25+ regional and international agencies.</p><div class="source-quality"><span class="dc-quality-badge good">93</span><span class="dc-fresh-badge">🟡 Updated 2h ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 2h ago</span><span>54-country registry</span></div></div>
+        <div class="card source-card source-clickable" data-key="afdb" data-search="african development bank afdb continental economic infrastructure"><div class="source-top"><div class="source-mark">AfDB</div><div><b>African Development Bank</b><small>Continental · Statistics</small></div><span class="source-tier-badge tier-a">A</span></div><p>Continental development and economic intelligence — Bank Group operations, infrastructure, finance and poverty data.</p><div class="source-quality"><span class="dc-quality-badge warn">88</span><span class="dc-fresh-badge">🟡 Updated 5h ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 5h ago</span><span>54 country profiles</span></div></div>
+        <div class="card source-card source-clickable" data-key="wpr" data-search="world population review demographic reference ranking population"><div class="source-top"><div class="source-mark">WPR</div><div><b>World Population Review</b><small>Reference · Demographic</small></div><span class="source-tier-badge tier-b">B</span></div><p>Convenient population comparisons and rankings — a discovery layer, cross-checked against primary sources, not authoritative alone.</p><div class="source-quality"><span class="dc-quality-badge warn">71</span><span class="dc-fresh-badge">🟢 Updated regularly</span></div><div class="source-foot"><span><span class="live-dot"></span>Reference tier</span><span>Population &amp; rankings</span></div></div>
+      </div>
+      <div class="dc-authority-legend">
+        <span class="intel-label" style="margin-right:8px;">Source Authority:</span>
+        <span class="source-tier-badge tier-aplus">A+</span> National office / continental institution
+        <span class="source-tier-badge tier-a">A</span> UN agency / World Bank / IMF
+        <span class="source-tier-badge tier-b">B</span> Reference &amp; discovery layer
+        <a class="link" href="#" onclick="openSourceRelationship();return false;" style="margin-left:auto;">See Source Relationship example →</a>
+        <a class="link" href="#" onclick="openDataConflictEngine();return false;">Data Conflict Engine →</a>
       </div>
       <div id="sourceEmpty" style="display:none; text-align:center; padding:50px 20px; color:var(--text-dim); font-size:13px;">No datasets match your search.</div>
 
@@ -3278,64 +3323,140 @@ function filterSources(query){
 const sourceIntel = {
   gss:{name:'Ghana Statistical Service', mark:'GSS', sub:'National · Census, LFS, GLSS', desc:'Population, labour force, living standards and multiple indicator cluster surveys.',
     coverage:'Ghana · National + Regional', period:'2010–2026', publisher:'Ghana Statistical Service', freq:'Quarterly', licence:'Open Government Data',
-    quality:94, fresh:'🟢 Updated 4 minutes ago', freshNote:'Next expected update: 6 hours',
+    quality:94, fresh:'🟢 Updated 4 minutes ago', freshNote:'Next expected update: 6 hours', tier:'A+', category:'official',
     summary:'This source contains 128 datasets covering Ghana\'s population, labour force and household conditions from 2010–2026, spanning all 16 regions and 261 districts.',
     detects:['12 missing-value patterns','3 potential anomalies','8 geographic dimensions','24 time-series indicators','6 relationships with other datasets'],
     related:['ghs','wb','osm']},
   ghs:{name:'Ghana Health Service', mark:'GHS', sub:'National · DHIMS2', desc:'Facility-level health records, disease surveillance, maternal & child health indicators.',
     coverage:'Ghana · Facility + District', period:'2015–2026', publisher:'Ghana Health Service', freq:'Daily', licence:'Restricted — research use',
-    quality:91, fresh:'🟢 Updated 11 minutes ago', freshNote:'Next expected update: 1 hour',
+    quality:91, fresh:'🟢 Updated 11 minutes ago', freshNote:'Next expected update: 1 hour', tier:'A+', category:'official',
     summary:'This source contains 64 datasets covering facility-level service delivery, disease surveillance and maternal & child health across all districts.',
     detects:['7 missing-value patterns','2 potential anomalies','16 geographic dimensions','31 time-series indicators','9 relationships with other datasets'],
     related:['gss','who','gmet']},
   wb:{name:'World Bank', mark:'WB', sub:'Global · Open Data', desc:'Macroeconomic, poverty, and development indicators across 217 economies.',
     coverage:'Global · 217 economies', period:'1960–2026', publisher:'World Bank Group', freq:'Monthly', licence:'CC BY 4.0',
-    quality:97, fresh:'🟢 Updated 1 hour ago', freshNote:'Next expected update: 23 hours',
+    quality:97, fresh:'🟢 Updated 1 hour ago', freshNote:'Next expected update: 23 hours', tier:'A', category:'global',
     summary:'This source contains 1,240 datasets covering macroeconomic performance, poverty and development indicators across 217 economies since 1960.',
     detects:['4 missing-value patterns','1 potential anomaly','32 geographic dimensions','180 time-series indicators','14 relationships with other datasets'],
     related:['gss','fao','who'], verifiedLive:true, verifiedEndpoint:'api.worldbank.org/v2/country/{iso3}/indicator/{code}?format=json', verifiedNote:'Confirmed live 12 Aug 2026 — real JSON response, server lastupdated timestamp: 2026-07-13. No API key required.'},
   who:{name:'World Health Organization', mark:'WHO', sub:'Global · GHO', desc:'Immunization coverage, mortality, and health system performance indicators.',
     coverage:'Global · 194 member states', period:'2000–2026', publisher:'World Health Organization', freq:'Monthly', licence:'CC BY-NC-SA 3.0 IGO',
-    quality:95, fresh:'🟢 Updated 22 minutes ago', freshNote:'Next expected update: 4 hours',
+    quality:95, fresh:'🟢 Updated 22 minutes ago', freshNote:'Next expected update: 4 hours', tier:'A', category:'global',
     summary:'This source contains 310 datasets covering immunization coverage, mortality and health system performance across 194 member states.',
     detects:['9 missing-value patterns','2 potential anomalies','12 geographic dimensions','48 time-series indicators','11 relationships with other datasets'],
     related:['ghs','wb','gss'], verifiedLive:true, verifiedEndpoint:'xmart-api-public.who.int/DATA_/RELAY_WHS?$filter=IND_ID eq \'{code}\'&$format=csv', verifiedNote:'Confirmed live 12 Aug 2026 via data.who.int — real Ghana figures pulled: Population 33,787,914 (2023), health expenditure 4.15% of GDP. Supersedes the older GHO OData API, which WHO is retiring.'},
   epa:{name:'Environmental Protection Agency', mark:'EPA', sub:'National · Ghana', desc:'Air quality, emissions and environmental compliance monitoring.',
     coverage:'Ghana · National', period:'2018–2026', publisher:'EPA Ghana', freq:'Hourly', licence:'Open Government Data',
-    quality:78, fresh:'🟡 Updated 38 minutes ago', freshNote:'Potentially outdated — expected hourly',
+    quality:78, fresh:'🟡 Updated 38 minutes ago', freshNote:'Potentially outdated — expected hourly', tier:'A+', category:'official',
     summary:'This source contains 42 datasets covering air quality, emissions and environmental compliance monitoring across major urban centres.',
     detects:['18 missing-value patterns','5 potential anomalies','6 geographic dimensions','9 time-series indicators','3 relationships with other datasets'],
     related:['gmet','osm']},
   osm:{name:'OpenStreetMap', mark:'OSM', sub:'Global · Geospatial', desc:'Roads, buildings, health facilities and points of interest, continuously updated.',
     coverage:'Global · Community-mapped', period:'Live', publisher:'OpenStreetMap Foundation', freq:'Continuous', licence:'ODbL 1.0',
-    quality:89, fresh:'🟢 Live feed', freshNote:'Continuously updated by community',
+    quality:89, fresh:'🟢 Live feed', freshNote:'Continuously updated by community', tier:'B', category:'reference',
     summary:'This source provides continuously updated geospatial data on roads, buildings, health facilities and points of interest across Africa.',
     detects:['Coverage gaps in 4 rural districts','Duplicate node clusters in 2 areas','Unlimited geographic dimensions','Live time-series','7 relationships with other datasets'],
-    related:['gss','ghs','gmet']},
+    related:['gss','ghs','gmet'], verifiedLive:true, verifiedEndpoint:'overpass-api.de/api/interpreter · download.geofabrik.de', verifiedNote:'Already powering the real Ghana region boundaries used throughout GIS Intelligence and the homepage map in this platform.'},
   fao:{name:'Food & Agriculture Organization', mark:'FAO', sub:'Global · FAOSTAT', desc:'Crop production, trade, food security and land-use statistics.',
     coverage:'Global · 245 countries/territories', period:'1961–2026', publisher:'FAO', freq:'Annual', licence:'CC BY 4.0',
-    quality:82, fresh:'🟡 Updated 3 hours ago', freshNote:'Next expected update: annual cycle',
+    quality:82, fresh:'🟡 Updated 3 hours ago', freshNote:'Next expected update: annual cycle', tier:'A', category:'global',
     summary:'This source contains 420 datasets covering crop production, trade, food security and land-use statistics across 245 countries and territories.',
     detects:['22 missing-value patterns','4 potential anomalies','28 geographic dimensions','65 time-series indicators','8 relationships with other datasets'],
-    related:['wb','gmet','gss']},
+    related:['wb','gmet','gss'], verifiedEndpoint:'fenixservices.fao.org/faostat/api/v1/en/data/{domain}', verifiedNote:'Real public REST API, no auth required — confirmed via multiple independent production integrations including Our World in Data\'s own pipeline. Blocked automated fetch this session (robots.txt), so classified Documented rather than Verified Live.'},
   gmet:{name:'Ghana Meteorological Agency', mark:'GMet', sub:'National · Climate', desc:'Rainfall, temperature and satellite-derived climate observations.',
     coverage:'Ghana · National + Station-level', period:'1990–2026', publisher:'Ghana Meteorological Agency', freq:'Daily', licence:'Open Government Data',
-    quality:90, fresh:'🟢 Updated 6 minutes ago', freshNote:'Next expected update: 18 hours',
+    quality:90, fresh:'🟢 Updated 6 minutes ago', freshNote:'Next expected update: 18 hours', tier:'A+', category:'official',
     summary:'This source contains 58 datasets covering rainfall, temperature and satellite-derived climate observations across Ghana\'s weather station network.',
     detects:['6 missing-value patterns','2 potential anomalies','19 geographic dimensions','22 time-series indicators','5 relationships with other datasets'],
     related:['epa','fao','osm']},
+  uneca:{name:'UN Economic Commission for Africa', mark:'ECA', sub:'Continental · ECAStats', desc:'Continental statistical backbone — harmonises national data with 25+ regional and international agencies.',
+    coverage:'Africa · 54 member states', period:'1990–2026', publisher:'UNECA', freq:'Quarterly', licence:'UN Open Data',
+    quality:93, fresh:'🟡 Updated 2 hours ago', freshNote:'Next expected update: 6 hours', tier:'A+', category:'continental',
+    summary:'ECAStats maintains the directory of African National Statistical Offices and compiles harmonised demography, social, economic, environment, SDG, trade, agriculture and geospatial statistics across all 54 African states.',
+    detects:['Coverage varies by member state','54-country NSO directory','9 statistical domains','Cross-country harmonisation layer','Prioritises national sources where available'],
+    related:['afdb','gss','wb']},
+  afdb:{name:'African Development Bank', mark:'AfDB', sub:'Continental · Statistics', desc:'Continental development and economic intelligence — Bank Group operations, infrastructure, finance and poverty data.',
+    coverage:'Africa · 54 member states', period:'2000–2026', publisher:'African Development Bank', freq:'Annual + project-level', licence:'AfDB Open Data',
+    quality:88, fresh:'🟡 Updated 5 hours ago', freshNote:'Next expected update: annual compendium cycle', tier:'A', category:'continental',
+    summary:'The 2026 statistical compendium provides cross-country and country-specific data on Bank Group operations — economic indicators, infrastructure, finance, trade, agriculture and poverty across Africa.',
+    detects:['Country profile pages for all 54 states','Project-level procurement intelligence','Cross-referenced with World Bank and IMF series','Infrastructure investment tracking'],
+    related:['uneca','wb','fao']},
+  wpr:{name:'World Population Review', mark:'WPR', sub:'Reference · Demographic', desc:'Convenient country-level population comparisons, rankings, density and projections — a discovery layer, not a primary source.',
+    coverage:'Global · All countries', period:'Current + projections', publisher:'World Population Review', freq:'As primary sources update', licence:'Public reference',
+    quality:71, fresh:'🟢 Updated regularly', freshNote:'Re-publishes UN WPP, World Bank, IMF and FAOSTAT data', tier:'B', category:'reference',
+    summary:'World Population Review re-publishes authoritative data (UN World Population Prospects, World Bank, FAOSTAT) in an accessible, comparison-friendly format. Excellent for quick discovery and cross-country ranking — not authoritative on its own.',
+    detects:['Re-publishes UN WPP for population figures','Some pages cite older vintages — verify timestamps','Contested methodology on select ranking pages (flagged, excluded from IntelligenceOS use)','Best used as Reference tier, cross-checked against primary sources'],
+    related:['wb','uneca','gss'], isReference:true},
 };
 function qualityLabel(score){ return score>=90 ? 'Excellent' : score>=75 ? 'Good' : 'Needs review'; }
+
+/* ---------- Source Relationship (provenance chain) ---------- */
+function openSourceRelationship(){
+  openModal(`
+    <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>DATA PROVENANCE ENGINE</div><h3>Source Relationship</h3><small style="color:var(--text-dim); font-size:11.5px;">Population — Ghana</small></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <p style="font-size:12px; margin-bottom:14px;">IntelligenceOS doesn't treat four numbers as four independent truths. It knows the ecosystem behind every figure — who produced it, who cross-references it, who republishes it.</p>
+      <div class="prov-chain">
+        <div class="prov-node primary"><span class="prov-role">Primary producer</span><b>UN Population Division</b><span class="prov-detail">World Population Prospects — original demographic estimate</span></div>
+        <div class="prov-node secondary"><span class="prov-role">Official cross-reference</span><b>World Bank</b><span class="prov-detail">Indicators API — independently republished, used for benchmarking</span></div>
+        <div class="prov-node reference"><span class="prov-role">Reference presentation</span><b>World Population Review</b><span class="prov-detail">Discovery layer — re-publishes UN WPP in comparison-friendly format</span></div>
+        <div class="prov-node national"><span class="prov-role">National reference</span><b>Ghana Statistical Service</b><span class="prov-detail">Census-derived national figure — official Ghana government source</span></div>
+      </div>
+      <div class="prov-arrow">↓</div>
+      <div class="prov-result">
+        <b>IntelligenceOS harmonised indicator</b>
+        <p>Population — Ghana: <b style="color:var(--teal-600);">34.1M</b> (2026 estimate) — traced to UN WPP as primary producer, cross-checked against World Bank and GSS, discoverable via World Population Review.</p>
+      </div>
+      <p style="font-size:11px; color:var(--text-dim); margin-top:12px;">This prevents double-counting and false source independence — three "different" population figures that all trace back to the same UN estimate are recognised as one lineage, not three competing truths.</p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      <button class="btn btn-primary" onclick="closeModal(); openDataConflictEngine();" style="flex:1; justify-content:center;">See Data Conflict Engine →</button>
+    </div>
+  `);
+}
+
+/* ---------- Data Conflict Engine ---------- */
+function openDataConflictEngine(){
+  openModal(`
+    <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>DATA PROVENANCE ENGINE</div><h3>Data Conflict Engine</h3><small style="color:var(--text-dim); font-size:11.5px;">Inflation — Ghana, 2026</small></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <div class="conflict-banner">⚠ <b>Three sources report different values</b> — IntelligenceOS does not arbitrarily pick one.</div>
+      <div class="conflict-row"><b>GSS</b><span class="conflict-val">6.1%</span><span class="conflict-tier tier-aplus">A+</span></div>
+      <div class="conflict-row"><b>World Bank</b><span class="conflict-val">6.0%</span><span class="conflict-tier tier-a">A</span></div>
+      <div class="conflict-row"><b>IMF</b><span class="conflict-val">6.2%</span><span class="conflict-tier tier-a">A</span></div>
+      <div class="intel-section" style="padding:14px 0 0; border-top:1px solid var(--border); margin-top:12px;">
+        <div class="intel-label">Why they differ</div>
+        <ul class="intel-evidence">
+          <li><b>Definition</b> — GSS uses the national CPI basket; IMF and World Bank apply harmonised international methodology</li>
+          <li><b>Reference period</b> — GSS reports the latest month; IMF/World Bank figures may reflect quarterly or annual averages</li>
+          <li><b>Publication date</b> — GSS's figure is the most recent; IMF and World Bank republish with a lag</li>
+        </ul>
+      </div>
+      <div class="conflict-preferred">
+        <b>Recommended value for your context</b>
+        <p>For current-month reporting: <b style="color:var(--teal-600);">GSS — 6.1%</b> (A+, national authority, most recent). For cross-country comparison: <b style="color:var(--teal-600);">IMF — 6.2%</b> (harmonised methodology).</p>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      <button class="btn btn-primary" onclick="closeModal(); showView('explorer');" style="flex:1; justify-content:center;">Explore this in AI Data Explorer →</button>
+    </div>
+  `);
+}
 
 /* ---------- Africa Data Cloud — Data Connection Map ---------- */
 const dcConnectionMapData = [
   {name:'World Bank', method:'Official public REST API (Indicators API v2)', endpoint:'api.worldbank.org/v2/country/{iso3}/indicator/{code}?format=json', verified:'live', fields:'17,000+ indicators — GDP, population, poverty, health, education, infrastructure', cadence:'Every 1–6 hours', note:'Confirmed live 12 Aug 2026 — real JSON, no API key, no auth required. The single easiest integration in this entire platform.'},
   {name:'OpenStreetMap', method:'Official Overpass API + bulk extracts', endpoint:'overpass-api.de/api/interpreter · download.geofabrik.de', verified:'live', fields:'Roads, buildings, health facilities, admin boundaries', cadence:'Continuous (community-edited)', note:'Already powering the real Ghana region boundaries used throughout GIS Intelligence and the homepage map in this platform.'},
-  {name:'FAO (FAOSTAT)', method:'Bulk data API + downloadable datasets', endpoint:'fao.org/faostat/en/#data', verified:'documented', fields:'Crop production, trade, land use, food security', cadence:'Annual (matches FAO release cycle)', note:'No real-time polling needed — data is published on FAO\'s own annual schedule.'},
   {name:'WHO', method:'data.who.int (XMart data platform, OData-style queries)', endpoint:'xmart-api-public.who.int/DATA_/RELAY_WHS?$filter=IND_ID eq \'{code}\'&$format=csv', verified:'live', fields:'Population, life expectancy, mortality, immunization, health expenditure — indicator-coded, per country', cadence:'Monthly', note:'Confirmed live 12 Aug 2026 — fetched real Ghana figures (Population 33,787,914 · Health expenditure 4.15% of GDP). This is the current platform; the older GHO OData API (ghoapi.azureedge.net) that WHO previously exposed is being retired, so this is the endpoint to build against going forward.'},
+  {name:'FAO (FAOSTAT)', method:'Official public REST API', endpoint:'fenixservices.fao.org/faostat/api/v1/en/data/{domain}', verified:'documented', fields:'70+ domains — crops, livestock, fisheries, forestry, food security, trade, land use', cadence:'Annual (matches FAO release cycle)', note:'Real, no-auth REST API confirmed via multiple independent production integrations (including Our World in Data\'s own pipeline). Blocks automated fetch by robots.txt, so not directly polled this session — classified Documented rather than Verified Live out of honesty, despite strong real-world confirmation.'},
+  {name:'UNECA (ECAStats)', method:'Continental statistical portal — 54-country NSO directory', endpoint:'ecastats.uneca.org', verified:'documented', fields:'Demography, social, economic, environment, SDGs, trade, agriculture, geospatial — harmonised across 54 states', cadence:'Quarterly', note:'The continental statistical backbone — maintains the official directory of African National Statistical Offices and prioritises national sources where available.'},
+  {name:'African Development Bank', method:'Statistical compendium + project database', endpoint:'afdb.org/en/knowledge/statistics', verified:'documented', fields:'Economic indicators, development indicators, country profiles, AfDB projects, infrastructure, procurement intelligence', cadence:'Annual compendium + rolling project data', note:'Continental development/economic intelligence layer — country profiles for all 54 African states.'},
   {name:'Ghana Statistical Service', method:'Organisation site — no public API', endpoint:'statsghana.gov.gh', verified:'documented', fields:'Census, labour force survey, living standards survey', cadence:'Quarterly', note:'Requires a scheduled scraper with document parsing — GSS does not currently expose a structured feed.'},
   {name:'Ghana Health Service (DHIMS2)', method:'Restricted system — requires MOU/credentials', endpoint:'Internal — not public', verified:'documented', fields:'Facility records, disease surveillance, MCH data', cadence:'Daily (once access is granted)', note:'DHIMS2 is access-controlled. Real integration requires a data-sharing agreement with GHS, not just a technical connection.'},
   {name:'Ghana Meteorological Agency', method:'Organisation site — no public API', endpoint:'meteo.gov.gh', verified:'documented', fields:'Rainfall, temperature, station observations', cadence:'Daily', note:'No structured feed currently published — scheduled scraping is the only option today.'},
+  {name:'World Population Review', method:'Static CSV/JSON downloads — no formal API', endpoint:'worldpopulationreview.com/data', verified:'documented', fields:'Population, density, growth rate, rankings, projections', cadence:'As primary sources update', note:'Reference tier only (B) — re-publishes UN WPP, World Bank and FAOSTAT. Use for discovery and quick comparison, always cross-check the primary source before citing.'},
 ];
 function openDataCloudConnectionMap(){
   const verifiedCount = dcConnectionMapData.filter(s=>s.verified==='live').length;
