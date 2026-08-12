@@ -504,6 +504,20 @@ button{font-family:inherit; cursor:pointer;}
 .bundle-label{font-size:11.5px; font-weight:700; flex-shrink:0;}
 .bundle-link{font-size:11px; color:var(--teal-600); font-family:'JetBrains Mono',monospace; word-break:break-all; text-align:right;}
 .bundle-unverified{font-size:11px; color:var(--text-dim); font-style:italic;}
+.flag-img{display:inline-block; vertical-align:middle; border-radius:2px; box-shadow:0 0 0 1px rgba(0,0,0,.08);}
+.flag-fallback{display:inline-block; vertical-align:middle;}
+.register-card-head{display:flex; align-items:center; gap:8px; margin-bottom:3px;}
+.register-card-head b{margin-bottom:0 !important;}
+.country-picker-row{display:flex; align-items:center; gap:10px; padding:0 20px 20px; position:relative;}
+.country-picker-select{display:flex; align-items:center; gap:8px; justify-content:space-between; padding:10px 14px; border:1px solid var(--border); border-radius:10px; background:var(--bg); cursor:pointer; font-size:13px; font-weight:700; min-width:200px;}
+.country-picker-select:hover{border-color:var(--teal);}
+.country-picker-select span{display:flex; align-items:center; gap:8px;}
+.country-picker-dropdown{display:none; position:absolute; top:100%; left:20px; z-index:60; background:var(--surface); border:1px solid var(--border); border-radius:11px; box-shadow:var(--shadow-lg); width:280px; max-height:320px; overflow:hidden; flex-direction:column; margin-top:4px;}
+.country-picker-dropdown.open{display:flex;}
+.country-picker-dropdown input{border:none; border-bottom:1px solid var(--border); padding:11px 14px; font-family:inherit; font-size:12.5px; background:none; color:var(--text); outline:none;}
+#countryPickerList{overflow-y:auto; max-height:260px;}
+.country-picker-item{display:flex; align-items:center; gap:8px; padding:9px 14px; font-size:12.5px; font-weight:600; cursor:pointer;}
+.country-picker-item:hover{background:var(--bg);}
 .expl-tier-row{display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:11px; color:var(--text-dim); font-weight:600; margin:12px 0;}
 .expl-tier-label{font-weight:700; color:var(--text);}
 .expl-tier-arrow{color:var(--border);}
@@ -1375,6 +1389,9 @@ button{font-family:inherit; cursor:pointer;}
   .prov-chain{grid-template-columns:1fr 1fr;}
   .political-branch-grid{grid-template-columns:1fr;}
   .register-grid{grid-template-columns:1fr;}
+  .country-picker-row{flex-direction:column; align-items:stretch;}
+  .country-picker-select{min-width:0;}
+  .country-picker-dropdown{width:auto; left:20px; right:20px;}
   .bundle-row{flex-direction:column; align-items:flex-start; gap:4px;}
   .bundle-link{text-align:left;}
   .dcw-issue-grid,.qb-panel-grid{grid-template-columns:1fr 1fr;}
@@ -1463,10 +1480,10 @@ button{font-family:inherit; cursor:pointer;}
         <div class="workspace-pill" onclick="toggleDropdown('ddWorkspace', event)"><span class="dot"></span> Ghana Workspace <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:11px;height:11px;margin-left:1px;"><path d="m6 9 6 6 6-6"/></svg></div>
         <div class="dropdown" id="ddWorkspace">
           <div class="dd-label">Switch workspace</div>
-          <a class="dd-item active" onclick="selectWorkspace('Ghana', this)"><span class="dd-flag">🇬🇭</span> Ghana <svg class="dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></a>
-          <a class="dd-item locked" onclick="openWaitlist('Nigeria workspace')"><span class="dd-flag">🇳🇬</span> Nigeria <span class="badge">SOON</span></a>
-          <a class="dd-item locked" onclick="openWaitlist('Kenya workspace')"><span class="dd-flag">🇰🇪</span> Kenya <span class="badge">SOON</span></a>
-          <a class="dd-item locked" onclick="openWaitlist('Rwanda workspace')"><span class="dd-flag">🇷🇼</span> Rwanda <span class="badge">SOON</span></a>
+          <a class="dd-item active" onclick="selectWorkspace('Ghana', this)"><span class="dd-flag"><img src="https://flagcdn.com/w40/gh.png" onerror="this.onerror=null;this.src='https://flags.restcountries.com/v5/w320/gh.png'" alt="Ghana" style="width:18px; border-radius:2px;"></span> Ghana <svg class="dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></a>
+          <a class="dd-item locked" onclick="openWaitlist('Nigeria workspace')"><span class="dd-flag"><img src="https://flagcdn.com/w40/ng.png" onerror="this.onerror=null;this.src='https://flags.restcountries.com/v5/w320/ng.png'" alt="Nigeria" style="width:18px; border-radius:2px;"></span> Nigeria <span class="badge">SOON</span></a>
+          <a class="dd-item locked" onclick="openWaitlist('Kenya workspace')"><span class="dd-flag"><img src="https://flagcdn.com/w40/ke.png" onerror="this.onerror=null;this.src='https://flags.restcountries.com/v5/w320/ke.png'" alt="Kenya" style="width:18px; border-radius:2px;"></span> Kenya <span class="badge">SOON</span></a>
+          <a class="dd-item locked" onclick="openWaitlist('Rwanda workspace')"><span class="dd-flag"><img src="https://flagcdn.com/w40/rw.png" onerror="this.onerror=null;this.src='https://flags.restcountries.com/v5/w320/rw.png'" alt="Rwanda" style="width:18px; border-radius:2px;"></span> Rwanda <span class="badge">SOON</span></a>
           <div class="dd-divider"></div>
           <a class="dd-item" onclick="toast('Opening workspace settings…')">＋ Add a workspace</a>
         </div>
@@ -1923,6 +1940,22 @@ button{font-family:inherit; cursor:pointer;}
         <a class="link" href="#" onclick="openCountryRegister();return false;">54-Country Register →</a>
       </div>
       <div id="sourceEmpty" style="display:none; text-align:center; padding:50px 20px; color:var(--text-dim); font-size:13px;">No datasets match your search.</div>
+
+      <div class="card" style="margin-top:18px;">
+        <div class="card-head"><h3>Verify a Country</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">54/54 countries loaded</span></div>
+        <p style="padding:0 20px 12px; font-size:12px; color:var(--text-dim);">Africa Data Cloud now covers every African country. Pick one to check its real 8-source data bundle — the exact same connectors verified for Ghana.</p>
+        <div class="country-picker-row">
+          <div class="country-picker-select" onclick="toggleCountryPicker(event)">
+            <span id="countryPickerLabel"><img src="https://flagcdn.com/w40/gh.png" onerror="this.onerror=null;this.src='https://flags.restcountries.com/v5/w320/gh.png'" alt="Ghana flag" class="flag-img" style="width:20px;"> Ghana</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:11px;height:11px;"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <div class="country-picker-dropdown" id="countryPickerDropdown">
+            <input type="text" placeholder="Search countries…" id="countryPickerSearch" oninput="renderCountryPickerList()" onclick="event.stopPropagation()">
+            <div id="countryPickerList"></div>
+          </div>
+          <button class="btn btn-primary" onclick="verifySelectedCountry()">Verify this country →</button>
+        </div>
+      </div>
 
       <!-- Discovered For You -->
       <div class="card" style="margin-top:18px;">
@@ -3745,6 +3778,52 @@ const countryRegister = [
 ];
 
 const sourceFamilyLabels = {nso:'National Statistics', monetary:'Monetary Authority', who:'WHO Country Data', wb:'World Bank API', fao:'FAO / FAOSTAT', sdg:'UN SDG API', hdx:'HDX Humanitarian', osm:'OpenStreetMap'};
+const countryIso2 = {
+  'Algeria':'dz','Angola':'ao','Benin':'bj','Botswana':'bw','Burkina Faso':'bf','Burundi':'bi',
+  'Cabo Verde':'cv','Cameroon':'cm','Central African Republic':'cf','Chad':'td','Comoros':'km',
+  'Congo (Republic of the)':'cg',"Côte d'Ivoire":'ci','Democratic Republic of the Congo':'cd',
+  'Djibouti':'dj','Egypt':'eg','Equatorial Guinea':'gq','Eritrea':'er','Eswatini':'sz','Ethiopia':'et',
+  'Gabon':'ga','Gambia':'gm','Ghana':'gh','Guinea':'gn','Guinea-Bissau':'gw','Kenya':'ke',
+  'Lesotho':'ls','Liberia':'lr','Libya':'ly','Madagascar':'mg','Malawi':'mw','Mali':'ml',
+  'Mauritania':'mr','Mauritius':'mu','Morocco':'ma','Mozambique':'mz','Namibia':'na','Niger':'ne',
+  'Nigeria':'ng','Rwanda':'rw','São Tomé and Príncipe':'st','Senegal':'sn','Seychelles':'sc',
+  'Sierra Leone':'sl','Somalia':'so','South Africa':'za','South Sudan':'ss','Sudan':'sd',
+  'Tanzania':'tz','Togo':'tg','Tunisia':'tn','Uganda':'ug','Zambia':'zm','Zimbabwe':'zw',
+};
+function flagImg(countryName, size){
+  const iso2 = countryIso2[countryName];
+  size = size || 20;
+  if(!iso2) return `<span class="flag-fallback" style="width:${size}px;">🌍</span>`;
+  return `<img src="https://flagcdn.com/w40/${iso2}.png" srcset="https://flagcdn.com/w80/${iso2}.png 2x" alt="${countryName} flag" class="flag-img" style="width:${size}px;" loading="lazy" onerror="if(!this.dataset.fallback1){this.dataset.fallback1='1'; this.src='https://flags.restcountries.com/v5/w320/${iso2}.png';} else {this.style.display='none';}">`;
+}
+let selectedPickerCountry = 'Ghana';
+function toggleCountryPicker(e){
+  if(e) e.stopPropagation();
+  document.getElementById('countryPickerDropdown').classList.toggle('open');
+  renderCountryPickerList();
+}
+document.addEventListener('click', (e)=>{
+  const dd = document.getElementById('countryPickerDropdown');
+  if(dd && !e.target.closest('.country-picker-row')) dd.classList.remove('open');
+});
+function renderCountryPickerList(){
+  const q = (document.getElementById('countryPickerSearch')?.value || '').toLowerCase();
+  const list = document.getElementById('countryPickerList');
+  if(!list) return;
+  const filtered = countryRegister.filter(c => c.name.toLowerCase().includes(q));
+  list.innerHTML = filtered.map(c => `
+    <div class="country-picker-item" onclick="selectPickerCountry('${c.name.replace(/'/g,"\\'")}')">${flagImg(c.name,18)} ${c.name}${c.gapFilled?' <span class="register-gap-tag" style="margin-left:4px;">partial</span>':''}</div>
+  `).join('') || '<div style="padding:12px; font-size:12px; color:var(--text-dim);">No match.</div>';
+}
+function selectPickerCountry(name){
+  selectedPickerCountry = name;
+  document.getElementById('countryPickerLabel').innerHTML = `${flagImg(name,20)} ${name}`;
+  document.getElementById('countryPickerDropdown').classList.remove('open');
+}
+function verifySelectedCountry(){
+  openCountryBundle(selectedPickerCountry);
+}
+
 function openCountryRegister(){
   openModal(`
     <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>54-COUNTRY CONNECTOR REGISTER</div><h3>Africa Data Cloud — National Coverage</h3><small style="color:var(--text-dim); font-size:11.5px;">8-source bundle per country · 54/54 countries mapped</small></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
@@ -3769,7 +3848,7 @@ function renderCountryRegister(){
   const filtered = countryRegister.filter(c => c.name.toLowerCase().includes(q));
   grid.innerHTML = filtered.map(c => `
     <div class="register-country-card" onclick="openCountryBundle('${c.name.replace(/'/g,"\\'")}')">
-      <b>${c.name}</b>${c.gapFilled ? '<span class="register-gap-tag">completed by IntelligenceOS</span>' : ''}
+      <div class="register-card-head">${flagImg(c.name, 22)}<b>${c.name}</b></div>${c.gapFilled ? '<span class="register-gap-tag">completed by IntelligenceOS</span>' : ''}
       <span>8-source bundle · click to view</span>
     </div>
   `).join('') || '<p style="padding:20px; text-align:center; color:var(--text-dim); font-size:12px;">No countries match your search.</p>';
@@ -3779,7 +3858,7 @@ function openCountryBundle(name){
   if(!c) return;
   const fields = ['nso','monetary','who','wb','fao','sdg','hdx','osm'];
   openModal(`
-    <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>COUNTRY BUNDLE</div><h3>${c.name}</h3></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>COUNTRY BUNDLE</div><h3 style="display:flex; align-items:center; gap:10px;">${flagImg(c.name, 26)}${c.name}</h3></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
     <div class="modal-body">
       ${c.gapFilled ? '<div class="conflict-banner">⚠ This entry was not in the original source register — completed by IntelligenceOS using the same verified connector pattern. The National Statistics link is unverified pending confirmation.</div>' : ''}
       ${fields.map(f => `
@@ -5145,13 +5224,16 @@ if(document.getElementById('resilienceList')){ renderResilience(); renderClimate
 ============================================================= */
 function showView(name){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById('view-'+name).classList.add('active');
+  const target_view = document.getElementById('view-'+name);
+  if(!target_view) return;
+  target_view.classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   const target = document.querySelector('.nav-item[data-view="'+name+'"]');
   if(target) target.classList.add('active');
   if(name==='gis') setTimeout(()=>{ if(window._leafletMap) window._leafletMap.invalidateSize(); }, 60);
   window.scrollTo({top:0, behavior:'instant'});
   if(window.innerWidth<=860) document.getElementById('sidebar').classList.remove('open');
+  try{ localStorage.setItem('intelligenceos_last_view', name); }catch(e){}
 }
 document.querySelectorAll('.nav-item[data-view]').forEach(item=>{
   item.addEventListener('click', ()=> showView(item.dataset.view));
@@ -5159,6 +5241,16 @@ document.querySelectorAll('.nav-item[data-view]').forEach(item=>{
 document.getElementById('menuBtn').addEventListener('click', ()=> document.getElementById('sidebar').classList.toggle('open'));
 function checkMobile(){ document.getElementById('menuBtn').style.display = window.innerWidth<=860 ? 'flex':'none'; }
 window.addEventListener('resize', checkMobile); checkMobile();
+
+/* Restore last-visited view on refresh, instead of always jumping to AI Command Centre */
+(function restoreLastView(){
+  try{
+    const saved = localStorage.getItem('intelligenceos_last_view');
+    if(saved && document.getElementById('view-'+saved)){
+      showView(saved);
+    }
+  }catch(e){}
+})();
 
 /* =============================================================
    CHART.JS GLOBAL DEFAULTS + INSTANCES (for theme refresh)
