@@ -153,13 +153,8 @@ svg{flex-shrink:0;}
 .kernel-engines span{font-size:11px; font-weight:700; color:#D6E0F2; background:rgba(255,255,255,.08); border:1px solid rgba(0,191,166,.25); padding:6px 12px; border-radius:20px; font-family:var(--mono); cursor:pointer; transition:all .15s;}
 .kernel-engines span:hover{background:var(--teal); color:#04332C; border-color:var(--teal); transform:translateY(-1px);}
 .kernel-hint{text-align:center; font-size:11.5px; font-family:var(--mono); font-weight:600; color:var(--teal-600); margin:16px 0; min-height:16px; transition:opacity .15s;}
-.kernel-apps{display:flex; flex-wrap:wrap; justify-content:center; max-width:640px; margin:0 auto; gap:10px 14px;}
-.kernel-app{position:relative; padding-top:18px; flex:0 0 21%;}
-.kernel-app b{display:block; font-size:12px; font-weight:800; background:var(--surface); border:1px solid var(--border); border-radius:9px; padding:9px 4px; text-align:center;}
-.kernel-branches{position:relative; height:34px; max-width:640px; margin:0 auto;}
-.kernel-branches::before{content:''; position:absolute; top:0; left:50%; width:1px; height:16px; background:var(--border); transform:translateX(-50%);}
-.kernel-branches::after{content:''; position:absolute; top:16px; left:6%; right:6%; height:1px; background:var(--border);}
-.kernel-app::before{content:''; position:absolute; top:0; left:50%; width:1px; height:18px; background:var(--border); transform:translateX(-50%);}
+.kernel-branches-final{position:relative; height:36px; max-width:2px; margin:0 auto;}
+.kernel-branches-final::before{content:''; position:absolute; top:0; left:0; width:1px; height:100%; background:linear-gradient(var(--border), transparent); margin:0 auto;}
 .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
 
 /* Live intelligence panel */
@@ -234,7 +229,7 @@ svg{flex-shrink:0;}
 
 /* ---------- ECOSYSTEM ---------- */
 .eco-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
-.eco-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px 22px; transition:transform .2s, box-shadow .2s, border-color .2s;}
+.eco-card{display:block; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px 22px; transition:transform .2s, box-shadow .2s, border-color .2s; color:inherit; text-decoration:none; cursor:pointer;}
 .eco-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:var(--teal);}
 .eco-sector{font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--teal-600); margin-bottom:8px;}
 .eco-card h3{font-size:17px; font-weight:800; margin-bottom:10px;}
@@ -243,7 +238,7 @@ svg{flex-shrink:0;}
 /* ---------- DATA CLOUD ---------- */
 .cloud-wrap{display:flex; flex-wrap:wrap; gap:11px; justify-content:center; max-width:820px; margin:0 auto;}
 .data-flow-mini{display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:36px;}
-.cloud-chip{font-size:13px; font-weight:700; padding:11px 20px; border-radius:30px; border:1px solid var(--border); background:var(--surface); color:var(--text); transition:all .2s;}
+.cloud-chip{font-size:13px; font-weight:700; padding:11px 20px; border-radius:30px; border:1px solid var(--border); background:var(--surface); color:var(--text); transition:all .2s; cursor:pointer;}
 .cloud-chip:hover{border-color:var(--teal); color:var(--teal-600); transform:translateY(-2px);}
 
 /* ---------- GIS ---------- */
@@ -299,7 +294,7 @@ svg{flex-shrink:0;}
 
 /* ---------- AUDIENCE ---------- */
 .audience-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:14px;}
-.audience-card{text-align:center; padding:20px 10px; border-radius:13px; border:1px solid var(--border); transition:all .15s;}
+.audience-card{text-align:center; padding:20px 10px; border-radius:13px; border:1px solid var(--border); transition:all .15s; cursor:pointer;}
 .audience-card:hover{border-color:var(--teal); background:var(--bg);}
 .audience-icon{width:42px; height:42px; border-radius:12px; background:var(--navy-100); display:flex; align-items:center; justify-content:center; margin:0 auto 12px;}
 .audience-icon svg{width:20px; height:20px; color:var(--navy-ink);}
@@ -382,7 +377,6 @@ svg{flex-shrink:0;}
   .engine-flow{grid-template-columns:1fr; gap:20px;}
   .engine-connector{width:100%; height:36px; transform:rotate(90deg);}
   .engine-nodes{flex-direction:row; flex-wrap:wrap; justify-content:center;}
-  .kernel-apps{flex-wrap:wrap;}
   .kernel-app{flex:0 0 30%;}
   .status-bar-inner{font-size:10.5px; gap:6px;}
 }
@@ -674,28 +668,18 @@ svg{flex-shrink:0;}
         </div>
       </div>
       <div class="kernel-hint" id="kernelHint">Hover an engine to see which application it powers</div>
-      <div class="kernel-branches"></div>
-      <div class="kernel-apps">
-        <div class="kernel-app"><b>GovOS</b></div>
-        <div class="kernel-app"><b>BusinessOS</b></div>
-        <div class="kernel-app"><b>NGO Intel.</b></div>
-        <div class="kernel-app"><b>HealthOS</b></div>
-        <div class="kernel-app"><b>AgroOS</b></div>
-        <div class="kernel-app"><b>EduOS</b></div>
-        <div class="kernel-app"><b>ClimateOS</b></div>
-        <div class="kernel-app"><b>ResearchOS</b></div>
-      </div>
+      <div class="kernel-branches-final"></div>
     </div>
 
     <div class="eco-grid">
-      <div class="eco-card"><div class="eco-sector">Government</div><h3>GovOS</h3><p>Planning · Policy · Public Services · Performance</p></div>
-      <div class="eco-card"><div class="eco-sector">Business</div><h3>BusinessOS</h3><p>Finance · Operations · Sales · HR · Analytics</p></div>
-      <div class="eco-card"><div class="eco-sector">Development</div><h3>NGO Intelligence</h3><p>M&amp;E · Research · Proposals · Tenders · Reporting</p></div>
-      <div class="eco-card"><div class="eco-sector">Health</div><h3>HealthOS</h3><p>Disease · Facilities · Workforce · Medicines</p></div>
-      <div class="eco-card"><div class="eco-sector">Agriculture</div><h3>AgroOS</h3><p>Crops · Markets · Weather · Food Security</p></div>
-      <div class="eco-card"><div class="eco-sector">Education</div><h3>EduOS</h3><p>Schools · Students · Teachers · Outcomes</p></div>
-      <div class="eco-card"><div class="eco-sector">Climate</div><h3>ClimateOS</h3><p>Weather · Floods · Drought · Environment</p></div>
-      <div class="eco-card"><div class="eco-sector">Research</div><h3>ResearchOS</h3><p>Data · Surveys · Analysis · Publications</p></div>
+      <a class="eco-card" href="index.html"><div class="eco-sector">Government</div><h3>GovOS</h3><p>Planning · Policy · Public Services · Performance</p></a>
+      <a class="eco-card" href="index.html"><div class="eco-sector">Business</div><h3>BusinessOS</h3><p>Finance · Operations · Sales · HR · Analytics</p></a>
+      <a class="eco-card" href="index.html"><div class="eco-sector">Development</div><h3>NGO Intelligence</h3><p>M&amp;E · Research · Proposals · Tenders · Reporting</p></a>
+      <a class="eco-card" href="index.html"><div class="eco-sector">Health</div><h3>HealthOS</h3><p>Disease · Facilities · Workforce · Medicines</p></a>
+      <a class="eco-card" href="index.html"><div class="eco-sector">Agriculture</div><h3>AgroOS</h3><p>Crops · Markets · Weather · Food Security</p></a>
+      <a class="eco-card" href="index.html"><div class="eco-sector">Education</div><h3>EduOS</h3><p>Schools · Students · Teachers · Outcomes</p></a>
+      <a class="eco-card" href="index.html"><div class="eco-sector">Climate</div><h3>ClimateOS</h3><p>Weather · Floods · Drought · Environment</p></a>
+      <a class="eco-card" href="index.html"><div class="eco-sector">Research</div><h3>ResearchOS</h3><p>Data · Surveys · Analysis · Publications</p></a>
     </div>
     <div style="text-align:center; margin-top:36px;">
       <a class="btn btn-ghost" href="index.html">Explore all intelligence suites <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -719,20 +703,20 @@ svg{flex-shrink:0;}
       <span class="impact-step">AFRICA</span>
     </div>
     <div class="cloud-wrap">
-      <span class="cloud-chip">World Bank</span>
-      <span class="cloud-chip">WHO</span>
-      <span class="cloud-chip">UNICEF</span>
-      <span class="cloud-chip">FAO</span>
-      <span class="cloud-chip">AfDB</span>
-      <span class="cloud-chip">National Statistics</span>
-      <span class="cloud-chip">Government Agencies</span>
-      <span class="cloud-chip">OpenStreetMap</span>
-      <span class="cloud-chip">Satellite Data</span>
-      <span class="cloud-chip">Weather</span>
-      <span class="cloud-chip">Business Registries</span>
-      <span class="cloud-chip">Education</span>
-      <span class="cloud-chip">Health</span>
-      <span class="cloud-chip">Trade</span>
+      <span class="cloud-chip" onclick="toast('World Bank — global economic and development data, live in Africa Data Cloud')">World Bank</span>
+      <span class="cloud-chip" onclick="toast('WHO — global health indicators, live in Africa Data Cloud')">WHO</span>
+      <span class="cloud-chip" onclick="toast('UNICEF — child welfare and education data, live in Africa Data Cloud')">UNICEF</span>
+      <span class="cloud-chip" onclick="toast('FAO — agriculture and food security data, live in Africa Data Cloud')">FAO</span>
+      <span class="cloud-chip" onclick="toast('AfDB — African Development Bank financing and infrastructure data')">AfDB</span>
+      <span class="cloud-chip" onclick="toast('National Statistics — official government statistical data')">National Statistics</span>
+      <span class="cloud-chip" onclick="toast('Government Agencies — official public sector datasets')">Government Agencies</span>
+      <span class="cloud-chip" onclick="toast('OpenStreetMap — live geospatial and infrastructure data')">OpenStreetMap</span>
+      <span class="cloud-chip" onclick="toast('Satellite Data — Earth observation and remote sensing feeds')">Satellite Data</span>
+      <span class="cloud-chip" onclick="toast('Weather — meteorological and climate observation data')">Weather</span>
+      <span class="cloud-chip" onclick="toast('Business Registries — company and enterprise registration data')">Business Registries</span>
+      <span class="cloud-chip" onclick="toast('Education — school, enrolment and learning outcome data')">Education</span>
+      <span class="cloud-chip" onclick="toast('Health — facility, disease and health system data')">Health</span>
+      <span class="cloud-chip" onclick="toast('Trade — import, export and commerce data')">Trade</span>
     </div>
   </div>
 </section>
@@ -876,12 +860,12 @@ svg{flex-shrink:0;}
       <h2>Built for decision-makers everywhere.</h2>
     </div>
     <div class="audience-grid">
-      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div><span>Governments</span></div>
-      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.5 2A4 4 0 0 0 6 20h11.5Z"/></svg></div><span>NGOs &amp; Development Partners</span></div>
-      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16M2 13h20"/></svg></div><span>Businesses</span></div>
-      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5Z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div><span>Universities</span></div>
-      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.5-2 2-3.5 2-5A5 5 0 0 0 12 6a5 5 0 0 0-9 3c0 1.5.5 3 2 5 2 2.3 5 5 7 6.5 2-1.5 5-4.2 7-6.5Z"/></svg></div><span>Healthcare Organizations</span></div>
-      <div class="audience-card"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><span>Researchers</span></div>
+      <div class="audience-card" onclick="toast('See how Governments use IntelligenceOS — live in GovOS')"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div><span>Governments</span></div>
+      <div class="audience-card" onclick="toast('See how NGOs use IntelligenceOS — live in NGO Intelligence')"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.5 2A4 4 0 0 0 6 20h11.5Z"/></svg></div><span>NGOs &amp; Development Partners</span></div>
+      <div class="audience-card" onclick="toast('See how Businesses use IntelligenceOS — live in BusinessOS')"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16M2 13h20"/></svg></div><span>Businesses</span></div>
+      <div class="audience-card" onclick="toast('See how Universities use IntelligenceOS — live in ResearchOS')"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5Z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div><span>Universities</span></div>
+      <div class="audience-card" onclick="toast('See how Healthcare Organizations use IntelligenceOS — live in HealthOS')"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.5-2 2-3.5 2-5A5 5 0 0 0 12 6a5 5 0 0 0-9 3c0 1.5.5 3 2 5 2 2.3 5 5 7 6.5 2-1.5 5-4.2 7-6.5Z"/></svg></div><span>Healthcare Organizations</span></div>
+      <div class="audience-card" onclick="toast('See how Researchers use IntelligenceOS — live in ResearchOS')"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><span>Researchers</span></div>
     </div>
     <div class="audience-more">
       <span>+ Investors</span><span>+ Media</span><span>+ Cities</span><span>+ Communities</span>
