@@ -492,6 +492,21 @@ button{font-family:inherit; cursor:pointer;}
 .tier-b{background:var(--bg); color:var(--text-dim); border:1px solid var(--border);}
 [data-theme="dark"] .tier-aplus{background:#0e2c1a;}
 .dc-authority-legend{display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:11.5px; color:var(--text-dim); font-weight:600; padding:14px 4px 0;}
+
+/* ---------- 54-Country Register ---------- */
+.register-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:9px; max-height:440px; overflow-y:auto; padding:4px 2px;}
+.register-country-card{background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:12px 14px; cursor:pointer; transition:all .15s;}
+.register-country-card:hover{border-color:var(--teal);}
+.register-country-card b{display:block; font-size:12.5px; margin-bottom:3px;}
+.register-country-card span{font-size:10px; color:var(--text-dim);}
+.register-gap-tag{display:inline-block; font-size:8.5px; font-weight:800; padding:2px 6px; border-radius:10px; background:#FEF3E2; color:#B45309; margin-bottom:4px;}
+.bundle-row{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 14px; background:var(--bg); border-radius:9px; margin-bottom:7px;}
+.bundle-label{font-size:11.5px; font-weight:700; flex-shrink:0;}
+.bundle-link{font-size:11px; color:var(--teal-600); font-family:'JetBrains Mono',monospace; word-break:break-all; text-align:right;}
+.bundle-unverified{font-size:11px; color:var(--text-dim); font-style:italic;}
+.expl-tier-row{display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:11px; color:var(--text-dim); font-weight:600; margin:12px 0;}
+.expl-tier-label{font-weight:700; color:var(--text);}
+.expl-tier-arrow{color:var(--border);}
 .dc-authority-legend .source-tier-badge{margin-left:4px;}
 
 /* ---------- Political Intelligence ---------- */
@@ -1359,6 +1374,9 @@ button{font-family:inherit; cursor:pointer;}
   .qb-layout{grid-template-columns:1fr;}
   .prov-chain{grid-template-columns:1fr 1fr;}
   .political-branch-grid{grid-template-columns:1fr;}
+  .register-grid{grid-template-columns:1fr;}
+  .bundle-row{flex-direction:column; align-items:flex-start; gap:4px;}
+  .bundle-link{text-align:left;}
   .dcw-issue-grid,.qb-panel-grid{grid-template-columns:1fr 1fr;}
   .domain-waitlist-form{flex-direction:column;}
   .tender-filters{flex-direction:column; align-items:stretch;}
@@ -1902,6 +1920,7 @@ button{font-family:inherit; cursor:pointer;}
         <span class="source-tier-badge tier-b">B</span> Reference &amp; discovery layer
         <a class="link" href="#" onclick="openSourceRelationship();return false;" style="margin-left:auto;">See Source Relationship example →</a>
         <a class="link" href="#" onclick="openDataConflictEngine();return false;">Data Conflict Engine →</a>
+        <a class="link" href="#" onclick="openCountryRegister();return false;">54-Country Register →</a>
       </div>
       <div id="sourceEmpty" style="display:none; text-align:center; padding:50px 20px; color:var(--text-dim); font-size:13px;">No datasets match your search.</div>
 
@@ -2098,7 +2117,8 @@ button{font-family:inherit; cursor:pointer;}
         <div class="intel-section">
           <div class="intel-label">Data Context</div>
           <div class="dc-ws-meta-grid" id="explDataContext"></div>
-          <a class="link" href="#" onclick="toast('Opening data lineage view');return false;" style="font-size:11.5px;">View sources & lineage →</a>
+          <div class="expl-tier-row" id="explTierRow"></div>
+          <a class="link" href="#" onclick="showView('datacloud'); setTimeout(openSourceRelationship, 300); return false;" style="font-size:11.5px;">View sources & lineage →</a>
         </div>
 
         <div class="intel-section">
@@ -3599,6 +3619,11 @@ const exportRegistry = {
     dcConnectionMapData.forEach(s=> rows.push([s.name, s.method, s.endpoint, s.verified, s.fields, s.cadence]));
     downloadBlob(toCSV(rows), 'data-connection-map-'+Date.now()+'.csv', 'text/csv');
   },
+  'country-register':()=> {
+    const rows = [['Country','National Statistics','Monetary Authority','WHO Country Data','World Bank API','FAO Profile','UN SDG API','HDX','OpenStreetMap','Gap Filled By IntelligenceOS']];
+    countryRegister.forEach(c=> rows.push([c.name, c.nso, c.monetary, c.who, c.wb, c.fao, c.sdg, c.hdx, c.osm, c.gapFilled ? 'Yes' : 'No']));
+    downloadBlob(toCSV(rows), 'africa-54-country-register-'+Date.now()+'.csv', 'text/csv');
+  },
   'tender-connection-map':()=> {
     const rows = [['Source','Method','Endpoint','Verified Status','Fields','Cadence']];
     connectionMapData.forEach(s=> rows.push([s.name, s.method, s.endpoint, s.verified, s.fields, s.cadence]));
@@ -3643,6 +3668,7 @@ function runExport(key, format){
     else if(key==='dc-sources') data = sourceIntel;
     else if(key==='connection-map') data = dcConnectionMapData;
     else if(key==='tender-connection-map') data = connectionMapData;
+    else if(key==='country-register') data = countryRegister;
     downloadBlob(JSON.stringify(data, null, 2), key+'-'+Date.now()+'.json', 'application/json');
     toast('JSON downloaded');
   }
@@ -3661,6 +3687,115 @@ const dcConnectionMapData = [
   {name:'Ghana Meteorological Agency', method:'Organisation site — no public API', endpoint:'meteo.gov.gh', verified:'documented', fields:'Rainfall, temperature, station observations', cadence:'Daily', note:'No structured feed currently published — scheduled scraping is the only option today.'},
   {name:'World Population Review', method:'Static CSV/JSON downloads — no formal API', endpoint:'worldpopulationreview.com/data', verified:'documented', fields:'Population, density, growth rate, rankings, projections', cadence:'As primary sources update', note:'Reference tier only (B) — re-publishes UN WPP, World Bank and FAOSTAT. Use for discovery and quick comparison, always cross-check the primary source before citing.'},
 ];
+const countryRegister = [
+  {name:'Algeria', nso:'https://www.ons.dz/', monetary:'https://www.bank-of-algeria.dz/', who:'https://data.who.int/countries/012', wb:'https://api.worldbank.org/v2/country/DZA/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=DZA', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=012', hdx:'https://data.humdata.org/search?q=Algeria', osm:'https://www.openstreetmap.org/search?query=Algeria'},
+  {name:'Angola', nso:'https://www.ine.gov.ao/', monetary:'https://www.bna.ao/', who:'https://data.who.int/countries/024', wb:'https://api.worldbank.org/v2/country/AGO/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=AGO', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=024', hdx:'https://data.humdata.org/search?q=Angola', osm:'https://www.openstreetmap.org/search?query=Angola'},
+  {name:'Benin', nso:'https://instad.bj/', monetary:'https://www.bceao.int/', who:'https://data.who.int/countries/204', wb:'https://api.worldbank.org/v2/country/BEN/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=BEN', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=204', hdx:'https://data.humdata.org/search?q=Benin', osm:'https://www.openstreetmap.org/search?query=Benin'},
+  {name:'Botswana', nso:'https://www.statsbots.org.bw/', monetary:'https://www.bankofbotswana.bw/', who:'https://data.who.int/countries/072', wb:'https://api.worldbank.org/v2/country/BWA/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=BWA', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=072', hdx:'https://data.humdata.org/search?q=Botswana', osm:'https://www.openstreetmap.org/search?query=Botswana'},
+  {name:'Burkina Faso', nso:'https://www.insd.bf/', monetary:'https://www.bceao.int/', who:'https://data.who.int/countries/854', wb:'https://api.worldbank.org/v2/country/BFA/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=BFA', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=854', hdx:'https://data.humdata.org/search?q=Burkina%20Faso', osm:'https://www.openstreetmap.org/search?query=Burkina%20Faso'},
+  {name:'Burundi', nso:'https://www.isteebu.bi/', monetary:'https://www.brb.bi/', who:'https://data.who.int/countries/108', wb:'https://api.worldbank.org/v2/country/BDI/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=BDI', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=108', hdx:'https://data.humdata.org/search?q=Burundi', osm:'https://www.openstreetmap.org/search?query=Burundi'},
+  {name:'Cabo Verde', nso:'https://ine.cv/', monetary:'https://www.bcv.cv/', who:'https://data.who.int/countries/132', wb:'https://api.worldbank.org/v2/country/CPV/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=CPV', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=132', hdx:'https://data.humdata.org/search?q=Cabo%20Verde', osm:'https://www.openstreetmap.org/search?query=Cabo%20Verde'},
+  {name:'Cameroon', nso:'https://ins-cameroun.cm/', monetary:'https://www.beac.int/', who:'https://data.who.int/countries/120', wb:'https://api.worldbank.org/v2/country/CMR/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=CMR', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=120', hdx:'https://data.humdata.org/search?q=Cameroon', osm:'https://www.openstreetmap.org/search?query=Cameroon'},
+  {name:'Central African Republic', nso:'https://icasees.org/', monetary:'https://www.beac.int/', who:'https://data.who.int/countries/140', wb:'https://api.worldbank.org/v2/country/CAF/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=CAF', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=140', hdx:'https://data.humdata.org/search?q=Central%20African%20Republic', osm:'https://www.openstreetmap.org/search?query=Central%20African%20Republic'},
+  {name:'Chad', nso:'https://www.inseed.td/', monetary:'https://www.beac.int/', who:'https://data.who.int/countries/148', wb:'https://api.worldbank.org/v2/country/TCD/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=TCD', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=148', hdx:'https://data.humdata.org/search?q=Chad', osm:'https://www.openstreetmap.org/search?query=Chad'},
+  {name:'Comoros', nso:'https://www.inseed.km/', monetary:'https://www.banque-comores.km/', who:'https://data.who.int/countries/174', wb:'https://api.worldbank.org/v2/country/COM/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=COM', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=174', hdx:'https://data.humdata.org/search?q=Comoros', osm:'https://www.openstreetmap.org/search?query=Comoros'},
+  {name:'Congo (Republic of the)', nso:'UNVERIFIED', monetary:'https://www.beac.int/', who:'https://data.who.int/countries/178', wb:'https://api.worldbank.org/v2/country/COG/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=COG', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=178', hdx:'https://data.humdata.org/search?q=Congo', osm:'https://www.openstreetmap.org/search?query=Congo', gapFilled:true},
+  {name:'Côte d\'Ivoire', nso:'https://www.ins.ci/', monetary:'https://www.bceao.int/', who:'https://data.who.int/countries/384', wb:'https://api.worldbank.org/v2/country/CIV/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=CIV', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=384', hdx:'https://data.humdata.org/search?q=Côte%20d\'Ivoire', osm:'https://www.openstreetmap.org/search?query=Côte%20d\'Ivoire'},
+  {name:'Democratic Republic of the Congo', nso:'https://ins-rdc.org/', monetary:'https://www.bcc.cd/', who:'https://data.who.int/countries/180', wb:'https://api.worldbank.org/v2/country/COD/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=COD', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=180', hdx:'https://data.humdata.org/search?q=Democratic%20Republic%20of%20the%20Congo', osm:'https://www.openstreetmap.org/search?query=Democratic%20Republic%20of%20the%20Congo'},
+  {name:'Djibouti', nso:'https://instad.dj/', monetary:'https://banque-centrale.dj/', who:'https://data.who.int/countries/262', wb:'https://api.worldbank.org/v2/country/DJI/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=DJI', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=262', hdx:'https://data.humdata.org/search?q=Djibouti', osm:'https://www.openstreetmap.org/search?query=Djibouti'},
+  {name:'Egypt', nso:'https://www.capmas.gov.eg/', monetary:'https://www.cbe.org.eg/', who:'https://data.who.int/countries/818', wb:'https://api.worldbank.org/v2/country/EGY/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=EGY', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=818', hdx:'https://data.humdata.org/search?q=Egypt', osm:'https://www.openstreetmap.org/search?query=Egypt'},
+  {name:'Equatorial Guinea', nso:'https://inege.gq/', monetary:'https://www.beac.int/', who:'https://data.who.int/countries/226', wb:'https://api.worldbank.org/v2/country/GNQ/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=GNQ', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=226', hdx:'https://data.humdata.org/search?q=Equatorial%20Guinea', osm:'https://www.openstreetmap.org/search?query=Equatorial%20Guinea'},
+  {name:'Eritrea', nso:'https://www.eritrea.be/', monetary:'https://www.boe.gov.er/', who:'https://data.who.int/countries/232', wb:'https://api.worldbank.org/v2/country/ERI/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=ERI', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=232', hdx:'https://data.humdata.org/search?q=Eritrea', osm:'https://www.openstreetmap.org/search?query=Eritrea'},
+  {name:'Eswatini', nso:'https://www.gov.sz/', monetary:'https://www.centralbank.org.sz/', who:'https://data.who.int/countries/748', wb:'https://api.worldbank.org/v2/country/SWZ/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=SWZ', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=748', hdx:'https://data.humdata.org/search?q=Eswatini', osm:'https://www.openstreetmap.org/search?query=Eswatini'},
+  {name:'Ethiopia', nso:'https://ess.gov.et/', monetary:'https://nbe.gov.et/', who:'https://data.who.int/countries/231', wb:'https://api.worldbank.org/v2/country/ETH/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=ETH', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=231', hdx:'https://data.humdata.org/search?q=Ethiopia', osm:'https://www.openstreetmap.org/search?query=Ethiopia'},
+  {name:'Gabon', nso:'https://www.stat-gabon.org/', monetary:'https://www.beac.int/', who:'https://data.who.int/countries/266', wb:'https://api.worldbank.org/v2/country/GAB/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=GAB', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=266', hdx:'https://data.humdata.org/search?q=Gabon', osm:'https://www.openstreetmap.org/search?query=Gabon'},
+  {name:'Gambia', nso:'https://www.gbosdata.org/', monetary:'https://www.cbg.gm/', who:'https://data.who.int/countries/270', wb:'https://api.worldbank.org/v2/country/GMB/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=GMB', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=270', hdx:'https://data.humdata.org/search?q=Gambia', osm:'https://www.openstreetmap.org/search?query=Gambia'},
+  {name:'Ghana', nso:'https://statsghana.gov.gh/', monetary:'https://www.bog.gov.gh/', who:'https://data.who.int/countries/288', wb:'https://api.worldbank.org/v2/country/GHA/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=GHA', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=288', hdx:'https://data.humdata.org/search?q=Ghana', osm:'https://www.openstreetmap.org/search?query=Ghana'},
+  {name:'Guinea', nso:'https://www.stat-guinee.org/', monetary:'https://www.bcrg-guinee.org/', who:'https://data.who.int/countries/324', wb:'https://api.worldbank.org/v2/country/GIN/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=GIN', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=324', hdx:'https://data.humdata.org/search?q=Guinea', osm:'https://www.openstreetmap.org/search?query=Guinea'},
+  {name:'Guinea-Bissau', nso:'https://www.stat-guinebissau.com/', monetary:'https://www.bceao.int/', who:'https://data.who.int/countries/624', wb:'https://api.worldbank.org/v2/country/GNB/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=GNB', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=624', hdx:'https://data.humdata.org/search?q=Guinea-Bissau', osm:'https://www.openstreetmap.org/search?query=Guinea-Bissau'},
+  {name:'Kenya', nso:'https://www.knbs.or.ke/', monetary:'https://www.centralbank.go.ke/', who:'https://data.who.int/countries/404', wb:'https://api.worldbank.org/v2/country/KEN/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=KEN', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=404', hdx:'https://data.humdata.org/search?q=Kenya', osm:'https://www.openstreetmap.org/search?query=Kenya'},
+  {name:'Lesotho', nso:'https://www.bos.gov.ls/', monetary:'https://www.centralbank.org.ls/', who:'https://data.who.int/countries/426', wb:'https://api.worldbank.org/v2/country/LSO/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=LSO', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=426', hdx:'https://data.humdata.org/search?q=Lesotho', osm:'https://www.openstreetmap.org/search?query=Lesotho'},
+  {name:'Liberia', nso:'https://lisgis.gov.lr/', monetary:'https://www.cbl.org.lr/', who:'https://data.who.int/countries/430', wb:'https://api.worldbank.org/v2/country/LBR/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=LBR', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=430', hdx:'https://data.humdata.org/search?q=Liberia', osm:'https://www.openstreetmap.org/search?query=Liberia'},
+  {name:'Libya', nso:'https://bsc.ly/', monetary:'https://cbl.gov.ly/en/', who:'https://data.who.int/countries/434', wb:'https://api.worldbank.org/v2/country/LBY/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=LBY', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=434', hdx:'https://data.humdata.org/search?q=Libya', osm:'https://www.openstreetmap.org/search?query=Libya'},
+  {name:'Madagascar', nso:'https://www.instat.mg/', monetary:'https://www.banky-foibe.mg/', who:'https://data.who.int/countries/450', wb:'https://api.worldbank.org/v2/country/MDG/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=MDG', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=450', hdx:'https://data.humdata.org/search?q=Madagascar', osm:'https://www.openstreetmap.org/search?query=Madagascar'},
+  {name:'Malawi', nso:'https://www.nsomalawi.mw/', monetary:'https://www.rbm.mw/', who:'https://data.who.int/countries/454', wb:'https://api.worldbank.org/v2/country/MWI/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=MWI', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=454', hdx:'https://data.humdata.org/search?q=Malawi', osm:'https://www.openstreetmap.org/search?query=Malawi'},
+  {name:'Mali', nso:'https://www.instat-mali.org/', monetary:'https://www.bceao.int/', who:'https://data.who.int/countries/466', wb:'https://api.worldbank.org/v2/country/MLI/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=MLI', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=466', hdx:'https://data.humdata.org/search?q=Mali', osm:'https://www.openstreetmap.org/search?query=Mali'},
+  {name:'Mauritania', nso:'https://www.ons.mr/', monetary:'https://www.bcm.mr/', who:'https://data.who.int/countries/478', wb:'https://api.worldbank.org/v2/country/MRT/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=MRT', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=478', hdx:'https://data.humdata.org/search?q=Mauritania', osm:'https://www.openstreetmap.org/search?query=Mauritania'},
+  {name:'Mauritius', nso:'https://statsmauritius.govmu.org/', monetary:'https://www.bom.mu/', who:'https://data.who.int/countries/480', wb:'https://api.worldbank.org/v2/country/MUS/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=MUS', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=480', hdx:'https://data.humdata.org/search?q=Mauritius', osm:'https://www.openstreetmap.org/search?query=Mauritius'},
+  {name:'Morocco', nso:'https://www.hcp.ma/', monetary:'https://www.bkam.ma/', who:'https://data.who.int/countries/504', wb:'https://api.worldbank.org/v2/country/MAR/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=MAR', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=504', hdx:'https://data.humdata.org/search?q=Morocco', osm:'https://www.openstreetmap.org/search?query=Morocco'},
+  {name:'Mozambique', nso:'https://www.ine.gov.mz/', monetary:'https://www.bancomoc.mz/', who:'https://data.who.int/countries/508', wb:'https://api.worldbank.org/v2/country/MOZ/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=MOZ', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=508', hdx:'https://data.humdata.org/search?q=Mozambique', osm:'https://www.openstreetmap.org/search?query=Mozambique'},
+  {name:'Namibia', nso:'https://nsa.org.na/', monetary:'https://www.bon.com.na/', who:'https://data.who.int/countries/516', wb:'https://api.worldbank.org/v2/country/NAM/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=NAM', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=516', hdx:'https://data.humdata.org/search?q=Namibia', osm:'https://www.openstreetmap.org/search?query=Namibia'},
+  {name:'Niger', nso:'https://www.stat-niger.org/', monetary:'https://www.bceao.int/', who:'https://data.who.int/countries/562', wb:'https://api.worldbank.org/v2/country/NER/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=NER', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=562', hdx:'https://data.humdata.org/search?q=Niger', osm:'https://www.openstreetmap.org/search?query=Niger'},
+  {name:'Nigeria', nso:'https://www.nigerianstat.gov.ng/', monetary:'https://www.cbn.gov.ng/', who:'https://data.who.int/countries/566', wb:'https://api.worldbank.org/v2/country/NGA/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=NGA', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=566', hdx:'https://data.humdata.org/search?q=Nigeria', osm:'https://www.openstreetmap.org/search?query=Nigeria'},
+  {name:'Rwanda', nso:'https://www.statistics.gov.rw/', monetary:'https://www.bnr.rw/', who:'https://data.who.int/countries/646', wb:'https://api.worldbank.org/v2/country/RWA/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=RWA', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=646', hdx:'https://data.humdata.org/search?q=Rwanda', osm:'https://www.openstreetmap.org/search?query=Rwanda'},
+  {name:'São Tomé and Príncipe', nso:'https://www.ine.st/', monetary:'https://www.bcstp.st/', who:'https://data.who.int/countries/678', wb:'https://api.worldbank.org/v2/country/STP/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=STP', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=678', hdx:'https://data.humdata.org/search?q=São%20Tomé%20and%20Príncipe', osm:'https://www.openstreetmap.org/search?query=São%20Tomé%20and%20Príncipe'},
+  {name:'Senegal', nso:'https://www.ansd.sn/', monetary:'https://www.bceao.int/', who:'https://data.who.int/countries/686', wb:'https://api.worldbank.org/v2/country/SEN/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=SEN', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=686', hdx:'https://data.humdata.org/search?q=Senegal', osm:'https://www.openstreetmap.org/search?query=Senegal'},
+  {name:'Seychelles', nso:'https://www.nbs.gov.sc/', monetary:'https://www.cbs.sc/', who:'https://data.who.int/countries/690', wb:'https://api.worldbank.org/v2/country/SYC/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=SYC', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=690', hdx:'https://data.humdata.org/search?q=Seychelles', osm:'https://www.openstreetmap.org/search?query=Seychelles'},
+  {name:'Sierra Leone', nso:'https://www.statistics.sl/', monetary:'https://www.bsl.gov.sl/', who:'https://data.who.int/countries/694', wb:'https://api.worldbank.org/v2/country/SLE/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=SLE', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=694', hdx:'https://data.humdata.org/search?q=Sierra%20Leone', osm:'https://www.openstreetmap.org/search?query=Sierra%20Leone'},
+  {name:'Somalia', nso:'https://nbs.gov.so/', monetary:'https://centralbank.gov.so/', who:'https://data.who.int/countries/706', wb:'https://api.worldbank.org/v2/country/SOM/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=SOM', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=706', hdx:'https://data.humdata.org/search?q=Somalia', osm:'https://www.openstreetmap.org/search?query=Somalia'},
+  {name:'South Africa', nso:'https://www.statssa.gov.za/', monetary:'https://www.resbank.co.za/', who:'https://data.who.int/countries/710', wb:'https://api.worldbank.org/v2/country/ZAF/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=ZAF', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=710', hdx:'https://data.humdata.org/search?q=South%20Africa', osm:'https://www.openstreetmap.org/search?query=South%20Africa'},
+  {name:'South Sudan', nso:'https://nbs.gov.ss/', monetary:'https://bankofsouthsudan.org/', who:'https://data.who.int/countries/728', wb:'https://api.worldbank.org/v2/country/SSD/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=SSD', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=728', hdx:'https://data.humdata.org/search?q=South%20Sudan', osm:'https://www.openstreetmap.org/search?query=South%20Sudan'},
+  {name:'Sudan', nso:'https://cbos.gov.sd/', monetary:'https://cbos.gov.sd/', who:'https://data.who.int/countries/729', wb:'https://api.worldbank.org/v2/country/SDN/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=SDN', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=729', hdx:'https://data.humdata.org/search?q=Sudan', osm:'https://www.openstreetmap.org/search?query=Sudan'},
+  {name:'Tanzania', nso:'https://www.nbs.go.tz/', monetary:'https://www.bot.go.tz/', who:'https://data.who.int/countries/834', wb:'https://api.worldbank.org/v2/country/TZA/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=TZA', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=834', hdx:'https://data.humdata.org/search?q=Tanzania', osm:'https://www.openstreetmap.org/search?query=Tanzania'},
+  {name:'Togo', nso:'https://inseed.tg/', monetary:'https://www.bceao.int/', who:'https://data.who.int/countries/768', wb:'https://api.worldbank.org/v2/country/TGO/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=TGO', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=768', hdx:'https://data.humdata.org/search?q=Togo', osm:'https://www.openstreetmap.org/search?query=Togo'},
+  {name:'Tunisia', nso:'https://www.ins.tn/', monetary:'https://www.bct.gov.tn/', who:'https://data.who.int/countries/788', wb:'https://api.worldbank.org/v2/country/TUN/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=TUN', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=788', hdx:'https://data.humdata.org/search?q=Tunisia', osm:'https://www.openstreetmap.org/search?query=Tunisia'},
+  {name:'Uganda', nso:'https://www.ubos.org/', monetary:'https://www.bou.or.ug/', who:'https://data.who.int/countries/800', wb:'https://api.worldbank.org/v2/country/UGA/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=UGA', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=800', hdx:'https://data.humdata.org/search?q=Uganda', osm:'https://www.openstreetmap.org/search?query=Uganda'},
+  {name:'Zambia', nso:'https://www.zamstats.gov.zm/', monetary:'https://www.boz.zm/', who:'https://data.who.int/countries/894', wb:'https://api.worldbank.org/v2/country/ZMB/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=ZMB', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=894', hdx:'https://data.humdata.org/search?q=Zambia', osm:'https://www.openstreetmap.org/search?query=Zambia'},
+  {name:'Zimbabwe', nso:'https://zimstat.co.zw/', monetary:'https://www.rbz.co.zw/', who:'https://data.who.int/countries/716', wb:'https://api.worldbank.org/v2/country/ZWE/indicator/SP.POP.TOTL?format=json', fao:'https://www.fao.org/countryprofiles/index/en/?iso3=ZWE', sdg:'https://unstats.un.org/SDGAPI/v1/sdg/Indicator/Data?areaCode=716', hdx:'https://data.humdata.org/search?q=Zimbabwe', osm:'https://www.openstreetmap.org/search?query=Zimbabwe'},
+];
+
+const sourceFamilyLabels = {nso:'National Statistics', monetary:'Monetary Authority', who:'WHO Country Data', wb:'World Bank API', fao:'FAO / FAOSTAT', sdg:'UN SDG API', hdx:'HDX Humanitarian', osm:'OpenStreetMap'};
+function openCountryRegister(){
+  openModal(`
+    <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>54-COUNTRY CONNECTOR REGISTER</div><h3>Africa Data Cloud — National Coverage</h3><small style="color:var(--text-dim); font-size:11.5px;">8-source bundle per country · 54/54 countries mapped</small></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <p style="font-size:12px; color:var(--text-dim); margin-bottom:12px;">Every country receives a multi-source bundle — national statistics, monetary authority, WHO, World Bank, FAO, UN SDG, HDX and OpenStreetMap — rather than a single link. Click a country to see its full bundle.</p>
+      <div class="ai-search dc-main-search" style="margin-bottom:12px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="registerSearch" placeholder="Search 54 countries…" oninput="renderCountryRegister()">
+      </div>
+      <div class="register-grid" id="registerGrid"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      <button class="btn btn-primary" onclick="exportContent('country-register', '54-Country Connector Register')" style="flex:1; justify-content:center;">Export full register →</button>
+    </div>
+  `);
+  renderCountryRegister();
+}
+function renderCountryRegister(){
+  const q = (document.getElementById('registerSearch')?.value || '').toLowerCase();
+  const grid = document.getElementById('registerGrid');
+  const filtered = countryRegister.filter(c => c.name.toLowerCase().includes(q));
+  grid.innerHTML = filtered.map(c => `
+    <div class="register-country-card" onclick="openCountryBundle('${c.name.replace(/'/g,"\\'")}')">
+      <b>${c.name}</b>${c.gapFilled ? '<span class="register-gap-tag">completed by IntelligenceOS</span>' : ''}
+      <span>8-source bundle · click to view</span>
+    </div>
+  `).join('') || '<p style="padding:20px; text-align:center; color:var(--text-dim); font-size:12px;">No countries match your search.</p>';
+}
+function openCountryBundle(name){
+  const c = countryRegister.find(x => x.name === name);
+  if(!c) return;
+  const fields = ['nso','monetary','who','wb','fao','sdg','hdx','osm'];
+  openModal(`
+    <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>COUNTRY BUNDLE</div><h3>${c.name}</h3></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      ${c.gapFilled ? '<div class="conflict-banner">⚠ This entry was not in the original source register — completed by IntelligenceOS using the same verified connector pattern. The National Statistics link is unverified pending confirmation.</div>' : ''}
+      ${fields.map(f => `
+        <div class="bundle-row">
+          <span class="bundle-label">${sourceFamilyLabels[f]}</span>
+          ${c[f]==='UNVERIFIED' ? '<span class="bundle-unverified">Not yet verified</span>' : `<a href="${c[f]}" target="_blank" rel="noopener" class="bundle-link">${c[f].replace('https://','')}</a>`}
+        </div>
+      `).join('')}
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="openCountryRegister()" style="flex:1; justify-content:center;">← Back to register</button>
+      <button class="btn btn-primary" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+    </div>
+  `);
+}
+
 function openDataCloudConnectionMap(){
   const verifiedCount = dcConnectionMapData.filter(s=>s.verified==='live').length;
   openModal(`
@@ -5721,6 +5856,14 @@ function renderExplorer(key){
       <div><span>Records</span><b>${d.dataContext.records}</b></div>
       <div><span>Last updated</span><b>${d.dataContext.updated}</b></div>
       <div><span>Quality</span><b style="color:${qualityColor(d.dataContext.quality)};">${d.dataContext.quality}/100</b></div>
+    `;
+    document.getElementById('explTierRow').innerHTML = `
+      <span class="expl-tier-label">Source priority:</span>
+      <span class="source-tier-badge tier-aplus">A+</span> National official
+      <span class="expl-tier-arrow">→</span>
+      <span class="source-tier-badge tier-a">A</span> African/global institutional
+      <span class="expl-tier-arrow">→</span>
+      <span class="source-tier-badge tier-b">B</span> Reference · used for this answer where national data was incomplete
     `;
 
     document.getElementById('explFollowups').innerHTML = d.followups.map(f=>`<button onclick="askChip('${f.replace(/'/g,"\\'")}')">${f}</button>`).join('');
