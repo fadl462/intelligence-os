@@ -556,6 +556,7 @@ button{font-family:inherit; cursor:pointer;}
 .dc-quality-badge.warn{background:#FEF3E2; color:#B45309;}
 [data-theme="dark"] .dc-quality-badge.good{background:#0e2c1a;}
 .dc-fresh-badge{font-size:10px; font-weight:600; color:var(--text-dim);}
+.source-verified-tag{font-size:9.5px; font-weight:800; color:var(--danger); margin-top:6px;}
 
 .dc-ws-meta-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:14px 0;}
 .dc-ws-meta-grid div{background:var(--bg); border-radius:10px; padding:10px 12px;}
@@ -1760,6 +1761,7 @@ button{font-family:inherit; cursor:pointer;}
         <span><b>2.8B+</b> records</span><span class="dc-sep">·</span>
         <span><b>94%</b> indexed</span><span class="dc-sep">·</span>
         <span><b>97%</b> available</span>
+        <a class="link" href="#" onclick="openDataCloudConnectionMap();return false;" style="margin-left:auto; flex-shrink:0;">View Connection Map →</a>
       </div>
 
       <div class="dc-search-block">
@@ -1831,7 +1833,7 @@ button{font-family:inherit; cursor:pointer;}
       <div class="source-grid" id="sourceGrid">
         <div class="card source-card source-clickable" data-key="gss" data-search="ghana statistical service gss census labour survey population"><div class="source-top"><div class="source-mark">GSS</div><div><b>Ghana Statistical Service</b><small>National · Census, LFS, GLSS</small></div></div><p>Population, labour force, living standards and multiple indicator cluster surveys.</p><div class="source-quality"><span class="dc-quality-badge good">94</span><span class="dc-fresh-badge">🟢 Updated 4m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 4m ago</span><span>128 datasets</span></div></div>
         <div class="card source-card source-clickable" data-key="ghs" data-search="ghana health service ghs dhims2 disease maternal"><div class="source-top"><div class="source-mark">GHS</div><div><b>Ghana Health Service</b><small>National · DHIMS2</small></div></div><p>Facility-level health records, disease surveillance, maternal & child health indicators.</p><div class="source-quality"><span class="dc-quality-badge good">91</span><span class="dc-fresh-badge">🟢 Updated 11m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 11m ago</span><span>64 datasets</span></div></div>
-        <div class="card source-card source-clickable" data-key="wb" data-search="world bank open data macroeconomic poverty development"><div class="source-top"><div class="source-mark">WB</div><div><b>World Bank</b><small>Global · Open Data</small></div></div><p>Macroeconomic, poverty, and development indicators across 217 economies.</p><div class="source-quality"><span class="dc-quality-badge good">97</span><span class="dc-fresh-badge">🟢 Updated 1h ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 1h ago</span><span>1,240 datasets</span></div></div>
+        <div class="card source-card source-clickable" data-key="wb" data-search="world bank open data macroeconomic poverty development"><div class="source-top"><div class="source-mark">WB</div><div><b>World Bank</b><small>Global · Open Data</small></div></div><p>Macroeconomic, poverty, and development indicators across 217 economies.</p><div class="source-quality"><span class="dc-quality-badge good">97</span><span class="dc-fresh-badge">🟢 Updated 1h ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 1h ago</span><span>1,240 datasets</span></div><div class="source-verified-tag">🔴 API verified live · 12 Aug 2026</div></div>
         <div class="card source-card source-clickable" data-key="who" data-search="world health organization who gho immunization mortality"><div class="source-top"><div class="source-mark">WHO</div><div><b>World Health Organization</b><small>Global · GHO</small></div></div><p>Immunization coverage, mortality, and health system performance indicators.</p><div class="source-quality"><span class="dc-quality-badge good">95</span><span class="dc-fresh-badge">🟢 Updated 22m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 22m ago</span><span>310 datasets</span></div></div>
         <div class="card source-card source-clickable" data-key="epa" data-search="environmental protection agency epa air quality emissions"><div class="source-top"><div class="source-mark">EPA</div><div><b>Environmental Protection Agency</b><small>National · Ghana</small></div></div><p>Air quality, emissions and environmental compliance monitoring.</p><div class="source-quality"><span class="dc-quality-badge warn">78</span><span class="dc-fresh-badge">🟡 Updated 38m ago</span></div><div class="source-foot"><span><span class="live-dot"></span>Synced 38m ago</span><span>42 datasets</span></div></div>
         <div class="card source-card source-clickable" data-key="osm" data-search="openstreetmap osm roads buildings geospatial"><div class="source-top"><div class="source-mark">OSM</div><div><b>OpenStreetMap</b><small>Global · Geospatial</small></div></div><p>Roads, buildings, health facilities and points of interest, continuously updated.</p><div class="source-quality"><span class="dc-quality-badge good">89</span><span class="dc-fresh-badge">🟢 Live feed</span></div><div class="source-foot"><span><span class="live-dot"></span>Live feed</span><span>Unlimited</span></div></div>
@@ -3291,7 +3293,7 @@ const sourceIntel = {
     quality:97, fresh:'🟢 Updated 1 hour ago', freshNote:'Next expected update: 23 hours',
     summary:'This source contains 1,240 datasets covering macroeconomic performance, poverty and development indicators across 217 economies since 1960.',
     detects:['4 missing-value patterns','1 potential anomaly','32 geographic dimensions','180 time-series indicators','14 relationships with other datasets'],
-    related:['gss','fao','who']},
+    related:['gss','fao','who'], verifiedLive:true, verifiedEndpoint:'api.worldbank.org/v2/country/{iso3}/indicator/{code}?format=json', verifiedNote:'Confirmed live 12 Aug 2026 — real JSON response, server lastupdated timestamp: 2026-07-13. No API key required.'},
   who:{name:'World Health Organization', mark:'WHO', sub:'Global · GHO', desc:'Immunization coverage, mortality, and health system performance indicators.',
     coverage:'Global · 194 member states', period:'2000–2026', publisher:'World Health Organization', freq:'Monthly', licence:'CC BY-NC-SA 3.0 IGO',
     quality:95, fresh:'🟢 Updated 22 minutes ago', freshNote:'Next expected update: 4 hours',
@@ -3324,6 +3326,55 @@ const sourceIntel = {
     related:['epa','fao','osm']},
 };
 function qualityLabel(score){ return score>=90 ? 'Excellent' : score>=75 ? 'Good' : 'Needs review'; }
+
+/* ---------- Africa Data Cloud — Data Connection Map ---------- */
+const dcConnectionMapData = [
+  {name:'World Bank', method:'Official public REST API (Indicators API v2)', endpoint:'api.worldbank.org/v2/country/{iso3}/indicator/{code}?format=json', verified:'live', fields:'17,000+ indicators — GDP, population, poverty, health, education, infrastructure', cadence:'Every 1–6 hours', note:'Confirmed live 12 Aug 2026 — real JSON, no API key, no auth required. The single easiest integration in this entire platform.'},
+  {name:'OpenStreetMap', method:'Official Overpass API + bulk extracts', endpoint:'overpass-api.de/api/interpreter · download.geofabrik.de', verified:'live', fields:'Roads, buildings, health facilities, admin boundaries', cadence:'Continuous (community-edited)', note:'Already powering the real Ghana region boundaries used throughout GIS Intelligence and the homepage map in this platform.'},
+  {name:'FAO (FAOSTAT)', method:'Bulk data API + downloadable datasets', endpoint:'fao.org/faostat/en/#data', verified:'documented', fields:'Crop production, trade, land use, food security', cadence:'Annual (matches FAO release cycle)', note:'No real-time polling needed — data is published on FAO\'s own annual schedule.'},
+  {name:'WHO', method:'Global Health Observatory OData API', endpoint:'ghoapi.azureedge.net/api', verified:'documented', fields:'Immunization, mortality, health system indicators', cadence:'Monthly', note:'Well-documented public OData API — no auth required per WHO\'s own developer docs.'},
+  {name:'Ghana Statistical Service', method:'Organisation site — no public API', endpoint:'statsghana.gov.gh', verified:'documented', fields:'Census, labour force survey, living standards survey', cadence:'Quarterly', note:'Requires a scheduled scraper with document parsing — GSS does not currently expose a structured feed.'},
+  {name:'Ghana Health Service (DHIMS2)', method:'Restricted system — requires MOU/credentials', endpoint:'Internal — not public', verified:'documented', fields:'Facility records, disease surveillance, MCH data', cadence:'Daily (once access is granted)', note:'DHIMS2 is access-controlled. Real integration requires a data-sharing agreement with GHS, not just a technical connection.'},
+  {name:'Ghana Meteorological Agency', method:'Organisation site — no public API', endpoint:'meteo.gov.gh', verified:'documented', fields:'Rainfall, temperature, station observations', cadence:'Daily', note:'No structured feed currently published — scheduled scraping is the only option today.'},
+];
+function openDataCloudConnectionMap(){
+  const verifiedCount = dcConnectionMapData.filter(s=>s.verified==='live').length;
+  openModal(`
+    <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>DATA ARCHITECTURE</div><h3>Data Connection Map</h3><small style="color:var(--text-dim); font-size:11.5px;">${verifiedCount} of ${dcConnectionMapData.length} sources verified live today · 12 Aug 2026</small></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <p style="font-size:12px; margin-bottom:14px;"><span style="color:var(--danger); font-weight:700;">🔴 Verified live</span> — actually fetched and confirmed working today. <span style="color:var(--text-dim); font-weight:700;">📄 Documented</span> — connection method confirmed from official docs, not directly polled this session.</p>
+      ${dcConnectionMapData.map(s=>`
+        <div class="connmap-row">
+          <div class="connmap-row-head">
+            <b>${s.name}</b>
+            <span class="${s.verified==='live'?'connmap-live':'connmap-doc'}">${s.verified==='live'?'🔴 Verified live':'📄 Documented'}</span>
+          </div>
+          <div class="connmap-grid">
+            <div><span>Method</span><b>${s.method}</b></div>
+            <div><span>Endpoint</span><b class="connmap-endpoint">${s.endpoint}</b></div>
+            <div><span>Fields</span><b>${s.fields}</b></div>
+            <div><span>Recommended cadence</span><b>${s.cadence}</b></div>
+          </div>
+          <p class="connmap-note">${s.note}</p>
+        </div>
+      `).join('')}
+      <div class="intel-section" style="margin-top:8px;">
+        <div class="intel-label">For maximum output</div>
+        <ul class="intel-evidence">
+          <li>Start with World Bank and OpenStreetMap — both confirmed live today, both genuinely public with zero authentication required.</li>
+          <li>WHO's GHO API is the next easiest win — documented, no auth, structured OData.</li>
+          <li>FAO publishes on its own annual cycle — poll monthly, not real-time; there's nothing new to fetch more often than that.</li>
+          <li>Ghana Statistical Service and Ghana Meteorological Agency have no public feed — budget for a scheduled scraper with document parsing, not an API integration.</li>
+          <li>DHIMS2 is the one genuine blocker — it's access-controlled by design. That connection starts with a data-sharing agreement with Ghana Health Service, not a technical task.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      <button class="btn btn-primary" onclick="toast('Connection map exported — see downloads')" style="flex:1; justify-content:center;">Export as reference</button>
+    </div>
+  `);
+}
 function qualityColor(score){ return score>=90 ? 'var(--success)' : score>=75 ? 'var(--warning)' : 'var(--danger)'; }
 
 function openDatasetWorkspace(key){
@@ -3338,6 +3389,7 @@ function openDatasetWorkspace(key){
       <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
     <div class="modal-body">
+      ${d.verifiedLive ? `<div class="verified-live-banner">🔴 <b>API verified live</b> — ${d.verifiedNote}<br><span class="connmap-endpoint" style="font-size:11px !important;">${d.verifiedEndpoint}</span></div>` : ''}
       <p>${d.desc}</p>
 
       <div class="dc-ws-meta-grid">
