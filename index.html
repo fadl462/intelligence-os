@@ -1177,8 +1177,22 @@ button{font-family:inherit; cursor:pointer;}
 .tender-priority-card p{font-size:11px; color:var(--text-dim); margin-bottom:10px;}
 .tender-priority-card button{font-size:11.5px; font-weight:700; padding:7px 13px; border-radius:8px; border:none; background:var(--navy); color:#fff; cursor:pointer;}
 
-.tender-source-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:0 20px 18px;}
+.tender-source-grid{padding:0 20px 18px;}
+.tender-tier-label{font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--text-dim); margin:16px 0 9px;}
+.tender-tier-label:first-child{margin-top:0;}
+.tender-source-grid-inner{display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
 .tender-source-card{background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:13px 14px; cursor:pointer; transition:all .15s;}
+.tender-flagship-tag{color:#F59E0B; margin-left:4px; font-size:11px;}
+.jig-monitor-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px;}
+.jig-monitor-grid b{display:block; font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px;}
+.jig-tag-row{display:flex; flex-wrap:wrap; gap:6px;}
+.jig-tag-row span{font-size:10.5px; font-weight:700; padding:5px 10px; border-radius:20px; background:var(--teal-100); color:var(--teal-600);}
+.jig-tag-row.excluded span{background:var(--border); color:var(--text-dim);}
+.provenance-source-row{display:flex; align-items:center; justify-content:space-between; padding:9px 12px; background:var(--bg); border-radius:8px; margin-bottom:6px; font-size:12px;}
+.provenance-source-row b{font-weight:700;}
+.provenance-badge{font-size:9.5px; font-weight:800; padding:2px 8px; border-radius:20px;}
+.provenance-badge.official{background:#E7F7EC; color:var(--success);}
+.provenance-badge.discovery{background:var(--navy-100); color:var(--navy-ink);}
 .tender-source-card:hover{border-color:var(--teal);}
 .tender-source-card b{display:block; font-size:12.5px; margin-bottom:4px;}
 .tender-source-card span{font-size:10.5px; color:var(--text-dim); display:block;}
@@ -1244,7 +1258,8 @@ button{font-family:inherit; cursor:pointer;}
   .gov-sim{grid-template-columns:1fr;}
   .kpi-grid{grid-template-columns:repeat(2,1fr);}
   .kpi-grid-6{grid-template-columns:repeat(3,1fr);}
-  .tender-priority-grid,.tender-source-grid{grid-template-columns:repeat(2,1fr);}
+  .tender-priority-grid{grid-template-columns:repeat(2,1fr);}
+  .tender-source-grid-inner{grid-template-columns:repeat(2,1fr);}
   .dash-grid{grid-template-columns:repeat(2,1fr);}
   .source-grid{grid-template-columns:repeat(2,1fr);}
   .widget-grid{grid-template-columns:repeat(2,1fr);}
@@ -1271,7 +1286,9 @@ button{font-family:inherit; cursor:pointer;}
   .main{margin-left:0;}
   .ai-search{display:none;}
   .kpi-grid,.dash-grid,.source-grid,.widget-grid,.domain-features,.kpi-grid-6{grid-template-columns:1fr;}
-  .tender-priority-grid,.tender-source-grid{grid-template-columns:1fr;}
+  .tender-priority-grid{grid-template-columns:1fr;}
+  .tender-source-grid-inner{grid-template-columns:1fr;}
+  .jig-monitor-grid{grid-template-columns:1fr;}
   .qb-layout{grid-template-columns:1fr;}
   .dcw-issue-grid,.qb-panel-grid{grid-template-columns:1fr 1fr;}
   .domain-waitlist-form{flex-direction:column;}
@@ -2516,7 +2533,7 @@ button{font-family:inherit; cursor:pointer;}
         <div>
           <div class="eyebrow"><span class="compass-dot"></span>TENDER INTELLIGENCE</div>
           <h1>Every opportunity. Understood, scored and pursued.</h1>
-          <p>Find the right opportunities. Understand them instantly. Decide intelligently. Build stronger bids. Manage every submission. Learn from every outcome.</p>
+          <p>Tenders, RFQs, RFPs, consultancies and contract opportunities — discovered, verified and matched to your organisation. Find the right opportunities. Understand them instantly. Decide intelligently. Build stronger bids. Manage every submission. Learn from every outcome.<br><span class="dc-secondary-tag">Ordinary employment listings are filtered out — this is opportunity intelligence, not a job board.</span></p>
         </div>
         <button class="btn btn-primary" onclick="toast('Scanning 47 connected sources for new opportunities…')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v6h-6"/></svg>
@@ -2571,13 +2588,7 @@ button{font-family:inherit; cursor:pointer;}
       <div class="card" style="margin-bottom:18px;">
         <div class="card-head"><h3>My Opportunity Network</h3><a class="link" href="#" onclick="openAddSourceModal();return false;">+ Add Source</a></div>
         <p style="padding:0 20px 12px; font-size:12px; color:var(--text-dim);">Connect the sources you trust. IntelligenceOS monitors them for you.</p>
-        <div class="dc-health-bar" style="margin:0 20px 16px; width:auto;">
-          <span><b>47</b> connected sources</span><span class="dc-sep">·</span>
-          <span><b>42</b> healthy</span><span class="dc-sep">·</span>
-          <span><b>3</b> attention required</span><span class="dc-sep">·</span>
-          <span><b>2</b> offline</span><span class="dc-sep">·</span>
-          <span><b>1,284</b> opportunities monitored</span>
-        </div>
+        <div class="dc-health-bar" style="margin:0 20px 16px; width:auto;" id="tenderHealthBar"></div>
         <div class="tender-source-grid" id="tenderSourceGrid"></div>
       </div>
 
@@ -3463,11 +3474,11 @@ function createDataAlert(){ closeModal(); toast('Tell IntelligenceOS what to wat
 const tenderData = [
   {id:1, title:"EU M&E Framework — Disability Inclusion", org:"European Union Delegation, Ghana", sector:"M&E / Research", budget:"€180,000", budgetVal:180000, deadline:"9 days", deadlineVal:9, fit:92, stage:"identified", summary:"Framework consultancy for monitoring and evaluation across the EU's disability-inclusion portfolio in Ghana, including baseline studies, annual reviews and a final evaluation."},
   {id:2, title:"World Bank Data Systems RFP", org:"World Bank Group", sector:"Data Systems", budget:"$240,000", budgetVal:240000, deadline:"11 days", deadlineVal:11, fit:88, stage:"identified", summary:"Design and deployment of a district-level data systems platform integrating health, education and agriculture indicators for national planning."},
-  {id:3, title:"UNICEF Survey Design & Analysis", org:"UNICEF Ghana", sector:"M&E / Research", budget:"$95,000", budgetVal:95000, deadline:"14 days", deadlineVal:14, fit:84, stage:"in_progress", summary:"Design, field and analyse a multi-round household survey on child welfare indicators across 6 regions, including enumerator training and a public dashboard."},
+  {id:3, title:"UNICEF Survey Design & Analysis", org:"UNICEF Ghana", sector:"M&E / Research", budget:"$95,000", budgetVal:95000, deadline:"14 days", deadlineVal:14, fit:84, stage:"in_progress", summary:"Design, field and analyse a multi-round household survey on child welfare indicators across 6 regions, including enumerator training and a public dashboard.", provenance:{sources:[{name:'UNICEF',label:'Official',type:'official'},{name:'UNGM',label:'Official UN marketplace',type:'official'},{name:'JobsInGhana',label:'Discovery source',type:'discovery'},{name:'DevelopmentAid',label:'Aggregator',type:'official'}], confidence:96}},
   {id:4, title:"GIZ Programme Evaluation", org:"GIZ Ghana", sector:"M&E / Research", budget:"€65,000", budgetVal:65000, deadline:"6 days", deadlineVal:6, fit:79, stage:"submitted", summary:"Mid-term evaluation of a vocational training programme spanning 4 regions, including stakeholder interviews and a theory-of-change reassessment."},
   {id:5, title:"USAID Dashboard Development", org:"USAID", sector:"Data Systems", budget:"$120,000", budgetVal:120000, deadline:"20 days", deadlineVal:20, fit:75, stage:"identified", summary:"Build a live performance-monitoring dashboard for a 5-year agriculture resilience programme, integrating satellite and field survey data."},
   {id:6, title:"Ghana Health Service DHIMS2 Support", org:"Ghana Health Service", sector:"Health", budget:"GH₵420,000", budgetVal:420000, deadline:"17 days", deadlineVal:17, fit:81, stage:"identified", summary:"Technical support and capacity building for regional health teams on DHIMS2 data quality, validation workflows and reporting automation."},
-  {id:7, title:"AfDB Agriculture M&E Consultancy", org:"African Development Bank", sector:"Agriculture", budget:"$150,000", budgetVal:150000, deadline:"25 days", deadlineVal:25, fit:71, stage:"identified", summary:"Design an M&E framework for a regional agriculture value-chain programme spanning Ghana, Côte d'Ivoire and Burkina Faso."},
+  {id:7, title:"AfDB Agriculture M&E Consultancy", org:"African Development Bank", sector:"Agriculture", budget:"$150,000", budgetVal:150000, deadline:"25 days", deadlineVal:25, fit:71, stage:"identified", summary:"Design an M&E framework for a regional agriculture value-chain programme spanning Ghana, Côte d'Ivoire and Burkina Faso.", provenance:{sources:[{name:'JobsInGhana',label:'Discovery source',type:'discovery'}], confidence:88, unverified:true}},
   {id:8, title:"Mastercard Foundation Research Study", org:"Mastercard Foundation", sector:"Education", budget:"$88,000", budgetVal:88000, deadline:"13 days", deadlineVal:13, fit:86, stage:"won", summary:"Qualitative research study on youth employment pathways, building on prior work with the Foundation's Young Africa Works initiative."},
   {id:9, title:"Electoral Commission Data Audit", org:"Electoral Commission of Ghana", sector:"Governance", budget:"GH₵310,000", budgetVal:310000, deadline:"30 days", deadlineVal:30, fit:64, stage:"identified", summary:"Independent data quality audit of the biometric voter register ahead of the next electoral cycle."},
   {id:10, title:"WHO Immunization Data Review", org:"World Health Organization", sector:"Health", budget:"$70,000", budgetVal:70000, deadline:"22 days", deadlineVal:22, fit:77, stage:"in_progress", summary:"Review and reconcile national immunization coverage data against facility-level records across 3 regions."},
@@ -3480,36 +3491,105 @@ const stageLabels = {identified:'Identified', in_progress:'In progress', submitt
 const stageOrder = ['identified','in_progress','submitted','won'];
 
 const tenderSources = [
-  {name:'Ghana PPA', type:'Procurement portal', status:'healthy', opportunities:84, lastChecked:'8 minutes ago', url:'ghana.gov/ppa'},
-  {name:'World Bank Procurement', type:'Structured API', status:'healthy', opportunities:42, lastChecked:'12 minutes ago', url:'worldbank.org/procurement'},
-  {name:'AfDB Procurement', type:'Procurement portal', status:'healthy', opportunities:31, lastChecked:'22 minutes ago', url:'afdb.org/procurement'},
-  {name:'UNGM', type:'UN portal', status:'healthy', opportunities:27, lastChecked:'18 minutes ago', url:'ungm.org'},
-  {name:'GIZ Ghana', type:'Organisation page', status:'attention', opportunities:14, lastChecked:'3 hours ago', url:'giz.de/ghana'},
-  {name:'ReliefWeb', type:'Aggregator', status:'healthy', opportunities:38, lastChecked:'6 minutes ago', url:'reliefweb.int'},
-  {name:'DevelopmentAid', type:'Tender board', status:'offline', opportunities:0, lastChecked:'2 days ago', url:'developmentaid.org'},
-  {name:'UNDP Ghana', type:'Organisation page', status:'healthy', opportunities:19, lastChecked:'34 minutes ago', url:'undp.org/ghana'},
-  {name:'TED (EU)', type:'Open Data API', status:'healthy', opportunities:21, lastChecked:'9 minutes ago', url:'ted.europa.eu'},
+  // TIER 1 — OFFICIAL
+  {name:'GHANEPS', tier:1, type:'Government e-procurement system', feeds:['Tender Registry','Tender Details','Documents','Clarifications','Amendments','Deadlines','Awards'], status:'healthy', opportunities:96, lastChecked:'4 minutes ago', url:'ghaneps.gov.gh', flagship:true},
+  {name:'PPA Ghana', tier:1, type:'Public Procurement Authority', feeds:['Active Tenders','Planned Procurement','Contracts & Awards','Procurement Documents'], status:'healthy', opportunities:84, lastChecked:'8 minutes ago', url:'ppa.gov.gh'},
+  {name:'GIZ Ghana', tier:1, type:'Donor organisation portal', status:'attention', opportunities:14, lastChecked:'3 hours ago', url:'giz.de/ghana'},
+  {name:'World Bank Procurement', tier:1, type:'Structured API', status:'healthy', opportunities:42, lastChecked:'12 minutes ago', url:'worldbank.org/procurement'},
+  {name:'UNGM', tier:1, type:'UN Global Marketplace — API', status:'healthy', opportunities:27, lastChecked:'18 minutes ago', url:'ungm.org'},
+  {name:'AfDB Procurement', tier:1, type:'Multi-stream portal', feeds:['Corporate Procurement','General Notices','Specific Notices','Project Procurement','RSS'], status:'healthy', opportunities:31, lastChecked:'22 minutes ago', url:'afdb.org/procurement'},
+  {name:'TED (EU)', tier:1, type:'Open Data API', status:'healthy', opportunities:21, lastChecked:'9 minutes ago', url:'ted.europa.eu'},
+  {name:'SAM.gov', tier:1, type:'US Federal contract API', status:'healthy', opportunities:16, lastChecked:'27 minutes ago', url:'sam.gov'},
+  // TIER 2 — HIGH-VALUE DISCOVERY
+  {name:'JobsInGhana', tier:2, type:'Opportunity aggregator', status:'healthy', opportunities:186, relevant:31, consultancies:18, tenders:7, otherContracts:6, duplicatesSuppressed:23, lastChecked:'4 minutes ago', url:'jobsinghana.com/job-listings', flagship:true, monitored:true},
+  // TIER 3 — AGGREGATORS
+  {name:'DevelopmentAid', tier:3, type:'Tender board', status:'offline', opportunities:0, lastChecked:'2 days ago', url:'developmentaid.org'},
+  {name:'ReliefWeb', tier:3, type:'Aggregator', status:'healthy', opportunities:38, lastChecked:'6 minutes ago', url:'reliefweb.int'},
+  {name:'UNDP Ghana', tier:3, type:'Organisation page', status:'healthy', opportunities:19, lastChecked:'34 minutes ago', url:'undp.org/ghana'},
 ];
+const tierLabels = {1:'Tier 1 — Official', 2:'Tier 2 — High-Value Discovery', 3:'Tier 3 — Aggregators', 4:'Tier 4 — Your Sources'};
 function sourceStatusMeta(status){
   return {healthy:{icon:'🟢', label:'Healthy', color:'var(--success)'}, attention:{icon:'🟡', label:'Attention', color:'#B45309'}, offline:{icon:'🔴', label:'Offline', color:'var(--danger)'}}[status];
 }
 function renderTenderSources(){
   const grid = document.getElementById('tenderSourceGrid');
   if(!grid) return;
-  grid.innerHTML = tenderSources.map(s=>{
-    const m = sourceStatusMeta(s.status);
-    return `<div class="tender-source-card" onclick="viewSource('${s.name.replace(/'/g,"\\'")}')">
-      <b>${s.name}</b><span>${s.type} · ${s.opportunities} opportunities</span>
-      <span class="tender-source-status" style="color:${m.color};">${m.icon} ${m.label} · ${s.lastChecked}</span>
-    </div>`;
+  const healthBar = document.getElementById('tenderHealthBar');
+  if(healthBar){
+    const healthy = tenderSources.filter(s=>s.status==='healthy').length;
+    const attention = tenderSources.filter(s=>s.status==='attention').length;
+    const offline = tenderSources.filter(s=>s.status==='offline').length;
+    const totalOpps = tenderSources.reduce((sum,s)=> sum + (s.opportunities||0), 0);
+    healthBar.innerHTML = `
+      <span><b>${tenderSources.length}</b> connected sources</span><span class="dc-sep">·</span>
+      <span><b>${healthy}</b> healthy</span><span class="dc-sep">·</span>
+      <span><b>${attention}</b> attention required</span><span class="dc-sep">·</span>
+      <span><b>${offline}</b> offline</span><span class="dc-sep">·</span>
+      <span><b>${totalOpps.toLocaleString()}</b> opportunities monitored</span>
+    `;
+  }
+  const tiers = [1,2,3];
+  grid.innerHTML = tiers.map(tier=>{
+    const sources = tenderSources.filter(s=>s.tier===tier);
+    if(!sources.length) return '';
+    return `<div class="tender-tier-label">${tierLabels[tier]}</div>
+      <div class="tender-source-grid-inner">
+        ${sources.map(s=>{
+          const m = sourceStatusMeta(s.status);
+          const flagshipTag = s.flagship ? '<span class="tender-flagship-tag">★</span>' : '';
+          return `<div class="tender-source-card" onclick="viewSource('${s.name.replace(/'/g,"\\'")}')">
+            <b>${s.name}${flagshipTag}</b><span>${s.type} · ${s.opportunities} opportunities</span>
+            <span class="tender-source-status" style="color:${m.color};">${m.icon} ${m.label} · ${s.lastChecked}</span>
+          </div>`;
+        }).join('')}
+      </div>`;
   }).join('');
 }
 function viewSource(name){
   const s = tenderSources.find(x=>x.name===name);
   if(!s) return;
   const m = sourceStatusMeta(s.status);
+  if(s.name==='JobsInGhana'){
+    openModal(`
+      <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>🇬🇭 ${tierLabels[s.tier]}</div><h3>JobsInGhana</h3><small style="color:var(--text-dim); font-size:11.5px;">High-value Ghana opportunity source</small></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+      <div class="modal-body">
+        <div class="dc-ws-meta-grid">
+          <div><span>Status</span><b style="color:${m.color};">${m.icon} Connected</b></div>
+          <div><span>Last scan</span><b>${s.lastChecked}</b></div>
+          <div><span>Opportunities discovered</span><b>${s.opportunities}</b></div>
+          <div><span>Relevant to your org</span><b style="color:var(--teal-600);">${s.relevant}</b></div>
+          <div><span>Consultancies</span><b>${s.consultancies}</b></div>
+          <div><span>Tenders/RFQs</span><b>${s.tenders}</b></div>
+          <div><span>Other contracts</span><b>${s.otherContracts}</b></div>
+          <div><span>Duplicates suppressed</span><b>${s.duplicatesSuppressed}</b></div>
+        </div>
+        <div class="intel-section" style="padding:14px 0 0; border-top:1px solid var(--border);">
+          <div class="intel-label">Why JobsInGhana is different</div>
+          <p style="font-size:12.5px;">JobsInGhana lists everything from consultancies to front-desk jobs. IntelligenceOS classifies every listing — only Consultancy, Tenders/RFQs and relevant contracts route into Tender Intelligence. Ordinary employment listings are filtered out automatically.</p>
+        </div>
+        <div class="intel-section">
+          <div class="intel-label">Monitoring configuration</div>
+          <div class="jig-monitor-grid">
+            <div><b style="color:var(--success);">✓ Included</b>
+              <div class="jig-tag-row"><span>Consultancy</span><span>Research</span><span>M&amp;E</span><span>Evaluation</span><span>Data collection</span><span>ICT/Data systems</span><span>GIS</span><span>Training</span><span>Institutional dev.</span><span>NGO/Development</span><span>Procurement</span><span>Tenders</span></div>
+            </div>
+            <div><b style="color:var(--text-dim);">✗ Excluded</b>
+              <div class="jig-tag-row excluded"><span>Employment</span><span>Internships</span><span>Retail</span><span>Administration</span><span>Driving</span></div>
+            </div>
+          </div>
+          <button class="btn btn-ghost" style="margin-top:10px;" onclick="toast('Monitoring preferences updated')">Edit categories</button>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+        <button class="btn btn-primary" onclick="closeModal(); document.getElementById('tenderSearch').value='JobsInGhana'; renderTenders();" style="flex:1; justify-content:center;">View opportunities</button>
+      </div>
+    `);
+    return;
+  }
+  const feedsHtml = s.feeds ? `<div class="intel-section" style="padding:14px 0 0; border-top:1px solid var(--border);"><div class="intel-label">Connected feeds</div><div class="jig-tag-row" style="margin-top:8px;">${s.feeds.map(f=>`<span>${f}</span>`).join('')}</div></div>` : '';
   openModal(`
-    <div class="modal-head"><h3>${s.name}</h3><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>${tierLabels[s.tier]}</div><h3>${s.name}</h3></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
     <div class="modal-body">
       <div class="dc-ws-meta-grid">
         <div><span>Type</span><b>${s.type}</b></div>
@@ -3517,6 +3597,7 @@ function viewSource(name){
         <div><span>Opportunities monitored</span><b>${s.opportunities}</b></div>
         <div><span>Last checked</span><b>${s.lastChecked}</b></div>
       </div>
+      ${feedsHtml}
     </div>
     <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
@@ -3713,6 +3794,16 @@ function openTender(id){
         </div>
       </div>
 
+      ${t.provenance ? `
+      <div class="intel-section">
+        <div class="intel-label">Opportunity Provenance</div>
+        ${t.provenance.sources.length>1
+          ? `<p style="font-size:12px; margin-bottom:8px;"><b>${t.provenance.sources.length} sources detected</b> — this opportunity appears on multiple monitored sources.</p>`
+          : `<p style="font-size:12px; margin-bottom:8px; color:#B45309;">🟡 Discovered via a single source — original issuer not yet verified.</p>`}
+        ${t.provenance.sources.map(src=>`<div class="provenance-source-row"><b>${src.name}</b><span class="provenance-badge ${src.type}">${src.type==='official'?'🟢':'🔵'} ${src.label}</span></div>`).join('')}
+        <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">Source confidence: <b style="color:${t.provenance.confidence>=90?'var(--success)':'#B45309'};">${t.provenance.confidence}%</b>${t.provenance.unverified ? ' — verify the original notice before submission.' : ''}</p>
+      </div>` : ''}
+
       <div class="intel-section">
         <div class="intel-label">Requirement Matrix</div>
         <table class="result-table" style="margin-top:8px;">
@@ -3740,8 +3831,36 @@ function openTender(id){
       <button class="intel-action-btn" onclick="closeModal(); showView('gis');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 3-6-3"/></svg>Explore Geographically</button>
       <button class="intel-action-btn" onclick="closeModal(); showView('studio'); enterCanvas('tenders');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Create Dashboard</button>
       <button class="intel-action-btn" onclick="toast('Challenging this bid — looking for weaknesses…')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>Red Team Review</button>
+      <button class="intel-action-btn" onclick="findSimilarOpportunities(${t.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Find Similar Opportunities</button>
     </div>
   `);
+}
+function findSimilarOpportunities(id){
+  const t = tenderData.find(x=>x.id===id);
+  if(!t) return;
+  const sourcesSearched = tenderSources.filter(s=>s.status!=='offline').length;
+  const found = 14 + (id % 14);
+  const distinctSources = Math.min(sourcesSearched, 4 + (id % 5));
+  toast(`Searching connected sources for opportunities like "${t.title}"…`);
+  setTimeout(()=>{
+    openModal(`
+      <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>OPPORTUNITY GRAPH</div><h3>Similar to "${t.title}"</h3></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+      <div class="modal-body">
+        <p style="font-size:13px; margin-bottom:14px;">We found <b>${found} similar opportunities</b> across <b>${distinctSources} sources</b> in your opportunity network.</p>
+        <div class="dc-ws-meta-grid">
+          <div><span>Sector match</span><b>${t.sector}</b></div>
+          <div><span>Searched sources</span><b>${sourcesSearched} connected</b></div>
+          <div><span>Geography</span><b>Ghana + Regional</b></div>
+          <div><span>Confidence</span><b style="color:var(--success);">High</b></div>
+        </div>
+        <p style="font-size:11.5px; color:var(--text-dim); margin-top:12px;">This searches GHANEPS, PPA Ghana, World Bank, UNGM, AfDB, GIZ Ghana, JobsInGhana and every other connected source for opportunities matching this one's sector, budget range and requirements.</p>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+        <button class="btn btn-primary" onclick="closeModal(); const sel=document.getElementById('tenderSector'); if(sel) sel.value='${t.sector.replace(/'/g,"\\'")}'; renderTenders();" style="flex:1; justify-content:center;">View matches</button>
+      </div>
+    `);
+  }, 700);
 }
 function advanceTender(id){
   const t = tenderData.find(x=>x.id===id);
