@@ -494,6 +494,23 @@ button{font-family:inherit; cursor:pointer;}
 .dc-authority-legend{display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:11.5px; color:var(--text-dim); font-weight:600; padding:14px 4px 0;}
 .dc-authority-legend .source-tier-badge{margin-left:4px;}
 
+/* ---------- Political Intelligence ---------- */
+.political-branch-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:0 20px 14px;}
+.political-branch-card{background:var(--bg); border:1px solid var(--border); border-radius:13px; padding:18px 16px; cursor:pointer; transition:all .15s; text-align:center;}
+.political-branch-card:hover{border-color:var(--teal); transform:translateY(-2px);}
+.political-branch-icon{font-size:26px; margin-bottom:8px;}
+.political-branch-card b{display:block; font-size:14px; margin-bottom:6px;}
+.political-branch-card span{display:block; font-size:11.5px; color:var(--text-dim); margin-bottom:4px;}
+.political-branch-meta{font-size:10px !important; text-transform:uppercase; letter-spacing:.03em; font-weight:700; color:var(--teal-600) !important;}
+.political-verified-note{margin:0 20px 18px; font-size:11px; color:var(--danger); font-weight:600; padding-top:10px; border-top:1px dashed var(--border);}
+
+/* ---------- Export System ---------- */
+.export-option-row{display:flex; align-items:center; gap:14px; padding:14px 16px; background:var(--bg); border:1px solid var(--border); border-radius:11px; margin-bottom:9px; cursor:pointer; transition:all .15s;}
+.export-option-row:hover{border-color:var(--teal); background:var(--teal-100);}
+.export-icon{font-size:22px; flex-shrink:0; width:32px; text-align:center;}
+.export-option-row b{display:block; font-size:13px; margin-bottom:2px;}
+.export-option-row span{font-size:11px; color:var(--text-dim);}
+
 /* ---------- Source Relationship / Data Conflict ---------- */
 .prov-chain{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:6px;}
 .prov-node{border-radius:11px; padding:13px 14px; border:1px solid var(--border);}
@@ -1341,6 +1358,7 @@ button{font-family:inherit; cursor:pointer;}
   .jig-monitor-grid{grid-template-columns:1fr;}
   .qb-layout{grid-template-columns:1fr;}
   .prov-chain{grid-template-columns:1fr 1fr;}
+  .political-branch-grid{grid-template-columns:1fr;}
   .dcw-issue-grid,.qb-panel-grid{grid-template-columns:1fr 1fr;}
   .domain-waitlist-form{flex-direction:column;}
   .tender-filters{flex-direction:column; align-items:stretch;}
@@ -2765,6 +2783,32 @@ button{font-family:inherit; cursor:pointer;}
         </div>
       </div>
 
+      <div class="card" style="margin-bottom:22px;">
+        <div class="card-head"><h3>Political Intelligence</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">Executive · Legislature · Judiciary</span></div>
+        <p style="padding:0 20px 14px; font-size:12px; color:var(--text-dim);">Real-time tracking of the three branches of government — built for the political class, civil society and researchers who need to know who holds power, how it's structured, and how it's changing.</p>
+        <div class="political-branch-grid">
+          <div class="political-branch-card" onclick="openPoliticalBranch('executive')">
+            <div class="political-branch-icon">🏛</div>
+            <b>Executive</b>
+            <span>President John Dramani Mahama</span>
+            <span class="political-branch-meta">Cabinet · Ministries · Presidential directives</span>
+          </div>
+          <div class="political-branch-card" onclick="openPoliticalBranch('legislature')">
+            <div class="political-branch-icon">⚖️</div>
+            <b>Legislature</b>
+            <span>Speaker Alban Bagbin · 276 seats</span>
+            <span class="political-branch-meta">Bills · Committees · Voting records</span>
+          </div>
+          <div class="political-branch-card" onclick="openPoliticalBranch('judiciary')">
+            <div class="political-branch-icon">🔨</div>
+            <b>Judiciary</b>
+            <span>Chief Justice Paul Baffoe-Bonnie</span>
+            <span class="political-branch-meta">Supreme Court · Rulings · Case tracking</span>
+          </div>
+        </div>
+        <div class="political-verified-note">🔴 Verified 12 Aug 2026 — Speaker, party composition, Chief Justice sourced from IPU Parline (data.ipu.org) and Judicial Service of Ghana official portal.</div>
+      </div>
+
       <div class="tender-layout">
         <div class="card">
           <div class="card-head"><h3>Ministry dashboards</h3><span style="font-size:11px; color:var(--text-dim); font-weight:600;">9 connected</span></div>
@@ -3445,6 +3489,165 @@ function openDataConflictEngine(){
   `);
 }
 
+/* ---------- Political Intelligence — Executive, Legislature, Judiciary ---------- */
+const politicalBranchData = {
+  executive:{
+    label:'Executive Branch', head:'President John Dramani Mahama', party:'National Democratic Congress (NDC)',
+    verified:['President: John Dramani Mahama (NDC)'],
+    illustrative:['Cabinet composition — 22 ministries, structure representative; verify individual minister names via official sources before citing','Presidential directives tracker — illustrative workflow'],
+    structure:[{label:'Head of State & Government',val:'President'},{label:'Deputy',val:'Vice President'},{label:'Cabinet',val:'~22 Ministries'},{label:'Term',val:'4 years, renewable once'}],
+    note:'The Executive is the branch with the least standardised open-data coverage across Africa — most presidencies publish selectively. IntelligenceOS tracks confirmed appointments and flags anything not independently verified.'
+  },
+  legislature:{
+    label:'Legislature — Parliament of Ghana', head:'Speaker Alban Bagbin (NDC)', party:'NDC Majority',
+    verified:['Speaker: Alban Bagbin (NDC)','First Deputy Speaker: Bernard Ahiafor (NDC)','Second Deputy Speaker: Andrew Asiamah Amoako (NPP)','Majority Leader: Mahama Ayariga (NDC)','Minority Leader: Alexander Afenyo-Markin (NPP)','Seats: 276 total — NDC 185 (Majority) · NPP 87 (Minority) · Independent 4','Type: Unicameral · First-past-the-post','Last election: 7 December 2024 · Next: 7 December 2028'],
+    illustrative:[],
+    structure:[{label:'Chamber',val:'Unicameral'},{label:'Total seats',val:'276'},{label:'Majority (NDC)',val:'185'},{label:'Minority (NPP)',val:'87'},{label:'Independent',val:'4'},{label:'Term length',val:'4 years'}],
+    note:'Sourced from IPU Parline (data.ipu.org) — the standardised global parliamentary database covering 193 countries, verified live 12 Aug 2026.'
+  },
+  judiciary:{
+    label:'Judiciary — Judicial Service of Ghana', head:'Chief Justice Paul Baffoe-Bonnie', party:'Non-partisan',
+    verified:['Chief Justice: Paul Baffoe-Bonnie — 16th Chief Justice, sworn in 17 November 2025 (nominated by President Mahama)','Preceding Chief Justice: Gertrude Torkornoo — dismissed 1 September 2025','7 new Supreme Court justices appointed 3 July 2025, incl. Philip Bright Mensah, Hafisata Amaleboba, Samuel Kwame Adibu Asiedu, Janapare Bartels-Kodwo, Dennis Dominic Adjei'],
+    illustrative:['Live case tracking — illustrative structure, real integration requires Judicial Service data-sharing agreement'],
+    structure:[{label:'Highest court',val:'Supreme Court'},{label:'Chief Justice',val:'Paul Baffoe-Bonnie'},{label:'Appointed by',val:'President, on Judicial Council advice'},{label:'Confirmation',val:'Parliament (Appointments Committee)'}],
+    note:'The Chief Justice dismissal (Sept 2025) followed by a new appointment (Nov 2025) is exactly the kind of institutional change that matters to political-risk assessment — tracked here with full source attribution.'
+  },
+};
+function openPoliticalBranch(key){
+  const d = politicalBranchData[key];
+  if(!d) return;
+  openModal(`
+    <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>POLITICAL INTELLIGENCE</div><h3>${d.label}</h3><small style="color:var(--text-dim); font-size:11.5px;">${d.head}</small></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <div class="dc-ws-meta-grid">
+        ${d.structure.map(s=>`<div><span>${s.label}</span><b>${s.val}</b></div>`).join('')}
+      </div>
+      <div class="intel-section" style="padding:14px 0 0; border-top:1px solid var(--border);">
+        <div class="intel-label" style="color:var(--danger);">🔴 Verified facts</div>
+        <ul class="intel-evidence">${d.verified.map(v=>`<li>${v}</li>`).join('')}</ul>
+      </div>
+      ${d.illustrative.length ? `<div class="intel-section"><div class="intel-label" style="color:var(--text-dim);">📄 Illustrative — not independently verified</div><ul class="intel-evidence">${d.illustrative.map(v=>`<li>${v}</li>`).join('')}</ul></div>` : ''}
+      <div class="intel-section">
+        <div class="intel-label">Why this matters</div>
+        <p style="font-size:12.5px;">${d.note}</p>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      <button class="btn btn-primary" onclick="exportContent('political-${key}', '${d.label.replace(/'/g,"\\'")}')" style="flex:1; justify-content:center;">Export briefing →</button>
+    </div>
+  `);
+}
+
+/* ---------- Universal Export System ---------- */
+function downloadBlob(content, filename, mimeType){
+  const blob = new Blob([content], {type: mimeType});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=> URL.revokeObjectURL(url), 1000);
+}
+function toCSV(rows){
+  return rows.map(row => row.map(cell => {
+    const s = String(cell==null?'':cell);
+    return /[",\n]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s;
+  }).join(',')).join('\r\n');
+}
+function printAsPDF(title, bodyHtml){
+  const win = window.open('', '_blank');
+  const isDark = document.documentElement.getAttribute('data-theme')==='dark';
+  win.document.write(`<!doctype html><html><head><title>${title}</title><meta charset="utf-8">
+    <style>
+      body{font-family:-apple-system,Segoe UI,Roboto,sans-serif; color:#111; padding:40px; max-width:820px; margin:0 auto; line-height:1.6;}
+      h1{font-size:22px; margin-bottom:4px;} h2{font-size:15px; margin:24px 0 8px; color:#082B5A;}
+      .meta{color:#666; font-size:12px; margin-bottom:24px;}
+      table{width:100%; border-collapse:collapse; margin:10px 0;} th,td{text-align:left; padding:7px 10px; border-bottom:1px solid #ddd; font-size:12.5px;}
+      th{background:#f5f5f5; font-weight:700;} ul{padding-left:20px;} li{margin-bottom:5px; font-size:12.5px;}
+      .brand{color:#00BFA6; font-weight:800;} .footer{margin-top:40px; font-size:10.5px; color:#999; border-top:1px solid #ddd; padding-top:12px;}
+      @media print{ body{padding:20px;} }
+    </style></head><body>
+    <div class="meta"><span class="brand">IntelligenceOS Africa</span> · Generated ${new Date().toLocaleString()} · Ghana Edition v1.0</div>
+    <h1>${title}</h1>
+    ${bodyHtml}
+    <div class="footer">Generated by IntelligenceOS Africa. Verify time-sensitive facts against original sources before official use.</div>
+    <${'script'}>window.onload = () => setTimeout(() => window.print(), 300);</${'script'}>
+    </body></html>`);
+  win.document.close();
+}
+const exportRegistry = {
+  'political-executive':()=> printAsPDF('Executive Branch — Political Intelligence Briefing', politicalBriefingHTML('executive')),
+  'political-legislature':()=> printAsPDF('Legislature — Political Intelligence Briefing', politicalBriefingHTML('legislature')),
+  'political-judiciary':()=> printAsPDF('Judiciary — Political Intelligence Briefing', politicalBriefingHTML('judiciary')),
+  'tender-sources':()=> {
+    const rows = [['Source','Tier','Type','Method','Status','Opportunities','Last Checked']];
+    tenderSources.forEach(s=> rows.push([s.name, tierLabels[s.tier], s.type, '', s.status, s.opportunities, s.lastChecked]));
+    downloadBlob(toCSV(rows), 'tender-sources-'+Date.now()+'.csv', 'text/csv');
+  },
+  'tender-pipeline':()=> {
+    const rows = [['Title','Organisation','Sector','Budget','Deadline','Fit Score','Stage']];
+    tenderData.forEach(t=> rows.push([t.title, t.org, t.sector, t.budget, t.deadline, t.fit+'%', stageLabels[t.stage]]));
+    downloadBlob(toCSV(rows), 'tender-pipeline-'+Date.now()+'.csv', 'text/csv');
+  },
+  'dc-sources':()=> {
+    const rows = [['Source','Tier','Category','Coverage','Quality Score','Publisher']];
+    Object.values(sourceIntel).forEach(s=> rows.push([s.name, s.tier||'', s.category||'', s.coverage, s.quality, s.publisher]));
+    downloadBlob(toCSV(rows), 'africa-data-cloud-sources-'+Date.now()+'.csv', 'text/csv');
+  },
+  'connection-map':()=> {
+    const rows = [['Source','Method','Endpoint','Verified Status','Fields','Cadence']];
+    dcConnectionMapData.forEach(s=> rows.push([s.name, s.method, s.endpoint, s.verified, s.fields, s.cadence]));
+    downloadBlob(toCSV(rows), 'data-connection-map-'+Date.now()+'.csv', 'text/csv');
+  },
+  'tender-connection-map':()=> {
+    const rows = [['Source','Method','Endpoint','Verified Status','Fields','Cadence']];
+    connectionMapData.forEach(s=> rows.push([s.name, s.method, s.endpoint, s.verified, s.fields, s.cadence]));
+    downloadBlob(toCSV(rows), 'tender-connection-map-'+Date.now()+'.csv', 'text/csv');
+  },
+};
+function politicalBriefingHTML(key){
+  const d = politicalBranchData[key];
+  return `<h2>Structure</h2><table>${d.structure.map(s=>`<tr><td>${s.label}</td><td><b>${s.val}</b></td></tr>`).join('')}</table>
+    <h2>Verified Facts</h2><ul>${d.verified.map(v=>`<li>${v}</li>`).join('')}</ul>
+    ${d.illustrative.length?`<h2>Illustrative — Not Independently Verified</h2><ul>${d.illustrative.map(v=>`<li>${v}</li>`).join('')}</ul>`:''}
+    <h2>Analysis</h2><p style="font-size:13px;">${d.note}</p>`;
+}
+function exportContent(key, title){
+  openModal(`
+    <div class="modal-head"><h3>Export</h3><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <p style="font-size:12.5px; margin-bottom:14px;">Export "<b>${title}</b>" in the format that fits how you'll use it.</p>
+      <div class="export-option-row" onclick="closeModal(); runExport('${key}','pdf')"><span class="export-icon">📄</span><div><b>PDF / Print</b><span>Formatted briefing — opens print dialog, save as PDF</span></div></div>
+      <div class="export-option-row" onclick="closeModal(); runExport('${key}','csv')"><span class="export-icon">📊</span><div><b>CSV</b><span>Raw data — opens in Excel, Google Sheets, or any spreadsheet tool</span></div></div>
+      <div class="export-option-row" onclick="closeModal(); runExport('${key}','json')"><span class="export-icon">{ }</span><div><b>JSON</b><span>Structured data — for developers and system integration</span></div></div>
+    </div>
+  `);
+}
+function runExport(key, format){
+  if(format==='pdf'){
+    if(key.startsWith('political-')) { exportRegistry[key](); return; }
+    toast('Generating PDF…');
+    setTimeout(()=> printAsPDF(key, '<p>Export content for this view.</p>'), 300);
+    return;
+  }
+  if(format==='csv'){
+    if(exportRegistry[key]) { exportRegistry[key](); toast('CSV downloaded'); return; }
+    toast('CSV export not yet configured for this content');
+    return;
+  }
+  if(format==='json'){
+    let data = {};
+    if(key.startsWith('political-')) data = politicalBranchData[key.replace('political-','')];
+    else if(key==='tender-sources') data = tenderSources;
+    else if(key==='tender-pipeline') data = tenderData;
+    else if(key==='dc-sources') data = sourceIntel;
+    else if(key==='connection-map') data = dcConnectionMapData;
+    else if(key==='tender-connection-map') data = connectionMapData;
+    downloadBlob(JSON.stringify(data, null, 2), key+'-'+Date.now()+'.json', 'application/json');
+    toast('JSON downloaded');
+  }
+}
+
 /* ---------- Africa Data Cloud — Data Connection Map ---------- */
 const dcConnectionMapData = [
   {name:'World Bank', method:'Official public REST API (Indicators API v2)', endpoint:'api.worldbank.org/v2/country/{iso3}/indicator/{code}?format=json', verified:'live', fields:'17,000+ indicators — GDP, population, poverty, health, education, infrastructure', cadence:'Every 1–6 hours', note:'Confirmed live 12 Aug 2026 — real JSON, no API key, no auth required. The single easiest integration in this entire platform.'},
@@ -3491,7 +3694,7 @@ function openDataCloudConnectionMap(){
     </div>
     <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
-      <button class="btn btn-primary" onclick="toast('Connection map exported — see downloads')" style="flex:1; justify-content:center;">Export as reference</button>
+      <button class="btn btn-primary" onclick="closeModal(); exportContent('connection-map', 'Africa Data Cloud Connection Map')" style="flex:1; justify-content:center;">Export as reference</button>
     </div>
   `);
 }
@@ -3848,7 +4051,7 @@ function openConnectionMap(){
     </div>
     <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
-      <button class="btn btn-primary" onclick="toast('Connection map exported — see downloads')" style="flex:1; justify-content:center;">Export as reference</button>
+      <button class="btn btn-primary" onclick="closeModal(); exportContent('tender-connection-map', 'Tender Intelligence Connection Map')" style="flex:1; justify-content:center;">Export as reference</button>
     </div>
   `);
 }
