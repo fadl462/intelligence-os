@@ -1212,7 +1212,7 @@ button{font-family:inherit; cursor:pointer;}
   font-weight:800; font-size:13px; border:3px solid;
 }
 .tender-body{flex:1; min-width:0;}
-.tender-top{display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:4px;}
+.tender-top{display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:4px; flex-wrap:wrap;}
 .tender-top h4{font-size:14px; font-weight:700; line-height:1.35;}
 .tender-org{font-size:11.5px; color:var(--text-dim); margin-bottom:9px;}
 .tender-meta{display:flex; gap:14px; flex-wrap:wrap; font-size:11.5px; color:var(--text-dim);}
@@ -1226,6 +1226,22 @@ button{font-family:inherit; cursor:pointer;}
 .stage-submitted{background:var(--teal-100); color:var(--teal-600);}
 .stage-won{background:#E7F7EC; color:var(--success);}
 [data-theme="dark"] .stage-won{background:#0e2c1a;}
+.tender-verified-badge{font-size:9.5px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; padding:4px 9px; border-radius:20px; background:#FEF2F2; color:var(--danger); flex-shrink:0;}
+[data-theme="dark"] .tender-verified-badge{background:#2a1414;}
+.verified-live-banner{background:#FEF2F2; border:1px solid #FCA5A5; border-radius:10px; padding:11px 14px; font-size:12px; margin-bottom:14px;}
+[data-theme="dark"] .verified-live-banner{background:#2a1414; border-color:#5a2626;}
+.verified-live-banner a{color:var(--danger); font-weight:700;}
+.connmap-row{background:var(--bg); border:1px solid var(--border); border-radius:11px; padding:14px 16px; margin-top:8px;}
+.connmap-row-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
+.connmap-row-head b{font-size:13px;}
+.connmap-live{font-size:10px; font-weight:800; padding:3px 9px; border-radius:20px; background:#FEF2F2; color:var(--danger);}
+.connmap-doc{font-size:10px; font-weight:800; padding:3px 9px; border-radius:20px; background:var(--navy-100); color:var(--navy-ink);}
+[data-theme="dark"] .connmap-live{background:#2a1414;}
+.connmap-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px 16px;}
+.connmap-grid span{display:block; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--text-dim); margin-bottom:2px;}
+.connmap-grid b{font-size:11.5px; font-weight:600;}
+.connmap-endpoint{font-family:'JetBrains Mono',monospace; font-size:10.5px !important; word-break:break-all;}
+.connmap-note{font-size:11px; color:var(--text-dim); margin-top:9px; padding-top:9px; border-top:1px dashed var(--border); line-height:1.5;}
 
 .pipeline-board{padding:16px 20px; display:flex; flex-direction:column; gap:14px;}
 .pipeline-col-label{display:flex; align-items:center; justify-content:space-between; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--text-dim); margin-bottom:8px;}
@@ -2586,7 +2602,7 @@ button{font-family:inherit; cursor:pointer;}
       </div>
 
       <div class="card" style="margin-bottom:18px;">
-        <div class="card-head"><h3>My Opportunity Network</h3><a class="link" href="#" onclick="openAddSourceModal();return false;">+ Add Source</a></div>
+        <div class="card-head"><h3>My Opportunity Network</h3><div style="display:flex; gap:14px; align-items:center;"><a class="link" href="#" onclick="openConnectionMap();return false;">View Connection Map →</a><a class="link" href="#" onclick="openAddSourceModal();return false;">+ Add Source</a></div></div>
         <p style="padding:0 20px 12px; font-size:12px; color:var(--text-dim);">Connect the sources you trust. IntelligenceOS monitors them for you.</p>
         <div class="dc-health-bar" style="margin:0 20px 16px; width:auto;" id="tenderHealthBar"></div>
         <div class="tender-source-grid" id="tenderSourceGrid"></div>
@@ -3486,22 +3502,24 @@ const tenderData = [
   {id:12, title:"Inscend–World Bank Dashboard Bid", org:"World Bank (via Inscend Consulting)", sector:"Data Systems", budget:"$60,000", budgetVal:60000, deadline:"16 days", deadlineVal:16, fit:83, stage:"submitted", summary:"Interactive Afrobarometer dashboard build for a World Bank governance-data contract, led through Inscend Consulting."},
   {id:13, title:"JMK Procurement Analytics Retainer", org:"JMK Consulting Limited", sector:"Data Systems", budget:"GH₵140,000", budgetVal:140000, deadline:"4 days", deadlineVal:4, fit:97, stage:"in_progress", summary:"Ongoing retainer to maintain and extend the tender-monitoring analytics platform, including new scoring models and client-facing dashboards."},
   {id:14, title:"CRI/Mondelez Child Research Formatting", org:"Cocoa Research Institute", sector:"Education", budget:"$28,000", budgetVal:28000, deadline:"8 days", deadlineVal:8, fit:73, stage:"identified", summary:"Formatting and finalisation of cohort research reports on child welfare in cocoa-growing communities, across two cohorts."},
+  {id:15, title:"Procurement of IT Equipment for CPI Rebasing and Related Activities", org:"Ghana Statistical Service", sector:"Data Systems", budget:"See notice", budgetVal:0, deadline:"16 days", deadlineVal:16, fit:68, stage:"identified", summary:"Supply of laptops, desktop computers, printers, photocopiers, projector TV screen and digital weighing scales to support CPI rebasing fieldwork and related statistical activities.", verified:true, verifiedUrl:"https://www.ghaneps.gov.gh/epps/cft/prepareViewCfTWS.do?resourceId=3365203", verifiedDate:"12 Aug 2026", provenance:{sources:[{name:'GHANEPS',label:'Official — live notice',type:'official'}], confidence:100}},
+  {id:16, title:"Audio Visual Equipment, Lighting Control & Building Management System — UGBS Graduate Building", org:"University of Ghana — College of Humanities", sector:"Data Systems", budget:"See notice", budgetVal:0, deadline:"29 days", deadlineVal:29, fit:52, stage:"identified", summary:"Supply and installation of audio-visual equipment, lighting control and IT/building management systems for the new UGBS Graduate Building.", verified:true, verifiedUrl:"https://www.ghaneps.gov.gh/epps/cft/prepareViewCfTWS.do?resourceId=3375282", verifiedDate:"12 Aug 2026", provenance:{sources:[{name:'GHANEPS',label:'Official — live notice',type:'official'}], confidence:100}},
 ];
 const stageLabels = {identified:'Identified', in_progress:'In progress', submitted:'Submitted', won:'Won'};
 const stageOrder = ['identified','in_progress','submitted','won'];
 
 const tenderSources = [
   // TIER 1 — OFFICIAL
-  {name:'GHANEPS', tier:1, type:'Government e-procurement system', feeds:['Tender Registry','Tender Details','Documents','Clarifications','Amendments','Deadlines','Awards'], status:'healthy', opportunities:96, lastChecked:'4 minutes ago', url:'ghaneps.gov.gh', flagship:true},
+  {name:'GHANEPS', tier:1, type:'Government e-procurement system', feeds:['Tender Registry','Tender Details','Documents','Clarifications','Amendments','Deadlines','Awards'], status:'healthy', opportunities:96, lastChecked:'4 minutes ago', url:'ghaneps.gov.gh/epps/quickSearchAction.do?searchSelect=6', flagship:true, verifiedLive:true},
   {name:'PPA Ghana', tier:1, type:'Public Procurement Authority', feeds:['Active Tenders','Planned Procurement','Contracts & Awards','Procurement Documents'], status:'healthy', opportunities:84, lastChecked:'8 minutes ago', url:'ppa.gov.gh'},
   {name:'GIZ Ghana', tier:1, type:'Donor organisation portal', status:'attention', opportunities:14, lastChecked:'3 hours ago', url:'giz.de/ghana'},
-  {name:'World Bank Procurement', tier:1, type:'Structured API', status:'healthy', opportunities:42, lastChecked:'12 minutes ago', url:'worldbank.org/procurement'},
+  {name:'World Bank Procurement', tier:1, type:'Structured API', status:'healthy', opportunities:42, lastChecked:'12 minutes ago', url:'search.worldbank.org/api/procnotices', verifiedLive:true},
   {name:'UNGM', tier:1, type:'UN Global Marketplace — API', status:'healthy', opportunities:27, lastChecked:'18 minutes ago', url:'ungm.org'},
   {name:'AfDB Procurement', tier:1, type:'Multi-stream portal', feeds:['Corporate Procurement','General Notices','Specific Notices','Project Procurement','RSS'], status:'healthy', opportunities:31, lastChecked:'22 minutes ago', url:'afdb.org/procurement'},
   {name:'TED (EU)', tier:1, type:'Open Data API', status:'healthy', opportunities:21, lastChecked:'9 minutes ago', url:'ted.europa.eu'},
   {name:'SAM.gov', tier:1, type:'US Federal contract API', status:'healthy', opportunities:16, lastChecked:'27 minutes ago', url:'sam.gov'},
   // TIER 2 — HIGH-VALUE DISCOVERY
-  {name:'JobsInGhana', tier:2, type:'Opportunity aggregator', status:'healthy', opportunities:186, relevant:31, consultancies:18, tenders:7, otherContracts:6, duplicatesSuppressed:23, lastChecked:'4 minutes ago', url:'jobsinghana.com/job-listings', flagship:true, monitored:true},
+  {name:'JobsInGhana', tier:2, type:'Opportunity aggregator', status:'healthy', opportunities:186, relevant:31, consultancies:18, tenders:7, otherContracts:6, duplicatesSuppressed:23, lastChecked:'4 minutes ago', url:'jobsinghana.com/job-listings', flagship:true, monitored:true, verifiedLive:true},
   // TIER 3 — AGGREGATORS
   {name:'DevelopmentAid', tier:3, type:'Tender board', status:'offline', opportunities:0, lastChecked:'2 days ago', url:'developmentaid.org'},
   {name:'ReliefWeb', tier:3, type:'Aggregator', status:'healthy', opportunities:38, lastChecked:'6 minutes ago', url:'reliefweb.int'},
@@ -3605,6 +3623,63 @@ function viewSource(name){
     </div>
   `);
 }
+/* ---------- Data Connection Map ---------- */
+const connectionMapData = [
+  {name:'GHANEPS', tier:1, method:'Structured HTML endpoint (no public API)', endpoint:'ghaneps.gov.gh/epps/quickSearchAction.do?searchSelect=6', verified:'live', fields:'Title, procuring entity, deadline, procedure, status, notice PDF, publication date', cadence:'Every 15–30 min', note:'Fetched live on 12 Aug 2026 — 55 active tenders confirmed, real deadlines and notice PDFs.'},
+  {name:'PPA Ghana', tier:1, method:'Structured web pages, 4 sub-feeds', endpoint:'ppa.gov.gh', verified:'documented', fields:'Active tenders, planned procurement, contracts & awards, procurement documents', cadence:'Daily', note:'Tracks the same underlying GHANEPS data at the policy/oversight level.'},
+  {name:'GIZ Ghana', tier:1, method:'Organisation page scrape', endpoint:'giz.de/ghana', verified:'documented', fields:'Title, deadline, sector, contact', cadence:'Daily', note:'No structured feed — requires periodic page scraping.'},
+  {name:'World Bank Procurement', tier:1, method:'Official public API', endpoint:'search.worldbank.org/api/procnotices', verified:'live', fields:'Project ID, notice type, country, deadline, borrower contact', cadence:'Every 15 min (API supports polling)', note:'Confirmed genuine official API — also mirrored at financesone.worldbank.org with daily CSV/JSON export.'},
+  {name:'UNGM', tier:1, method:'UN Global Marketplace API (registration required)', endpoint:'ungm.org', verified:'documented', fields:'Notice title, agency, deadline, UNSPSC category', cadence:'Every 30 min', note:'Requires a registered UNGM account for API access.'},
+  {name:'AfDB Procurement', tier:1, method:'Multi-stream portal, 5 feeds incl. RSS', endpoint:'afdb.org/procurement', verified:'documented', fields:'Notice type, project, country, deadline', cadence:'Daily', note:'RSS feed available for General & Specific Notices — lowest-effort integration of the multi-stream sources.'},
+  {name:'TED (EU)', tier:1, method:'Official Open Data API', endpoint:'ted.europa.eu', verified:'documented', fields:'CPV codes, country, deadline, contracting authority', cadence:'Daily', note:'Full bulk XML/JSON export available — EU-funded Ghana-relevant notices only.'},
+  {name:'SAM.gov', tier:1, method:'US Federal contract API', endpoint:'sam.gov', verified:'documented', fields:'Notice ID, agency, NAICS code, deadline', cadence:'Daily', note:'USAID and other US-funded Ghana contracts surface here.'},
+  {name:'JobsInGhana', tier:2, method:'Structured listing pages with category/type filters', endpoint:'jobsinghana.com/job-listings', verified:'live', fields:'Title, employer, location, job type, category, posted date', cadence:'Every 10–15 min', note:'Fetched live on 12 Aug 2026 — confirmed real mix: raw employment (Mine Captain, Driver, Teacher) alongside genuine consultancy RFPs (CRS Tax Health Check). Dual-classification filter (Job Type = Consultancy, Category = Tenders/M&E/Procurement) applied at ingestion.'},
+  {name:'DevelopmentAid', tier:3, method:'Tender board scrape (subscription-gated)', endpoint:'developmentaid.org', verified:'documented', fields:'Title, donor, deadline, sector', cadence:'Daily', note:'Most content sits behind a paywall — only preview metadata is scrapeable without a subscription.'},
+  {name:'ReliefWeb', tier:3, method:'Official ReliefWeb API', endpoint:'reliefweb.int', verified:'documented', fields:'Title, source, country, type, date', cadence:'Every 30 min', note:'Well-documented public API — one of the easiest sources to integrate.'},
+  {name:'UNDP Ghana', tier:3, method:'Organisation page scrape', endpoint:'undp.org/ghana', verified:'documented', fields:'Title, deadline, procurement type', cadence:'Daily', note:'No structured feed — requires periodic page scraping.'},
+];
+function openConnectionMap(){
+  const verifiedCount = connectionMapData.filter(s=>s.verified==='live').length;
+  openModal(`
+    <div class="modal-head"><div><div class="eyebrow" style="margin-bottom:6px;"><span class="compass-dot"></span>DATA ARCHITECTURE</div><h3>Data Connection Map</h3><small style="color:var(--text-dim); font-size:11.5px;">${verifiedCount} of ${connectionMapData.length} sources verified live today · 12 Aug 2026</small></div><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <p style="font-size:12px; margin-bottom:14px;"><span style="color:var(--danger); font-weight:700;">🔴 Verified live</span> — actually fetched and confirmed working today. <span style="color:var(--text-dim); font-weight:700;">📄 Documented</span> — connection method confirmed from official docs, not directly polled in this session.</p>
+      ${tierLabels ? [1,2,3].map(tier=>{
+        const rows = connectionMapData.filter(s=>s.tier===tier);
+        return `<div class="intel-label" style="margin-top:16px;">${tierLabels[tier]}</div>
+          ${rows.map(s=>`
+            <div class="connmap-row">
+              <div class="connmap-row-head">
+                <b>${s.name}</b>
+                <span class="${s.verified==='live'?'connmap-live':'connmap-doc'}">${s.verified==='live'?'🔴 Verified live':'📄 Documented'}</span>
+              </div>
+              <div class="connmap-grid">
+                <div><span>Method</span><b>${s.method}</b></div>
+                <div><span>Endpoint</span><b class="connmap-endpoint">${s.endpoint}</b></div>
+                <div><span>Fields</span><b>${s.fields}</b></div>
+                <div><span>Recommended cadence</span><b>${s.cadence}</b></div>
+              </div>
+              <p class="connmap-note">${s.note}</p>
+            </div>
+          `).join('')}`;
+      }).join('') : ''}
+      <div class="intel-section" style="margin-top:8px;">
+        <div class="intel-label">For maximum output</div>
+        <ul class="intel-evidence">
+          <li>Wire GHANEPS, World Bank and JobsInGhana first — all three confirmed live today with clean, structured, directly-fetchable data.</li>
+          <li>ReliefWeb's official API is the easiest Tier 3 win — well-documented, no auth required.</li>
+          <li>AfDB's RSS feed is lower-effort than scraping its 5 sub-portals individually.</li>
+          <li>UNGM and TED require registration/bulk-export setup before polling — budget setup time accordingly.</li>
+          <li>Everything without a public API (GIZ Ghana, DevelopmentAid, UNDP Ghana) needs a scheduled scraper with change-detection, not real-time polling.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1; justify-content:center;">Close</button>
+      <button class="btn btn-primary" onclick="toast('Connection map exported — see downloads')" style="flex:1; justify-content:center;">Export as reference</button>
+    </div>
+  `);
+}
 function openAddSourceModal(){
   openModal(`
     <div class="modal-head"><h3>Add Source</h3><button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
@@ -3701,6 +3776,7 @@ function renderTenders(){
         <div class="tender-top">
           <h4>${t.title}</h4>
           <span class="tender-stage-badge stage-${t.stage}">${stageLabels[t.stage]}</span>
+          ${t.verified ? '<span class="tender-verified-badge">🔴 LIVE — verified '+t.verifiedDate+'</span>' : ''}
         </div>
         <div class="tender-org">${t.org}</div>
         <div class="tender-meta">
@@ -3766,6 +3842,7 @@ function openTender(id){
       <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
     <div class="modal-body">
+      ${t.verified ? `<div class="verified-live-banner">🔴 <b>Live opportunity</b> — fetched directly from GHANEPS and verified ${t.verifiedDate}. <a href="${t.verifiedUrl}" target="_blank" rel="noopener">View original notice ↗</a></div>` : ''}
       <p>${t.summary}</p>
       <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:14px 0;">
         <div style="background:var(--bg); border-radius:10px; padding:12px; text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px;">Sector</div><div style="font-weight:700; font-size:12.5px;">${t.sector}</div></div>
